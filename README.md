@@ -17,6 +17,12 @@ Librería de componentes y utilidades para React con Tailwind CSS, consumible po
 npm i @fitodac/shadcn
 ```
 
+
+
+## Publicacion
+
+Crear un Release publicado en GitHub. El workflow `.github/workflows/publish.yml` ejecuta `npm ci` y `npm publish` contra GitHub Packages usando `GITHUB_TOKEN`.
+
 ## Uso
 
 ```tsx
