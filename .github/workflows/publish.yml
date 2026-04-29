@@ -20,8 +20,19 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: "@fitodac"
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      - run: npm publish
+      - name: Check types
+        run: npm run check-types
+
+      - name: Build package
+        run: npm run build
+
+      - name: Validate tarball
+        run: npm pack --dry-run
+
+      - name: Publish package
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
