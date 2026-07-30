@@ -5,6 +5,7 @@ import * as React from "react"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { Button } from "@/registry/primitives/button"
 
+import { generateIntegrationPrompt } from "./integration/generate-integration-prompt"
 import type { DemoIntegrationBundle } from "./integration/types"
 
 type CopyButtonProps = {
@@ -50,6 +51,15 @@ type DemoCardProps = {
 
 export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
   const [view, setView] = React.useState<"preview" | "code">("preview")
+  const {
+    copyError: promptCopyError,
+    copyToClipboard: copyPrompt,
+    isCopied: isPromptCopied,
+  } = useCopyToClipboard()
+  const prompt = React.useMemo(
+    () => generateIntegrationPrompt(bundle),
+    [bundle]
+  )
 
   return (
     <section
@@ -60,25 +70,43 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
         <h2 className="text-lg font-medium" id={demoId}>
           {title}
         </h2>
-        <div aria-label={`${title} view`} className="flex gap-1" role="group">
+        <div className="flex flex-wrap items-center justify-end gap-2">
+          <div aria-label={`${title} view`} className="flex gap-1" role="group">
+            <Button
+              aria-pressed={view === "preview"}
+              onClick={() => setView("preview")}
+              size="sm"
+              type="button"
+              variant={view === "preview" ? "secondary" : "ghost"}
+            >
+              Preview
+            </Button>
+            <Button
+              aria-pressed={view === "code"}
+              onClick={() => setView("code")}
+              size="sm"
+              type="button"
+              variant={view === "code" ? "secondary" : "ghost"}
+            >
+              Code
+            </Button>
+          </div>
           <Button
-            aria-pressed={view === "preview"}
-            onClick={() => setView("preview")}
+            aria-label={`Copy ${title} integration prompt`}
+            onClick={() => void copyPrompt(prompt)}
             size="sm"
             type="button"
-            variant={view === "preview" ? "secondary" : "ghost"}
+            variant="outline"
           >
-            Preview
+            {isPromptCopied ? "Prompt copied" : "Copy prompt"}
           </Button>
-          <Button
-            aria-pressed={view === "code"}
-            onClick={() => setView("code")}
-            size="sm"
-            type="button"
-            variant={view === "code" ? "secondary" : "ghost"}
-          >
-            Code
-          </Button>
+          <span aria-live="polite" className="sr-only">
+            {isPromptCopied
+              ? "Prompt copied"
+              : promptCopyError
+                ? "Prompt copy failed"
+                : null}
+          </span>
         </div>
       </div>
 

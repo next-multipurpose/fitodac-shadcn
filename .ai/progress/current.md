@@ -114,3 +114,15 @@
 ## Runner — 2026-07-30T20:16:24Z
 
 - Active spec: `.ai/specs/004-demo-code-manual-integration.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-30T20:34:18Z
+
+- Active spec: `.ai/specs/005-copyable-ai-integration-prompt.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-30T20:39:19Z
+
+- Active spec: `.ai/specs/005-copyable-ai-integration-prompt.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-30T20:42:01Z
+
+- Active spec: `.ai/specs/005-copyable-ai-integration-prompt.md`\n- Action: ui-reviewer

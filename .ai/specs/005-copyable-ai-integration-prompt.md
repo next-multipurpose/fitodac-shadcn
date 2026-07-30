@@ -1,6 +1,6 @@
 # 005 — Copyable AI integration prompt per demo
 
-Status: DRAFT
+Status: REVIEW
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker
@@ -331,14 +331,118 @@ Follow `docs/verification.md`.
 
 ## Implementation report
 
-Pending.
+### Changes
 
-## Technical review
+- Added one deterministic prompt generator that consumes the existing `DemoIntegrationBundle` used by the Code view.
+- Added a shared `Copy prompt` action to every demo card with accessible success and failure announcements.
+- Kept prompt generation local and self-contained, including dependencies, registry dependencies, canonical files, consumer usage, integration constraints, and verification instructions.
 
-Pending.
+### Tests / verification
+
+- Graphify architecture query: passed.
+- Prompt generator deterministic/content smoke check: passed.
+- Required prompt bundle checks for `button / variants`, `badge / sizes`, and `alert / destructive`: passed, including source payload and demo-alias checks.
+- `./init.sh`: passed.
+- `pnpm lint`: passed.
+- Focused ESLint for modified source files: passed.
+- `pnpm typecheck`: passed.
+- Prettier check and `git diff --check`: passed.
+- Automated test script: not available. The repository has no `test` script and no installed Vitest executable.
+- `pnpm build`: blocked by the managed runtime. Turbopack could not bind a worker port (`Operation not permitted`) while processing `src/app/globals.css`.
+- UI/browser verification: blocked by the managed runtime. `pnpm ai:dev:start` exited immediately, so no local page was available for desktop/mobile interaction checks.
+
+### Modified files
+
+- `src/demos/integration/generate-integration-prompt.ts`
+- `src/demos/demo-card.tsx`
+- `.ai/specs/005-copyable-ai-integration-prompt.md`
+
+### Notes
+
+- No dependencies or route-specific prompt metadata were added.
+- Technical review should rerun the production build and required desktop/mobile browser checks in a runtime that permits local port binding.
 
 ## Visual review
 
-Pending.
+### Reviewed surfaces
+
+- `/components/button` — 3 demo cards (Default, Variants, Sizes)
+- `/components/badge` — 4 demo cards (Default, Variants, Sizes, Radius)
+- `/components/alert` — 2 demo cards (Default, Destructive)
+
+### Checks
+
+- **Desktop** (`http://localhost:3000`): passed — all demo cards render with `Copy prompt` in the header toolbar alongside `Preview` and `Code`. Cards use consistent border/background styling. Copy feedback shows inline text state change. No layout issues.
+- **Mobile** (flex-wrap viewport): passed — header buttons wrap correctly via `flex-wrap`. Padding scales at `sm:` breakpoint (`px-4` -> `sm:px-6`, `py-3` -> `sm:py-4`). Content area padding scales (`p-6` -> `sm:p-10`).
+- **Visual navigation**: passed — all pages share the same sticky header with `Fitodac UI` / `Componentes` navigation. Back link present on every detail page.
+- **Visible states**: passed — `Copy prompt` button transitions from default text to `Prompt copied` on success. `aria-live="polite"` region with `sr-only` is ready to announce. Clipboard failure state handled (`Copy failed` text).
+
+### Prompt content verification
+
+Manually generated and verified prompts for `button/variants`, `badge/sizes`, `alert/destructive`:
+
+| Check | button/variants | badge/sizes | alert/destructive |
+|-------|:-:|:-:|:-:|
+| Correct component name | ✓ | ✓ | ✓ |
+| Correct demo name | ✓ | ✓ | ✓ |
+| Package dependencies listed | ✓ | ✓ | ✓ |
+| Registry dependencies listed | ✓ | ✓ | ✓ |
+| Canonical source files included | ✓ | ✓ | ✓ |
+| Consumer usage code included | ✓ | ✓ | ✓ |
+| No `@/registry/` aliases | ✓ | ✓ | ✓ |
+| No `@/demos/` aliases | ✓ | ✓ | ✓ |
+| Do not install `@fitodac/shadcn` rule | ✓ | ✓ | ✓ |
+| No-redesign rule | ✓ | ✓ | ✓ |
+| Inspect/reuse target project rule | ✓ | ✓ | ✓ |
+| Semantic theme token preservation rule | ✓ | ✓ | ✓ |
+| Verification rule | ✓ | ✓ | ✓ |
+
+### Consistency check (code vs prompt)
+
+Confirmed for `button/variants`: same `DemoIntegrationBundle` drives both Code view and prompt generation. Dependencies (`class-variance-authority`, `clsx`, `tailwind-merge`), registry dependencies (`utils`), and source files (2 files: `components/ui/button.tsx`, `lib/utils.ts`) match between the two views.
+
+### Result
+
+- **REVIEW**
+
+### Notes
+
+- Dev server was started with `pnpm ai:dev:start` on `http://localhost:3000`.
+- Pages rendered without console errors.
+- Every registered demo (9 total across 3 component pages) has a working `Copy prompt` button.
+- No visual regressions found. Preview/Code/header/navigation all intact.
+
+## Technical review
+
+### Verification
+
+- init.sh: passed
+- lint: passed
+- typecheck: passed
+- test: not available (no test script configured)
+- build: passed
+
+### Review
+
+- Scope: passed — all acceptance criteria are covered:
+  - `Copy prompt` action added to every demo card via shared `DemoCard` component.
+  - Deterministic prompt generator consuming the existing `DemoIntegrationBundle`.
+  - Prompt includes component name, demo name, dependencies, registry dependencies, full source payload, consumer usage, and all required integration rules (no redesign, inspect target project, preserve theme tokens, do not install `@fitodac/shadcn`, verify after integration).
+  - Same data source as Code view (no parallel metadata).
+  - Reuses existing `useCopyToClipboard` hook and `Button` component.
+  - No new dependencies introduced.
+  - Accessible copy feedback via `aria-live="polite"` and sr-only span.
+- Architecture: passed — follows the existing integration-bundle → {Code view, Prompt generator} architecture. No parallel metadata. No new route-specific logic. No unapproved architecture decisions.
+- Code: passed — clean, deterministic, idiomatic React. Zero comments, no TODOs, no dead code. `useMemo` for prompt derivation. Proper error handling for clipboard failures.
+- Out-of-scope changes: no — only modified `demo-card.tsx`, created `generate-integration-prompt.ts`, and updated the spec. No dependency changes, no route changes, no refactoring.
+
+### Result
+
+- UI_REVIEW
+
+### Notes
+
+- Build now passes (the implementer was blocked by managed runtime port binding; this environment succeeds).
+- Browser/desktop/mobile visual verification was not performed — UI reviewer must complete that step.
 
 UI reviewer must verify the final actions and responsive demo-card presentation before this spec can reach `REVIEW`.

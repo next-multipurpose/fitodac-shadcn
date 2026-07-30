@@ -3,12 +3,12 @@
   warning: 1 source file(s) produced zero nodes and are absent from the graph: current.json. A re-run will retry them (empties are no longer cached); if it persists, please report the file(s) (#1666).
 [graphify extract] incremental scan of /Volumes/external-ssd/work/fitodac-shadcn
 [graphify extract] --code-only: skipping 23 non-code file(s) (21 docs, 0 papers, 2 images) — no LLM extraction
-[graphify extract] 2 code, 0 docs, 0 papers, 0 images changed; 182 unchanged; 0 deleted
-[graphify extract] 23 file(s) not classified (no supported extension or shebang), skipped: .editorconfig, .gitignore, .gitkeep, .prettierignore, .prettierrc, calendar.css (+17 more)
-[graphify extract] AST extraction on 2 code files...
-[graphify extract] wrote /Volumes/external-ssd/work/fitodac-shadcn/graphify-out/graph.json — 1318 nodes, 2452 edges (no clustering)
+[graphify extract] 3 code, 0 docs, 0 papers, 0 images changed; 182 unchanged; 0 deleted
+[graphify extract] 22 file(s) not classified (no supported extension or shebang), skipped: .editorconfig, .gitignore, .gitkeep, .prettierignore, .prettierrc, calendar.css (+16 more)
+[graphify extract] AST extraction on 3 code files...
+[graphify extract] wrote /Volumes/external-ssd/work/fitodac-shadcn/graphify-out/graph.json — 1321 nodes, 2460 edges (no clustering)
 Loading existing graph...
-Graph: 1318 nodes, 2451 edges
+Graph: 1321 nodes, 2459 edges
 Re-clustering...
-Done - 125 communities. GRAPH_REPORT.md, graph.json and graph.html updated.
+Done - 122 communities. GRAPH_REPORT.md, graph.json and graph.html updated.
 ✓ Graph updated
