@@ -5,6 +5,7 @@ import * as React from "react"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { Button } from "@/registry/primitives/button"
 
+import { useDemoView } from "./demo-view-provider"
 import { generateIntegrationPrompt } from "./integration/generate-integration-prompt"
 import type { DemoIntegrationBundle } from "./integration/types"
 
@@ -50,7 +51,9 @@ type DemoCardProps = {
 }
 
 export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
-  const [view, setView] = React.useState<"preview" | "code">("preview")
+  const { closeCode, openCode, openCodeDemoId } = useDemoView()
+  const isCodeOpen = openCodeDemoId === demoId
+  const cardRef = React.useRef<HTMLElement>(null)
   const {
     copyError: promptCopyError,
     copyToClipboard: copyPrompt,
@@ -61,10 +64,20 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
     [bundle]
   )
 
+  React.useEffect(() => {
+    if (isCodeOpen) {
+      cardRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    }
+  }, [isCodeOpen])
+
   return (
     <section
       aria-labelledby={demoId}
-      className="min-w-0 overflow-hidden rounded-xl border border-border bg-card"
+      className="scroll-mt-20 min-w-0 overflow-hidden rounded-xl border border-border bg-card"
+      ref={cardRef}
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-6 sm:py-4">
         <h2 className="text-lg font-medium" id={demoId}>
@@ -73,20 +86,20 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
         <div className="flex flex-wrap items-center justify-end gap-2">
           <div aria-label={`${title} view`} className="flex gap-1" role="group">
             <Button
-              aria-pressed={view === "preview"}
-              onClick={() => setView("preview")}
+              aria-pressed={!isCodeOpen}
+              onClick={() => closeCode(demoId)}
               size="sm"
               type="button"
-              variant={view === "preview" ? "secondary" : "ghost"}
+              variant={!isCodeOpen ? "secondary" : "ghost"}
             >
               Preview
             </Button>
             <Button
-              aria-pressed={view === "code"}
-              onClick={() => setView("code")}
+              aria-pressed={isCodeOpen}
+              onClick={() => openCode(demoId)}
               size="sm"
               type="button"
-              variant={view === "code" ? "secondary" : "ghost"}
+              variant={isCodeOpen ? "secondary" : "ghost"}
             >
               Code
             </Button>
@@ -110,7 +123,7 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
         </div>
       </div>
 
-      {view === "preview" ? (
+      {!isCodeOpen ? (
         <div className="flex min-h-48 items-center justify-center p-6 sm:p-10">
           {children}
         </div>

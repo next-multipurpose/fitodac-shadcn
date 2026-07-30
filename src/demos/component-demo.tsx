@@ -1,5 +1,6 @@
 import type { DemoEntry } from "@/demos/registry"
 import { DemoCard } from "@/demos/demo-card"
+import { DemoViewProvider } from "@/demos/demo-view-provider"
 import { getIntegrationBundle } from "@/demos/integration/get-integration-bundle"
 
 type ComponentDemoProps = {
@@ -38,10 +39,12 @@ export function ComponentDemos({ demos }: ComponentDemosProps) {
   }
 
   return (
-    <div className="grid gap-6">
-      {demos.map((demo) => (
-        <ComponentDemo demo={demo} key={demo.name} />
-      ))}
-    </div>
+    <DemoViewProvider>
+      <div className="grid gap-6">
+        {demos.map((demo) => (
+          <ComponentDemo demo={demo} key={demo.name} />
+        ))}
+      </div>
+    </DemoViewProvider>
   )
 }

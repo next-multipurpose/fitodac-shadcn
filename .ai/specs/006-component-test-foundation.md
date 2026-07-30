@@ -193,7 +193,52 @@ Do not commit any intentional mutation used to prove the regression guard.
 
 ## Implementation report
 
-Pending.
+### Changes
+
+- Added Vitest, React Testing Library, user-event, jest-dom, jsdom, Vite, and
+  the React Vite plugin as dev-only manifest entries, plus deterministic
+  `test` and `test:watch` scripts.
+- Added jsdom Vitest configuration with the existing `@/*` alias and a central
+  cleanup/jest-dom setup file.
+- Added focused behavioral and semantic-contract tests for the real registry
+  `Button`, including native props, disabled behavior, variants, sizes, and
+  `asChild`.
+- Added the stable registry-test rule and required `pnpm test` verification
+  guidance.
+
+### Tests / verification
+
+- Graphify CLI query: passed.
+- `package.json` JSON parse: passed.
+- `git diff --check`: passed.
+- `pnpm test`: blocked (`vitest: command not found`) because dependency
+  installation could not complete.
+- `pnpm lint`, `pnpm typecheck`, `./init.sh`, and `RUN_BUILD=1 ./init.sh`: not
+  run because `node_modules` could not be restored in this restricted runtime.
+- Intentional contract-break regression proof: not run because Vitest is not
+  installed.
+
+### Modified files
+
+- `package.json`
+- `vitest.config.ts`
+- `tests/setup.ts`
+- `tests/primitives/button.test.tsx`
+- `.ai/rules.md`
+- `docs/verification.md`
+- `.ai/specs/006-component-test-foundation.md`
+
+### Notes
+
+- Product/configuration work is present, but the spec cannot advance to
+  `TECH_REVIEW` without an installed suite and generated `pnpm-lock.yaml`
+  entries.
+- `pnpm add -D ...` first failed because the existing `node_modules` used
+  `/Volumes/external-ssd/.pnpm-store/v10`, which this runtime cannot update.
+  A workspace-local reinstall then failed because
+  `registry.npmjs.org` is unavailable (`ENOTFOUND`) and removed the previous
+  `node_modules` links. Run `pnpm install`, then the spec verification commands,
+  in an environment with registry access.
 
 ## Technical review
 

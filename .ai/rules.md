@@ -213,6 +213,11 @@ Before closing a task, `pnpm build` must pass if the script exists.
 
 ## 11. Testing and verification
 
+Adding or modifying a public contract under `src/registry/primitives/` or
+`src/registry/components/` requires automated tests for the affected contract.
+Do not weaken or delete existing tests to make a component change pass. When a
+shared primitive changes, consider its dependent components in the test scope.
+
 Before closing a spec, run:
 
 ```bash

@@ -19,6 +19,9 @@ Required before closing any spec:
 
 If it fails, the spec cannot be left in `REVIEW` or `DONE`.
 
+When the project defines a `test` script, `pnpm test` is required evidence.
+`./init.sh` runs it automatically as part of the project-check flow.
+
 ---
 
 ### Level 2 — Project scripts

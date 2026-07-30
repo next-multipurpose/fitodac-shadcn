@@ -126,3 +126,19 @@
 ## Runner — 2026-07-30T20:42:01Z
 
 - Active spec: `.ai/specs/005-copyable-ai-integration-prompt.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-30T21:44:45Z
+
+- Active spec: `.ai/specs/006-component-test-foundation.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-30T21:56:37Z
+
+- Active spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-30T22:04:12Z
+
+- Active spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-30T22:07:08Z
+
+- Active spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Action: ui-reviewer
