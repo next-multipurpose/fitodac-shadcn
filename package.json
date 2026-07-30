@@ -31,6 +31,9 @@
     "ai:graphify:start": "bash .ai/bin/graphify.sh start",
     "ai:graphify:status": "bash .ai/bin/graphify.sh status",
     "ai:graphify:stop": "bash .ai/bin/graphify.sh stop",
+    "ai:graphify:query": "bash .ai/bin/graphify.sh query",
+    "ai:graphify:path": "bash .ai/bin/graphify.sh path",
+    "ai:graphify:explain": "bash .ai/bin/graphify.sh explain",
     "ai:graphify:label": "bash .ai/bin/graphify.sh label"
   },
   "dependencies": {

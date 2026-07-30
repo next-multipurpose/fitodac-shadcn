@@ -74,13 +74,21 @@ Use Graphify first when you need to discover architecture, trace dependencies or
 calls, locate an implementation, or estimate change impact. Start with a narrow
 query and a small token budget, then read the identified files directly.
 
+The Codex CLI implementer uses `pnpm ai:graphify:query`,
+`pnpm ai:graphify:path`, and `pnpm ai:graphify:explain` over the existing
+`graphify-out/graph.json`. OpenCode roles use the shared Graphify MCP. Both
+interfaces query the same derived graph; do not duplicate the graph or start a
+second server for Codex.
+
 Do not query Graphify when the relevant file is already known or the task only
 requires an exact implementation detail. Do not treat Graphify as evidence for
 behavior, task state, requirements, or architecture decisions. Source code,
 specs, project rules, documentation, and progress files remain authoritative.
 
-If Graphify or its MCP is unavailable, stop with a runtime blocker. Do not hide
-the failure by falling back to broad repository scanning.
+If the Graphify interface assigned to the role is unavailable, stop with a
+runtime blocker. Do not hide the failure by falling back to broad repository
+scanning. Missing native MCP tools in Codex is not a blocker when the harness
+Graphify CLI query succeeds.
 
 Automatic Graphify maintenance must use code-only extraction and `--no-label`
 clustering. Only the human may intentionally run the manual labeling command.

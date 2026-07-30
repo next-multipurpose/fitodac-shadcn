@@ -152,6 +152,9 @@ This avoids Codex supervising a long batch of specs and keeps the workflow easy 
 pnpm ai:doctor
 pnpm ai:graphify:status
 pnpm ai:graphify:update
+pnpm ai:graphify:query "<question>"
+pnpm ai:graphify:path "<source>" "<target>"
+pnpm ai:graphify:explain "<node>"
 pnpm ai:runner
 pnpm ai:runner:once
 pnpm ai:dev:start
@@ -164,6 +167,9 @@ pnpm ai:dev:stop
 
 Graphify is required harness infrastructure. The doctor validates the graph and
 shared MCP before agents run. See `docs/graphify.md`.
+
+The Codex implementer queries Graphify through the harness CLI commands.
+OpenCode reviewer roles consume the same graph through the shared MCP.
 
 ---
 

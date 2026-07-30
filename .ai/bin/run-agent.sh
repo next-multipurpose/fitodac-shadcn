@@ -141,13 +141,22 @@ RUNTIME_ROOT="$RUNTIME_BASE/$PROJECT_HASH/$ROLE/$RUN_ID"
 SHARE_APP_AUTH="$(runtime_field "$ROLE" "share_app_auth" "false")"
 INTERACTIVE="${AI_AGENT_INTERACTIVE:-0}"
 GRAPHIFY_HOST="${AI_GRAPHIFY_HOST:-$(graphify_field host "127.0.0.1")}"
-GRAPHIFY_PORT="${AI_GRAPHIFY_PORT:-$(graphify_field port "8080")}"
+GRAPHIFY_PORT="${AI_GRAPHIFY_PORT:-$(graphify_field port "8081")}"
 GRAPHIFY_MCP_PATH="${AI_GRAPHIFY_MCP_PATH:-$(graphify_field mcp_path "/mcp")}"
 GRAPHIFY_MCP_URL="${AI_GRAPHIFY_MCP_URL:-http://$GRAPHIFY_HOST:$GRAPHIFY_PORT$GRAPHIFY_MCP_PATH}"
 
 if [[ "$MODE" != "cli" ]]; then
   echo "Role '$ROLE' is configured as mode '$MODE'. run-agent.sh only executes CLI roles." >&2
   exit 2
+fi
+
+if [[ "$PROMPT" == "--doctor-graphify-cli" ]]; then
+  if [[ "$TOOL" != "codex" ]]; then
+    echo "Graphify CLI capability check is only used for Codex roles." >&2
+    exit 2
+  fi
+  bash .ai/bin/graphify.sh query "package.json" --budget 200 >/dev/null
+  exit 0
 fi
 
 json_escape() {
@@ -400,7 +409,6 @@ run_codex() {
 
   args=(
     --ask-for-approval "$approval_policy"
-    --config "mcp_servers.graphify.url=\"$(json_escape "$GRAPHIFY_MCP_URL")\""
     exec
     --ephemeral
     --sandbox "$sandbox"

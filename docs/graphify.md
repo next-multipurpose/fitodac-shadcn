@@ -21,6 +21,9 @@ pnpm ai:graphify:update
 pnpm ai:graphify:start
 pnpm ai:graphify:status
 pnpm ai:graphify:stop
+pnpm ai:graphify:query "<question>"
+pnpm ai:graphify:path "<source>" "<target>"
+pnpm ai:graphify:explain "<node>"
 pnpm ai:graphify:rebuild
 ```
 
@@ -40,19 +43,27 @@ logs live in `.ai/run/graphify/`.
 The local endpoint is:
 
 ```text
-http://127.0.0.1:8080/mcp
+http://127.0.0.1:8081/mcp
 ```
 
 OpenCode CLI roles launched by the harness receive a temporary runtime config
-automatically. Codex CLI roles receive an equivalent command-line override.
-The harness does not modify personal configurations.
+automatically. The harness does not modify personal configurations.
+
+The Codex implementer does not depend on native MCP tool exposure. It queries
+the same graph through the harness CLI commands above. Reviewer and UI reviewer
+roles keep using this shared HTTP MCP. The CLI commands only read the existing
+`graphify-out/graph.json`; they do not duplicate the graph or start another
+Graphify server.
+
+The doctor validates these capabilities by role: a real harness CLI query for
+Codex and the shared MCP configuration for OpenCode.
 
 For manually launched clients, add the endpoint once:
 
 ### Codex
 
 ```bash
-codex mcp add graphify --url http://127.0.0.1:8080/mcp
+codex mcp add graphify --url http://127.0.0.1:8081/mcp
 ```
 
 ### Cursor
@@ -89,7 +100,7 @@ If the graph is empty, corrupt, or inconsistent:
 pnpm ai:graphify:rebuild
 ```
 
-The command only removes and reconstructs ignored derived state. If port `8080`
+The command only removes and reconstructs ignored derived state. If port `8081`
 is occupied by a different service, Graphify fails explicitly instead of
 terminating that process.
 

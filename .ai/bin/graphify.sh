@@ -280,6 +280,42 @@ ensure_runtime() {
   status_server
 }
 
+query_graph() {
+  local question="${1:-}"
+  shift || true
+
+  [[ -n "$question" ]] || fail "Usage: .ai/bin/graphify.sh query \"<question>\" [Graphify query options]"
+  validate_install
+  graph_is_valid || fail "Graph is missing or corrupt: $GRAPH_PATH"
+  "$GRAPHIFY_BIN" query "$question" --graph "$GRAPH_PATH" "$@"
+}
+
+path_graph() {
+  local source="${1:-}"
+  local target="${2:-}"
+  if (( $# >= 2 )); then
+    shift 2
+  else
+    fail "Usage: .ai/bin/graphify.sh path \"<source>\" \"<target>\""
+  fi
+
+  [[ -n "$source" && -n "$target" ]] ||
+    fail "Usage: .ai/bin/graphify.sh path \"<source>\" \"<target>\""
+  validate_install
+  graph_is_valid || fail "Graph is missing or corrupt: $GRAPH_PATH"
+  "$GRAPHIFY_BIN" path "$source" "$target" --graph "$GRAPH_PATH" "$@"
+}
+
+explain_graph() {
+  local node="${1:-}"
+  shift || true
+
+  [[ -n "$node" ]] || fail "Usage: .ai/bin/graphify.sh explain \"<node>\""
+  validate_install
+  graph_is_valid || fail "Graph is missing or corrupt: $GRAPH_PATH"
+  "$GRAPHIFY_BIN" explain "$node" --graph "$GRAPH_PATH" "$@"
+}
+
 label_communities() {
   validate_install
   graph_is_valid || fail "Graph is missing or corrupt"
@@ -292,9 +328,10 @@ label_communities() {
 
 usage() {
   cat <<'TXT'
-Usage: .ai/bin/graphify.sh <init|update|rebuild|start|status|stop|ensure|label>
+Usage: .ai/bin/graphify.sh <init|update|rebuild|start|status|stop|ensure|query|path|explain|label>
 
 Automatic commands use code-only extraction and --no-label clustering.
+Query, path, and explain read the existing graph without starting another server.
 Only the explicit label command may use an AI backend.
 TXT
 }
@@ -307,6 +344,9 @@ case "${1:-}" in
   status) status_server ;;
   stop) stop_server ;;
   ensure) ensure_runtime ;;
+  query) shift; query_graph "$@" ;;
+  path) shift; path_graph "$@" ;;
+  explain) shift; explain_graph "$@" ;;
   label) label_communities ;;
   *) usage; exit 2 ;;
 esac

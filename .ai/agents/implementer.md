@@ -32,7 +32,7 @@ You do not mark `REVIEW` or `DONE`.
    - `docs/database.md`
    - `docs/deploy.md`
 8. Check `git status --short`, `git diff`, and untracked files to detect previous work or recovery state.
-9. Use Graphify first for broad architecture, dependency, call, location, or impact discovery; then read the identified source files.
+9. Use Graphify first for broad architecture, dependency, call, location, or impact discovery; then read the identified source files. As the Codex CLI implementer, use the harness commands `pnpm ai:graphify:query`, `pnpm ai:graphify:path`, and `pnpm ai:graphify:explain`; native MCP availability is not required.
 10. Work only within the scope.
 11. Write or adjust tests first when there is verifiable logic.
 12. Implement the minimal correct solution.

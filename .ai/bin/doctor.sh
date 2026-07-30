@@ -216,7 +216,7 @@ cleanup_doctor_logs_on_failure() {
 
 check_role() {
   local role="$1"
-  local mode tool log_file
+  local mode tool log_file graphify_label
   mode="$(runtime_field "$role" "mode" "cli")"
   tool="$(runtime_field "$role" "tool" "$role")"
   log_file="$LOG_DIR/doctor-$role-$(date +%Y%m%d-%H%M%S).log"
@@ -237,20 +237,39 @@ check_role() {
     return 1
   fi
 
-  if ! run_with_progress "$role Graphify MCP config" "$CLI_TIMEOUT_SECONDS" "$log_file" .ai/bin/run-agent.sh "$role" --doctor-mcp; then
-    fail_msg "$role cannot load the shared Graphify MCP. Log: $log_file"
-    echo "Last output: $(last_log_line "$log_file")"
-    ERRORS=$((ERRORS + 1))
-    return 1
+  if [[ "$tool" == "codex" ]]; then
+    graphify_label="Graphify CLI query"
+    if ! run_with_progress "$role $graphify_label" "$CLI_TIMEOUT_SECONDS" "$log_file" .ai/bin/run-agent.sh "$role" --doctor-graphify-cli; then
+      fail_msg "$role cannot query Graphify through the harness CLI. Log: $log_file"
+      echo "Last output: $(last_log_line "$log_file")"
+      ERRORS=$((ERRORS + 1))
+      return 1
+    fi
+  else
+    graphify_label="Graphify MCP config"
+    if ! run_with_progress "$role $graphify_label" "$CLI_TIMEOUT_SECONDS" "$log_file" .ai/bin/run-agent.sh "$role" --doctor-mcp; then
+      fail_msg "$role cannot load the shared Graphify MCP. Log: $log_file"
+      echo "Last output: $(last_log_line "$log_file")"
+      ERRORS=$((ERRORS + 1))
+      return 1
+    fi
   fi
 
   if [[ "${AI_DOCTOR_SKIP_SMOKE:-0}" == "1" ]]; then
-    ok "$role CLI starts and loads Graphify MCP"
+    if [[ "$tool" == "codex" ]]; then
+      ok "$role Codex CLI starts and can query Graphify through CLI"
+    else
+      ok "$role CLI starts and loads Graphify MCP"
+    fi
     return 0
   fi
 
   if [[ "$SMOKE_ALREADY_RAN" == "1" && "${AI_DOCTOR_FULL_SMOKE:-0}" != "1" ]]; then
-    ok "$role CLI starts. Smoke already passed for another CLI role."
+    if [[ "$tool" == "codex" ]]; then
+      ok "$role Codex CLI starts and can query Graphify through CLI. Smoke already passed for another CLI role."
+    else
+      ok "$role CLI starts and loads Graphify MCP. Smoke already passed for another CLI role."
+    fi
     return 0
   fi
 
@@ -262,7 +281,11 @@ check_role() {
   fi
 
   SMOKE_ALREADY_RAN=1
-  ok "$role smoke run passed. Log: $log_file"
+  if [[ "$tool" == "codex" ]]; then
+    ok "$role Codex smoke passed and Graphify CLI query is available. Log: $log_file"
+  else
+    ok "$role smoke run passed and Graphify MCP is available. Log: $log_file"
+  fi
 }
 
 check_graphify() {

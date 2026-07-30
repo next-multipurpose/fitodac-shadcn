@@ -597,7 +597,11 @@ Implement the active Lean AI Harness spec: $spec
 
 Before editing, read AGENTS.md, .ai/rules.md, .ai/agents/implementer.md, and the active spec. Those files are the canonical, complete instructions.
 
-Use the shared Graphify MCP first for broad architecture, dependency, call, location, or impact discovery. Then verify exact behavior in the source files. If the MCP is unavailable, stop and report the runtime blocker.
+Use the harness Graphify CLI first for broad architecture, dependency, call, location, or impact discovery:
+- pnpm ai:graphify:query "<question>"
+- pnpm ai:graphify:path "<source>" "<target>"
+- pnpm ai:graphify:explain "<node>"
+These commands query the existing graphify-out/graph.json. Native MCP availability is not required for the Codex implementer. Then verify exact behavior in the source files. If the Graphify CLI is unavailable or a real query fails, stop and report the runtime blocker.
 
 Work on the real project files and spec; do not only reply in chat. Do not commit. When complete, update the spec to TECH_REVIEW; if blocked by product/code work, update it to CHANGES with the reason.
 PROMPT
