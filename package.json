@@ -14,7 +14,17 @@
     "lint": "eslint src/app",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+
+    "init": "bash ./init.sh",
+    "ai:doctor": "bash .ai/bin/doctor.sh",
+    "ai:status": "node .ai/bin/status.mjs",
+    "ai:runner": "bash .ai/bin/runner.sh",
+    "ai:runner:interactive": "AI_RUNNER_INTERACTIVE=1 bash .ai/bin/runner.sh",
+    "ai:runner:once": "AI_RUNNER_MAX_CYCLES=1 bash .ai/bin/runner.sh",
+    "ai:dev:start": "bash .ai/bin/dev-server.sh start",
+    "ai:dev:status": "bash .ai/bin/dev-server.sh status",
+    "ai:dev:stop": "bash .ai/bin/dev-server.sh stop"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",

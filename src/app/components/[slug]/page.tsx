@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import type { ReactNode } from "react"
 
+import { DetailSection, TagList } from "@/components/component-detail"
+import { ComponentDemos } from "@/demos/component-demo"
+import { getDemosForComponent } from "@/demos/registry"
 import registry from "../../../../registry.json"
 
 type PageProps = {
@@ -36,6 +38,8 @@ export default async function ComponentDetailPage({ params }: PageProps) {
     notFound()
   }
 
+  const demos = getDemosForComponent(slug)
+
   return (
     <main className="mx-auto w-full max-w-4xl px-6 py-14">
       <Link
@@ -50,7 +54,11 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         <h1 className="text-4xl font-semibold tracking-tight">{item.name}</h1>
       </div>
 
-      <div className="mt-10 grid gap-8">
+      <div className="mt-10">
+        <ComponentDemos demos={demos} />
+      </div>
+
+      <div className="mt-8 grid gap-8">
         <DetailSection title="Archivos">
           <ul className="divide-y divide-border">
             {(item.files ?? []).map((file) => (
@@ -82,45 +90,5 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         </DetailSection>
       </div>
     </main>
-  )
-}
-
-function DetailSection({
-  children,
-  title,
-}: {
-  children: ReactNode
-  title: string
-}) {
-  return (
-    <section className="rounded-xl border border-border bg-card p-6">
-      <h2 className="mb-4 text-lg font-medium">{title}</h2>
-      {children}
-    </section>
-  )
-}
-
-function TagList({
-  emptyLabel,
-  items,
-}: {
-  emptyLabel: string
-  items: string[]
-}) {
-  if (items.length === 0) {
-    return <p className="text-sm text-muted-foreground">{emptyLabel}</p>
-  }
-
-  return (
-    <ul className="flex flex-wrap gap-2">
-      {items.map((item) => (
-        <li
-          className="rounded-md bg-muted px-2.5 py-1 font-mono text-xs text-muted-foreground"
-          key={item}
-        >
-          {item}
-        </li>
-      ))}
-    </ul>
   )
 }

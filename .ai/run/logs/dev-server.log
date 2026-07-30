@@ -1,0 +1,15 @@
+
+> @fitodac/shadcn@0.1.0 dev /Volumes/external-ssd/work/fitodac-shadcn
+> next dev
+
+▲ Next.js 16.2.12 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://127.0.2.2:3000
+- Environments: .env
+✓ Ready in 329ms
+
+ GET /components/button 200 in 721ms (next.js: 512ms, generate-params: 372ms, application-code: 209ms)
+ GET /components/card 200 in 268ms (next.js: 227ms, generate-params: 223ms, application-code: 41ms)
+ GET /components/nonexistent-slug-xyz 404 in 68ms (next.js: 4ms, generate-params: 2ms, application-code: 64ms)
+ GET /components 200 in 153ms (next.js: 35ms, application-code: 118ms)
+[?25h
