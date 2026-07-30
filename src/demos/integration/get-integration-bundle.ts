@@ -39,6 +39,35 @@ function resolveTrustedSource(sourcePath: string) {
   return absolutePath
 }
 
+async function readCanonicalRegistryFile(item: RegistryItem, file: RegistryFile) {
+  const filename = path.basename(file.path)
+  const candidates = [
+    file.path,
+    `src/registry/primitives/${filename}`,
+    `src/registry/components/${filename}`,
+  ]
+
+  for (const sourcePath of [...new Set(candidates)]) {
+    try {
+      return {
+        sourcePath,
+        code: await readFile(resolveTrustedSource(sourcePath), "utf8"),
+      }
+    } catch (error) {
+      const code =
+        typeof error === "object" && error !== null && "code" in error
+          ? String(error.code)
+          : null
+
+      if (code !== "ENOENT") throw error
+    }
+  }
+
+  throw new Error(
+    `Registry source file not found for ${item.name}: ${file.path}`
+  )
+}
+
 function suggestedTargetPath(file: RegistryFile) {
   if (file.target) {
     return file.target.replace(/^src\//, "")
@@ -57,13 +86,10 @@ function suggestedTargetPath(file: RegistryFile) {
   return `components/ui/${filename}`
 }
 
-function toConsumerUsage(source: string, component: string) {
+function toConsumerUsage(source: string) {
   return source
-    .replaceAll(
-      `@/registry/primitives/${component}`,
-      `@/components/ui/${component}`
-    )
-    .replaceAll("@/registry/", "@/components/ui/")
+    .replaceAll("@/registry/primitives/", "@/components/ui/")
+    .replaceAll("@/registry/components/", "@/components/ui/")
     .replaceAll("@/demos/", "@/components/")
 }
 
@@ -85,6 +111,13 @@ export async function getIntegrationBundle(
   const seenFiles = new Set<string>()
   const seenDependencies = new Set<string>()
 
+  function addDependency(dependency: string) {
+    if (!seenDependencies.has(dependency)) {
+      seenDependencies.add(dependency)
+      dependencies.push(dependency)
+    }
+  }
+
   async function visit(item: RegistryItem) {
     if (seenItems.has(item.name)) return
 
@@ -92,20 +125,19 @@ export async function getIntegrationBundle(
     resolvedNames.push(item.name)
 
     for (const dependency of item.dependencies ?? []) {
-      if (!seenDependencies.has(dependency)) {
-        seenDependencies.add(dependency)
-        dependencies.push(dependency)
-      }
+      addDependency(dependency)
     }
 
     for (const file of item.files ?? []) {
-      if (seenFiles.has(file.path)) continue
+      const canonicalFile = await readCanonicalRegistryFile(item, file)
 
-      seenFiles.add(file.path)
+      if (seenFiles.has(canonicalFile.sourcePath)) continue
+
+      seenFiles.add(canonicalFile.sourcePath)
       resolvedFiles.push({
-        sourcePath: file.path,
+        sourcePath: canonicalFile.sourcePath,
         suggestedTargetPath: suggestedTargetPath(file),
-        code: await readFile(resolveTrustedSource(file.path), "utf8"),
+        code: canonicalFile.code,
       })
     }
 
@@ -124,6 +156,22 @@ export async function getIntegrationBundle(
 
   await visit(rootItem)
 
+  for (const dependencyName of demo.registryDependencies ?? []) {
+    const dependencyItem = registry.items.find(
+      (candidate) => candidate.name === dependencyName
+    )
+
+    if (!dependencyItem) {
+      throw new Error(`Demo registry dependency not found: ${dependencyName}`)
+    }
+
+    await visit(dependencyItem)
+  }
+
+  for (const dependency of demo.dependencies ?? []) {
+    addDependency(dependency)
+  }
+
   const usageSource = await readFile(
     resolveTrustedSource(demo.sourcePath),
     "utf8"
@@ -132,9 +180,11 @@ export async function getIntegrationBundle(
   return {
     component: demo.componentSlug,
     demo: demo.name,
-    usageCode: toConsumerUsage(usageSource, demo.componentSlug),
+    usageCode: toConsumerUsage(usageSource),
     files: resolvedFiles,
     dependencies,
-    registryDependencies: resolvedNames.slice(1),
+    registryDependencies: resolvedNames.filter(
+      (name) => name !== demo.componentSlug
+    ),
   }
 }

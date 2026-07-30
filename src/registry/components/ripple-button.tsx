@@ -5,8 +5,8 @@ import * as React from "react"
 import { motion, type HTMLMotionProps, type Transition } from "motion/react"
 import type { VariantProps } from "class-variance-authority"
 
-import { cn } from "./utils"
-import { buttonVariants } from "./registry/primitives/button"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/registry/primitives/button"
 
 interface Ripple {
   id: number
@@ -40,21 +40,16 @@ function RippleButton({
   const createRipple = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       const button = buttonRef.current
-
       if (!button) return
 
       const rect = button.getBoundingClientRect()
-      const x = event.clientX - rect.left
-      const y = event.clientY - rect.top
-
       const newRipple: Ripple = {
         id: Date.now(),
-        x,
-        y,
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top,
       }
 
       setRipples((prev) => [...prev, newRipple])
-
       setTimeout(() => {
         setRipples((prev) => prev.filter((r) => r.id !== newRipple.id))
       }, 600)
@@ -65,10 +60,7 @@ function RippleButton({
   const handleClick = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       createRipple(event)
-
-      if (onClick) {
-        onClick(event)
-      }
+      onClick?.(event)
     },
     [createRipple, onClick]
   )
@@ -93,10 +85,7 @@ function RippleButton({
           animate={{ scale, opacity: 0 }}
           transition={transition}
           className="pointer-events-none absolute size-5 rounded-full bg-current"
-          style={{
-            top: ripple.y - 10,
-            left: ripple.x - 10,
-          }}
+          style={{ top: ripple.y - 10, left: ripple.x - 10 }}
         />
       ))}
     </motion.button>
