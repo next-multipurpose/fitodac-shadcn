@@ -14,6 +14,8 @@ export type DemoEntry = {
   name: string
   title: string
   component: ComponentType
+  componentSlug: string
+  sourcePath: string
 }
 
 const demoRegistry: Record<string, DemoEntry[]> = {
@@ -22,11 +24,15 @@ const demoRegistry: Record<string, DemoEntry[]> = {
       name: "default",
       title: "Default",
       component: AlertDefaultDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/default.tsx",
     },
     {
       name: "destructive",
       title: "Destructive",
       component: AlertDestructiveDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/destructive.tsx",
     },
   ],
   badge: [
@@ -34,21 +40,29 @@ const demoRegistry: Record<string, DemoEntry[]> = {
       name: "default",
       title: "Default",
       component: BadgeDefaultDemo,
+      componentSlug: "badge",
+      sourcePath: "src/demos/badge/default.tsx",
     },
     {
       name: "variants",
       title: "Variants",
       component: BadgeVariantsDemo,
+      componentSlug: "badge",
+      sourcePath: "src/demos/badge/variants.tsx",
     },
     {
       name: "sizes",
       title: "Sizes",
       component: BadgeSizesDemo,
+      componentSlug: "badge",
+      sourcePath: "src/demos/badge/sizes.tsx",
     },
     {
       name: "radius",
       title: "Radius",
       component: BadgeRadiusDemo,
+      componentSlug: "badge",
+      sourcePath: "src/demos/badge/radius.tsx",
     },
   ],
   button: [
@@ -56,16 +70,22 @@ const demoRegistry: Record<string, DemoEntry[]> = {
       name: "default",
       title: "Default",
       component: ButtonDefaultDemo,
+      componentSlug: "button",
+      sourcePath: "src/demos/button/default.tsx",
     },
     {
       name: "variants",
       title: "Variants",
       component: ButtonVariantsDemo,
+      componentSlug: "button",
+      sourcePath: "src/demos/button/variants.tsx",
     },
     {
       name: "sizes",
       title: "Sizes",
       component: ButtonSizesDemo,
+      componentSlug: "button",
+      sourcePath: "src/demos/button/sizes.tsx",
     },
   ],
 }

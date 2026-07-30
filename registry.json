@@ -31,7 +31,12 @@
     {
       "name": "alert",
       "type": "registry:ui",
-      "files": [{ "path": "src/alert.tsx", "type": "registry:ui" }],
+      "files": [
+        {
+          "path": "src/registry/primitives/alert.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "dependencies": ["class-variance-authority@^0.7.1"],
       "registryDependencies": ["utils"]
     },
@@ -56,7 +61,12 @@
     {
       "name": "badge",
       "type": "registry:ui",
-      "files": [{ "path": "src/badge.tsx", "type": "registry:ui" }],
+      "files": [
+        {
+          "path": "src/registry/primitives/badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "dependencies": [
         "@base-ui/react@^1.3.0",
         "class-variance-authority@^0.7.1"
@@ -80,7 +90,12 @@
     {
       "name": "button",
       "type": "registry:ui",
-      "files": [{ "path": "src/button.tsx", "type": "registry:ui" }],
+      "files": [
+        {
+          "path": "src/registry/primitives/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
       "registryDependencies": ["utils"]
     },

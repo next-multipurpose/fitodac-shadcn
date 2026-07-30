@@ -1,26 +1,23 @@
 import type { DemoEntry } from "@/demos/registry"
+import { DemoCard } from "@/demos/demo-card"
+import { getIntegrationBundle } from "@/demos/integration/get-integration-bundle"
 
 type ComponentDemoProps = {
   demo: DemoEntry
 }
 
-export function ComponentDemo({ demo }: ComponentDemoProps) {
+export async function ComponentDemo({ demo }: ComponentDemoProps) {
   const Demo = demo.component
+  const bundle = await getIntegrationBundle(demo)
 
   return (
-    <section
-      aria-labelledby={`demo-${demo.name}`}
-      className="overflow-hidden rounded-xl border border-border bg-card"
+    <DemoCard
+      bundle={bundle}
+      demoId={`demo-${demo.componentSlug}-${demo.name}`}
+      title={demo.title}
     >
-      <div className="border-b border-border px-6 py-4">
-        <h2 className="text-lg font-medium" id={`demo-${demo.name}`}>
-          {demo.title}
-        </h2>
-      </div>
-      <div className="flex min-h-48 items-center justify-center p-6 sm:p-10">
-        <Demo />
-      </div>
-    </section>
+      <Demo />
+    </DemoCard>
   )
 }
 

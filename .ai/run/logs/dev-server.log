@@ -2,142 +2,19 @@
 > @fitodac/shadcn@0.1.0 dev /Volumes/external-ssd/work/fitodac-shadcn
 > next dev
 
+⚠ Port 3000 is in use by process 87574, using available port 3001 instead.
 ▲ Next.js 16.2.12 (Turbopack)
-- Local:         http://localhost:3000
-- Network:       http://127.0.2.2:3000
+- Local:         http://localhost:3001
+- Network:       http://127.0.2.2:3001
 - Environments: .env
-✓ Ready in 269ms
+✓ Ready in 337ms
+⨯ Another next dev server is already running.
 
- GET /components/button 200 in 589ms (next.js: 432ms, generate-params: 251ms, application-code: 157ms)
- GET /components/button 200 in 39ms (next.js: 5ms, generate-params: 2ms, application-code: 34ms)
- GET /components/badge 200 in 44ms (next.js: 2ms, generate-params: 1029µs, application-code: 42ms)
- GET /components/alert 200 in 22ms (next.js: 1858µs, generate-params: 909µs, application-code: 20ms)
- GET /components/nonexistent-slug-xyz 404 in 77ms (next.js: 8ms, generate-params: 1871µs, application-code: 70ms)
- GET /components 200 in 92ms (next.js: 21ms, application-code: 71ms)
-⨯ ./package.json:35:3
-Error parsing package.json file
-  [90m33 |[0m     [32m"ai:graphify:stop"[0m: [32m"bash .ai/bin/graphify.sh stop"[0m,
-  [90m34 |[0m     [32m"ai:graphify:label"[0m: [32m"bash .ai/bin/graphify.sh label"[0m,
-[31m[1m>[0m [90m35 |[0m   },
-  [90m   |[0m   [31m[1m^[0m
-  [90m36 |[0m   [32m"dependencies"[0m: {
-  [90m37 |[0m     [32m"@base-ui/react"[0m: [32m"^1.3.0"[0m,
-  [90m38 |[0m     [32m"@dnd-kit/core"[0m: [32m"^6.3.1"[0m,
+- Local:        http://localhost:3000
+- PID:          87574
+- Dir:          /Volumes/external-ssd/work/fitodac-shadcn
+- Log:          .next/dev/logs/next-development.log
 
-package.json is not parseable: invalid JSON: trailing comma at line 35 column 3
-
-
- GET /components/accordion 500 in 523ms (next.js: 461ms, application-code: 62ms)
-⨯ ./package.json:35:3
-Error parsing package.json file
-  [90m33 |[0m     [32m"ai:graphify:stop"[0m: [32m"bash .ai/bin/graphify.sh stop"[0m,
-  [90m34 |[0m     [32m"ai:graphify:label"[0m: [32m"bash .ai/bin/graphify.sh label"[0m,
-[31m[1m>[0m [90m35 |[0m   },
-  [90m   |[0m   [31m[1m^[0m
-  [90m36 |[0m   [32m"dependencies"[0m: {
-  [90m37 |[0m     [32m"@base-ui/react"[0m: [32m"^1.3.0"[0m,
-  [90m38 |[0m     [32m"@dnd-kit/core"[0m: [32m"^6.3.1"[0m,
-
-package.json is not parseable: invalid JSON: trailing comma at line 35 column 3
-
-
- GET /components/accordion 500 in 7ms (next.js: 2ms, application-code: 5ms)
-⨯ ./package.json:35:3
-Error parsing package.json file
-  [90m33 |[0m     [32m"ai:graphify:stop"[0m: [32m"bash .ai/bin/graphify.sh stop"[0m,
-  [90m34 |[0m     [32m"ai:graphify:label"[0m: [32m"bash .ai/bin/graphify.sh label"[0m,
-[31m[1m>[0m [90m35 |[0m   },
-  [90m   |[0m   [31m[1m^[0m
-  [90m36 |[0m   [32m"dependencies"[0m: {
-  [90m37 |[0m     [32m"@base-ui/react"[0m: [32m"^1.3.0"[0m,
-  [90m38 |[0m     [32m"@dnd-kit/core"[0m: [32m"^6.3.1"[0m,
-
-package.json is not parseable: invalid JSON: trailing comma at line 35 column 3
-
-
- GET /components/accordion 500 in 10ms (next.js: 4ms, application-code: 6ms)
-⨯ ./package.json:35:3
-Error parsing package.json file
-  [90m33 |[0m     [32m"ai:graphify:stop"[0m: [32m"bash .ai/bin/graphify.sh stop"[0m,
-  [90m34 |[0m     [32m"ai:graphify:label"[0m: [32m"bash .ai/bin/graphify.sh label"[0m,
-[31m[1m>[0m [90m35 |[0m   },
-  [90m   |[0m   [31m[1m^[0m
-  [90m36 |[0m   [32m"dependencies"[0m: {
-  [90m37 |[0m     [32m"@base-ui/react"[0m: [32m"^1.3.0"[0m,
-  [90m38 |[0m     [32m"@dnd-kit/core"[0m: [32m"^6.3.1"[0m,
-
-package.json is not parseable: invalid JSON: trailing comma at line 35 column 3
-
-
- GET /components/accordion 500 in 15ms (next.js: 7ms, application-code: 9ms)
-⨯ ./package.json:35:3
-Error parsing package.json file
-  [90m33 |[0m     [32m"ai:graphify:stop"[0m: [32m"bash .ai/bin/graphify.sh stop"[0m,
-  [90m34 |[0m     [32m"ai:graphify:label"[0m: [32m"bash .ai/bin/graphify.sh label"[0m,
-[31m[1m>[0m [90m35 |[0m   },
-  [90m   |[0m   [31m[1m^[0m
-  [90m36 |[0m   [32m"dependencies"[0m: {
-  [90m37 |[0m     [32m"@base-ui/react"[0m: [32m"^1.3.0"[0m,
-  [90m38 |[0m     [32m"@dnd-kit/core"[0m: [32m"^6.3.1"[0m,
-
-package.json is not parseable: invalid JSON: trailing comma at line 35 column 3
-
-
- GET /components/accordion 500 in 8ms (next.js: 3ms, application-code: 5ms)
-⨯ ./package.json:35:3
-Error parsing package.json file
-  [90m33 |[0m     [32m"ai:graphify:stop"[0m: [32m"bash .ai/bin/graphify.sh stop"[0m,
-  [90m34 |[0m     [32m"ai:graphify:label"[0m: [32m"bash .ai/bin/graphify.sh label"[0m,
-[31m[1m>[0m [90m35 |[0m   },
-  [90m   |[0m   [31m[1m^[0m
-  [90m36 |[0m   [32m"dependencies"[0m: {
-  [90m37 |[0m     [32m"@base-ui/react"[0m: [32m"^1.3.0"[0m,
-  [90m38 |[0m     [32m"@dnd-kit/core"[0m: [32m"^6.3.1"[0m,
-
-package.json is not parseable: invalid JSON: trailing comma at line 35 column 3
-
-
- GET /components/accordion 500 in 33ms (next.js: 24ms, application-code: 9ms)
-⨯ ./package.json:35:3
-Error parsing package.json file
-  [90m33 |[0m     [32m"ai:graphify:stop"[0m: [32m"bash .ai/bin/graphify.sh stop"[0m,
-  [90m34 |[0m     [32m"ai:graphify:label"[0m: [32m"bash .ai/bin/graphify.sh label"[0m,
-[31m[1m>[0m [90m35 |[0m   },
-  [90m   |[0m   [31m[1m^[0m
-  [90m36 |[0m   [32m"dependencies"[0m: {
-  [90m37 |[0m     [32m"@base-ui/react"[0m: [32m"^1.3.0"[0m,
-  [90m38 |[0m     [32m"@dnd-kit/core"[0m: [32m"^6.3.1"[0m,
-
-package.json is not parseable: invalid JSON: trailing comma at line 35 column 3
-
-
- GET /components/button 500 in 20ms (next.js: 12ms, application-code: 7ms)
-⨯ ./package.json:35:3
-Error parsing package.json file
-  [90m33 |[0m     [32m"ai:graphify:stop"[0m: [32m"bash .ai/bin/graphify.sh stop"[0m,
-  [90m34 |[0m     [32m"ai:graphify:label"[0m: [32m"bash .ai/bin/graphify.sh label"[0m,
-[31m[1m>[0m [90m35 |[0m   },
-  [90m   |[0m   [31m[1m^[0m
-  [90m36 |[0m   [32m"dependencies"[0m: {
-  [90m37 |[0m     [32m"@base-ui/react"[0m: [32m"^1.3.0"[0m,
-  [90m38 |[0m     [32m"@dnd-kit/core"[0m: [32m"^6.3.1"[0m,
-
-package.json is not parseable: invalid JSON: trailing comma at line 35 column 3
-
-
- GET /components/badge 500 in 5ms (next.js: 1677µs, application-code: 4ms)
-⨯ ./package.json:35:3
-Error parsing package.json file
-  [90m33 |[0m     [32m"ai:graphify:stop"[0m: [32m"bash .ai/bin/graphify.sh stop"[0m,
-  [90m34 |[0m     [32m"ai:graphify:label"[0m: [32m"bash .ai/bin/graphify.sh label"[0m,
-[31m[1m>[0m [90m35 |[0m   },
-  [90m   |[0m   [31m[1m^[0m
-  [90m36 |[0m   [32m"dependencies"[0m: {
-  [90m37 |[0m     [32m"@base-ui/react"[0m: [32m"^1.3.0"[0m,
-  [90m38 |[0m     [32m"@dnd-kit/core"[0m: [32m"^6.3.1"[0m,
-
-package.json is not parseable: invalid JSON: trailing comma at line 35 column 3
-
-
- GET /components/alert 500 in 6ms (next.js: 2ms, application-code: 4ms)
+Run kill 87574 to stop it.
 [?25h
+ ELIFECYCLE  Command failed with exit code 1.
