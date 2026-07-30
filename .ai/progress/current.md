@@ -142,3 +142,35 @@
 ## Runner — 2026-07-30T22:07:08Z
 
 - Active spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-30T22:26:33Z
+
+- Spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Result: unexpected state after ui-reviewer\n- New state: `CHANGES`
+
+## Runner — 2026-07-30T22:26:38Z
+
+- Active spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-30T22:27:58Z
+
+- Active spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-30T22:40:56Z
+
+- Spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Result: unexpected state after reviewer\n- New state: `CHANGES`
+
+## Runner — 2026-07-30T22:41:01Z
+
+- Active spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-30T22:43:13Z
+
+- Active spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-30T22:45:27Z
+
+- Active spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-30T22:48:01Z
+
+- Spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Result: unexpected state after ui-reviewer\n- New state: `CHANGES`

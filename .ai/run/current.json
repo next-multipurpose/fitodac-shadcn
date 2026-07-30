@@ -1,8 +1,8 @@
 {
-  "runner_pid": 47690,
-  "phase": "running",
+  "runner_pid": 1752,
+  "phase": "changes",
   "spec": ".ai/specs/007-exclusive-demo-code-panel.md",
-  "agent": "ui-reviewer",
-  "status": "UI_REVIEW",
-  "updated_at": "2026-07-30T22:07:08Z"
+  "agent": "runner",
+  "status": "CHANGES",
+  "updated_at": "2026-07-30T22:48:01Z"
 }
