@@ -45,6 +45,28 @@ try {
   fi
 }
 
+graphify_field() {
+  local field="$1"
+  local fallback="${2:-}"
+
+  if [[ -f ".ai/graphify.json" ]] && command_exists node; then
+    node -e "
+const fs = require('fs');
+const field = process.argv[1];
+const fallback = process.argv[2] ?? '';
+try {
+  const config = JSON.parse(fs.readFileSync('.ai/graphify.json', 'utf8'));
+  const value = config[field];
+  process.stdout.write(value === undefined || value === null ? fallback : String(value));
+} catch {
+  process.stdout.write(fallback);
+}
+" "$field" "$fallback"
+  else
+    printf '%s' "$fallback"
+  fi
+}
+
 role_env_prefix() {
   printf '%s' "$1" | tr '[:lower:]' '[:upper:]' | tr '-' '_'
 }
@@ -118,6 +140,10 @@ RUNTIME_BASE="${AI_AGENT_RUNTIME_BASE:-${TMPDIR:-/tmp}/lean-ai-harness-runtime}"
 RUNTIME_ROOT="$RUNTIME_BASE/$PROJECT_HASH/$ROLE/$RUN_ID"
 SHARE_APP_AUTH="$(runtime_field "$ROLE" "share_app_auth" "false")"
 INTERACTIVE="${AI_AGENT_INTERACTIVE:-0}"
+GRAPHIFY_HOST="${AI_GRAPHIFY_HOST:-$(graphify_field host "127.0.0.1")}"
+GRAPHIFY_PORT="${AI_GRAPHIFY_PORT:-$(graphify_field port "8080")}"
+GRAPHIFY_MCP_PATH="${AI_GRAPHIFY_MCP_PATH:-$(graphify_field mcp_path "/mcp")}"
+GRAPHIFY_MCP_URL="${AI_GRAPHIFY_MCP_URL:-http://$GRAPHIFY_HOST:$GRAPHIFY_PORT$GRAPHIFY_MCP_PATH}"
 
 if [[ "$MODE" != "cli" ]]; then
   echo "Role '$ROLE' is configured as mode '$MODE'. run-agent.sh only executes CLI roles." >&2
@@ -190,6 +216,24 @@ prepare_runtime() {
     if [[ ! -e "$RUNTIME_ROOT/data/opencode/auth.json" ]]; then
       ln -s "$app_auth" "$RUNTIME_ROOT/data/opencode/auth.json"
     fi
+  fi
+
+  if [[ "$TOOL" == "opencode" ]]; then
+    cat > "$RUNTIME_ROOT/opencode.json" <<JSON
+{
+  "\$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "graphify": {
+      "type": "remote",
+      "url": "$(json_escape "$GRAPHIFY_MCP_URL")",
+      "enabled": true,
+      "oauth": false,
+      "timeout": 30000
+    }
+  }
+}
+JSON
+    export OPENCODE_CONFIG="$RUNTIME_ROOT/opencode.json"
   fi
 
   export XDG_DATA_HOME="$RUNTIME_ROOT/data"
@@ -354,7 +398,14 @@ run_codex() {
     approval_policy="$(runtime_field "$ROLE" "approval_policy" "never")"
   fi
 
-  args=(--ask-for-approval "$approval_policy" exec --ephemeral --sandbox "$sandbox" --cd "$ROOT_DIR")
+  args=(
+    --ask-for-approval "$approval_policy"
+    --config "mcp_servers.graphify.url=\"$(json_escape "$GRAPHIFY_MCP_URL")\""
+    exec
+    --ephemeral
+    --sandbox "$sandbox"
+    --cd "$ROOT_DIR"
+  )
 
   if [[ -n "$model" ]]; then
     args+=(--model "$model")
@@ -384,6 +435,11 @@ if [[ "$TOOL" == "opencode" ]]; then
     exit 0
   fi
 
+  if [[ "$PROMPT" == "--doctor-mcp" ]]; then
+    run_foreground "$OPENCODE_BIN" mcp list
+    exit "$?"
+  fi
+
   run_opencode_with_model_fallback "$OPENCODE_BIN"
   exit "$?"
 fi
@@ -399,6 +455,18 @@ if [[ "$TOOL" == "codex" ]]; then
   if [[ "$PROMPT" == "--doctor" ]]; then
     "$CODEX_BIN" --version >/dev/null
     exit 0
+  fi
+
+  if [[ "$PROMPT" == "--doctor-mcp" ]]; then
+    prepare_runtime
+    set +e
+    "$CODEX_BIN" \
+      --config "mcp_servers.graphify.url=\"$(json_escape "$GRAPHIFY_MCP_URL")\"" \
+      mcp get graphify
+    rc="$?"
+    set -e
+    cleanup_runtime_root
+    exit "$rc"
   fi
 
   run_codex "$CODEX_BIN"

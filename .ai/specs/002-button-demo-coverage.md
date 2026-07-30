@@ -1,6 +1,6 @@
 # 002 — Button demo coverage
 
-Status: REVIEW
+Status: DONE
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker

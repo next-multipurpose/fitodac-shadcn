@@ -36,15 +36,16 @@ You do not mark `DONE`.
 9. Review `git status --short`.
 10. Review `git diff`.
 11. Review `git ls-files --others --exclude-standard`.
-12. Directly read relevant modified and untracked source files.
-13. Run `./init.sh`.
-14. Run other available checks if the spec requires them.
-15. Verify behavior, scope, architecture, quality, and absence of unnecessary changes.
-16. Write `## Technical review` in the spec.
-17. If there are product/code errors, change the spec to `CHANGES`.
-18. If everything passes and the task requires UI review, change the spec to `UI_REVIEW`.
-19. If everything passes and the task does not require UI review, change the spec to `REVIEW`.
-20. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
+12. Use Graphify first for broad impact, dependency, and architecture review.
+13. Directly read relevant modified and untracked source files; Graphify is not authoritative evidence.
+14. Run `./init.sh`.
+15. Run other available checks if the spec requires them.
+16. Verify behavior, scope, architecture, quality, and absence of unnecessary changes.
+17. Write `## Technical review` in the spec.
+18. If there are product/code errors, change the spec to `CHANGES`.
+19. If everything passes and the task requires UI review, change the spec to `UI_REVIEW`.
+20. If everything passes and the task does not require UI review, change the spec to `REVIEW`.
+21. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
 
 ---
 

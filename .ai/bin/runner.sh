@@ -477,6 +477,24 @@ mark_runtime_blocked() {
   write_state "blocked_runtime" "$spec" "$role" "BLOCKED_RUNTIME"
 }
 
+run_graphify_for_spec() {
+  local spec="$1"
+  local operation="$2"
+  local log_file="$RUN_DIR/graphify/runner-$operation.log"
+
+  mkdir -p "$RUN_DIR/graphify"
+  log "Graphify $operation for $spec"
+
+  if ! bash .ai/bin/graphify.sh "$operation" >"$log_file" 2>&1; then
+    warn "Graphify $operation failed. Last log lines:"
+    tail -n 30 "$log_file" || true
+    mark_runtime_blocked "$spec" "graphify-$operation" "$log_file"
+    return 1
+  fi
+
+  ok "Graphify $operation passed"
+}
+
 run_agent() {
   local role="$1"
   local spec="$2"
@@ -579,6 +597,8 @@ Implement the active Lean AI Harness spec: $spec
 
 Before editing, read AGENTS.md, .ai/rules.md, .ai/agents/implementer.md, and the active spec. Those files are the canonical, complete instructions.
 
+Use the shared Graphify MCP first for broad architecture, dependency, call, location, or impact discovery. Then verify exact behavior in the source files. If the MCP is unavailable, stop and report the runtime blocker.
+
 Work on the real project files and spec; do not only reply in chat. Do not commit. When complete, update the spec to TECH_REVIEW; if blocked by product/code work, update it to CHANGES with the reason.
 PROMPT
 }
@@ -603,15 +623,16 @@ Mandatory instructions:
 8. Review git diff.
 9. Review git ls-files --others --exclude-standard.
 10. Directly read relevant modified and untracked source files.
-11. Verify that the implementation works by running ./init.sh and available checks.
-12. Review scope, architecture, quality, and unnecessary changes.
-13. Do not edit application code.
-14. Do not commit.
-15. Write or update "## Technical review" in the spec.
-16. If there are functional, test, scope, architecture, or quality failures, change the spec to "Status: CHANGES" and document the requested changes.
-17. If everything is correct and UI review required is "yes", change the spec to "Status: UI_REVIEW".
-18. If everything is correct and UI review required is "no", change the spec to "Status: REVIEW".
-19. Do not use BLOCKED_RUNTIME; that status is reserved for the runner.
+11. Use the shared Graphify MCP for broad impact/dependency review, then verify exact behavior in source.
+12. Verify that the implementation works by running ./init.sh and available checks.
+13. Review scope, architecture, quality, and unnecessary changes.
+14. Do not edit application code.
+15. Do not commit.
+16. Write or update "## Technical review" in the spec.
+17. If there are functional, test, scope, architecture, or quality failures, change the spec to "Status: CHANGES" and document the requested changes.
+18. If everything is correct and UI review required is "yes", change the spec to "Status: UI_REVIEW".
+19. If everything is correct and UI review required is "no", change the spec to "Status: REVIEW".
+20. Do not use BLOCKED_RUNTIME; that status is reserved for the runner.
 
 Allowed final response:
 reviewed -> $spec
@@ -697,6 +718,10 @@ review_spec() {
 
   if requires_ui_review "$spec"; then
     ui_required="yes"
+  fi
+
+  if ! run_graphify_for_spec "$spec" "update"; then
+    return 1
   fi
 
   update_progress "- Active spec: \`$spec\`\n- Action: reviewer\n- UI review required: \`$ui_required\`"
@@ -795,6 +820,9 @@ main() {
   require_file ".ai/agents/reviewer.md"
   require_file ".ai/agents/ui-reviewer.md"
   require_file ".ai/bin/run-agent.sh"
+  require_file ".ai/bin/graphify.sh"
+  require_file ".ai/bin/graphify-mcp-check.mjs"
+  require_file ".ai/graphify.json"
 
   require_runtime_health
   ensure_queue_is_safe
@@ -824,6 +852,11 @@ main() {
     fi
 
     log "Cycle $cycle/$MAX_CYCLES -> $spec ($status)"
+
+    if ! run_graphify_for_spec "$spec" "start"; then
+      print_summary
+      return 0
+    fi
 
     rc=0
     case "$status" in

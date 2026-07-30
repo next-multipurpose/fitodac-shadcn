@@ -31,7 +31,8 @@ Before acting:
    - `docs/architecture.md`
    - `docs/conventions.md`
    - `docs/verification.md`
-6. Inspect the affected code for existing components, layouts, hooks, helpers, services, actions, and backend methods before defining new ones.
+6. Use Graphify first when broad architecture, dependency, call, location, or impact discovery is needed.
+7. Read the identified source files and inspect existing components, layouts, hooks, helpers, services, actions, and backend methods before defining new ones.
 
 ---
 

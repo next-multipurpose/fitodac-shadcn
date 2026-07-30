@@ -32,14 +32,15 @@ You do not mark `REVIEW` or `DONE`.
    - `docs/database.md`
    - `docs/deploy.md`
 8. Check `git status --short`, `git diff`, and untracked files to detect previous work or recovery state.
-9. Work only within the scope.
-10. Write or adjust tests first when there is verifiable logic.
-11. Implement the minimal correct solution.
-12. Run the available base verification.
-13. Complete `## Implementation report`.
-14. If you are done, change the spec to `TECH_REVIEW`.
-15. If product/code work is blocked, change the spec to `CHANGES` and document the reason.
-16. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
+9. Use Graphify first for broad architecture, dependency, call, location, or impact discovery; then read the identified source files.
+10. Work only within the scope.
+11. Write or adjust tests first when there is verifiable logic.
+12. Implement the minimal correct solution.
+13. Run the available base verification.
+14. Complete `## Implementation report`.
+15. If you are done, change the spec to `TECH_REVIEW`.
+16. If product/code work is blocked, change the spec to `CHANGES` and document the reason.
+17. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
 
 ---
 
@@ -59,6 +60,7 @@ You do not mark `REVIEW` or `DONE`.
 - Do not hide errors just to move forward.
 - Do not install system tools unless the spec explicitly allows it.
 - Do not read `.env*` files; use readable docs such as `docs/local-env.example.md` instead.
+- Do not use Graphify as authoritative evidence. Verify exact behavior in source files.
 
 ---
 

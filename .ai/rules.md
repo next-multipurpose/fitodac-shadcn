@@ -66,7 +66,30 @@ The goal is the smallest correct, verifiable, and maintainable change.
 
 ---
 
-## 4. Frontend architecture
+## 4. Repository exploration
+
+Graphify is the shared structural index maintained by the harness.
+
+Use Graphify first when you need to discover architecture, trace dependencies or
+calls, locate an implementation, or estimate change impact. Start with a narrow
+query and a small token budget, then read the identified files directly.
+
+Do not query Graphify when the relevant file is already known or the task only
+requires an exact implementation detail. Do not treat Graphify as evidence for
+behavior, task state, requirements, or architecture decisions. Source code,
+specs, project rules, documentation, and progress files remain authoritative.
+
+If Graphify or its MCP is unavailable, stop with a runtime blocker. Do not hide
+the failure by falling back to broad repository scanning.
+
+Automatic Graphify maintenance must use code-only extraction and `--no-label`
+clustering. Only the human may intentionally run the manual labeling command.
+
+See `docs/graphify.md`.
+
+---
+
+## 5. Frontend architecture
 
 General rules:
 
@@ -89,7 +112,7 @@ Before implementing UI or backend behavior, search the affected area for an exis
 
 ---
 
-## 5. Next.js / Vite
+## 6. Next.js / Vite
 
 For Next.js:
 
@@ -105,7 +128,7 @@ For Vite:
 
 ---
 
-## 6. UI, Tailwind, and shadcn
+## 7. UI, Tailwind, and shadcn
 
 Tailwind CSS and shadcn/ui are the preferred visual base.
 
@@ -122,7 +145,7 @@ The UI must be usable, not just compile.
 
 ---
 
-## 7. UI Review
+## 8. UI Review
 
 If the spec modifies UI, layout, responsive behavior, visual navigation, forms, or visible components:
 
@@ -143,7 +166,7 @@ Playwright is the preferred standard tool for:
 
 ---
 
-## 8. Supabase
+## 9. Supabase
 
 Supabase is the standard solution for:
 
@@ -164,7 +187,7 @@ Rules:
 
 ---
 
-## 9. GitHub and deploy
+## 10. GitHub and deploy
 
 GitHub is the standard remote repository.
 Vercel is the standard deploy target.
@@ -180,7 +203,7 @@ Before closing a task, `pnpm build` must pass if the script exists.
 
 ---
 
-## 10. Testing and verification
+## 11. Testing and verification
 
 Before closing a spec, run:
 
@@ -212,7 +235,7 @@ If a command does not exist, mark it as `not available` in the report.
 
 ---
 
-## 11. Error handling
+## 12. Error handling
 
 - Do not hide errors.
 - Do not remove validations to make tests pass.
@@ -222,7 +245,7 @@ If a command does not exist, mark it as `not available` in the report.
 
 ---
 
-## 12. Report
+## 13. Report
 
 When finished, update the spec with a short report:
 

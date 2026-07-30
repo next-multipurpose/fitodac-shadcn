@@ -108,6 +108,9 @@ require_file ".ai/bin/runner.sh"
 require_file ".ai/bin/doctor.sh"
 require_file ".ai/bin/run-agent.sh"
 require_file ".ai/bin/dev-server.sh"
+require_file ".ai/bin/graphify.sh"
+require_file ".ai/bin/graphify-mcp-check.mjs"
+require_file ".ai/graphify.json"
 require_file ".ai/agents/leader.md"
 require_file ".ai/agents/implementer.md"
 require_file ".ai/agents/reviewer.md"
@@ -124,6 +127,7 @@ require_file "docs/conventions.md"
 require_file "docs/verification.md"
 require_file "docs/database.md"
 require_file "docs/deploy.md"
+require_file "docs/graphify.md"
 
 # --------------------------------------------------
 # 4. Required tools

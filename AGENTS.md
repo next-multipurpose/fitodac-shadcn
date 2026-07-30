@@ -69,6 +69,7 @@ If OpenCode, Trae, permissions, cache, auth, or CLI runtime fails, Codex must no
 | `.ai/bin/doctor.sh`          | Runtime gate before running agents       |
 | `.ai/bin/runner.sh`          | Technical runner                         |
 | `.ai/bin/run-agent.sh`       | Stable wrapper for CLI agents            |
+| `.ai/bin/graphify.sh`        | Shared code graph lifecycle               |
 | `.ai/bin/dev-server.sh`      | Helper for UI/browser review             |
 | `.ai/run/health.json`        | Last runtime validation result           |
 | `.ai/run/logs/`              | Long logs outside agent context          |
@@ -78,6 +79,7 @@ If OpenCode, Trae, permissions, cache, auth, or CLI runtime fails, Codex must no
 | `docs/verification.md`       | Required verification                    |
 | `docs/database.md`           | Supabase, DB, Auth, RLS, migrations      |
 | `docs/deploy.md`             | Build, deploy, envs, Vercel              |
+| `docs/graphify.md`           | Graphify setup, lifecycle, and usage      |
 
 ---
 
@@ -148,6 +150,8 @@ This avoids Codex supervising a long batch of specs and keeps the workflow easy 
 ```bash
 ./init.sh
 pnpm ai:doctor
+pnpm ai:graphify:status
+pnpm ai:graphify:update
 pnpm ai:runner
 pnpm ai:runner:once
 pnpm ai:dev:start
@@ -157,6 +161,9 @@ pnpm ai:dev:stop
 
 `pnpm ai:doctor` is the runtime gate.
 `pnpm ai:runner` is idempotent and can be run many times.
+
+Graphify is required harness infrastructure. The doctor validates the graph and
+shared MCP before agents run. See `docs/graphify.md`.
 
 ---
 
@@ -203,6 +210,10 @@ Use `UI Review: auto` only when there is a strong reason to let the runner infer
 - If the spec touches UI, it must go through `UI_REVIEW`.
 - If the spec touches Supabase, document DB/Auth/migrations and local verification.
 - Do not require agents to read `.env*` files. Put readable local defaults in docs such as `docs/local-env.example.md`.
+- Use Graphify first for broad architecture, dependency, call, location, and impact questions.
+- Read the identified source files directly before making or approving implementation claims.
+- Source code remains authoritative; Graphify is an ignored, rebuildable index.
+- Automatic Graphify commands must remain code-only and must not invoke an LLM.
 
 ---
 

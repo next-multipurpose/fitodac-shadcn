@@ -27,15 +27,16 @@ You do not mark `DONE`.
 5. Read `docs/architecture.md`, `docs/conventions.md`, and `docs/verification.md`.
 6. Review `## Implementation report`.
 7. Review `## Technical review`.
-8. Identify affected screens, routes, components, or visual states.
-9. Compare related screens and verify that shared shells, navigation, headers, controls, and visible states remain structurally consistent.
-10. Use `pnpm ai:dev:start`, `pnpm ai:dev:status`, and `pnpm ai:dev:stop` for dev server management when useful.
-11. Review UI in a browser or with Playwright if available.
-12. Verify desktop and mobile when applicable.
-13. Write `## Visual review` in the spec.
-14. If there are visual issues, change the spec to `CHANGES`.
-15. If visual review passes, change the spec to `REVIEW`.
-16. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
+8. Use Graphify first only when broad impact discovery is needed, then inspect the affected source directly.
+9. Identify affected screens, routes, components, or visual states.
+10. Compare related screens and verify that shared shells, navigation, headers, controls, and visible states remain structurally consistent.
+11. Use `pnpm ai:dev:start`, `pnpm ai:dev:status`, and `pnpm ai:dev:stop` for dev server management when useful.
+12. Review UI in a browser or with Playwright if available.
+13. Verify desktop and mobile when applicable.
+14. Write `## Visual review` in the spec.
+15. If there are visual issues, change the spec to `CHANGES`.
+16. If visual review passes, change the spec to `REVIEW`.
+17. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
 
 ---
 

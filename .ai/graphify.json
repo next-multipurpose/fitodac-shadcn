@@ -1,0 +1,17 @@
+{
+  "version": "0.9.29",
+  "mcp_version_range": "<2",
+  "graph_path": "graphify-out/graph.json",
+  "host": "127.0.0.1",
+  "port": 8080,
+  "mcp_path": "/mcp",
+  "required_tools": [
+    "query_graph",
+    "get_node",
+    "get_neighbors",
+    "get_community",
+    "god_nodes",
+    "graph_stats",
+    "shortest_path"
+  ]
+}

@@ -25,6 +25,7 @@ HEALTH_FILE="$RUN_DIR/health.json"
 SMOKE_PROMPT="Reply only with: ok"
 CLI_TIMEOUT_SECONDS="${AI_DOCTOR_CLI_TIMEOUT_SECONDS:-20}"
 SMOKE_TIMEOUT_SECONDS="${AI_DOCTOR_SMOKE_TIMEOUT_SECONDS:-120}"
+GRAPHIFY_TIMEOUT_SECONDS="${AI_DOCTOR_GRAPHIFY_TIMEOUT_SECONDS:-600}"
 STATUS_INTERVAL_SECONDS="${AI_DOCTOR_STATUS_INTERVAL_SECONDS:-10}"
 
 mkdir -p "$RUN_DIR" "$LOG_DIR" "$RUN_DIR/prompts" "$RUN_DIR/pids"
@@ -236,8 +237,15 @@ check_role() {
     return 1
   fi
 
+  if ! run_with_progress "$role Graphify MCP config" "$CLI_TIMEOUT_SECONDS" "$log_file" .ai/bin/run-agent.sh "$role" --doctor-mcp; then
+    fail_msg "$role cannot load the shared Graphify MCP. Log: $log_file"
+    echo "Last output: $(last_log_line "$log_file")"
+    ERRORS=$((ERRORS + 1))
+    return 1
+  fi
+
   if [[ "${AI_DOCTOR_SKIP_SMOKE:-0}" == "1" ]]; then
-    ok "$role CLI starts"
+    ok "$role CLI starts and loads Graphify MCP"
     return 0
   fi
 
@@ -257,6 +265,27 @@ check_role() {
   ok "$role smoke run passed. Log: $log_file"
 }
 
+check_graphify() {
+  local log_file="$LOG_DIR/doctor-graphify-$(date +%Y%m%d-%H%M%S).log"
+  remember_doctor_log "$log_file"
+
+  log "Checking required Graphify runtime"
+  : > "$log_file"
+
+  if ! run_with_progress \
+    "Graphify ensure" \
+    "$GRAPHIFY_TIMEOUT_SECONDS" \
+    "$log_file" \
+    bash .ai/bin/graphify.sh ensure; then
+    fail_msg "Graphify runtime check failed. Log: $log_file"
+    echo "Last output: $(last_log_line "$log_file")"
+    ERRORS=$((ERRORS + 1))
+    return 1
+  fi
+
+  ok "Graphify graph and MCP are healthy"
+}
+
 echo ""
 echo "=== Lean AI Harness Doctor ==="
 echo ""
@@ -269,6 +298,9 @@ check_file ".ai/agents/runtime.json"
 check_file ".ai/bin/runner.sh"
 check_file ".ai/bin/run-agent.sh"
 check_file ".ai/bin/dev-server.sh"
+check_file ".ai/bin/graphify.sh"
+check_file ".ai/bin/graphify-mcp-check.mjs"
+check_file ".ai/graphify.json"
 check_dir ".ai/specs"
 check_dir ".ai/run"
 check_dir "$LOG_DIR"
@@ -307,6 +339,10 @@ if [[ -n "$INVALID_STATUS" ]]; then
   ERRORS=$((ERRORS + 1))
 else
   ok "Spec statuses are valid"
+fi
+
+if [[ "$ERRORS" -eq 0 ]]; then
+  check_graphify || true
 fi
 
 if [[ "$ERRORS" -eq 0 ]]; then
