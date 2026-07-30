@@ -1,23 +1,23 @@
-import type { DependencyList, EffectCallback } from 'react';
-import { useRef } from 'react';
-import type { BasicTarget } from './domTarget';
-import useEffectWithTarget from './useEffectWithTarget';
-import { depsEqual } from './depsEqual';
+import type { DependencyList, EffectCallback } from "react"
+import { useRef } from "react"
+import type { BasicTarget } from "./domTarget"
+import useEffectWithTarget from "./useEffectWithTarget"
+import { depsEqual } from "./depsEqual"
 
 const useDeepCompareEffectWithTarget = (
   effect: EffectCallback,
   deps: DependencyList,
-  target: BasicTarget<any> | BasicTarget<any>[],
+  target: BasicTarget<any> | BasicTarget<any>[]
 ) => {
-  const ref = useRef<DependencyList>(undefined);
-  const signalRef = useRef<number>(0);
+  const ref = useRef<DependencyList>(undefined)
+  const signalRef = useRef<number>(0)
 
   if (!depsEqual(deps, ref.current)) {
-    signalRef.current += 1;
+    signalRef.current += 1
   }
-  ref.current = deps;
+  ref.current = deps
 
-  useEffectWithTarget(effect, [signalRef.current], target);
-};
+  useEffectWithTarget(effect, [signalRef.current], target)
+}
 
-export default useDeepCompareEffectWithTarget;
+export default useDeepCompareEffectWithTarget

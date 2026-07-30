@@ -1,40 +1,42 @@
-import type { BasicTarget } from '../utils/domTarget';
-import { getTargetElement } from '../utils/domTarget';
+import type { BasicTarget } from "../utils/domTarget"
+import { getTargetElement } from "../utils/domTarget"
 
-declare type TargetValue<T> = T | undefined | null;
+declare type TargetValue<T> = T | undefined | null
 
 const checkIfAllInShadow = (targets: BasicTarget[]) => {
   return targets.every((item) => {
-    const targetElement = getTargetElement(item);
+    const targetElement = getTargetElement(item)
     if (!targetElement) {
-      return false;
+      return false
     }
     if (targetElement.getRootNode() instanceof ShadowRoot) {
-      return true;
+      return true
     }
-    return false;
-  });
-};
+    return false
+  })
+}
 
 const getShadow = (node: TargetValue<Element>) => {
   if (!node) {
-    return document;
+    return document
   }
-  return node.getRootNode();
-};
+  return node.getRootNode()
+}
 
-const getDocumentOrShadow = (target: BasicTarget | BasicTarget[]): Document | Node => {
+const getDocumentOrShadow = (
+  target: BasicTarget | BasicTarget[]
+): Document | Node => {
   if (!target || !document.getRootNode) {
-    return document;
+    return document
   }
 
-  const targets = Array.isArray(target) ? target : [target];
+  const targets = Array.isArray(target) ? target : [target]
 
   if (checkIfAllInShadow(targets)) {
-    return getShadow(getTargetElement(targets[0]));
+    return getShadow(getTargetElement(targets[0]))
   }
 
-  return document;
-};
+  return document
+}
 
-export default getDocumentOrShadow;
+export default getDocumentOrShadow

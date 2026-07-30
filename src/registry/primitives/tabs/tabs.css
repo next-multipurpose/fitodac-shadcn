@@ -1,0 +1,9 @@
+@layer components {
+  [data-slot="tabs-trigger"][data-state="inactive"] {
+    border-color: transparent !important;
+  }
+
+  [data-slot="tabs-list"][data-variant="line"] [data-slot="tabs-trigger"] {
+    border-color: transparent !important;
+  }
+}

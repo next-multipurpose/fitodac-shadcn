@@ -1,0 +1,764 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "@fitodac/shadcn",
+  "homepage": "https://github.com/next-multipurpose/fitodac-shadcn",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "files": [{ "path": "src/lib/utils.ts", "type": "registry:lib" }],
+      "dependencies": ["clsx@^2.1.1", "tailwind-merge@^3.5.0"]
+    },
+    {
+      "name": "use-mobile",
+      "type": "registry:hook",
+      "files": [{ "path": "src/hooks/use-mobile.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "files": [{ "path": "src/accordion.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "files": [{ "path": "src/alert-dialog.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
+      "registryDependencies": ["button", "utils"]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "files": [{ "path": "src/alert.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "autocomplete",
+      "type": "registry:ui",
+      "files": [{ "path": "src/autocomplete.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "@base-ui/react@^1.3.0",
+        "class-variance-authority@^0.7.1",
+        "lucide-react@^0.577.0"
+      ],
+      "registryDependencies": ["scroll-area", "utils"]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "files": [{ "path": "src/avatar.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "files": [{ "path": "src/badge.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "@base-ui/react@^1.3.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "files": [{ "path": "src/breadcrumb.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "files": [{ "path": "src/button-group.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
+      "registryDependencies": ["separator", "utils"]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "files": [{ "path": "src/button.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "files": [{ "path": "src/calendar.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "react-day-picker@^9.14.0"],
+      "registryDependencies": ["button", "utils"]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "files": [{ "path": "src/card.tsx", "type": "registry:ui" }],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "files": [{ "path": "src/carousel.tsx", "type": "registry:ui" }],
+      "dependencies": ["embla-carousel-react@^8.6.0", "lucide-react@^0.577.0"],
+      "registryDependencies": ["button", "utils"]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "files": [{ "path": "src/chart.tsx", "type": "registry:ui" }],
+      "dependencies": ["recharts@^3.8.0"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "files": [{ "path": "src/checkbox.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "files": [{ "path": "src/collapsible.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "files": [{ "path": "src/command.tsx", "type": "registry:ui" }],
+      "dependencies": ["cmdk@^1.1.1", "lucide-react@^0.577.0"],
+      "registryDependencies": ["dialog", "utils"]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "files": [{ "path": "src/context-menu.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "craft-button",
+      "type": "registry:ui",
+      "files": [{ "path": "src/craft-button.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1"],
+      "registryDependencies": ["button", "utils"]
+    },
+    {
+      "name": "date-selector",
+      "type": "registry:ui",
+      "files": [{ "path": "src/date-selector.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "date-fns",
+        "lucide-react@^0.577.0",
+        "react-day-picker@^9.14.0"
+      ],
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "input",
+        "scroll-area",
+        "tabs",
+        "use-mobile",
+        "utils"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "files": [{ "path": "src/dialog.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "files": [{ "path": "src/drawer.tsx", "type": "registry:ui" }],
+      "dependencies": ["vaul@^1.1.2"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "files": [{ "path": "src/dropdown-menu.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "files": [{ "path": "src/empty.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "event-calendar",
+      "type": "registry:component",
+      "files": [
+        {
+          "path": "src/registry/components/event-calendar/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/event-calendar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar.css",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/contexts/calendar-context.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/helpers.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/interfaces.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/mocks.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/requests.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/schemas.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/types.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/lib/navigation.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/hooks/use-disclosure.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/hooks/use-update-event.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/client-container.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/change-badge-variant-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/change-visible-hours-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/change-working-hours-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/single-day-picker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/time-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/agenda-view/agenda-day-group.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/agenda-view/agenda-event-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/agenda-view/calendar-agenda-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/dialogs/add-event-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/dialogs/edit-event-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/dialogs/event-details-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/dnd/custom-drag-layer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/dnd/dnd-provider.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/dnd/draggable-event.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/dnd/droppable-day-cell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/dnd/droppable-time-block.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/header/calendar-header.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/header/date-navigator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/header/today-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/header/user-select.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/month-view/calendar-month-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/month-view/day-cell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/month-view/event-bullet.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/month-view/month-event-badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/week-and-day-view/calendar-day-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/week-and-day-view/calendar-time-line.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/week-and-day-view/calendar-week-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/week-and-day-view/day-view-multi-day-events-row.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/week-and-day-view/event-block.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/week-and-day-view/week-view-multi-day-events-row.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/year-view/calendar-year-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/year-view/year-view-day-cell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/components/event-calendar/calendar/components/year-view/year-view-month.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@hookform/resolvers",
+        "class-variance-authority@^0.7.1",
+        "date-fns",
+        "lucide-react@^0.577.0",
+        "react-aria-components@^1.16.0",
+        "react-dnd",
+        "react-dnd-html5-backend",
+        "react-hook-form@^7.72.0",
+        "zod@^3.25.76"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "calendar",
+        "input",
+        "input-time",
+        "popover",
+        "scroll-area",
+        "switch",
+        "textarea",
+        "tooltip",
+        "utils"
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "files": [{ "path": "src/field.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1"],
+      "registryDependencies": ["label", "separator", "utils"]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "files": [{ "path": "src/form.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3", "react-hook-form@^7.72.0"],
+      "registryDependencies": ["label", "utils"]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "files": [{ "path": "src/hover-card.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "files": [{ "path": "src/input-group.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1"],
+      "registryDependencies": ["button", "input", "textarea", "utils"]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "files": [{ "path": "src/input-otp.tsx", "type": "registry:ui" }],
+      "dependencies": ["input-otp@^1.4.2", "lucide-react@^0.577.0"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "input-phone",
+      "type": "registry:ui",
+      "files": [{ "path": "src/input-phone.tsx", "type": "registry:ui" }],
+      "dependencies": ["react-phone-number-input@^3.4.12"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "input-time",
+      "type": "registry:ui",
+      "files": [{ "path": "src/input-time.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "lucide-react@^0.577.0",
+        "react-aria-components@^1.16.0"
+      ],
+      "registryDependencies": ["input-group", "utils"]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "files": [{ "path": "src/input.tsx", "type": "registry:ui" }],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "files": [{ "path": "src/item.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
+      "registryDependencies": ["separator", "utils"]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "files": [{ "path": "src/kbd.tsx", "type": "registry:ui" }],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "files": [{ "path": "src/label.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "map",
+      "type": "registry:ui",
+      "files": [
+        { "path": "src/registry/components/map.tsx", "type": "registry:ui" },
+        {
+          "path": "src/registry/components/map/map.css",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["lucide-react@^0.577.0", "maplibre-gl@^5.22.0"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "files": [{ "path": "src/menubar.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "files": [{ "path": "src/native-select.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "files": [{ "path": "src/navigation-menu.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "lucide-react@^0.577.0",
+        "radix-ui@^1.4.3"
+      ],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "files": [{ "path": "src/pagination.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0"],
+      "registryDependencies": ["button", "utils"]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "files": [{ "path": "src/popover.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "files": [{ "path": "src/progress.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "files": [{ "path": "src/radio-group.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "files": [{ "path": "src/rating.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "lucide-react@^0.577.0"
+      ],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "ripple-button",
+      "type": "registry:ui",
+      "files": [{ "path": "src/ripple-button.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1", "motion@^12.38.0"],
+      "registryDependencies": ["button", "utils"]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "files": [{ "path": "src/scroll-area.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "select-native",
+      "type": "registry:ui",
+      "files": [{ "path": "src/select-native.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "files": [{ "path": "src/select.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "files": [{ "path": "src/separator.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "files": [{ "path": "src/sheet.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "files": [{ "path": "src/sidebar.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "lucide-react@^0.577.0",
+        "radix-ui@^1.4.3"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "separator",
+        "sheet",
+        "skeleton",
+        "tooltip",
+        "use-mobile",
+        "utils"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "files": [{ "path": "src/skeleton.tsx", "type": "registry:ui" }],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "files": [{ "path": "src/slider.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"],
+      "registryDependencies": ["tooltip", "utils"]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "files": [{ "path": "src/sonner.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0", "sonner@^2.0.7"]
+    },
+    {
+      "name": "sortable",
+      "type": "registry:ui",
+      "files": [{ "path": "src/sortable.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "@base-ui/react@^1.3.0",
+        "@dnd-kit/core@^6.3.1",
+        "@dnd-kit/sortable@^10.0.0",
+        "@dnd-kit/utilities@^3.2.2"
+      ],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "files": [{ "path": "src/spinner.tsx", "type": "registry:ui" }],
+      "dependencies": ["lucide-react@^0.577.0"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "files": [{ "path": "src/stepper.tsx", "type": "registry:ui" }],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "files": [{ "path": "src/switch.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "files": [{ "path": "src/table.tsx", "type": "registry:ui" }],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "files": [
+        { "path": "src/registry/primitives/tabs.tsx", "type": "registry:ui" },
+        {
+          "path": "src/registry/primitives/tabs/tabs.css",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "files": [{ "path": "src/textarea.tsx", "type": "registry:ui" }],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "files": [{ "path": "src/timeline.tsx", "type": "registry:ui" }],
+      "dependencies": ["@base-ui/react@^1.3.0"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "tiptap-editor",
+      "type": "registry:ui",
+      "files": [
+        { "path": "src/tiptap-editor.tsx", "type": "registry:ui" },
+        {
+          "path": "src/components/Editor/extension/Count.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/Editor/extension/style.css",
+          "type": "registry:component"
+        },
+        { "path": "src/components/Editor/emojis.ts", "type": "registry:lib" }
+      ],
+      "dependencies": [
+        "@tiptap/extension-document@^3.20.0",
+        "@tiptap/extension-hard-break@^3.20.0",
+        "@tiptap/extension-list@^3.20.0",
+        "@tiptap/extension-paragraph@^3.20.0",
+        "@tiptap/extension-text@^3.20.0",
+        "@tiptap/extension-text-style@^3.20.0",
+        "@tiptap/extensions@^3.20.0",
+        "@tiptap/react@^3.20.0",
+        "highlight.js@^11.11.1",
+        "lowlight@^3.3.0",
+        "reactjs-tiptap-editor@^1.0.21"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "files": [{ "path": "src/toggle-group.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
+      "registryDependencies": ["toggle", "utils"]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "files": [{ "path": "src/toggle.tsx", "type": "registry:ui" }],
+      "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "files": [{ "path": "src/tooltip.tsx", "type": "registry:ui" }],
+      "dependencies": ["radix-ui@^1.4.3"],
+      "registryDependencies": ["utils"]
+    }
+  ]
+}
