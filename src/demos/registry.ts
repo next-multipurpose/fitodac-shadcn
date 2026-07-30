@@ -14,6 +14,21 @@ import AccordionNestedCollapsiblesDemo from "@/demos/accordion/nested-collapsibl
 import AccordionHighlightedOpenDemo from "@/demos/accordion/highlighted-open"
 import { AlertDefaultDemo } from "@/demos/alert/default"
 import { AlertDestructiveDemo } from "@/demos/alert/destructive"
+import AlertDescriptionOnlyDemo from "@/demos/alert/description-only"
+import AlertInfoIconDemo from "@/demos/alert/info-icon"
+import AlertSuccessWithDescriptionDemo from "@/demos/alert/success-with-description"
+import AlertDestructiveIconTitleDemo from "@/demos/alert/destructive-icon-title"
+import AlertSuccessColoredDemo from "@/demos/alert/success-colored"
+import AlertWarningColoredDemo from "@/demos/alert/warning-colored"
+import AlertDestructiveForegroundTitleDemo from "@/demos/alert/destructive-foreground-title"
+import AlertSuccessIconColorDemo from "@/demos/alert/success-icon-color"
+import AlertWarningIconColorDemo from "@/demos/alert/warning-icon-color"
+import AlertPasswordRequirementsDestructiveDemo from "@/demos/alert/password-requirements-destructive"
+import AlertPasswordRequirementsIconDemo from "@/demos/alert/password-requirements-icon"
+import AlertPasswordRequirementsPartialSuccessDemo from "@/demos/alert/password-requirements-partial-success"
+import AlertUndoActionDemo from "@/demos/alert/undo-action"
+import AlertFriendRequestActionsDemo from "@/demos/alert/friend-request-actions"
+import AlertDismissActionDemo from "@/demos/alert/dismiss-action"
 import { BadgeDefaultDemo } from "@/demos/badge/default"
 import { BadgeRadiusDemo } from "@/demos/badge/radius"
 import { BadgeSizesDemo } from "@/demos/badge/sizes"
@@ -163,6 +178,128 @@ const demoRegistry: Record<string, DemoEntry[]> = {
       component: AlertDestructiveDemo,
       componentSlug: "alert",
       sourcePath: "src/demos/alert/destructive.tsx",
+    },
+    {
+      name: "description-only",
+      title: "Description only",
+      component: AlertDescriptionOnlyDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/description-only.tsx",
+    },
+    {
+      name: "info-icon",
+      title: "Info icon",
+      component: AlertInfoIconDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/info-icon.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "success-with-description",
+      title: "Success with description",
+      component: AlertSuccessWithDescriptionDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/success-with-description.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "destructive-icon-title",
+      title: "Destructive icon and title",
+      component: AlertDestructiveIconTitleDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/destructive-icon-title.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "success-colored",
+      title: "Success colored",
+      component: AlertSuccessColoredDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/success-colored.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "warning-colored",
+      title: "Warning colored",
+      component: AlertWarningColoredDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/warning-colored.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "destructive-foreground-title",
+      title: "Destructive with foreground title",
+      component: AlertDestructiveForegroundTitleDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/destructive-foreground-title.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "success-icon-color",
+      title: "Success icon color",
+      component: AlertSuccessIconColorDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/success-icon-color.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "warning-icon-color",
+      title: "Warning icon color",
+      component: AlertWarningIconColorDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/warning-icon-color.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "password-requirements-destructive",
+      title: "Password requirements destructive",
+      component: AlertPasswordRequirementsDestructiveDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/password-requirements-destructive.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "password-requirements-icon",
+      title: "Password requirements icon",
+      component: AlertPasswordRequirementsIconDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/password-requirements-icon.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "password-requirements-partial-success",
+      title: "Password requirements partial success",
+      component: AlertPasswordRequirementsPartialSuccessDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/password-requirements-partial-success.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "undo-action",
+      title: "Undo action",
+      component: AlertUndoActionDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/undo-action.tsx",
+      registryDependencies: ["button"],
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "friend-request-actions",
+      title: "Friend request actions",
+      component: AlertFriendRequestActionsDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/friend-request-actions.tsx",
+      registryDependencies: ["button"],
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "dismiss-action",
+      title: "Dismiss action",
+      component: AlertDismissActionDemo,
+      componentSlug: "alert",
+      sourcePath: "src/demos/alert/dismiss-action.tsx",
+      registryDependencies: ["button"],
+      dependencies: ["lucide-react@^0.577.0"],
     },
   ],
   badge: [
