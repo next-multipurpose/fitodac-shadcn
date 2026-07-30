@@ -1,101 +1,333 @@
-# @fitodac/shadcn
+# Lean AI Harness
 
-`@fitodac/shadcn` es un package npm alojado en GitHub Packages. Publica una librería de componentes React, utilidades y estilos compilados para consumo por subpath imports.
+Minimal file-based spec harness.
 
-## Qué publica este package
-
-- Componentes compilados desde `src/**` hacia `dist/**`.
-- Tipos TypeScript para cada export público.
-- Hoja de estilos en `@fitodac/shadcn/styles.css`.
-- Un contrato público definido únicamente por `package.json#exports`.
-
-Este repositorio no publica a npmjs.org. El destino de publicación es `https://npm.pkg.github.com`.
-
-## Instalación
-
-GitHub Packages para npm requiere autenticación para instalar desde la CLI. La forma más simple es usar un token personal clásico con permiso `read:packages` en el proyecto consumidor.
-
-En el proyecto consumidor, crea o edita `.npmrc`:
-
-```ini
-@fitodac:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GH_PACKAGES_TOKEN}
+```txt
+Codex plans and writes specs.
+Codex does not run the runner.
+OpenCode/Trae execute.
+Runner orchestrates locally.
+Human starts, reviews, commits, and closes work.
 ```
 
-Luego instala:
+## Workflow
+
+### 1. Validate runtime
+
+Run before asking Codex for work:
 
 ```bash
-npm i @fitodac/shadcn
+pnpm ai:doctor
 ```
 
-Si prefieres autenticarte con `npm login`, usa el scope `@fitodac` y el registry `https://npm.pkg.github.com`.
+If it fails, fix environment/auth/permissions/CLI issues before creating specs.
 
-## Uso
+Doctor behavior:
 
-Componente:
-
-```tsx
-import { Button } from "@fitodac/shadcn/button"
+```txt
+success -> delete doctor-*.log
+failure -> keep logs from failed run only
 ```
 
-Utilidad:
+Env:
 
-```ts
-import { cn } from "@fitodac/shadcn/lib/utils"
+```txt
+AI_DOCTOR_CLI_TIMEOUT_SECONDS
+AI_DOCTOR_SMOKE_TIMEOUT_SECONDS
+AI_DOCTOR_STATUS_INTERVAL_SECONDS
+AI_DOCTOR_SKIP_SMOKE
 ```
 
-Estilos:
+### 2. Ask Codex for specs
 
-```css
-@import "@fitodac/shadcn/styles.css";
+Example:
+
+```txt
+Create specs for this feature.
+Do not run the runner.
 ```
 
-## MCP
+Codex must:
 
-Este package tambien publica un servidor MCP local para que un modelo pueda consultar los componentes disponibles desde otros proyectos.
+```txt
+- understand the task
+- split it into small specs
+- set exactly one spec to READY
+- set later specs to DRAFT
+- set UI Review: required|skip
+- stop
+```
 
-Despues de instalar el package en el proyecto consumidor, configura tu cliente MCP con el binario:
+Rule:
+
+```txt
+Codex may tell the human which command to run.
+Codex must not run pnpm ai:runner in normal workflow.
+```
+
+### 3. Run locally
+
+```bash
+pnpm ai:runner
+```
+
+Flow:
+
+```txt
+READY -> implementer
+TECH_REVIEW -> reviewer
+UI_REVIEW -> ui-reviewer
+REVIEW -> human review
+DONE -> human-closed
+```
+
+If implementer uses OpenCode, runner executes it automatically.
+
+If implementer uses manual Trae Solo, runner writes a prompt to:
+
+```txt
+.ai/run/prompts/
+```
+
+Run it in Trae Solo. Trae must finish with:
+
+```txt
+Status: TECH_REVIEW
+```
+
+Then run:
+
+```bash
+pnpm ai:runner
+```
+
+### 3.1 Runner status
+
+```bash
+pnpm ai:status
+```
+
+Shows:
+
+```txt
+Active spec
+Status
+Agent
+PID
+Process alive
+Log
+Last log update
+Heartbeat update
+Last known action
+Likely state / Recommended action
+```
+
+Runtime signals:
+
+```txt
+.ai/run/current.json
+.ai/run/pids/current.json
+.ai/run/heartbeat.json
+.ai/run/logs/
+```
+
+Agent runtime/cache lives outside the repo by default:
+
+```txt
+${TMPDIR}/lean-ai-harness-runtime/
+```
+
+It is deleted after the agent exits.
+
+Keep it for debugging:
+
+```bash
+AI_KEEP_AGENT_RUNTIME=1 pnpm ai:runner
+```
+
+Interpretation:
+
+```txt
+Process alive: yes -> agent is running
+Process alive: no + DOING -> agent likely died/interrupted
+stale Last log update -> possible hang
+stale Heartbeat update -> inspect wrapper/runtime
+```
+
+Runner prints short progress summaries instead of long logs.
+
+Interactive OpenCode mode:
+
+```bash
+pnpm ai:runner:interactive
+```
+
+Uses `opencode run --interactive`. Use only for permission/debug issues. Normal flow is `pnpm ai:runner`.
+
+If agent is alive but log stays unchanged too long:
+
+```txt
+Status: BLOCKED_RUNTIME
+```
+
+Env:
+
+```txt
+AI_RUNNER_STATUS_INTERVAL_SECONDS
+AI_RUNNER_SILENCE_TIMEOUT_SECONDS
+AI_HEARTBEAT_INTERVAL_SECONDS
+AI_AGENT_RUNTIME_BASE
+AI_KEEP_AGENT_RUNTIME
+AI_RUNNER_LOG_RETENTION
+```
+
+### 4. Review and close
+
+When:
+
+```txt
+Status: REVIEW
+```
+
+Review:
+
+```bash
+git status --short
+git diff
+git ls-files --others --exclude-standard
+```
+
+If approved:
+
+```txt
+1. commit
+2. set spec to Status: DONE
+3. run pnpm ai:runner
+```
+
+Runner may promote the next `DRAFT` to `READY` only if no spec is in:
+
+```txt
+REVIEW
+CHANGES
+BLOCKED_RUNTIME
+```
+
+## States
+
+```txt
+DRAFT               prepared, inactive
+READY               only spec ready for implementation
+DOING               implementer working
+TECH_REVIEW          ready for technical review
+UI_REVIEW            ready for visual review
+WAITING_IMPLEMENTER  waiting for manual Trae Solo
+CHANGES              implementation/product changes required
+RECOVERY             interrupted work
+BLOCKED_RUNTIME      runner/CLI/runtime failure
+REVIEW               automated QA passed; human review required
+DONE                 human-reviewed, committed, closed
+```
+
+Key distinction:
+
+```txt
+CHANGES         = implementation problem
+BLOCKED_RUNTIME = environment/CLI/permissions/cache/runner problem
+```
+
+On `BLOCKED_RUNTIME`:
+
+```bash
+pnpm ai:doctor
+```
+
+## Commands
+
+```bash
+./init.sh                    # project health
+pnpm ai:doctor               # validate runtime/agents
+pnpm ai:status               # active spec/runtime status
+pnpm ai:runner               # run local workflow
+pnpm ai:runner:interactive   # foreground OpenCode for permissions/debug
+pnpm ai:runner:once          # run one cycle
+pnpm ai:dev:start            # start dev server in background
+pnpm ai:dev:status           # dev server status
+pnpm ai:dev:stop             # stop dev server
+```
+
+## Automatic OpenCode
+
+`.ai/agents/runtime.json`
 
 ```json
 {
-  "mcpServers": {
-    "fitodac-shadcn": {
-      "command": "fitodac-shadcn-mcp"
-    }
+  "leader": {
+    "tool": "codex",
+    "mode": "manual"
+  },
+  "implementer": {
+    "tool": "opencode",
+    "mode": "cli",
+    "command": ".ai/bin/run-agent.sh implementer"
+  },
+  "reviewer": {
+    "tool": "opencode",
+    "mode": "cli",
+    "command": ".ai/bin/run-agent.sh reviewer"
+  },
+  "ui-reviewer": {
+    "tool": "opencode",
+    "mode": "cli",
+    "command": ".ai/bin/run-agent.sh ui-reviewer"
   }
 }
 ```
 
-Para usarlo directo desde este repositorio durante desarrollo:
+`.ai/bin/run-agent.sh` isolates mutable CLI cache/runtime outside the repo, defaulting to:
+
+```txt
+${TMPDIR}/lean-ai-harness-runtime/
+```
+
+## Manual Trae Solo
 
 ```json
 {
-  "mcpServers": {
-    "fitodac-shadcn": {
-      "command": "node",
-      "args": ["/Volumes/external-ssd/work/fitodac-shadcn/dist/mcp/server.js"]
-    }
+  "implementer": {
+    "tool": "trae-solo",
+    "mode": "manual",
+    "open_command": "open -a Trae ."
   }
 }
 ```
 
-Herramientas expuestas:
+Runner does not execute Trae via CLI. It writes the prompt and waits.
 
-- `list_components`: lista los subpath imports publicos definidos en `package.json#exports`.
-- `get_component`: devuelve import path, tipos, build compilado y source local cuando esta disponible.
+## Use Codex only for
 
-Recursos expuestos:
+```txt
+- creating specs
+- fixing ambiguous specs
+- architecture decisions
+- repeated-failure analysis
+- important final audits
+```
 
-- `fitodac-shadcn://manifest`
-- `fitodac-shadcn://component/{name}`
-- `fitodac-shadcn://styles.css`
+Do not use Codex for:
 
-## Publicación
+```txt
+- running pnpm ai:runner
+- reading long logs
+- repairing OpenCode
+- supervising every spec
+```
 
-La publicación se hace mediante un `release` publicado en GitHub. El workflow [`publish.yml`](/Volumes/external-ssd/work/fitodac-shadcn/.github/workflows/publish.yml) valida el paquete y ejecuta `npm publish` contra GitHub Packages usando `secrets.GITHUB_TOKEN`.
+## Token rule
 
-La guía paso a paso está en [HOW_TO_PUBLISH.md](/Volumes/external-ssd/work/fitodac-shadcn/HOW_TO_PUBLISH.md).
-
-## Contrato público
-
-La API pública es exclusivamente lo expuesto en `package.json#exports`. Imports profundos a `src/**`, `dist/**` o a paths no exportados no se consideran soportados.
+```txt
+Codex designs.
+Runner orchestrates.
+OpenCode/Trae executes.
+Human closes.
+```

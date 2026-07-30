@@ -1,0 +1,42 @@
+{
+  "leader": {
+    "tool": "codex",
+    "mode": "manual"
+  },
+  "implementer": {
+    "tool": "codex",
+    "mode": "cli",
+    "command": ".ai/bin/run-agent.sh implementer",
+    "share_app_auth": false,
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "low"
+  },
+  "reviewer": {
+    "tool": "opencode",
+    "mode": "cli",
+    "command": ".ai/bin/run-agent.sh reviewer",
+    "share_app_auth": true,
+    "models": [
+      "opencode/deepseek-v4-flash-free",
+      "google/gemini-3.1-pro-preview",
+      "opencode/nemotron-3-ultra-free",
+      "opencode/nemotron-3-ultra-free",
+      "opencode/north-mini-code-free",
+      "cloudflare-workers-ai/@cf/zai-org/glm-5.2"
+    ]
+  },
+  "ui-reviewer": {
+    "tool": "opencode",
+    "mode": "cli",
+    "command": ".ai/bin/run-agent.sh ui-reviewer",
+    "share_app_auth": true,
+    "models": [
+      "opencode/deepseek-v4-flash-free",
+      "google/gemini-3.1-pro-preview",
+      "opencode/nemotron-3-ultra-free",
+      "opencode/nemotron-3-ultra-free",
+      "opencode/mimo-v2.5-free",
+      "cloudflare-workers-ai/@cf/zai-org/glm-5.2"
+    ]
+  }
+}
