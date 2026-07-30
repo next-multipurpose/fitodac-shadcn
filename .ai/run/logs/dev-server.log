@@ -6,10 +6,61 @@
 - Local:         http://localhost:3000
 - Network:       http://127.0.2.2:3000
 - Environments: .env
-✓ Ready in 329ms
+✓ Ready in 281ms
 
- GET /components/button 200 in 721ms (next.js: 512ms, generate-params: 372ms, application-code: 209ms)
- GET /components/card 200 in 268ms (next.js: 227ms, generate-params: 223ms, application-code: 41ms)
- GET /components/nonexistent-slug-xyz 404 in 68ms (next.js: 4ms, generate-params: 2ms, application-code: 64ms)
- GET /components 200 in 153ms (next.js: 35ms, application-code: 118ms)
+ GET /components/button 200 in 725ms (next.js: 531ms, generate-params: 369ms, application-code: 194ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/component..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="es">
+                          <body
+                            className="min-h-screen antialiased"
+-                           __processed_5875b120-eca4-4b15-83fb-50c935a6f5f1__="true"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
+                          >
+                  ...
+ 
+ GET /components/button 200 in 212ms (next.js: 22ms, generate-params: 4ms, application-code: 190ms)
+ GET /components/button 200 in 49ms (next.js: 10ms, generate-params: 3ms, application-code: 39ms)
+ GET /components/button 200 in 196ms (next.js: 48ms, generate-params: 14ms, application-code: 148ms)
+ GET /components/button 200 in 52ms (next.js: 7ms, generate-params: 1842µs, application-code: 45ms)
+ GET /components/button 200 in 46ms (next.js: 3ms, generate-params: 1116µs, application-code: 44ms)
+ GET /components/button 200 in 32ms (next.js: 3ms, generate-params: 1610µs, application-code: 29ms)
+ GET /components/button 200 in 73ms (next.js: 5ms, generate-params: 3ms, application-code: 67ms)
+ GET /components/button 200 in 32ms (next.js: 2ms, generate-params: 1314µs, application-code: 30ms)
+ GET /components/button 200 in 23ms (next.js: 3ms, generate-params: 1035µs, application-code: 20ms)
+ GET /components/accordion 200 in 23ms (next.js: 3ms, generate-params: 1212µs, application-code: 20ms)
+ GET /components/button 200 in 43ms (next.js: 5ms, generate-params: 1646µs, application-code: 39ms)
+ GET /components/accordion 200 in 24ms (next.js: 1110µs, generate-params: 8µs, application-code: 23ms)
+ GET /components/button 200 in 27ms (next.js: 3ms, generate-params: 1470µs, application-code: 23ms)
+ GET /components/button 200 in 47ms (next.js: 6ms, generate-params: 3ms, application-code: 40ms)
+ GET /components/button 200 in 21ms (next.js: 2ms, generate-params: 1002µs, application-code: 19ms)
+ GET /components/button 200 in 23ms (next.js: 2ms, generate-params: 1184µs, application-code: 21ms)
+ GET /components/button 200 in 42ms (next.js: 15ms, generate-params: 11ms, application-code: 27ms)
 [?25h

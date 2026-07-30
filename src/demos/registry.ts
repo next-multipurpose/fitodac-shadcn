@@ -1,6 +1,8 @@
 import type { ComponentType } from "react"
 
 import { ButtonDefaultDemo } from "@/demos/button/default"
+import { ButtonSizesDemo } from "@/demos/button/sizes"
+import { ButtonVariantsDemo } from "@/demos/button/variants"
 
 export type DemoEntry = {
   name: string
@@ -14,6 +16,16 @@ const demoRegistry: Record<string, DemoEntry[]> = {
       name: "default",
       title: "Default",
       component: ButtonDefaultDemo,
+    },
+    {
+      name: "variants",
+      title: "Variants",
+      component: ButtonVariantsDemo,
+    },
+    {
+      name: "sizes",
+      title: "Sizes",
+      component: ButtonSizesDemo,
     },
   ],
 }

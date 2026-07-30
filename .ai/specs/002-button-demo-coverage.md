@@ -1,6 +1,6 @@
 # 002 — Button demo coverage
 
-Status: DRAFT
+Status: REVIEW
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker
@@ -135,15 +135,89 @@ Follow `docs/verification.md`.
 
 ## Implementation report
 
-Pending.
+### Changes
+
+- Added reusable `Variants` and `Sizes` button demos and registered them in the
+  central demo registry.
+- Covered all public variants, text sizes, and icon sizes with the real registry
+  `Button`; icon-only examples include accessible labels.
+- Used wrapping layouts and the installed Lucide icon source without adding
+  dependencies.
+
+### Tests / verification
+
+- `./init.sh`: passed.
+- `pnpm lint`: passed.
+- `pnpm typecheck`: passed.
+- `pnpm build`: environment-blocked because Turbopack could not bind an internal
+  port (`Operation not permitted`).
+- `pnpm exec next build --webpack`: passed; generated all 72 static pages.
+- Focused Prettier check and `git diff --check`: passed.
+- Browser desktop/mobile verification: pending UI reviewer; the sandbox did not
+  permit the dev server to bind a port.
+- No-demo fallback: unchanged central `[]` fallback and shared fallback UI;
+  production static generation passed for components without registered demos.
+
+### Modified files
+
+- `src/demos/button/variants.tsx`
+- `src/demos/button/sizes.tsx`
+- `src/demos/registry.ts`
+- `.ai/specs/002-button-demo-coverage.md`
+
+### Notes
+
+- No dependencies, global styles, registry component APIs, or route-specific
+  logic changed.
 
 ## Technical review
 
-Pending.
+### Verification
+
+- init.sh: passed
+- lint: passed
+- typecheck: passed
+- test: not available
+- build: passed (72 static pages, including `/components/button`)
+
+### Review
+
+- Scope: passed — all acceptance criteria covered (variants, text sizes, icon sizes, accessible labels, wrapping layout, no-demo fallback, no new deps, no global theme changes).
+- Architecture: passed — follows spec 001 demo system; no new registry, no route-specific logic, no parallel component, no API changes.
+- Code: passed — clean components, real `Button` import, proper TypeScript, no dead code, no logging, no TODOs.
+- Out-of-scope changes: no — changed files are only `variants.tsx`, `sizes.tsx`, `registry.ts`, and harness tracking files.
+- Dependencies: no new dependencies.
+- Styling: no global style changes; uses current theme and component classes.
+
+### Result
+
+- UI_REVIEW
+
+### Notes
+
+UI review required per spec (touches visible components, responsive layout). Desktop and mobile browser verification on `/components/button` is pending.
 
 ## Visual review
 
-Pending.
+### Reviewed surfaces
 
-UI reviewer must verify `/components/button` in a browser on desktop and mobile
-before this spec can reach `REVIEW`.
+- `/components/button` — Default demo, Variants demo, Sizes demo, technical metadata sections
+- `/components/accordion` — no-demo fallback
+- Site shell: header with branding and main navigation, back-link pattern
+
+### Checks
+
+- Desktop (1280×900): **passed** — all 3 demo sections render with correct buttons; all 6 variants visible; all 4 text sizes visible; all 4 icon sizes visible; icon-only buttons have `aria-label`; flex-wrap containers prevent overflow; technical metadata (Archivos, Dependencias, Dependencias del registry) present.
+- Mobile (375×812): **passed** — no horizontal overflow; flex-wrap layout wraps cleanly on narrow viewport; all buttons remain accessible.
+- Visual navigation: **passed** — header (Fitodac UI + Componentes) and "← Volver al catálogo" back link unchanged.
+- Visible states: **passed** — no loading/empty/error states; all demos render immediately; no-demo fallback shows "Todavía no hay ejemplos disponibles" for components without demos.
+- Screenshots: `ui-review-desktop.png` (29 KB), `ui-review-mobile.png` (23 KB) saved to `.ai/run/logs/`.
+- Browser console errors: **none**.
+
+### Result
+
+- **REVIEW**
+
+### Requested changes
+
+None.
