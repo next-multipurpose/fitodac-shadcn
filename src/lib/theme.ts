@@ -1,4 +1,5 @@
 export const THEME_STORAGE_KEY = "theme"
+export const THEME_CHANGE_EVENT = "fitodac:theme-change"
 
 export type Theme = "light" | "dark"
 
@@ -33,6 +34,9 @@ export function getEffectiveTheme(): Theme {
 export function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle("dark", theme === "dark")
   document.documentElement.style.colorScheme = theme
+  document.dispatchEvent(
+    new CustomEvent<Theme>(THEME_CHANGE_EVENT, { detail: theme })
+  )
 }
 
 export function toggleTheme(currentTheme: Theme): Theme {

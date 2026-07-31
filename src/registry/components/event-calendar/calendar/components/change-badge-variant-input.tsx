@@ -8,7 +8,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@fitodac/shadcn/select"
+} from "../../../../primitives/select"
 
 export function ChangeBadgeVariantInput() {
   const { badgeVariant, setBadgeVariant } = useCalendar()

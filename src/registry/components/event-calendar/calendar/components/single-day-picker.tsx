@@ -2,16 +2,16 @@ import { format } from "date-fns"
 
 import { useDisclosure } from "../hooks/use-disclosure"
 
-import { Button } from "@fitodac/shadcn/button"
-import { Calendar } from "@fitodac/shadcn/calendar"
+import { Button } from "../../../../primitives/button"
+import { Calendar } from "../../../../primitives/calendar"
 
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@fitodac/shadcn/popover"
+} from "../../../../primitives/popover"
 
-import { cn } from "@fitodac/shadcn/lib/utils"
+import { cn } from "../../../../../lib/utils"
 
 import type { ButtonHTMLAttributes } from "react"
 

@@ -11,6 +11,7 @@ import {
   toggleTheme,
   type Theme,
 } from "@/lib/theme"
+import { initializeUIThemeSynchronization } from "@/lib/ui-theme"
 import { Button } from "@/registry/primitives/button"
 
 type DocumentWithViewTransition = Document & {
@@ -27,6 +28,7 @@ export function AnimatedThemeToggler() {
   React.useEffect(() => {
     let active = true
     const colorScheme = window.matchMedia("(prefers-color-scheme: dark)")
+    const stopUIThemeSynchronization = initializeUIThemeSynchronization()
 
     function syncSystemTheme(event?: MediaQueryListEvent) {
       if (getStoredTheme()) {
@@ -49,6 +51,7 @@ export function AnimatedThemeToggler() {
 
     return () => {
       active = false
+      stopUIThemeSynchronization()
       colorScheme.removeEventListener("change", syncSystemTheme)
     }
   }, [])

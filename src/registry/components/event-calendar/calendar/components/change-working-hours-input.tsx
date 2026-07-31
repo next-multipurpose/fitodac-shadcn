@@ -4,14 +4,13 @@ import { useState } from "react"
 import { Info, Moon } from "lucide-react"
 import { useCalendar } from "../contexts/calendar-context"
 
-import { Button } from "@fitodac/shadcn/button"
-import { Switch } from "@fitodac/shadcn/switch"
+import { Button } from "../../../../primitives/button"
+import { Switch } from "../../../../primitives/switch"
 import { TimeInput } from "./time-input"
 
 import type { TimeValue } from "react-aria-components"
-import { TooltipContent } from "@fitodac/shadcn/tooltip"
-import { Tooltip, TooltipTrigger } from "@fitodac/shadcn/tooltip"
-import { TooltipProvider } from "@fitodac/shadcn/tooltip"
+import { Tooltip, TooltipTrigger, TooltipContent } from "../../../../primitives/tooltip"
+import { TooltipProvider } from "../../../../primitives/tooltip"
 
 const DAYS_OF_WEEK = [
   { index: 0, name: "Sunday" },

@@ -6,9 +6,15 @@ import { renderToString } from "react-dom/server"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { AnimatedThemeToggler } from "@/components/animated-theme-toggler"
+import { UI_THEME_STORAGE_KEY } from "@/lib/ui-theme"
+import cobaltRegistry from "@/registry/themes/cobalt/registry.json"
 import englishMessages from "../messages/en.json"
 
 type MediaListener = (event: MediaQueryListEvent) => void
+
+const cobaltTheme = cobaltRegistry.items.find(
+  (item) => item.name === "cobalt" && item.type === "registry:theme"
+)!
 
 function createStorage(): Storage {
   const values = new Map<string, string>()
@@ -148,6 +154,10 @@ describe("AnimatedThemeToggler", () => {
 
     act(() => media.changeSystemTheme(true))
     expect(document.documentElement).toHaveClass("dark")
+    expect(document.documentElement.style.getPropertyValue("--primary")).toBe(
+      cobaltTheme.cssVars.dark.primary
+    )
+    expect(localStorage.getItem(UI_THEME_STORAGE_KEY)).toBeNull()
 
     await user.click(
       screen.getByRole("button", { name: "Switch to light theme" })
@@ -156,6 +166,22 @@ describe("AnimatedThemeToggler", () => {
 
     expect(document.documentElement).not.toHaveClass("dark")
     expect(localStorage.getItem("theme")).toBe("light")
+  })
+
+  it("keeps Default on global fallbacks while following system changes", async () => {
+    localStorage.setItem(UI_THEME_STORAGE_KEY, "default")
+    const media = installMatchMedia()
+    renderToggler()
+
+    await screen.findByRole("button", { name: "Switch to dark theme" })
+    act(() => media.changeSystemTheme(true))
+
+    expect(document.documentElement).toHaveClass("dark")
+    expect(document.documentElement.style.getPropertyValue("--primary")).toBe(
+      ""
+    )
+    expect(localStorage.getItem(UI_THEME_STORAGE_KEY)).toBe("default")
+    expect(localStorage.getItem("theme")).toBeNull()
   })
 
   it("falls back when a View Transition throws", async () => {

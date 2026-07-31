@@ -56,6 +56,27 @@ You do not mark `DONE`.
 - No screen-specific copy of a shell, sidebar, header, or shared visible state that causes divergence.
 - No obvious regressions.
 
+### Visual consistency contract
+
+For every new or modified custom distributed component, identify the closest
+existing primitive and compare equivalent states and roles. Check:
+
+- height and size variants;
+- radius;
+- typography and spacing;
+- border treatment;
+- focus and hover treatment;
+- disabled and invalid treatment;
+- selected or open states when applicable.
+
+Equivalent controls must follow the visual contract in `docs/conventions.md`
+unless the active spec records a functional reason for divergence. For example,
+a default Input at `h-9 rounded-md` and a default Autocomplete at
+`h-8 rounded-lg` is a potential visual consistency regression. Fail visual
+review when equivalent controls visibly diverge without explicit justification.
+Do not redesign the interface; report only divergence from the project's
+existing primitives and semantic-token vocabulary.
+
 ---
 
 ## 3. Playwright workflow

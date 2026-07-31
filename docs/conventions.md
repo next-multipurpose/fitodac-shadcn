@@ -115,6 +115,69 @@ Do not create new folders if an existing one already solves the case.
 - Reuse existing components before creating new ones.
 - UI must be usable on desktop and mobile when applicable.
 
+## Visual consistency
+
+Distributed components under `src/registry/primitives/` and
+`src/registry/components/` must preserve the existing shadcn visual language.
+When a custom component behaves like an existing primitive, use that primitive
+as its visual reference rather than creating an independent convention.
+
+Typical references include:
+
+- Autocomplete input -> Input / Select.
+- Combobox trigger -> Select / Button.
+- Date selector -> Input / Button.
+- Custom menu item -> Select / Dropdown Menu.
+
+### Form controls
+
+Standard form controls such as Input, Select, and Button use this baseline:
+
+- Default: `h-9 rounded-md text-sm`.
+- Small: `h-8` unless the reference primitive has a specific reason otherwise.
+- Large: `h-10` unless the reference primitive has a specific reason otherwise.
+- Border: use the closest primitive's semantic treatment, typically `border`
+  or `border border-input`.
+- Focus: use the closest primitive's exact treatment, typically
+  `focus-visible:border-ring focus-visible:ring-[3px]
+focus-visible:ring-ring/50`.
+- Invalid: use destructive semantic tokens, typically
+  `aria-invalid:border-destructive aria-invalid:ring-destructive/20
+dark:aria-invalid:ring-destructive/40`.
+- Disabled: preserve `disabled:pointer-events-none disabled:opacity-50`, adding
+  `disabled:cursor-not-allowed` when the interaction semantics require it.
+
+### Semantic tokens
+
+Distributed components must prefer semantic project tokens over hardcoded
+visual values whenever an equivalent token already exists. Use roles such as
+`bg-background`, `bg-card`, `bg-popover`, `bg-primary`, `bg-secondary`,
+`bg-accent`, `bg-muted`, `text-foreground`, `text-muted-foreground`,
+`border-border`, `border-input`, and `ring-ring`. Themes define the appearance
+of these roles; components must not require theme-specific CSS overrides.
+
+### Radius and typography
+
+Radius communicates component role. Typical guidance is `rounded-md` for form
+controls, `rounded-sm` or `rounded-md` for menu and list items, `rounded-lg` for
+dialogs and popovers, `rounded-lg` or `rounded-xl` for cards and surfaces, and
+`rounded-full` for intentionally fully rounded items. Equivalent roles must use
+equivalent radius treatment; not every component uses the same radius.
+
+Reuse the current typography hierarchy: `text-sm` for controls,
+`text-sm text-muted-foreground` for secondary text, `text-xs` for small labels,
+`font-medium` for control emphasis, and `font-semibold` for titles. Do not add
+an arbitrary size when an existing level fits.
+
+### Interaction states
+
+Compare custom distributed components with the closest primitive in default,
+hover, focus, active or selected, disabled, and invalid states. When applicable,
+also compare open, checked, highlighted, loading, and readonly states.
+Equivalent states must use semantic theme tokens rather than component-specific
+colors. Intentional structural differences such as compact badges or elevated
+surfaces remain valid when they match their component role.
+
 ---
 
 ## Common libraries

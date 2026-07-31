@@ -346,3 +346,15 @@
 ## Runner — 2026-07-31T13:37:11Z
 
 - Active spec: `.ai/specs/015-ui-theme-runtime-cobalt-default.md`\n- Action: reviewer\n- UI review required: `no`
+
+## Runner — 2026-07-31T13:41:15Z
+
+- Active spec: `.ai/specs/016-ui-theme-bootstrap-color-mode-sync.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-31T13:46:52Z
+
+- Active spec: `.ai/specs/016-ui-theme-bootstrap-color-mode-sync.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-31T13:56:37Z
+
+- Active spec: `.ai/specs/016-ui-theme-bootstrap-color-mode-sync.md`\n- Action: ui-reviewer

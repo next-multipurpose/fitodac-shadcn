@@ -8,6 +8,7 @@ import { AnimatedThemeToggler } from "@/components/animated-theme-toggler"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { resolveLocale } from "@/i18n/config"
 import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme"
+import { UI_THEME_BOOTSTRAP_SCRIPT } from "@/lib/ui-theme"
 
 import "./globals.css"
 
@@ -36,6 +37,9 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
+        <script
+          dangerouslySetInnerHTML={{ __html: UI_THEME_BOOTSTRAP_SCRIPT }}
+        />
       </head>
       <body className="min-h-screen antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>

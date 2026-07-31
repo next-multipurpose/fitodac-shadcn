@@ -1,6 +1,6 @@
 import cobaltRegistry from "@/registry/themes/cobalt/registry.json"
 
-import type { Theme } from "@/lib/theme"
+import { THEME_CHANGE_EVENT, type Theme } from "@/lib/theme"
 
 export type UITheme = "cobalt" | "default"
 
@@ -42,12 +42,12 @@ function getCobaltThemeDefinition(): CobaltThemeDefinition {
   return item.cssVars
 }
 
-const cobaltTheme = getCobaltThemeDefinition()
+export const COBALT_THEME = getCobaltThemeDefinition()
 const cobaltPropertyNames = new Set(
   Object.keys({
-    ...cobaltTheme.theme,
-    ...cobaltTheme.light,
-    ...cobaltTheme.dark,
+    ...COBALT_THEME.theme,
+    ...COBALT_THEME.light,
+    ...COBALT_THEME.dark,
   }).map((key) => `--${key}`)
 )
 
@@ -91,7 +91,7 @@ function removeCobaltOverrides() {
 
 function applyCobalt(colorMode: Theme) {
   removeCobaltOverrides()
-  const variables = { ...cobaltTheme.theme, ...cobaltTheme[colorMode] }
+  const variables = { ...COBALT_THEME.theme, ...COBALT_THEME[colorMode] }
 
   for (const [key, value] of Object.entries(variables)) {
     document.documentElement.style.setProperty(`--${key}`, value)
@@ -112,3 +112,49 @@ export function applyUITheme(theme: UITheme, colorMode: Theme): void {
 export function reapplyUITheme(colorMode: Theme): void {
   applyUITheme(currentUITheme, colorMode)
 }
+
+export function initializeUIThemeSynchronization(): () => void {
+  const initialColorMode: Theme = document.documentElement.classList.contains(
+    "dark"
+  )
+    ? "dark"
+    : "light"
+
+  applyUITheme(getInitialUITheme(), initialColorMode)
+
+  function synchronize(event: Event) {
+    const colorMode = (event as CustomEvent<Theme>).detail
+
+    if (colorMode === "light" || colorMode === "dark") {
+      reapplyUITheme(colorMode)
+    }
+  }
+
+  document.addEventListener(THEME_CHANGE_EVENT, synchronize)
+
+  return () => document.removeEventListener(THEME_CHANGE_EVENT, synchronize)
+}
+
+const serializedCobaltTheme = JSON.stringify(COBALT_THEME)
+const serializedCobaltPropertyNames = JSON.stringify([...cobaltPropertyNames])
+
+export const UI_THEME_BOOTSTRAP_SCRIPT = `(() => {
+  const root = document.documentElement;
+  const cobalt = ${serializedCobaltTheme};
+  const cobaltPropertyNames = ${serializedCobaltPropertyNames};
+  let storedTheme = null;
+  try {
+    const value = localStorage.getItem("${UI_THEME_STORAGE_KEY}");
+    storedTheme = value === "cobalt" || value === "default" ? value : null;
+  } catch {}
+  const uiTheme = storedTheme ?? "${DEFAULT_UI_THEME}";
+  for (const propertyName of cobaltPropertyNames) {
+    root.style.removeProperty(propertyName);
+  }
+  if (uiTheme === "default") return;
+  const colorMode = root.classList.contains("dark") ? "dark" : "light";
+  const variables = { ...cobalt.theme, ...cobalt[colorMode] };
+  for (const [key, value] of Object.entries(variables)) {
+    root.style.setProperty(\`--\${key}\`, value);
+  }
+})();`

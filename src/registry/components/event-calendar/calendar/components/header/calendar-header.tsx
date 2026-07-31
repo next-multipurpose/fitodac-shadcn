@@ -7,7 +7,7 @@ import {
   CalendarRange,
 } from "lucide-react"
 
-import { Button } from "@fitodac/shadcn/button"
+import { Button } from "../../../../../primitives/button"
 
 import { UserSelect } from "./user-select"
 import { TodayButton } from "./today-button"

@@ -5,14 +5,14 @@ import { Info } from "lucide-react"
 
 import { useCalendar } from "../contexts/calendar-context"
 
-import { Button } from "@fitodac/shadcn/button"
+import { Button } from "../../../../primitives/button"
 import { TimeInput } from "./time-input"
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from "@fitodac/shadcn/tooltip"
+} from "../../../../primitives/tooltip"
 
 import type { TimeValue } from "react-aria-components"
 
