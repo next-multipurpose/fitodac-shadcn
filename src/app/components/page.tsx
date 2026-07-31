@@ -84,7 +84,7 @@ const componentCategories = [
   },
   {
     key: "layout",
-    items: ["accordion", "carousel", "collapsible", "scroll-area", "sortable"],
+    items: ["accordion", "carousel", "collapsible", "drag-and-drop", "scroll-area", "sortable"],
   },
   {
     key: "advanced",

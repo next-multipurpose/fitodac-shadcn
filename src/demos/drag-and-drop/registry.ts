@@ -7,7 +7,7 @@ export const dragAndDropDemos: DemoEntry[] = [
     name: "sortable-list",
     title: "Sortable list",
     component: DragAndDropSortableListDemo,
-    componentSlug: "card",
+    componentSlug: "drag-and-drop",
     sourcePath: "src/demos/drag-and-drop/sortable-list.tsx",
     registryDependencies: ["button"],
     dependencies: [

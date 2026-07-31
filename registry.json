@@ -714,6 +714,18 @@
       "registryDependencies": ["utils"]
     },
     {
+      "name": "drag-and-drop",
+      "type": "registry:ui",
+      "files": [{ "path": "src/registry/components/sortable.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "@dnd-kit/core@^6.3.1",
+        "@dnd-kit/sortable@^10.0.0",
+        "@dnd-kit/utilities@^3.2.2",
+        "lucide-react@^0.577.0"
+      ],
+      "registryDependencies": ["button", "utils"]
+    },
+    {
       "name": "spinner",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/spinner.tsx", "type": "registry:ui" }],
