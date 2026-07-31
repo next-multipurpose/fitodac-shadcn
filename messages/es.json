@@ -8,7 +8,9 @@
     "mainNavigation": "Navegación principal",
     "components": "Componentes",
     "language": "Idioma",
-    "selectLanguage": "Seleccionar idioma"
+    "selectLanguage": "Seleccionar idioma",
+    "switchToDarkTheme": "Cambiar al tema oscuro",
+    "switchToLightTheme": "Cambiar al tema claro"
   },
   "Home": {
     "heading": "Componentes listos para tus aplicaciones.",

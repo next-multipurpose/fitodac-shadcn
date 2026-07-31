@@ -230,3 +230,31 @@
 ## Runner — 2026-07-31T03:11:20Z
 
 - Active spec: `.ai/specs/010-language-selector-persistence.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T08:24:41Z
+
+- Active spec: `.ai/specs/011-system-theme-animated-toggler.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-31T08:39:32Z
+
+- Active spec: `.ai/specs/011-system-theme-animated-toggler.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T08:45:31Z
+
+- Active spec: `.ai/specs/011-system-theme-animated-toggler.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-31T09:05:34Z
+
+- Active spec: `.ai/specs/011-system-theme-animated-toggler.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T09:08:36Z
+
+- Active spec: `.ai/specs/011-system-theme-animated-toggler.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-31T09:12:35Z
+
+- Active spec: `.ai/specs/011-system-theme-animated-toggler.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T09:15:14Z
+
+- Active spec: `.ai/specs/011-system-theme-animated-toggler.md`\n- Action: ui-reviewer

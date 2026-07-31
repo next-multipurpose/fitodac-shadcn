@@ -8,7 +8,9 @@
     "mainNavigation": "Main navigation",
     "components": "Components",
     "language": "Language",
-    "selectLanguage": "Select language"
+    "selectLanguage": "Select language",
+    "switchToDarkTheme": "Switch to dark theme",
+    "switchToLightTheme": "Switch to light theme"
   },
   "Home": {
     "heading": "Components ready for your applications.",
