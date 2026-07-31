@@ -1,6 +1,6 @@
 # 014 — Demo registry integrity, integration regression, and workflow guards
 
-Status: REVIEW
+Status: DONE
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker

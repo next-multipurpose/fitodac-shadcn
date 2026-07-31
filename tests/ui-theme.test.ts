@@ -1,0 +1,154 @@
+import { beforeEach, describe, expect, it, vi } from "vitest"
+
+import cobaltRegistry from "@/registry/themes/cobalt/registry.json"
+import {
+  applyUITheme,
+  DEFAULT_UI_THEME,
+  getInitialUITheme,
+  getStoredUITheme,
+  isUITheme,
+  persistUITheme,
+  reapplyUITheme,
+  resolveUITheme,
+  UI_THEME_STORAGE_KEY,
+} from "@/lib/ui-theme"
+
+function createStorage(): Storage {
+  const values = new Map<string, string>()
+
+  return {
+    clear: () => values.clear(),
+    getItem: (key) => values.get(key) ?? null,
+    key: (index) => [...values.keys()][index] ?? null,
+    get length() {
+      return values.size
+    },
+    removeItem: (key) => values.delete(key),
+    setItem: (key, value) => values.set(key, value),
+  }
+}
+
+const cobaltTheme = cobaltRegistry.items.find(
+  (item) => item.name === "cobalt" && item.type === "registry:theme"
+)!
+const cobaltPropertyNames = new Set(
+  Object.keys({
+    ...cobaltTheme.cssVars.theme,
+    ...cobaltTheme.cssVars.light,
+    ...cobaltTheme.cssVars.dark,
+  }).map((key) => `--${key}`)
+)
+
+describe("UI theme runtime", () => {
+  beforeEach(() => {
+    vi.stubGlobal("localStorage", createStorage())
+    document.documentElement.removeAttribute("style")
+    document.documentElement.className = ""
+  })
+
+  it.each([
+    ["cobalt", true],
+    ["default", true],
+    ["light", false],
+    [null, false],
+  ])("validates %s as %s", (value, expected) => {
+    expect(isUITheme(value)).toBe(expected)
+  })
+
+  it.each([
+    [null, "cobalt"],
+    ["invalid", "cobalt"],
+    ["cobalt", "cobalt"],
+    ["default", "default"],
+  ] as const)("resolves %s as %s", (storedTheme, expected) => {
+    expect(resolveUITheme(storedTheme)).toBe(expected)
+  })
+
+  it("defaults safely when storage is missing or unavailable", () => {
+    expect(DEFAULT_UI_THEME).toBe("cobalt")
+    expect(getStoredUITheme()).toBeNull()
+    expect(getInitialUITheme()).toBe("cobalt")
+
+    vi.stubGlobal("localStorage", {
+      getItem: () => {
+        throw new Error("unavailable")
+      },
+    })
+
+    expect(getStoredUITheme()).toBeNull()
+    expect(getInitialUITheme()).toBe("cobalt")
+  })
+
+  it("resolves a persisted Default selection", () => {
+    localStorage.setItem(UI_THEME_STORAGE_KEY, "default")
+
+    expect(getStoredUITheme()).toBe("default")
+    expect(getInitialUITheme()).toBe("default")
+  })
+
+  it.each(["light", "dark"] as const)(
+    "applies canonical Cobalt common and %s variables",
+    (colorMode) => {
+      applyUITheme("cobalt", colorMode)
+
+      expect(document.documentElement.style.getPropertyValue("--font-sans")).toBe(
+        cobaltTheme.cssVars.theme["font-sans"]
+      )
+      expect(document.documentElement.style.getPropertyValue("--radius-md")).toBe(
+        cobaltTheme.cssVars.theme["radius-md"]
+      )
+      expect(document.documentElement.style.getPropertyValue("--shadow-sm")).toBe(
+        cobaltTheme.cssVars.theme["shadow-sm"]
+      )
+      expect(document.documentElement.style.getPropertyValue("--primary")).toBe(
+        cobaltTheme.cssVars[colorMode].primary
+      )
+      expect(document.documentElement.style.getPropertyValue("--surface")).toBe(
+        cobaltTheme.cssVars[colorMode].surface
+      )
+      expect(document.documentElement.style.getPropertyValue("--border")).toBe(
+        cobaltTheme.cssVars[colorMode].border
+      )
+    }
+  )
+
+  it("removes every Cobalt property without touching unrelated or color-mode state", () => {
+    document.documentElement.classList.add("dark")
+    document.documentElement.style.colorScheme = "dark"
+    document.documentElement.style.setProperty("--unrelated", "kept")
+    localStorage.setItem("theme", "dark")
+    applyUITheme("cobalt", "dark")
+
+    applyUITheme("default", "light")
+
+    for (const propertyName of cobaltPropertyNames) {
+      expect(document.documentElement.style.getPropertyValue(propertyName)).toBe("")
+    }
+    expect(document.documentElement.style.getPropertyValue("--unrelated")).toBe("kept")
+    expect(document.documentElement).toHaveClass("dark")
+    expect(document.documentElement.style.colorScheme).toBe("dark")
+    expect(localStorage.getItem("theme")).toBe("dark")
+  })
+
+  it("reapplies the current selection for a changed color mode", () => {
+    applyUITheme("cobalt", "light")
+    reapplyUITheme("dark")
+
+    expect(document.documentElement.style.getPropertyValue("--primary")).toBe(
+      cobaltTheme.cssVars.dark.primary
+    )
+  })
+
+  it("persists only the independent UI-theme preference and tolerates failure", () => {
+    localStorage.setItem("theme", "dark")
+    persistUITheme("default")
+    expect(localStorage.getItem(UI_THEME_STORAGE_KEY)).toBe("default")
+    expect(localStorage.getItem("theme")).toBe("dark")
+
+    vi.spyOn(localStorage, "setItem").mockImplementation(() => {
+      throw new Error("unavailable")
+    })
+
+    expect(() => persistUITheme("cobalt")).not.toThrow()
+  })
+})

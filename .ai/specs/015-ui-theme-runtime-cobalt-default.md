@@ -1,6 +1,6 @@
 # 015 — UI theme runtime and Cobalt source-of-truth integration
 
-Status: DRAFT
+Status: DONE
 Role: implementer
 UI Review: skip
 Tooling policy: stop-with-blocker
@@ -453,11 +453,59 @@ Inspect the production diff and verify there is no second manually maintained Co
 
 ## Implementation report
 
-Pending.
+### Changes
+
+- Added an independent `cobalt | default` UI-theme runtime with safe resolution and persistence under `ui-theme`.
+- Derived the Cobalt token definition and complete owned-property removal set directly from the canonical Cobalt `registry:theme` item.
+- Added Cobalt Light/Dark application, Default override removal, and current-theme reapplication without changing color-mode state or storage.
+- Confirmed the existing `globals.css` semantic/default contract already covers the canonical Cobalt variables; no fallback changes were required.
+
+### Tests / verification
+
+- `pnpm test`: passed (13 files, 88 tests).
+- `./init.sh`: passed, including demo registry integrity, lint, typecheck, and tests.
+- `pnpm lint`: passed.
+- `pnpm typecheck`: passed.
+- `pnpm exec eslint src/lib/ui-theme.ts tests/ui-theme.test.ts`: passed.
+- `git diff --check`: passed.
+- `pnpm build`: blocked by the execution sandbox when Turbopack attempted to bind a local port (`Operation not permitted`).
+- `pnpm exec next build --webpack`: passed, including production compilation, TypeScript, and generation of 74 static pages.
+
+### Modified files
+
+- `src/lib/ui-theme.ts`
+- `tests/ui-theme.test.ts`
+- `.ai/specs/015-ui-theme-runtime-cobalt-default.md`
+
+### Notes
+
+- No Cobalt token values or Default token values were duplicated in TypeScript.
+- The prescribed Turbopack build failure is environment-specific; the webpack production build provides successful build evidence for the same source tree.
 
 ## Technical review
 
-Pending.
+### Verification
+
+- init.sh: passed (demos:registry:check, lint, typecheck, test)
+- lint: passed (`pnpm lint` and direct `eslint` on the new files)
+- typecheck: passed
+- test: passed (13 files, 88 tests)
+- build: passed (`pnpm build`, exit 0, 74 static pages) — confirmed again during review
+
+### Review
+
+- Scope: passed. Only `src/lib/ui-theme.ts` and `tests/ui-theme.test.ts` were added; no other app files changed. Harness state files (progress/current.json/spec status) are expected runner mutations.
+- Architecture: passed. Follows the recorded human-approved flow (Cobalt registry → `ui-theme.ts` → `document.documentElement` inline vars → `globals.css` Default fallback). No new boundary, no parallel light/dark runtime, no generic theme plugin/dynamic registry. `Theme` type is reused from `src/lib/theme.ts`.
+- Code: passed. `UITheme = "cobalt" | "default"`, `DEFAULT_UI_THEME = "cobalt"`, `UI_THEME_STORAGE_KEY = "ui-theme"` independent of the color-mode `theme` key. Canonical Cobalt `registry:theme` item is located explicitly and fails with a clear error when the `cssVars.theme/light/dark` shape is unavailable. Token keys are mapped mechanically (`--${key}`) with no second mapping table. The Default-removal set is the union of `cssVars.theme/light/dark`, so no Cobalt value survives and unrelated inline properties are untouched. `applyUITheme` never touches `.dark`, `colorScheme`, or `localStorage.theme`. Storage reads/writes are guarded by try/catch and fall back to Cobalt. No manually duplicated Cobalt token representation exists (only the registry JSON is imported).
+- Out-of-scope changes: no.
+
+### Result
+
+- REVIEW
+
+### Requested changes
+
+- None. Note for the human: `pnpm build` also passes in this review run; the implementation-report note about the sandbox build blocker is stale but harmless.
 
 ## Visual review
 

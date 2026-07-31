@@ -338,3 +338,11 @@
 ## Runner — 2026-07-31T13:20:09Z
 
 - Active spec: `.ai/specs/014-demo-registry-integrity-and-workflow-guards.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T13:32:31Z
+
+- Active spec: `.ai/specs/015-ui-theme-runtime-cobalt-default.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-31T13:37:11Z
+
+- Active spec: `.ai/specs/015-ui-theme-runtime-cobalt-default.md`\n- Action: reviewer\n- UI review required: `no`
