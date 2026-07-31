@@ -1,3 +1,5 @@
+"use client"
+
 import { RefreshCwIcon } from "lucide-react"
 
 import { Button } from "@/registry/primitives/button"

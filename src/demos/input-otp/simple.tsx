@@ -1,3 +1,5 @@
+"use client"
+
 import { Field, FieldLabel } from "@/registry/primitives/field"
 import {
   InputOTP,

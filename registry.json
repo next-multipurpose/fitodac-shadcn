@@ -166,6 +166,13 @@
       "dependencies": ["radix-ui@^1.4.3"]
     },
     {
+      "name": "combobox",
+      "type": "registry:ui",
+      "files": [{ "path": "src/registry/primitives/command.tsx", "type": "registry:ui" }],
+      "dependencies": ["cmdk@^1.1.1", "lucide-react@^0.577.0"],
+      "registryDependencies": ["button", "dialog", "popover", "utils"]
+    },
+    {
       "name": "command",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/command.tsx", "type": "registry:ui" }],

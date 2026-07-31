@@ -1,3 +1,5 @@
+"use client"
+
 import { REGEXP_ONLY_DIGITS } from "input-otp"
 
 import { Field, FieldLabel } from "@/registry/primitives/field"
