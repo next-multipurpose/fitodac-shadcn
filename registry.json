@@ -15,6 +15,26 @@
       "files": [{ "path": "src/hooks/use-mobile.ts", "type": "registry:hook" }]
     },
     {
+      "name": "use-character-limit",
+      "type": "registry:hook",
+      "files": [
+        {
+          "path": "src/hooks/use-character-limit.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-file-upload",
+      "type": "registry:hook",
+      "files": [
+        {
+          "path": "src/hooks/use-file-upload.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "accordion",
       "type": "registry:ui",
       "files": [{ "path": "src/accordion.tsx", "type": "registry:ui" }],
@@ -43,7 +63,12 @@
     {
       "name": "autocomplete",
       "type": "registry:ui",
-      "files": [{ "path": "src/autocomplete.tsx", "type": "registry:ui" }],
+      "files": [
+        {
+          "path": "src/registry/components/autocomplete.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "dependencies": [
         "@base-ui/react@^1.3.0",
         "class-variance-authority@^0.7.1",

@@ -1,14 +1,14 @@
 ✓ Graphify 0.9.29 with SQL and mcp<2
 ➜ Updating Graphify incrementally without AI
-  warning: 2 source file(s) produced zero nodes and are absent from the graph: current.json, health.json. A re-run will retry them (empties are no longer cached); if it persists, please report the file(s) (#1666).
+  warning: 4 source file(s) produced zero nodes and are absent from the graph: current.json, health.json, en.json, es.json. A re-run will retry them (empties are no longer cached); if it persists, please report the file(s) (#1666).
 [graphify extract] incremental scan of /Volumes/external-ssd/work/fitodac-shadcn
 [graphify extract] --code-only: skipping 29 non-code file(s) (27 docs, 0 papers, 2 images) — no LLM extraction
-[graphify extract] 4 code, 0 docs, 0 papers, 0 images changed; 1681 unchanged; 0 deleted
-[graphify extract] 75987 file(s) not classified (no supported extension or shebang), skipped: .editorconfig, .gitignore, .gitkeep, .prettierignore, .prettierrc, 000097fd617438fbd1001a1eacaa371311cefb972435a3cc42f5c9df4df0a921475c6de0577e96aeb4f72659d6ee9972c831a0c5160fec844f2552ebc08acd (+75981 more)
-[graphify extract] AST extraction on 4 code files...
-[graphify extract] wrote /Volumes/external-ssd/work/fitodac-shadcn/graphify-out/graph.json — 3266 nodes, 6164 edges (no clustering)
+[graphify extract] 15 code, 0 docs, 0 papers, 0 images changed; 263 unchanged; 0 deleted
+[graphify extract] 24 file(s) not classified (no supported extension or shebang), skipped: .editorconfig, .gitignore, .gitkeep, .prettierignore, .prettierrc, autocomplete-demos.patch (+18 more)
+[graphify extract] AST extraction on 15 code files...
+[graphify extract] wrote /Volumes/external-ssd/work/fitodac-shadcn/graphify-out/graph.json — 1575 nodes, 3273 edges (no clustering)
 Loading existing graph...
-Graph: 3266 nodes, 6160 edges
+Graph: 1575 nodes, 3242 edges
 Re-clustering...
-Done - 297 communities. GRAPH_REPORT.md, graph.json and graph.html updated.
+Done - 131 communities. GRAPH_REPORT.md, graph.json and graph.html updated.
 ✓ Graph updated

@@ -1,6 +1,6 @@
 # 010 — Header language selector with browser persistence
 
-Status: DRAFT
+Status: DONE
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker
@@ -275,14 +275,117 @@ No browser console/hydration errors.
 
 ## Implementation report
 
-Pending.
+### Changes
+
+- Added a focused client `LanguageSwitcher` that composes the existing registry `Button` and Radix `DropdownMenu` primitives.
+- Persisted supported selections only in the existing `NEXT_LOCALE` cookie and refreshed the current App Router tree without changing the URL.
+- Composed the selector into the server-rendered root header, kept the resolved locale authoritative for `<html lang>`, and made the header wrap safely at narrow widths.
+- Added translated selector labels and interaction tests for current state, both switch directions, cookie writes, refresh behavior, supported choices, and keyboard selection.
+
+### Tests / verification
+
+- Branch and prerequisite: passed (`migration-to-demo-site`; spec 009 is `DONE`).
+- Graphify CLI discovery: passed.
+- `pnpm test`: passed (6 files, 24 tests).
+- `pnpm lint`: passed.
+- Focused ESLint for the new component/test: passed.
+- `pnpm typecheck`: passed before unrelated concurrent registry work introduced a missing `src/registry/components/scroll-area` import; the latest rerun fails only at `src/registry/components/autocomplete.tsx:7`.
+- `pnpm build`: blocked by the sandbox denying Turbopack a process port; webpack compilation passed and then stopped on the same unrelated autocomplete import.
+- `./init.sh`: harness checks and lint passed, then stopped on the same unrelated autocomplete import during typecheck.
+- Browser plugin: unavailable for evidence after two controlled-tab timeouts; standalone Playwright is not installed, so desktop/mobile visual verification remains pending for the UI reviewer.
+- `git diff --check` for spec 010 files: passed.
+
+### Modified files
+
+- `messages/en.json`
+- `messages/es.json`
+- `src/app/layout.tsx`
+- `src/components/language-switcher.tsx`
+- `tests/language-switcher.test.tsx`
+- `.ai/specs/010-language-selector-persistence.md`
+
+### Notes
+
+- Existing unrelated harness, registry, autocomplete/demo, and spec 009 working-tree changes were preserved.
+- The shadcn CLI confirmed the local Radix project context; remote component docs were unavailable because `ui.shadcn.com` DNS resolution failed, so the installed primitive source was used as the exact API reference.
 
 ## Technical review
 
-Pending.
+### Verification
+
+- init.sh: passed
+- lint: passed
+- typecheck: passed
+- test: passed (6 files, 24 tests)
+- build: passed
+- supabase: not applicable
+- ui/playwright: not available (visual QA pending for UI reviewer)
+
+### Review
+
+- Scope: passed
+- Architecture: passed
+- Code: passed
+- Out-of-scope changes: no (pre-existing concurrent autocomplete/demo/registry work was preserved and is not part of spec 010)
+
+### Notes
+
+- `LanguageSwitcher` is a focused client component composing the existing registry `Button` and `DropdownMenu` primitives; no new dependency was added.
+- Locale persistence uses only the existing `NEXT_LOCALE` cookie consumed by spec 009 (`src/i18n/request.ts`); no localStorage second source of truth.
+- Cookie write is guarded by `isLocale`; invalid cookie values fall back to English through `resolveLocale`.
+- The root layout stays a server component; `resolveLocale(await getLocale())` keeps `<html lang>` correct.
+- The report's earlier typecheck/build failures were caused by unrelated concurrent autocomplete work; that work is now committed and the current tree passes all checks.
+
+### Result
+
+- UI_REVIEW
+
+### Requested changes
+
+- None. Visual/behavioral verification of both locales and header wrapping on desktop and mobile is pending for the UI reviewer.
 
 ## Visual review
 
-Pending.
+### Reviewed surfaces
 
-UI reviewer must verify both locales and header behavior on desktop and mobile.
+- Root header (`src/app/layout.tsx`): Fitodac UI brand, Components nav, `LanguageSwitcher` trigger (`EN`/`ES`) right-aligned.
+- Routes: `/`, `/components`, `/components/button` (desktop and mobile).
+- Language dropdown: open state, radio selection, checked state, both locales.
+- Related demo controls on the detail route: Preview/Code toggle, Copy, and Copy prompt.
+- `<html lang>` attribute and visible copy in both locales.
+
+### Checks
+
+- Desktop: passed
+- Mobile: passed
+- Visual navigation: passed
+- Visible states: passed
+
+### Method and evidence
+
+- Ran the app with `pnpm ai:dev:start` and verified the rendered pages with the local dev server.
+- No project Playwright is configured; installed `playwright-core` in the temp harness dir and drove the cached headless Chromium. No application code was modified.
+- Verified by scripted browser checks (functional + geometry) and by fetching server-rendered HTML with `curl` for the cookie paths:
+  - Fresh browser -> `lang="en"`, `EN` trigger, English radio checked.
+  - Choose Español -> `lang="es"`, visible site copy translates, URL unchanged (`/` and `/components` keep the same path, no locale segment).
+  - Spanish persists across `/components` and `/components/button` and across full reload.
+  - Choose English -> back to `lang="en"`, `EN` trigger.
+  - Invalid cookie `NEXT_LOCALE=fr` -> falls back to English (`lang="en"`).
+  - Keyboard: Enter opens the dropdown, ArrowDown moves into the menu, Escape closes it; trigger has an accessible label ("Select language") and the selected locale is reflected via the radio checked state.
+  - Layout geometry at 1280, 390, and 320 px: brand and nav left of the trigger, trigger right-aligned inside the centered content area, no horizontal overflow (`scrollWidth - innerWidth = 0`) in English and Spanish, dropdown menu fully in viewport and end-aligned to the trigger at all widths, header items share one row without overlap at 320 px.
+  - Demo controls still function: Preview/Code toggle opens the code panel; Copy and Copy prompt show their success feedback (clipboard stubbed because headless Chromium blocks `navigator.clipboard`).
+  - No console/page errors. The only 404 is the default `/favicon.ico` request (no favicon declared), which is pre-existing and unrelated to this spec.
+  - Header is defined once in the root layout; no screen-specific shell/nav copies were introduced.
+
+### Limitations
+
+- This reviewer model cannot inspect image screenshots, so pixel-level aesthetic judgment was replaced with programmatic geometry, overflow, alignment, visibility, and interaction checks; no visual anomalies were detected.
+- The only real browser-accessible channel was headless Chromium via temp `playwright-core`; there is no project Playwright suite.
+
+### Result
+
+- REVIEW
+
+### Requested changes
+
+- None.

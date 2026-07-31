@@ -1,6 +1,6 @@
 # 009 — i18n foundation and English-default site copy
 
-Status: REVIEW
+Status: DONE
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker

@@ -6,7 +6,9 @@
   },
   "Header": {
     "mainNavigation": "Main navigation",
-    "components": "Components"
+    "components": "Components",
+    "language": "Language",
+    "selectLanguage": "Select language"
   },
   "Home": {
     "heading": "Components ready for your applications.",

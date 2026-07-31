@@ -206,3 +206,27 @@
 ## Runner — 2026-07-31T02:21:00Z
 
 - Active spec: `.ai/specs/009-i18n-foundation-english-default.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T02:31:05Z
+
+- Active spec: `.ai/specs/010-language-selector-persistence.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-31T02:34:46Z
+
+- Active spec: `.ai/specs/010-language-selector-persistence.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T02:36:13Z
+
+- Active spec: `.ai/specs/010-language-selector-persistence.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T03:00:31Z
+
+- Active spec: `.ai/specs/010-language-selector-persistence.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T03:07:15Z
+
+- Active spec: `.ai/specs/010-language-selector-persistence.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-31T03:11:20Z
+
+- Active spec: `.ai/specs/010-language-selector-persistence.md`\n- Action: ui-reviewer
