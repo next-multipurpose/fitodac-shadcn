@@ -1,13 +1,13 @@
 import { useCalendar } from "../../contexts/calendar-context"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@fitodac/shadcn/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/primitives/avatar"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@fitodac/shadcn/select"
+} from "@/registry/primitives/select"
 
 export function UserSelect() {
   const { users, selectedUserId, setSelectedUserId } = useCalendar()

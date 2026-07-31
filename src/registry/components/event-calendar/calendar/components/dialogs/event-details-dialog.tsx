@@ -3,7 +3,7 @@
 import { format, parseISO } from "date-fns"
 import { Calendar, Clock, Text, User } from "lucide-react"
 
-import { Button } from "@fitodac/shadcn/button"
+import { Button } from "@/registry/primitives/button"
 import { EditEventDialog } from "./edit-event-dialog"
 import {
   Dialog,
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@fitodac/shadcn/dialog"
+} from "@/registry/primitives/dialog"
 
 import type { IEvent } from "../../interfaces"
 

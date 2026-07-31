@@ -3,8 +3,8 @@ import { parseISO, areIntervalsOverlapping, format } from "date-fns"
 
 import { useCalendar } from "../../contexts/calendar-context"
 
-import { ScrollArea } from "@fitodac/shadcn/scroll-area"
-import { Calendar } from "@fitodac/shadcn/calendar"
+import { ScrollArea } from "@/registry/primitives/scroll-area"
+import { Calendar } from "@/registry/primitives/calendar"
 
 import { AddEventDialog } from "../dialogs/add-event-dialog"
 import { EventBlock } from "../week-and-day-view/event-block"
@@ -12,7 +12,7 @@ import { DroppableTimeBlock } from "../dnd/droppable-time-block"
 import { CalendarTimeline } from "../week-and-day-view/calendar-time-line"
 import { DayViewMultiDayEventsRow } from "../week-and-day-view/day-view-multi-day-events-row"
 
-import { cn } from "@fitodac/shadcn/lib/utils"
+import { cn } from "@/lib/utils"
 import {
   groupEvents,
   getEventBlockStyle,

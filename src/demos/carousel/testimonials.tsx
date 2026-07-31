@@ -34,7 +34,7 @@ export default function CarouselTestimonialsDemo() {
           <CarouselItem key={testimonial.author}>
             <div className="rounded-lg border p-6">
               <blockquote className="mb-4 text-lg">
-                &ldquo;{testimonial.quote}&rdquo
+                &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
               <div>
                 <p className="font-semibold">{testimonial.author}</p>

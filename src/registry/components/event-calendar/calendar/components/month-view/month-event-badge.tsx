@@ -6,7 +6,7 @@ import { useCalendar } from "../../contexts/calendar-context"
 import { DraggableEvent } from "../dnd/draggable-event"
 import { EventDetailsDialog } from "../dialogs/event-details-dialog"
 
-import { cn } from "@fitodac/shadcn/lib/utils"
+import { cn } from "@/lib/utils"
 
 import type { IEvent } from "../../interfaces"
 import type { VariantProps } from "class-variance-authority"

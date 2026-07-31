@@ -8,16 +8,16 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useDisclosure } from "../../hooks/use-disclosure"
 import { useCalendar } from "../../contexts/calendar-context"
 
-import { Input } from "@fitodac/shadcn/input"
-import { Button } from "@fitodac/shadcn/button"
-import { Textarea } from "@fitodac/shadcn/textarea"
-import { InputTime as TimeInput } from "@fitodac/shadcn/input-time"
+import { Input } from "@/registry/primitives/input"
+import { Button } from "@/registry/primitives/button"
+import { Textarea } from "@/registry/primitives/textarea"
+import { InputTime as TimeInput } from "@/registry/components/input-time"
 import {
   formatTimeValue,
   parseTimeValue,
-} from "@fitodac/shadcn/lib/time-picker-utils"
+} from "@/lib/time-picker-utils"
 import { SingleDayPicker } from "../single-day-picker"
-import { Avatar, AvatarFallback, AvatarImage } from "@fitodac/shadcn/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/primitives/avatar"
 import {
   Form,
   FormField,
@@ -25,14 +25,14 @@ import {
   FormItem,
   FormControl,
   FormMessage,
-} from "@fitodac/shadcn/form"
+} from "@/registry/primitives/form"
 import {
   Select,
   SelectItem,
   SelectContent,
   SelectTrigger,
   SelectValue,
-} from "@fitodac/shadcn/select"
+} from "@/registry/primitives/select"
 import {
   Dialog,
   DialogHeader,
@@ -42,7 +42,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "@fitodac/shadcn/dialog"
+} from "@/registry/primitives/dialog"
 
 import { eventSchema } from "../../schemas"
 

@@ -9,7 +9,7 @@ import {
 
 import { useCalendar } from "../../contexts/calendar-context"
 
-import { ScrollArea } from "@fitodac/shadcn/scroll-area"
+import { ScrollArea } from "@/registry/primitives/scroll-area"
 
 import { AddEventDialog } from "../../components/dialogs/add-event-dialog"
 import { EventBlock } from "./event-block"
@@ -17,7 +17,7 @@ import { DroppableTimeBlock } from "../dnd/droppable-time-block"
 import { CalendarTimeline } from "./calendar-time-line"
 import { WeekViewMultiDayEventsRow } from "./week-view-multi-day-events-row"
 
-import { cn } from "@fitodac/shadcn/lib/utils"
+import { cn } from "@/lib/utils"
 import {
   groupEvents,
   getEventBlockStyle,

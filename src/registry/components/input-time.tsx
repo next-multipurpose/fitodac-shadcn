@@ -15,13 +15,13 @@ import {
   parseTimeValue,
   setDateByType,
   togglePeriod,
-} from "./lib/time-picker-utils"
+} from "@/lib/time-picker-utils"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
   InputGroupText,
-} from "./input-group"
+} from "@/registry/primitives/input-group"
 import type { TimeValue } from "react-aria-components"
 
 interface TimeSegmentInputProps extends Omit<

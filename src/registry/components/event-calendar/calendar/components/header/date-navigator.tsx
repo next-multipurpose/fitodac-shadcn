@@ -4,8 +4,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import { useCalendar } from "../../contexts/calendar-context"
 
-import { Badge } from "@fitodac/shadcn/badge"
-import { Button } from "@fitodac/shadcn/button"
+import { Badge } from "@/registry/primitives/badge"
+import { Button } from "@/registry/primitives/button"
 
 import { getEventsCount, navigateDate, rangeText } from "../../helpers"
 

@@ -5,7 +5,7 @@ import { parseISO, differenceInMilliseconds } from "date-fns"
 
 import { useUpdateEvent } from "../../hooks/use-update-event"
 
-import { cn } from "@fitodac/shadcn/lib/utils"
+import { cn } from "@/lib/utils"
 import { ItemTypes } from "../dnd/draggable-event"
 
 import type { IEvent, ICalendarCell } from "../../interfaces"

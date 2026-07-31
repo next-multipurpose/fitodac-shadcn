@@ -8,7 +8,7 @@ import { EventBullet } from "./event-bullet"
 import { DroppableDayCell } from "../dnd/droppable-day-cell"
 import { MonthEventBadge } from "./month-event-badge"
 
-import { cn } from "@fitodac/shadcn/lib/utils"
+import { cn } from "@/lib/utils"
 import { getMonthCellEvents } from "../../helpers"
 
 import type { ICalendarCell, IEvent } from "../../interfaces"

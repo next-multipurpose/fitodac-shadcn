@@ -4,7 +4,7 @@ import { parseISO, format, endOfDay, startOfDay, isSameMonth } from "date-fns"
 
 import { useCalendar } from "../../contexts/calendar-context"
 
-import { ScrollArea } from "@fitodac/shadcn/scroll-area"
+import { ScrollArea } from "@/registry/primitives/scroll-area"
 import { AgendaDayGroup } from "./agenda-day-group"
 
 import type { IEvent } from "../../interfaces"
