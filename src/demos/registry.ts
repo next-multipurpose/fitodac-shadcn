@@ -66,6 +66,25 @@ import ButtonAnimatedLinkDemo from "@/demos/button/animated-link"
 import ButtonHeartbeatDemo from "@/demos/button/heartbeat"
 import ButtonCraftButtonDemo from "@/demos/button/craft-button"
 
+import AlertDialogConfirmDemo from "@/demos/alert-dialog/confirm"
+import AlertDialogConfirmIconDemo from "@/demos/alert-dialog/confirm-icon"
+import AlertDialogFullscreenProductDemo from "@/demos/alert-dialog/fullscreen-product"
+import AlertDialogScrollableCustomDemo from "@/demos/alert-dialog/scrollable-custom"
+import AlertDialogStickyHeaderDemo from "@/demos/alert-dialog/sticky-header"
+import AlertDialogStickyFooterDemo from "@/demos/alert-dialog/sticky-footer"
+import AlertDialogTermsConditionsDemo from "@/demos/alert-dialog/terms-conditions"
+import AlertDialogNewsletterDemo from "@/demos/alert-dialog/newsletter"
+import AlertDialogFeedbackDemo from "@/demos/alert-dialog/feedback"
+import AlertDialogOtpVerificationDemo from "@/demos/alert-dialog/otp-verification"
+import AlertDialogSignInDemo from "@/demos/alert-dialog/sign-in"
+import AlertDialogCheckoutDemo from "@/demos/alert-dialog/checkout"
+import AlertDialogChangePlanDemo from "@/demos/alert-dialog/change-plan"
+import AlertDialogEditProfileDemo from "@/demos/alert-dialog/edit-profile"
+import AlertDialogOnboardingDemo from "@/demos/alert-dialog/onboarding"
+import AlertDialogDestructiveConfirmationDemo from "@/demos/alert-dialog/destructive-confirmation"
+import AlertDialogRatingFeedbackDemo from "@/demos/alert-dialog/rating-feedback"
+import AlertDialogInviteFriendsDemo from "@/demos/alert-dialog/invite-friends"
+
 export type DemoEntry = {
   name: string
   title: string
@@ -77,6 +96,152 @@ export type DemoEntry = {
 }
 
 const demoRegistry: Record<string, DemoEntry[]> = {
+  "alert-dialog": [
+    {
+      name: "confirm",
+      title: "Confirm action",
+      component: AlertDialogConfirmDemo,
+      componentSlug: "alert-dialog",
+      sourcePath: "src/demos/alert-dialog/confirm.tsx",
+    },
+    {
+      name: "confirm-icon",
+      title: "Confirm with icon",
+      component: AlertDialogConfirmIconDemo,
+      componentSlug: "alert-dialog",
+      sourcePath: "src/demos/alert-dialog/confirm-icon.tsx",
+      dependencies: ["lucide-react@^0.577.0"],
+    },
+    {
+      name: "fullscreen-product",
+      title: "Fullscreen product dialog",
+      component: AlertDialogFullscreenProductDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/fullscreen-product.tsx",
+      registryDependencies: ["button", "scroll-area"],
+    },
+    {
+      name: "scrollable-custom",
+      title: "Scrollable custom scrollbar",
+      component: AlertDialogScrollableCustomDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/scrollable-custom.tsx",
+      registryDependencies: ["button", "scroll-area"],
+    },
+    {
+      name: "sticky-header",
+      title: "Scrollable sticky header",
+      component: AlertDialogStickyHeaderDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/sticky-header.tsx",
+      registryDependencies: ["button"],
+    },
+    {
+      name: "sticky-footer",
+      title: "Scrollable sticky footer",
+      component: AlertDialogStickyFooterDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/sticky-footer.tsx",
+      registryDependencies: ["button"],
+    },
+    {
+      name: "terms-conditions",
+      title: "Terms and conditions",
+      component: AlertDialogTermsConditionsDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/terms-conditions.tsx",
+      registryDependencies: ["button"],
+    },
+    {
+      name: "newsletter",
+      title: "Newsletter signup",
+      component: AlertDialogNewsletterDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/newsletter.tsx",
+      registryDependencies: ["button", "input"],
+    },
+    {
+      name: "feedback",
+      title: "Feedback form",
+      component: AlertDialogFeedbackDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/feedback.tsx",
+      registryDependencies: ["button", "textarea"],
+    },
+    {
+      name: "otp-verification",
+      title: "OTP verification",
+      component: AlertDialogOtpVerificationDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/otp-verification.tsx",
+      registryDependencies: ["button"],
+      dependencies: ["input-otp@^1.4.2"],
+    },
+    {
+      name: "sign-in",
+      title: "Sign in",
+      component: AlertDialogSignInDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/sign-in.tsx",
+      registryDependencies: ["button", "checkbox", "input", "label"],
+    },
+    {
+      name: "checkout",
+      title: "Checkout",
+      component: AlertDialogCheckoutDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/checkout.tsx",
+      registryDependencies: ["badge", "button", "input", "label", "radio-group"],
+    },
+    {
+      name: "change-plan",
+      title: "Change plan",
+      component: AlertDialogChangePlanDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/change-plan.tsx",
+      registryDependencies: ["button", "label", "radio-group"],
+    },
+    {
+      name: "edit-profile",
+      title: "Edit profile",
+      component: AlertDialogEditProfileDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/edit-profile.tsx",
+      registryDependencies: ["button", "input", "label", "textarea", "use-character-limit", "use-file-upload"],
+    },
+    {
+      name: "onboarding",
+      title: "Onboarding",
+      component: AlertDialogOnboardingDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/onboarding.tsx",
+      registryDependencies: ["button"],
+    },
+    {
+      name: "destructive-confirmation",
+      title: "Destructive confirmation",
+      component: AlertDialogDestructiveConfirmationDemo,
+      componentSlug: "alert-dialog",
+      sourcePath: "src/demos/alert-dialog/destructive-confirmation.tsx",
+      registryDependencies: ["checkbox", "label"],
+    },
+    {
+      name: "rating-feedback",
+      title: "Rating feedback",
+      component: AlertDialogRatingFeedbackDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/rating-feedback.tsx",
+      registryDependencies: ["button", "checkbox", "label", "radio-group", "textarea"],
+    },
+    {
+      name: "invite-friends",
+      title: "Invite friends",
+      component: AlertDialogInviteFriendsDemo,
+      componentSlug: "dialog",
+      sourcePath: "src/demos/alert-dialog/invite-friends.tsx",
+      registryDependencies: ["avatar", "button", "input", "label"],
+    },
+  ],
   accordion: [
     {
       name: "default",
