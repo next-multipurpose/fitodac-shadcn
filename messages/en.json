@@ -27,6 +27,17 @@
     "eyebrow": "Catalog",
     "heading": "Components",
     "summary": "{count, plural, one {# available entry with its dependencies and files declared in the registry.} other {# available entries with their dependencies and files declared in the registry.}}",
+    "categories": {
+      "primitives": "Primitives",
+      "forms": "Forms",
+      "navigation": "Navigation",
+      "overlays": "Overlays and menus",
+      "dataDisplay": "Data display",
+      "feedback": "Feedback",
+      "layout": "Layout",
+      "advanced": "Advanced components",
+      "utilities": "Hooks and utilities"
+    },
     "files": "{count, plural, one {# file} other {# files}}",
     "packages": "{count, plural, one {# package} other {# packages}}"
   },

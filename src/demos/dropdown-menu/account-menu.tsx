@@ -1,0 +1,85 @@
+import {
+  BoltIcon,
+  BookOpenIcon,
+  ChevronDownIcon,
+  Layers2Icon,
+  LogOutIcon,
+  PinIcon,
+  UserPenIcon,
+} from "lucide-react"
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/primitives/avatar"
+import { Button } from "@/registry/primitives/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/registry/primitives/dropdown-menu"
+
+export default function DropdownMenuAccountDemo() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button className="h-auto p-0 hover:bg-transparent" variant="ghost">
+          <Avatar>
+            <AvatarImage
+              alt="Profile image"
+              src="https://i.pravatar.cc/150?img=80"
+            />
+            <AvatarFallback>KK</AvatarFallback>
+          </Avatar>
+          <ChevronDownIcon
+            aria-hidden="true"
+            className="opacity-60"
+            className="size-4"
+          />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="max-w-64">
+        <DropdownMenuLabel className="flex min-w-0 flex-col">
+          <span className="text-foreground truncate text-sm font-medium">
+            Keith Kennedy
+          </span>
+          <span className="text-muted-foreground truncate text-xs font-normal">
+            keith.kennedy@example.com
+          </span>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <BoltIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <span>Option 1</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Layers2Icon aria-hidden="true" className="opacity-60" className="size-4" />
+            <span>Option 2</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <BookOpenIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <span>Option 3</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <PinIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <span>Option 4</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <UserPenIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <span>Option 5</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <LogOutIcon aria-hidden="true" className="opacity-60" className="size-4" />
+          <span>Logout</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}

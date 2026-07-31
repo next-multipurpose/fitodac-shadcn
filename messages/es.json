@@ -27,6 +27,17 @@
     "eyebrow": "Catálogo",
     "heading": "Componentes",
     "summary": "{count, plural, one {# entrada disponible con sus dependencias y archivos declarados en el registry.} other {# entradas disponibles con sus dependencias y archivos declarados en el registry.}}",
+    "categories": {
+      "primitives": "Primitivos",
+      "forms": "Formularios",
+      "navigation": "Navegación",
+      "overlays": "Capas y menús",
+      "dataDisplay": "Visualización de datos",
+      "feedback": "Estados y feedback",
+      "layout": "Disposición",
+      "advanced": "Componentes avanzados",
+      "utilities": "Hooks y utilidades"
+    },
     "files": "{count, plural, one {# archivo} other {# archivos}}",
     "packages": "{count, plural, one {# paquete} other {# paquetes}}"
   },
