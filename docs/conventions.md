@@ -32,17 +32,17 @@ Always use the project's existing conventions if they are already defined.
 
 ## Naming
 
-| Type            | Convention         | Example             |
-| --------------- | ------------------ | ------------------- |
-| Components      | `PascalCase`       | `UserMenu`          |
-| Hooks           | `useCamelCase`     | `useCurrentUser`    |
-| Functions       | `camelCase`        | `getUserProfile`    |
-| Variables       | `camelCase`        | `userProfile`       |
-| Constants       | `UPPER_SNAKE_CASE` | `DEFAULT_PAGE_SIZE` |
-| Types           | `PascalCase`       | `UserProfile`       |
-| Component files | `kebab-case.tsx`   | `user-menu.tsx`     |
-| Utility files   | `kebab-case.ts`    | `format-date.ts`    |
-| Specs           | `number-kebab-case.md` | `001-login.md`  |
+| Type            | Convention             | Example             |
+| --------------- | ---------------------- | ------------------- |
+| Components      | `PascalCase`           | `UserMenu`          |
+| Hooks           | `useCamelCase`         | `useCurrentUser`    |
+| Functions       | `camelCase`            | `getUserProfile`    |
+| Variables       | `camelCase`            | `userProfile`       |
+| Constants       | `UPPER_SNAKE_CASE`     | `DEFAULT_PAGE_SIZE` |
+| Types           | `PascalCase`           | `UserProfile`       |
+| Component files | `kebab-case.tsx`       | `user-menu.tsx`     |
+| Utility files   | `kebab-case.ts`        | `format-date.ts`    |
+| Specs           | `number-kebab-case.md` | `001-login.md`      |
 
 ---
 
@@ -155,6 +155,13 @@ visual values whenever an equivalent token already exists. Use roles such as
 `bg-accent`, `bg-muted`, `text-foreground`, `text-muted-foreground`,
 `border-border`, `border-input`, and `ring-ring`. Themes define the appearance
 of these roles; components must not require theme-specific CSS overrides.
+
+The demo site defaults to Cobalt through the UI-theme runtime, while Default
+values remain in `src/app/globals.css`. Cobalt tokens have one canonical source
+in `src/registry/themes/cobalt/registry.json`; do not copy them into runtime
+constants. UI theme selection is independent from Light/Dark color mode, and
+distributed components must respond only through semantic tokens rather than
+theme-name conditionals.
 
 ### Radius and typography
 

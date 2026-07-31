@@ -1,6 +1,6 @@
 # 016 — UI theme bootstrap and color-mode synchronization
 
-Status: REVIEW
+Status: DONE
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker

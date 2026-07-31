@@ -358,3 +358,15 @@
 ## Runner — 2026-07-31T13:56:37Z
 
 - Active spec: `.ai/specs/016-ui-theme-bootstrap-color-mode-sync.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T14:44:43Z
+
+- Active spec: `.ai/specs/017-header-ui-theme-selector.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-31T14:53:30Z
+
+- Active spec: `.ai/specs/017-header-ui-theme-selector.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-31T14:58:03Z
+
+- Active spec: `.ai/specs/017-header-ui-theme-selector.md`\n- Action: ui-reviewer

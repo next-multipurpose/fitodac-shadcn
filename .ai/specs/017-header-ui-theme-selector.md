@@ -1,6 +1,6 @@
 # 017 — Header UI-theme selector, persistence, and regression coverage
 
-Status: DRAFT
+Status: DONE
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker
@@ -630,23 +630,116 @@ No runtime errors, hydration warnings, or theme-related console errors.
 
 ## Implementation report
 
-Pending.
+### Changes
+
+- Added a focused `ThemeSelector` Client Component using the existing Button and DropdownMenu radio primitives, with exactly Cobalt and Default choices.
+- Composed the selector beside the existing language and Light/Dark controls in the root header.
+- Added English and Spanish theme labels and accessible selector names.
+- Added selector regression coverage for initial resolution, all four UI-theme/color-mode combinations, persistence independence, storage failure, selected semantics, keyboard selection, focus restoration, and Spanish labels.
+- Documented the stable separation between UI theme and color mode, the Cobalt registry as canonical source, Default globals, and semantic-token-only distributed components.
+
+### Tests / verification
+
+- `pnpm ai:graphify:query "Where are the site header, locale selector, light dark theme toggle, UI theme runtime from spec 016, i18n messages, and relevant tests connected? Return file paths and dependency relationships."`: passed.
+- Focused Vitest suite: passed, 51 tests across selector/theme/i18n regressions.
+- `pnpm lint`: passed.
+- `pnpm typecheck`: passed.
+- `pnpm test`: passed, 15 files / 114 tests.
+- `./init.sh`: passed, including demo registry check, lint, typecheck, and 114 tests.
+- `pnpm build`: environment-blocked; Turbopack could not bind an internal CSS worker port under the managed sandbox (`Operation not permitted`).
+- Browser/UI: environment-blocked. The in-app Chrome connection timed out twice while creating a controllable tab; standalone Playwright Chromium then failed before launch because the macOS sandbox denied Mach port registration. No browser or screenshot claims are made; visual review remains pending.
+
+### Modified files
+
+- `src/components/theme-selector.tsx`
+- `src/app/layout.tsx`
+- `messages/en.json`
+- `messages/es.json`
+- `tests/theme-selector.test.tsx`
+- `.ai/rules.md`
+- `docs/conventions.md`
+- `.ai/specs/017-header-ui-theme-selector.md`
+
+### Notes
+
+- No dependency was added and no registry primitive/component styling was changed.
+- The selector applies the current document color mode to the UI-theme runtime and never calls or mutates the Light/Dark preference.
+- Upstream shadcn CLI docs were network-unavailable, so implementation was verified against the installed local Button/DropdownMenu primitives and the repository's existing LanguageSwitcher pattern.
 
 ## Technical review
 
-Pending.
+### Verification
+
+- init.sh: passed (demo registry check, lint, typecheck, 114 tests)
+- lint: passed
+- typecheck: passed
+- test: passed, 15 files / 114 tests
+- build: passed (reproduced by reviewer; Turbopack warning on `get-integration-bundle.ts` is pre-existing and unrelated)
+- supabase: not applicable
+- ui/playwright: not available in reviewer environment; pending UI reviewer
+
+### Review
+
+- Scope: passed
+- Architecture: passed
+- Code: passed
+- Out-of-scope changes: no
+
+### Result
+
+- UI_REVIEW
+
+### Requested changes
+
+- None.
+
+### Notes
+
+- Prerequisite met: spec 016 is `DONE`; work is on `migration-to-demo-site`.
+- `ThemeSelector` is a focused Client Component composed in `src/app/layout.tsx` between the language switcher and the Light/Dark toggler, matching the human-approved header concept and the existing `LanguageSwitcher` pattern. It reuses the repository's Button and DropdownMenu radio primitives; no dependency or registry primitive/component styling was changed.
+- Behavior verified against `src/lib/ui-theme.ts` and via tests: Cobalt is the fallback for missing/invalid storage; Default removes Cobalt overrides and restores `globals.css`; persistence is independent from `localStorage.theme`, `html.dark`, and `colorScheme`; the selector reads the current document color mode and never calls or mutates the Light/Dark preference. Spec-016 `initializeUIThemeSynchronization` keeps Cobalt tokens in sync on color-mode change.
+- Acceptance criteria covered: initial resolution (fresh/Cobalt/Default/invalid), all four UI-theme/color-mode combinations, storage-failure resilience, accessible name, radio selected state, keyboard selection, focus restoration, and English/Spanish labels. No Cobalt token copy exists outside `src/registry/themes/cobalt/registry.json`, and no Default registry JSON was added.
+- i18n parity between `messages/en.json` and `messages/es.json` is enforced by the existing `tests/i18n/messages.test.ts`; new keys were added under the `Header` namespace in both locales with theme names kept as product names.
+- The implementation report claim that `pnpm build` was environment-blocked could not be reproduced by the reviewer; the reviewer's build finished successfully. Visual/browser review remains pending as documented.
 
 ## Visual review
 
-Pending.
+### Reviewed surfaces
 
-UI reviewer must explicitly verify:
+- Routes: `/`, `/components`, `/components/button`, `/components/badge`, `/components/alert`.
+- Components: `ThemeSelector` trigger and dropdown, `LanguageSwitcher`, `AnimatedThemeToggler`, root header, previews consuming semantic tokens (Button/Badge/Alert demos, cards/surfaces).
+- Viewports: desktop 1280x800, mobile 390x844.
+- Environment: existing Next.js dev server on `http://localhost:3000`; Playwright 1.62.1 / project-local Chromium.
 
-- selector active state;
-- Cobalt default;
-- Default fallback behavior;
-- persistence;
-- independence from Light/Dark;
-- all four theme/mode combinations;
-- representative component previews;
-- desktop/mobile header behavior.
+### Checks
+
+Browser automation (`review.mjs`, 182 assertions) + DOM geometry (`geometry.mjs`):
+
+- **Cobalt default**: fresh storage resolves to Cobalt (`--background #f6f8fb`, `--primary #315efb`); trigger shows "Cobalt"; no `ui-theme` key written on first visit. Passed.
+- **Default fallback / removal**: selecting Default immediately restores `globals.css` values (computed `lab(100% 0 0)` background, neutral primary); persists `ui-theme=default`; invalid storage falls back to Cobalt. Passed.
+- **Persistence + first-paint**: with `ui-theme=default`/`cobalt`, computed tokens are already correct at `domcontentloaded` (bootstrap runs before hydration); trigger resolves to the stored theme. No flash window observed. Passed.
+- **Independence matrix**: all four combinations verified — Cobalt+Light, Cobalt+Dark, Default+Light, Default+Dark — by toggling only one dimension at a time; switching UI theme never touches `html.dark`, `localStorage.theme`, or `colorScheme` (value is set by the Light/Dark bootstrap, unchanged by the selector), and toggling Light/Dark never changes `ui-theme`. Passed.
+- **Selector active state**: radio menu exposes exactly Cobalt and Default; exactly one item checked; checked item matches trigger label after every switch. Passed.
+- **Accessibility**: accessible name (`aria-label="Select theme"`), keyboard open/navigate/select with the reused menu primitive (focus reaches target item), focus restored to trigger after selection. Passed.
+- **i18n**: English and Spanish (`NEXT_LOCALE=es`) — Spanish accessible name "Seleccionar tema", menu label "Tema", theme names kept as product names; key parity enforced by existing `messages.test.ts`. Passed.
+- **Visual navigation / header**: control order matches the approved concept — Navigation, Language `[EN ▾]`, UI Theme `[Cobalt ▾]`, Light/Dark toggle. Passed.
+- **Visual consistency contract**: `ThemeSelector` and `LanguageSwitcher` use the same `Button size="sm" variant="outline"` + `DropdownMenu` radio primitive — identical height (h-8, 32px), `text-sm`, `rounded-md`, border/hover/focus treatment; all three header controls share the same height; dropdown uses the popover surface. Passed.
+- **Responsive**: at 390px, no page-level horizontal overflow on any route, header wraps and remains reachable, dropdown fits the viewport, selecting Default works. Passed.
+- **No overflow / regression**: no horizontal overflow at 1280px on any reviewed route in either theme. Passed.
+- **Console/hydration**: zero console errors, zero hydration warnings, zero page errors across the whole session. Passed.
+- **No theme conditional in distributed code**: grep shows Cobalt referenced only in the canonical registry, `src/lib/ui-theme.ts` (which reads the registry), and selector labels; no Cobalt token copy and no `theme === "cobalt"` styling branch in any registry primitive/component. Passed.
+
+Screenshots stored under `.ai/run/logs/ui-review-017/`.
+
+- Desktop: passed
+- Mobile: passed
+- Visual navigation: passed
+- Visible states: passed
+
+### Result
+
+- REVIEW
+
+### Requested changes
+
+- None.

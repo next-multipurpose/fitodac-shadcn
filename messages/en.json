@@ -9,6 +9,10 @@
     "components": "Components",
     "language": "Language",
     "selectLanguage": "Select language",
+    "theme": "Theme",
+    "cobalt": "Cobalt",
+    "default": "Default",
+    "selectTheme": "Select theme",
     "switchToDarkTheme": "Switch to dark theme",
     "switchToLightTheme": "Switch to light theme"
   },

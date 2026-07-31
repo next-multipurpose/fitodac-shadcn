@@ -169,6 +169,13 @@ The UI must be usable, not just compile.
 
 ## 8. UI Review
 
+### Demo-site themes
+
+- Cobalt is the default demo-site UI theme; its canonical tokens live only in `src/registry/themes/cobalt/registry.json`.
+- Default theme values live in `src/app/globals.css`; do not create a duplicate Default registry.
+- UI theme (`ui-theme`) and Light/Dark color mode (`theme`) are independent preferences.
+- Registry components consume semantic tokens and must not branch on Cobalt or duplicate Cobalt tokens in runtime constants.
+
 If the spec modifies UI, layout, responsive behavior, visual navigation, forms, or visible components:
 
 - It must go through `ui-reviewer` before being approved.

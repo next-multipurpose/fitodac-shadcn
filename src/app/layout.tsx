@@ -6,6 +6,7 @@ import type { ReactNode } from "react"
 
 import { AnimatedThemeToggler } from "@/components/animated-theme-toggler"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { ThemeSelector } from "@/components/theme-selector"
 import { resolveLocale } from "@/i18n/config"
 import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme"
 import { UI_THEME_BOOTSTRAP_SCRIPT } from "@/lib/ui-theme"
@@ -58,6 +59,7 @@ export default async function RootLayout({
                   </Link>
                 </nav>
                 <LanguageSwitcher locale={locale} />
+                <ThemeSelector />
                 <AnimatedThemeToggler />
               </div>
             </div>

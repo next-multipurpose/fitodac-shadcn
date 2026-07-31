@@ -9,6 +9,10 @@
     "components": "Componentes",
     "language": "Idioma",
     "selectLanguage": "Seleccionar idioma",
+    "theme": "Tema",
+    "cobalt": "Cobalt",
+    "default": "Default",
+    "selectTheme": "Seleccionar tema",
     "switchToDarkTheme": "Cambiar al tema oscuro",
     "switchToLightTheme": "Cambiar al tema claro"
   },
