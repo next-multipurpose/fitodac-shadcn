@@ -1,6 +1,6 @@
 # 011 — System theme support and animated header toggler
 
-Status: REVIEW
+Status: DONE
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker

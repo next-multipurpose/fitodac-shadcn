@@ -258,3 +258,23 @@
 ## Runner — 2026-07-31T09:15:14Z
 
 - Active spec: `.ai/specs/011-system-theme-animated-toggler.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T10:32:07Z
+
+- Active spec: `.ai/specs/012-modular-demo-registries.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-31T10:38:00Z
+
+- Active spec: `.ai/specs/012-modular-demo-registries.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-31T10:44:00Z
+
+- Active spec: `.ai/specs/012-modular-demo-registries.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T10:50:47Z
+
+- Spec: `.ai/specs/012-modular-demo-registries.md`\n- Result: unexpected state after ui-reviewer\n- New state: `CHANGES`
+
+## Runner — 2026-07-31T10:53:30Z
+
+- Active spec: `.ai/specs/012-modular-demo-registries.md`\n- Action: ui-reviewer
