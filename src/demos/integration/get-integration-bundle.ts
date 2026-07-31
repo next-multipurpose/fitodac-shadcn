@@ -3,7 +3,7 @@ import "server-only"
 import { readFile } from "node:fs/promises"
 import path from "node:path"
 
-import type { DemoEntry } from "@/demos/registry"
+import type { DemoEntry } from "@/demos/types"
 import registryJson from "../../../registry.json"
 
 import type { DemoIntegrationBundle, IntegrationFile } from "./types"
@@ -39,7 +39,10 @@ function resolveTrustedSource(sourcePath: string) {
   return absolutePath
 }
 
-async function readCanonicalRegistryFile(item: RegistryItem, file: RegistryFile) {
+async function readCanonicalRegistryFile(
+  item: RegistryItem,
+  file: RegistryFile
+) {
   const filename = path.basename(file.path)
   const candidates = [
     file.path,

@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server"
 
-import type { DemoEntry } from "@/demos/registry"
+import type { DemoEntry } from "@/demos/types"
 import { DemoCard } from "@/demos/demo-card"
 import { DemoViewProvider } from "@/demos/demo-view-provider"
 import { getIntegrationBundle } from "@/demos/integration/get-integration-bundle"
