@@ -6,13 +6,471 @@
 - Local:         http://localhost:3000
 - Network:       http://127.0.2.2:3000
 - Environments: .env
-✓ Ready in 252ms
+✓ Ready in 284ms
 
- GET / 200 in 284ms (next.js: 116ms, application-code: 169ms)
- GET / 200 in 21ms (next.js: 2ms, application-code: 19ms)
- GET / 200 in 29ms (next.js: 2ms, application-code: 27ms)
- GET / 200 in 26ms (next.js: 6ms, application-code: 21ms)
- GET / 200 in 32ms (next.js: 2ms, application-code: 30ms)
- GET / 200 in 31ms (next.js: 7ms, application-code: 24ms)
+ GET /components/button 200 in 2.0s (next.js: 807ms, generate-params: 571ms, application-code: 1238ms)
+ GET /components/accordion 200 in 886ms (next.js: 11ms, generate-params: 3ms, application-code: 874ms)
+ GET /components/alert 200 in 433ms (next.js: 5ms, generate-params: 1845µs, application-code: 428ms)
+ GET /components/alert-dialog 200 in 2.8s (next.js: 5ms, generate-params: 2ms, application-code: 2.8s)
+ GET /components/autocomplete 200 in 413ms (next.js: 13ms, generate-params: 3ms, application-code: 400ms)
+ GET /components/avatar 200 in 642ms (next.js: 68ms, generate-params: 2ms, application-code: 574ms)
+[browser] In HTML, <button> cannot be a descendant of <button>.
+This will cause a hydration error.
+
+  ...
+    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
+      <Popper __scopePopper={{Menu:[...], ...}}>
+        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
+          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
+            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
+              <DropdownMenuTrigger>
+                <DropdownMenuTrigger data-slot="dropdown-m...">
+                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
+                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
+                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
+>                           <button
+>                             type="button"
+>                             id="radix-_R_alpbn5ritqlb_"
+>                             aria-haspopup="menu"
+>                             aria-expanded={false}
+>                             aria-controls={undefined}
+>                             data-state="closed"
+>                             data-disabled={undefined}
+>                             disabled={false}
+>                             data-slot="dropdown-menu-trigger"
+>                             onPointerDown={function handleEvent}
+>                             onKeyDown={function handleEvent}
+>                             data-radix-popper-side={undefined}
+>                             data-radix-popper-align={undefined}
+>                             ref={function}
+>                           >
+                              <Button>
+>                               <button
+>                                 data-slot="button"
+>                                 data-variant="outline"
+>                                 data-size="sm"
+>                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
+>                               >
+              ...
+ 
+[browser] <button> cannot contain a nested <button>.
+See this log for the ancestor stack trace. 
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at button (<anonymous>)
+    at Button (src/registry/primitives/button.tsx:54:5)
+    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
+    at ComponentDemo (src/demos/component-demo.tsx:22:7)
+    at <anonymous> (src/demos/component-demo.tsx:46:11)
+    at Array.map (<anonymous>:1:18)
+    at ComponentDemos (src/demos/component-demo.tsx:45:16)
+    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
+  52 |
+  53 |   return (
+> 54 |     <Comp
+     |     ^
+  55 |       data-slot="button"
+  56 |       data-variant={variant}
+  57 |       data-size={size}
+ GET /components/badge 200 in 271ms (next.js: 6ms, generate-params: 2ms, application-code: 266ms)
+ GET /components/button 200 in 538ms (next.js: 5ms, generate-params: 1961µs, application-code: 534ms)
+ GET /components/accordion 200 in 462ms (next.js: 9ms, generate-params: 2ms, application-code: 454ms)
+ GET /components/alert 200 in 374ms (next.js: 7ms, generate-params: 3ms, application-code: 367ms)
+ GET /components/alert-dialog 200 in 605ms (next.js: 3ms, generate-params: 1910µs, application-code: 602ms)
+ GET /components/autocomplete 200 in 262ms (next.js: 4ms, generate-params: 1474µs, application-code: 258ms)
+ GET /components/avatar 200 in 504ms (next.js: 5ms, generate-params: 3ms, application-code: 499ms)
+[browser] In HTML, <button> cannot be a descendant of <button>.
+This will cause a hydration error.
+
+  ...
+    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
+      <Popper __scopePopper={{Menu:[...], ...}}>
+        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
+          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
+            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
+              <DropdownMenuTrigger>
+                <DropdownMenuTrigger data-slot="dropdown-m...">
+                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
+                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
+                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
+>                           <button
+>                             type="button"
+>                             id="radix-_R_alpbn5ritqlb_"
+>                             aria-haspopup="menu"
+>                             aria-expanded={false}
+>                             aria-controls={undefined}
+>                             data-state="closed"
+>                             data-disabled={undefined}
+>                             disabled={false}
+>                             data-slot="dropdown-menu-trigger"
+>                             onPointerDown={function handleEvent}
+>                             onKeyDown={function handleEvent}
+>                             data-radix-popper-side={undefined}
+>                             data-radix-popper-align={undefined}
+>                             ref={function}
+>                           >
+                              <Button>
+>                               <button
+>                                 data-slot="button"
+>                                 data-variant="outline"
+>                                 data-size="sm"
+>                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
+>                               >
+              ...
+ 
+[browser] <button> cannot contain a nested <button>.
+See this log for the ancestor stack trace. 
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at button (<anonymous>)
+    at Button (src/registry/primitives/button.tsx:54:5)
+    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
+    at ComponentDemo (src/demos/component-demo.tsx:22:7)
+    at <anonymous> (src/demos/component-demo.tsx:46:11)
+    at Array.map (<anonymous>:1:18)
+    at ComponentDemos (src/demos/component-demo.tsx:45:16)
+    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
+  52 |
+  53 |   return (
+> 54 |     <Comp
+     |     ^
+  55 |       data-slot="button"
+  56 |       data-variant={variant}
+  57 |       data-size={size}
+ GET /components/badge 200 in 98ms (next.js: 2ms, generate-params: 1355µs, application-code: 96ms)
+ GET /components/button 200 in 665ms (next.js: 3ms, generate-params: 1534µs, application-code: 662ms)
+ GET /components/button 200 in 533ms (next.js: 3ms, generate-params: 1596µs, application-code: 530ms)
+ GET /components/avatar 200 in 385ms (next.js: 4ms, generate-params: 3ms, application-code: 380ms)
+[browser] In HTML, <button> cannot be a descendant of <button>.
+This will cause a hydration error.
+
+  ...
+    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
+      <Popper __scopePopper={{Menu:[...], ...}}>
+        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
+          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
+            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
+              <DropdownMenuTrigger>
+                <DropdownMenuTrigger data-slot="dropdown-m...">
+                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
+                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
+                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
+>                           <button
+>                             type="button"
+>                             id="radix-_R_alpbn5ritqlb_"
+>                             aria-haspopup="menu"
+>                             aria-expanded={false}
+>                             aria-controls={undefined}
+>                             data-state="closed"
+>                             data-disabled={undefined}
+>                             disabled={false}
+>                             data-slot="dropdown-menu-trigger"
+>                             onPointerDown={function handleEvent}
+>                             onKeyDown={function handleEvent}
+>                             data-radix-popper-side={undefined}
+>                             data-radix-popper-align={undefined}
+>                             ref={function}
+>                           >
+                              <Button>
+>                               <button
+>                                 data-slot="button"
+>                                 data-variant="outline"
+>                                 data-size="sm"
+>                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
+>                               >
+              ...
+ 
+[browser] <button> cannot contain a nested <button>.
+See this log for the ancestor stack trace. 
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at button (<anonymous>)
+    at Button (src/registry/primitives/button.tsx:54:5)
+    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
+    at ComponentDemo (src/demos/component-demo.tsx:22:7)
+    at <anonymous> (src/demos/component-demo.tsx:46:11)
+    at Array.map (<anonymous>:1:18)
+    at ComponentDemos (src/demos/component-demo.tsx:45:16)
+    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
+  52 |
+  53 |   return (
+> 54 |     <Comp
+     |     ^
+  55 |       data-slot="button"
+  56 |       data-variant={variant}
+  57 |       data-size={size}
+ GET /components/alert-dialog 200 in 523ms (next.js: 4ms, generate-params: 2ms, application-code: 519ms)
+ GET /components/autocomplete 200 in 312ms (next.js: 4ms, generate-params: 2ms, application-code: 308ms)
+ GET /components/button 200 in 573ms (next.js: 7ms, generate-params: 4ms, application-code: 566ms)
+ GET /components/accordion 200 in 521ms (next.js: 6ms, generate-params: 2ms, application-code: 515ms)
+ GET /components/alert 200 in 292ms (next.js: 7ms, generate-params: 3ms, application-code: 285ms)
+ GET /components/alert-dialog 200 in 612ms (next.js: 3ms, generate-params: 2ms, application-code: 608ms)
+ GET /components/autocomplete 200 in 257ms (next.js: 4ms, generate-params: 1573µs, application-code: 253ms)
+ GET /components/avatar 200 in 477ms (next.js: 6ms, generate-params: 3ms, application-code: 471ms)
+[browser] In HTML, <button> cannot be a descendant of <button>.
+This will cause a hydration error.
+
+  ...
+    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
+      <Popper __scopePopper={{Menu:[...], ...}}>
+        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
+          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
+            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
+              <DropdownMenuTrigger>
+                <DropdownMenuTrigger data-slot="dropdown-m...">
+                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
+                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
+                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
+>                           <button
+>                             type="button"
+>                             id="radix-_R_alpbn5ritqlb_"
+>                             aria-haspopup="menu"
+>                             aria-expanded={false}
+>                             aria-controls={undefined}
+>                             data-state="closed"
+>                             data-disabled={undefined}
+>                             disabled={false}
+>                             data-slot="dropdown-menu-trigger"
+>                             onPointerDown={function handleEvent}
+>                             onKeyDown={function handleEvent}
+>                             data-radix-popper-side={undefined}
+>                             data-radix-popper-align={undefined}
+>                             ref={function}
+>                           >
+                              <Button>
+>                               <button
+>                                 data-slot="button"
+>                                 data-variant="outline"
+>                                 data-size="sm"
+>                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
+>                               >
+              ...
+ 
+[browser] <button> cannot contain a nested <button>.
+See this log for the ancestor stack trace. 
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at button (<anonymous>)
+    at Button (src/registry/primitives/button.tsx:54:5)
+    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
+    at ComponentDemo (src/demos/component-demo.tsx:22:7)
+    at <anonymous> (src/demos/component-demo.tsx:46:11)
+    at Array.map (<anonymous>:1:18)
+    at ComponentDemos (src/demos/component-demo.tsx:45:16)
+    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
+  52 |
+  53 |   return (
+> 54 |     <Comp
+     |     ^
+  55 |       data-slot="button"
+  56 |       data-variant={variant}
+  57 |       data-size={size}
+ GET /components/badge 200 in 121ms (next.js: 2ms, generate-params: 1113µs, application-code: 119ms)
+ GET /components/button 200 in 682ms (next.js: 1900µs, generate-params: 1056µs, application-code: 680ms)
+ GET /components/button 200 in 576ms (next.js: 9ms, generate-params: 2ms, application-code: 567ms)
+ GET /components/avatar 200 in 441ms (next.js: 4ms, generate-params: 1990µs, application-code: 437ms)
+[browser] In HTML, <button> cannot be a descendant of <button>.
+This will cause a hydration error.
+
+  ...
+    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
+      <Popper __scopePopper={{Menu:[...], ...}}>
+        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
+          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
+            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
+              <DropdownMenuTrigger>
+                <DropdownMenuTrigger data-slot="dropdown-m...">
+                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
+                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
+                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
+>                           <button
+>                             type="button"
+>                             id="radix-_R_alpbn5ritqlb_"
+>                             aria-haspopup="menu"
+>                             aria-expanded={false}
+>                             aria-controls={undefined}
+>                             data-state="closed"
+>                             data-disabled={undefined}
+>                             disabled={false}
+>                             data-slot="dropdown-menu-trigger"
+>                             onPointerDown={function handleEvent}
+>                             onKeyDown={function handleEvent}
+>                             data-radix-popper-side={undefined}
+>                             data-radix-popper-align={undefined}
+>                             ref={function}
+>                           >
+                              <Button>
+>                               <button
+>                                 data-slot="button"
+>                                 data-variant="outline"
+>                                 data-size="sm"
+>                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
+>                               >
+              ...
+ 
+[browser] <button> cannot contain a nested <button>.
+See this log for the ancestor stack trace. 
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at button (<anonymous>)
+    at Button (src/registry/primitives/button.tsx:54:5)
+    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
+    at ComponentDemo (src/demos/component-demo.tsx:22:7)
+    at <anonymous> (src/demos/component-demo.tsx:46:11)
+    at Array.map (<anonymous>:1:18)
+    at ComponentDemos (src/demos/component-demo.tsx:45:16)
+    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
+  52 |
+  53 |   return (
+> 54 |     <Comp
+     |     ^
+  55 |       data-slot="button"
+  56 |       data-variant={variant}
+  57 |       data-size={size}
+ GET /components/alert-dialog 200 in 561ms (next.js: 4ms, generate-params: 2ms, application-code: 557ms)
+ GET /components/autocomplete 200 in 362ms (next.js: 4ms, generate-params: 1902µs, application-code: 358ms)
+ GET /components/accordion 200 in 582ms (next.js: 14ms, generate-params: 8ms, application-code: 567ms)
+ GET /components/alert 200 in 631ms (next.js: 4ms, generate-params: 2ms, application-code: 627ms)
+ GET /components/alert-dialog 200 in 643ms (next.js: 10ms, generate-params: 1245µs, application-code: 634ms)
+ GET /components/autocomplete 200 in 199ms (next.js: 5ms, generate-params: 2ms, application-code: 194ms)
+ GET /components/avatar 200 in 385ms (next.js: 3ms, generate-params: 1551µs, application-code: 381ms)
+[browser] In HTML, <button> cannot be a descendant of <button>.
+This will cause a hydration error.
+
+  ...
+    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
+      <Popper __scopePopper={{Menu:[...], ...}}>
+        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
+          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
+            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
+              <DropdownMenuTrigger>
+                <DropdownMenuTrigger data-slot="dropdown-m...">
+                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
+                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
+                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
+                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
+>                           <button
+>                             type="button"
+>                             id="radix-_R_alpbn5ritqlb_"
+>                             aria-haspopup="menu"
+>                             aria-expanded={false}
+>                             aria-controls={undefined}
+>                             data-state="closed"
+>                             data-disabled={undefined}
+>                             disabled={false}
+>                             data-slot="dropdown-menu-trigger"
+>                             onPointerDown={function handleEvent}
+>                             onKeyDown={function handleEvent}
+>                             data-radix-popper-side={undefined}
+>                             data-radix-popper-align={undefined}
+>                             ref={function}
+>                           >
+                              <Button>
+>                               <button
+>                                 data-slot="button"
+>                                 data-variant="outline"
+>                                 data-size="sm"
+>                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
+>                               >
+              ...
+ 
+[browser] <button> cannot contain a nested <button>.
+See this log for the ancestor stack trace. 
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at button (<anonymous>)
+    at Button (src/registry/primitives/button.tsx:54:5)
+    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
+    at ComponentDemo (src/demos/component-demo.tsx:22:7)
+    at <anonymous> (src/demos/component-demo.tsx:46:11)
+    at Array.map (<anonymous>:1:18)
+    at ComponentDemos (src/demos/component-demo.tsx:45:16)
+    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
+  52 |
+  53 |   return (
+> 54 |     <Comp
+     |     ^
+  55 |       data-slot="button"
+  56 |       data-variant={variant}
+  57 |       data-size={size}
+ GET /components/badge 200 in 223ms (next.js: 4ms, generate-params: 2ms, application-code: 218ms)
+ GET /components/button 200 in 501ms (next.js: 3ms, generate-params: 1406µs, application-code: 498ms)
+ GET /components/autocomplete 200 in 213ms (next.js: 10ms, generate-params: 4ms, application-code: 203ms)
 [?25h
- ELIFECYCLE  Command failed with exit code 143.
