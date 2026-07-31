@@ -85,6 +85,12 @@ import AlertDialogDestructiveConfirmationDemo from "@/demos/alert-dialog/destruc
 import AlertDialogRatingFeedbackDemo from "@/demos/alert-dialog/rating-feedback"
 import AlertDialogInviteFriendsDemo from "@/demos/alert-dialog/invite-friends"
 
+import AutocompleteBasicDemo from "@/demos/autocomplete/basic"
+import AutocompleteControlledClearDemo from "@/demos/autocomplete/controlled-clear"
+import AutocompleteGroupedUsersDemo from "@/demos/autocomplete/grouped-users"
+import AutocompleteAsyncSearchDemo from "@/demos/autocomplete/async-search"
+import AutocompleteAutoHighlightDemo from "@/demos/autocomplete/auto-highlight"
+
 export type DemoEntry = {
   name: string
   title: string
@@ -96,6 +102,45 @@ export type DemoEntry = {
 }
 
 const demoRegistry: Record<string, DemoEntry[]> = {
+  autocomplete: [
+    {
+      name: "basic",
+      title: "Basic",
+      component: AutocompleteBasicDemo,
+      componentSlug: "autocomplete",
+      sourcePath: "src/demos/autocomplete/basic.tsx",
+    },
+    {
+      name: "controlled-clear",
+      title: "Controlled with clear",
+      component: AutocompleteControlledClearDemo,
+      componentSlug: "autocomplete",
+      sourcePath: "src/demos/autocomplete/controlled-clear.tsx",
+    },
+    {
+      name: "grouped-users",
+      title: "Grouped users",
+      component: AutocompleteGroupedUsersDemo,
+      componentSlug: "autocomplete",
+      sourcePath: "src/demos/autocomplete/grouped-users.tsx",
+      registryDependencies: ["avatar"],
+    },
+    {
+      name: "async-search",
+      title: "Async search",
+      component: AutocompleteAsyncSearchDemo,
+      componentSlug: "autocomplete",
+      sourcePath: "src/demos/autocomplete/async-search.tsx",
+      registryDependencies: ["avatar"],
+    },
+    {
+      name: "auto-highlight",
+      title: "Auto highlight",
+      component: AutocompleteAutoHighlightDemo,
+      componentSlug: "autocomplete",
+      sourcePath: "src/demos/autocomplete/auto-highlight.tsx",
+    },
+  ],
   "alert-dialog": [
     {
       name: "confirm",
