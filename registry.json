@@ -213,6 +213,13 @@
       ]
     },
     {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "files": [{ "path": "src/registry/primitives/calendar.tsx", "type": "registry:ui" }],
+      "dependencies": ["date-fns@^4.4.0", "lucide-react@^0.577.0", "react-day-picker@^9.14.0"],
+      "registryDependencies": ["calendar", "button", "field", "input", "popover", "utils"]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/dialog.tsx", "type": "registry:ui" }],
@@ -731,6 +738,13 @@
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/table.tsx", "type": "registry:ui" }],
       "registryDependencies": ["utils"]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "files": [{ "path": "src/registry/primitives/table.tsx", "type": "registry:ui" }],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react@^0.577.0"],
+      "registryDependencies": ["table", "button", "checkbox", "dropdown-menu", "input", "utils"]
     },
     {
       "name": "tabs",

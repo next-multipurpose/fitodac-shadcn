@@ -27,6 +27,7 @@ const componentCategories = [
       "autocomplete",
       "calendar",
       "checkbox",
+      "date-picker",
       "date-selector",
       "field",
       "form",
@@ -75,7 +76,7 @@ const componentCategories = [
   },
   {
     key: "dataDisplay",
-    items: ["card", "chart", "event-calendar", "map", "table", "timeline"],
+    items: ["card", "chart", "data-table", "event-calendar", "map", "table", "timeline"],
   },
   {
     key: "feedback",
