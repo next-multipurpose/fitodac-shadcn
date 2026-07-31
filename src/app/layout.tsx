@@ -4,8 +4,10 @@ import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getMessages, getTranslations } from "next-intl/server"
 import type { ReactNode } from "react"
 
+import { AnimatedThemeToggler } from "@/components/animated-theme-toggler"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { resolveLocale } from "@/i18n/config"
+import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme"
 
 import "./globals.css"
 
@@ -31,7 +33,10 @@ export default async function RootLayout({
   const t = await getTranslations("Header")
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
+      </head>
       <body className="min-h-screen antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <header className="sticky top-0 z-10 border-b border-border/70 bg-background/90 backdrop-blur">
@@ -49,6 +54,7 @@ export default async function RootLayout({
                   </Link>
                 </nav>
                 <LanguageSwitcher locale={locale} />
+                <AnimatedThemeToggler />
               </div>
             </div>
           </header>
