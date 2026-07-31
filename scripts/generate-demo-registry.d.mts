@@ -10,3 +10,7 @@ export function discoverDemoRegistries(
 export function buildGeneratedRegistry(
   registries: DemoRegistryDescriptor[]
 ): string
+export function validateGeneratedRegistry(
+  registries: DemoRegistryDescriptor[],
+  source: string
+): void

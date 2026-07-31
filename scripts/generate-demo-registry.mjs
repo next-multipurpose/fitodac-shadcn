@@ -96,6 +96,57 @@ export function buildGeneratedRegistry(registries) {
   return `${GENERATED_WARNING}\n\nimport type { DemoEntry } from "./types"\n\n${imports}\n\nexport const demoRegistry: Record<string, DemoEntry[]> = {\n${mappings}\n}\n`
 }
 
+export function validateGeneratedRegistry(registries, source) {
+  const expected = buildGeneratedRegistry(registries)
+  const imports = [
+    ...source.matchAll(/^import \{ (\w+) \} from "\.\/([^/]+)\/registry"$/gm),
+  ].map((match) => ({ exportName: match[1], slug: match[2] }))
+  const mappings = [
+    ...source.matchAll(/^  (?:"([^"]+)"|([a-z0-9-]+)): (\w+),$/gm),
+  ].map((match) => ({ slug: match[1] ?? match[2], exportName: match[3] }))
+  const expectedBySlug = new Map(
+    registries.map((registry) => [registry.slug, registry.exportName])
+  )
+
+  for (const collection of [imports, mappings]) {
+    const seen = new Set()
+
+    for (const entry of collection) {
+      if (seen.has(entry.slug)) {
+        throw new Error(
+          `Generated demo slug "${entry.slug}" appears more than once.`
+        )
+      }
+      seen.add(entry.slug)
+
+      if (!expectedBySlug.has(entry.slug)) {
+        throw new Error(`Stale generated demo slug "${entry.slug}".`)
+      }
+
+      if (expectedBySlug.get(entry.slug) !== entry.exportName) {
+        throw new Error(
+          `Incorrect generated registry mapping for "${entry.slug}".`
+        )
+      }
+    }
+  }
+
+  for (const registry of registries) {
+    if (!imports.some((entry) => entry.slug === registry.slug)) {
+      throw new Error(`Missing generated import for "${registry.slug}".`)
+    }
+    if (!mappings.some((entry) => entry.slug === registry.slug)) {
+      throw new Error(`Missing generated mapping for "${registry.slug}".`)
+    }
+  }
+
+  if (source !== expected) {
+    throw new Error(
+      "Generated demo registry output is stale or non-deterministic. Run: pnpm demos:registry"
+    )
+  }
+}
+
 async function run() {
   const check = process.argv.slice(2).includes("--check")
   const unexpectedArguments = process.argv
@@ -112,9 +163,8 @@ async function run() {
   )
   const demoRoot = path.join(projectRoot, "src", "demos")
   const outputPath = path.join(demoRoot, "registry.generated.ts")
-  const expected = buildGeneratedRegistry(
-    await discoverDemoRegistries(demoRoot)
-  )
+  const registries = await discoverDemoRegistries(demoRoot)
+  const expected = buildGeneratedRegistry(registries)
   let current
 
   try {
@@ -127,7 +177,10 @@ async function run() {
     }
   }
 
-  if (current === expected) return
+  if (current === expected) {
+    validateGeneratedRegistry(registries, current)
+    return
+  }
 
   if (check) {
     throw new Error(

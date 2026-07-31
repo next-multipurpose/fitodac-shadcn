@@ -137,6 +137,29 @@ Do not add new libraries without justifying it in the spec.
 - If the spec touches critical UI, consider Playwright if available.
 - Do not delete existing tests to make the suite pass.
 
+## Demo registration
+
+To add demos to an existing component:
+
+1. Add or edit files under `src/demos/<component>/`.
+2. Update `src/demos/<component>/registry.ts`.
+3. Run `pnpm demos:registry`.
+4. Run `pnpm demos:registry:check`.
+5. Run `pnpm test` and the standard verification.
+
+This does not require edits to `src/demos/registry.ts`,
+`src/demos/registry.generated.ts`, or `registry.json`. The generated file remains
+unchanged when only entries inside an existing group change.
+
+For a new group, create `src/demos/<component>/registry.ts` and its colocated demo
+sources, then run `pnpm demos:registry`. Never add a manual import or mapping to
+the global registry. `registry.json` is reserved for real distributed
+primitive/component/hook definition changes, not demo-site registration.
+
+Normal component demo work owns its component folder. Do not deliver demo
+registration as a patch against either global registry file or `registry.json`;
+the generator owns global index updates.
+
 ---
 
 ## Errors

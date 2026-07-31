@@ -1,6 +1,6 @@
 # 014 — Demo registry integrity, integration regression, and workflow guards
 
-Status: DRAFT
+Status: REVIEW
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker
@@ -514,14 +514,123 @@ This is a regression review only. No visual redesign is expected.
 
 ## Implementation report
 
-Pending.
+### Changes
+
+- Added reusable component-registry validation with contextual errors for slugs, runtime entries, unique names, dependencies, trusted colocated source paths, and source existence.
+- Added generated-index structural validation for missing, duplicate, stale, or incorrect imports/mappings plus exact deterministic output equality.
+- Added real-registry parity and public `getDemosForComponent()` regression coverage without introducing a second metadata source.
+- Added integration regressions for simple, npm dependency, registry dependency, combined dependency, and different-`componentSlug` demos through `getIntegrationBundle()` and `generateIntegrationPrompt()`.
+- Added stable workflow rules separating demo registration from `registry.json` and prohibiting manual global-registry patches as the registration mechanism.
+- Added a Vitest-only `server-only` alias so the real server integration resolver can be tested without changing production imports.
+
+### Tests / verification
+
+- Graphify CLI discovery query: passed.
+- `pnpm demos:registry`: passed; generated index remained current.
+- `pnpm demos:registry:check`: passed.
+- `pnpm test`: passed, 12 files / 73 tests.
+- Required isolated failure proofs: invalid registry, duplicate slug, incorrect generated import/output, nonexistent source, deterministic/idempotent ordering, and broken public resolution all covered.
+- `pnpm lint`: passed.
+- `pnpm typecheck`: passed.
+- `./init.sh`: passed.
+- `pnpm exec next build --webpack`: passed, including 74 generated pages.
+- `pnpm build`: Turbopack could not bind an internal port in the restricted implementer sandbox (`Operation not permitted`); the webpack production build passed.
+- `git diff --check`: passed.
+- UI/browser smoke review: pending the required UI reviewer; no visual implementation changed.
+
+### Modified files
+
+- `.ai/rules.md`
+- `docs/conventions.md`
+- `docs/verification.md`
+- `scripts/generate-demo-registry.mjs`
+- `scripts/generate-demo-registry.d.mts`
+- `scripts/validate-demo-registries.mjs`
+- `scripts/validate-demo-registries.d.mts`
+- `tests/demos/generate-demo-registry.test.ts`
+- `tests/demos/registry-integrity.test.ts`
+- `tests/demos/integration-bundle-regression.test.ts`
+- `tests/server-only.ts`
+- `vitest.config.ts`
+
+### Notes
+
+- Real component registries are the only demo metadata source; validation does not rewrite metadata.
+- The generator does not read `registry.json`, and the public wrapper imports only the generated index.
+- Existing runner-owned changes in `.ai/progress/current.md`, `.ai/run/current.json`, and `.ai/run/health.json` were preserved.
 
 ## Technical review
 
-Pending.
+### Verification
+
+- init.sh: passed
+- lint: passed
+- typecheck: passed
+- test: passed (12 files / 73 tests)
+- build: passed (Turbopack, 74 static pages generated)
+- demos:registry: passed, idempotent (no diff after regeneration)
+- demos:registry:check: passed
+- git diff --check: passed
+
+### Review
+
+- Scope: passed — validation, generated-index integrity, six required failure proofs, `getDemosForComponent()` regression, integration regression, `registry.json` separation guard, and workflow rules all covered.
+- Architecture: passed — real component registries remain the only metadata source; generator never reads `registry.json`; public wrapper imports only the generated index; no parallel metadata source; no new dependencies.
+- Code: passed — reusable Node/TS helpers with contextual errors; no production source files changed; no dead code, temporary logging, or TODOs; `server-only` alias is Vitest-only and does not alter production imports.
+- Out-of-scope changes: no
+
+All six required failure cases are demonstrated by isolated tests: invalid registry metadata, duplicate slug, incorrect generated import/output, nonexistent/cross-group `sourcePath`, non-deterministic ordering, and broken public resolution. Integration regression covers simple, npm dependency, registry dependency, combined, and different-`componentSlug` demos through `getIntegrationBundle()` + `generateIntegrationPrompt()`. The five representative demos referenced by the integration tests exist and carry the asserted `componentSlug`/dependencies.
+
+Note: `pnpm build` (Turbopack) passed in this review environment; the implementer-reported port-binding sandbox issue was not reproducible here, and the webpack build also passed.
+
+### Result
+
+- UI_REVIEW
+
+### Requested changes
+
+- None. UI reviewer must perform the final smoke review of `/components/button`, `/components/avatar`, `/components/alert-dialog`, and `/components/autocomplete`.
 
 ## Visual review
 
-Pending.
+### Reviewed surfaces
 
-UI reviewer must validate the final registry refactor did not alter visible demo behavior.
+- Routes `/components/[slug]` for: `button`, `avatar`, `alert-dialog`, `autocomplete` (the pages named in the spec's UI-review verification block).
+- Demo cards (title, Preview/Code toggle, Code panel sections, Copy Prompt), shared page shell (header nav, language selector, back-to-catalog link, H1 header), desktop and mobile.
+
+### Method
+
+- Ran the app with `pnpm ai:dev:start` (Next.js 16.2, Turbopack, port 3000).
+- Used Playwright (headless Chromium 1.62.1) for DOM-level verification: HTTP status, rendered card count, card IDs/titles, duplicate detection, Preview/Code/Copy Prompt interaction, clipboard payload, per-page console/page errors, failed requests, and mobile horizontal overflow.
+- Screenshots written for desktop + mobile (full page) per route. Note: the review model could not view the screenshots as images; the DOM/behavior checks below are the authoritative evidence, consistent with the spec-012 review method.
+
+### Checks
+
+- Desktop: passed.
+  - All 4 routes return 200.
+  - Rendered demo-card counts match the component registries exactly: `button` 32, `avatar` 21, `alert-dialog` 18, `autocomplete` 5. Zero duplicates and zero missing demos.
+  - Card H2 titles match each `registry.ts` title list 1:1 (32/21/18/5 titles, correct order).
+  - Shared shell consistent on all 4 pages: header main-navigation, language selector, back-to-catalog link, `<main class="max-w-4xl">`, bordered/rounded demo cards.
+  - Preview visible on load for every card.
+  - Code view: for the first card of each page, toggling Code shows Usage / Required files / Dependencies / Registry dependencies sections with rendered `<pre><code>` blocks; toggling Preview returns to the preview.
+  - Copy Prompt: clicking shows "Prompt copied" feedback and writes a real integration prompt to the clipboard (5.0 KB button, 3.8 KB avatar, 10.0 KB alert-dialog, 17.3 KB autocomplete).
+  - Different-`componentSlug` case: alert-dialog entries declared with `componentSlug: "dialog"` render with `demo-dialog-*` IDs (15 on the page), not normalized to the folder slug — public resolution regression intact.
+  - No failed requests on any page.
+  - Browser console/page errors: `button`, `alert-dialog`, and `autocomplete` are clean (no console errors, no page errors). The `avatar` page reports pre-existing issues (nested `<button>` inside `DropdownMenuTrigger` in `src/demos/avatar/account-menu.tsx`, a `<script>`-tag warning, and a 404 from the external `i.pravatar.cc` service). All originate in demo content committed in `7fa8678`, are unchanged by this spec, and match the issues already documented in the spec-012 visual review. Out of scope.
+- Mobile: passed.
+  - No horizontal overflow on `button`, `avatar`, or `alert-dialog`.
+  - `autocomplete` reports 35 px horizontal overflow. Same source isolated in spec 012: the page-template `DetailSection` blocks driven by `registry.json` (`src/components/component-detail.tsx`), which spec 014 does not modify. Pre-existing, not a regression.
+- Visual navigation: passed. Page shell identical across the 4 routes; no screen-specific copy introduced.
+- Visible states: passed. Preview/Code toggle, empty-deps (`None.`), and Copy Prompt "Prompt copied" feedback render correctly; no empty-state regression.
+
+### Result
+
+- REVIEW
+
+### Requested changes
+
+- None.
+
+### Notes
+
+- Regression-only review as required. Spec 014 changed no production source files (`git diff --stat` over `src/`, `registry.json`, and `src/components/component-detail.tsx` is empty), so the only observable behavior expected was that the demo pages continue to resolve through the refactored registry — confirmed.

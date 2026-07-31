@@ -118,6 +118,20 @@ If there is an existing code convention, follow it.
 
 Before implementing UI or backend behavior, search the affected area for an existing equivalent. If a parallel implementation is necessary, the active spec must contain the human-approved reason.
 
+### Demo registry workflow
+
+Demo metadata is owned by `src/demos/<component>/registry.ts`. The global
+`src/demos/registry.generated.ts` index is owned by `pnpm demos:registry`, and
+`src/demos/registry.ts` is only its public wrapper. `registry.json` contains
+distributed primitive/component/hook definitions; modify it only when one of
+those distributed definitions genuinely changes, never merely to publish a demo.
+
+For normal demo additions or migrations, agents own the affected component demo
+folder plus any genuinely required distributed-component changes. Do not use a
+patch against `src/demos/registry.ts`, `src/demos/registry.generated.ts`, or
+`registry.json` as the registration mechanism. Generated index changes must come
+from the generator, and only occur when component registry folders change.
+
 ---
 
 ## 6. Next.js / Vite

@@ -7,6 +7,7 @@ import {
   buildGeneratedRegistry,
   discoverDemoRegistries,
   slugToExportName,
+  validateGeneratedRegistry,
 } from "../../scripts/generate-demo-registry.mjs"
 
 async function createFixture(
@@ -58,6 +59,8 @@ describe("demo registry generator", () => {
     )
     expect(generated).toContain('  "alert-dialog": alertDialogDemos,')
     expect(buildGeneratedRegistry(registries)).toBe(generated)
+    expect(buildGeneratedRegistry([...registries].reverse())).toBe(generated)
+    expect(() => validateGeneratedRegistry(registries, generated)).not.toThrow()
   })
 
   it("rejects duplicate resolved slugs", () => {
@@ -76,6 +79,30 @@ describe("demo registry generator", () => {
 
     await expect(discoverDemoRegistries(root)).rejects.toThrow(
       'must export named value "buttonDemos"'
+    )
+  })
+
+  it("rejects incorrect generated imports and output", () => {
+    const registries = [{ slug: "button", exportName: "buttonDemos" }]
+    const generated = buildGeneratedRegistry(registries).replace(
+      'from "./button/registry"',
+      'from "./missing/registry"'
+    )
+
+    expect(() => validateGeneratedRegistry(registries, generated)).toThrow(
+      'Stale generated demo slug "missing"'
+    )
+  })
+
+  it("rejects duplicate generated mappings", () => {
+    const registries = [{ slug: "button", exportName: "buttonDemos" }]
+    const generated = buildGeneratedRegistry(registries).replace(
+      "  button: buttonDemos,",
+      "  button: buttonDemos,\n  button: buttonDemos,"
+    )
+
+    expect(() => validateGeneratedRegistry(registries, generated)).toThrow(
+      'Generated demo slug "button" appears more than once'
     )
   })
 

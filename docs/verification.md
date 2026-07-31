@@ -48,6 +48,21 @@ test: passed / failed / not available
 build: passed / failed / not available
 ```
 
+For demo registry changes, also run:
+
+```bash
+pnpm demos:registry
+pnpm demos:registry:check
+pnpm test
+```
+
+The registry check must fail if a component registry folder is missing from the
+generated index or the generated output is stale. Tests validate the actual
+component registry arrays, colocated source paths, public wrapper resolution,
+and Code/Copy Prompt integration. Adding entries to an existing group must not
+change the generated index; adding a new group requires generation, not a manual
+global import or `registry.json` entry.
+
 ---
 
 ### Level 3 — Supabase

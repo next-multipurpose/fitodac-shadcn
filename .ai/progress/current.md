@@ -326,3 +326,15 @@
 ## Runner — 2026-07-31T12:55:58Z
 
 - Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T13:05:22Z
+
+- Active spec: `.ai/specs/014-demo-registry-integrity-and-workflow-guards.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-31T13:13:02Z
+
+- Active spec: `.ai/specs/014-demo-registry-integrity-and-workflow-guards.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-31T13:20:09Z
+
+- Active spec: `.ai/specs/014-demo-registry-integrity-and-workflow-guards.md`\n- Action: ui-reviewer
