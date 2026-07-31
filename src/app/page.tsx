@@ -1,8 +1,10 @@
 import Link from "next/link"
+import { getTranslations } from "next-intl/server"
 
 import registry from "../../registry.json"
 
-export default function HomePage() {
+export default async function HomePage() {
+  const t = await getTranslations("Home")
   const componentCount = registry.items.length
   const dependencyCount = new Set(
     registry.items.flatMap((item) => item.dependencies ?? [])
@@ -17,26 +19,27 @@ export default function HomePage() {
               @fitodac/shadcn
             </p>
             <h1 className="max-w-3xl text-5xl font-semibold tracking-tight sm:text-6xl">
-              Componentes listos para tus aplicaciones.
+              {t("heading")}
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-              Explorá el catálogo, revisá las dependencias de cada entrada y
-              encontrá sus archivos fuente.
+              {t("description")}
             </p>
             <Link
               className="inline-flex h-10 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
               href="/components"
             >
-              Ver componentes
+              {t("componentsCta")}
             </Link>
           </div>
           <dl className="grid grid-cols-2 gap-4">
             <div className="rounded-xl border border-border bg-card p-5">
-              <dt className="text-sm text-muted-foreground">Entradas</dt>
+              <dt className="text-sm text-muted-foreground">{t("entries")}</dt>
               <dd className="mt-2 text-3xl font-semibold">{componentCount}</dd>
             </div>
             <div className="rounded-xl border border-border bg-card p-5">
-              <dt className="text-sm text-muted-foreground">Dependencias</dt>
+              <dt className="text-sm text-muted-foreground">
+                {t("dependencies")}
+              </dt>
               <dd className="mt-2 text-3xl font-semibold">{dependencyCount}</dd>
             </div>
           </dl>

@@ -1,6 +1,6 @@
 # 009 — i18n foundation and English-default site copy
 
-Status: DRAFT
+Status: REVIEW
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker
@@ -25,7 +25,7 @@ Work only on branch `migration-to-demo-site`.
 
 Prerequisite:
 
-- Specs 006–008 must be `DONE` before this spec is promoted to `READY`.
+- Spec is promoted to `READY`.
 
 ## Product decisions
 
@@ -385,7 +385,7 @@ Verify visible site UI is English.
 Verify:
 
 ```html
-<html lang="en">
+<html lang="en"></html>
 ```
 
 ### Spanish persisted request
@@ -397,7 +397,7 @@ Reload the same three routes.
 Verify visible site UI is Spanish and:
 
 ```html
-<html lang="es">
+<html lang="es"></html>
 ```
 
 ### Shared regression
@@ -413,14 +413,187 @@ Verify:
 
 ## Implementation report
 
-Pending.
+### Changes
+
+- Added `next-intl` and configured its App Router plugin and request
+  configuration without locale-prefixed routes.
+- Added central `en` / `es` locale configuration with `en` as the default,
+  `NEXT_LOCALE` as the persisted cookie, and safe fallback for missing or
+  invalid values.
+- Added matching English and Spanish message catalogs and migrated site-owned
+  layout, metadata, home, catalog, component-detail, empty-demo, action, status,
+  and presentation copy to stable translation keys.
+- Added the request locale and messages to the root layout so `<html lang>` and
+  the client demo controls use the resolved locale while pages remain Server
+  Components.
+- Preserved registry identifiers, file paths, package names, code samples, and
+  the generated technical integration prompt unchanged.
+- Added automated locale-resolution and catalog-parity tests and updated the
+  existing DemoCard tests to use the real `next-intl` client provider.
+- Added focused catalog-content assertions for canonical English labels and
+  representative Spanish translations requested by technical review.
+
+### Tests / verification
+
+- Graphify discovery: passed via `pnpm ai:graphify:query`.
+- `pnpm test`: passed (5 files, 19 tests).
+- `pnpm typecheck`: passed.
+- `pnpm lint`: passed.
+- `./init.sh`: passed (lint, typecheck, and test included; build and UI checks
+  are skipped by the script unless explicitly enabled).
+- `pnpm exec next build --webpack`: passed and generated all routes.
+- `pnpm build`: the default Turbopack build could not run in the implementer
+  sandbox because its CSS worker attempted to bind a port and received
+  `Operation not permitted (os error 1)`. The webpack production build proves
+  compilation, TypeScript, page-data collection, and route generation.
+- `git diff --check`: passed.
+
+### Modified files
+
+- `.ai/specs/009-i18n-foundation-english-default.md`
+- `messages/en.json`
+- `messages/es.json`
+- `next.config.ts`
+- `package.json`
+- `pnpm-lock.yaml`
+- `src/i18n/config.ts`
+- `src/i18n/request.ts`
+- `src/app/layout.tsx`
+- `src/app/page.tsx`
+- `src/app/components/page.tsx`
+- `src/app/components/[slug]/page.tsx`
+- `src/demos/component-demo.tsx`
+- `src/demos/demo-card.tsx`
+- `tests/i18n/config.test.ts`
+- `tests/i18n/messages.test.ts`
+- `tests/demos/demo-card-coordination.test.tsx`
+
+### Notes
+
+- Locale-aware routes are now dynamically server-rendered on demand because
+  locale resolution reads a request cookie, as anticipated by the rendering
+  note.
+- Browser visual verification remains pending for the required UI reviewer,
+  including English/default and persisted-Spanish desktop/mobile coverage.
 
 ## Technical review
 
-Pending.
+### Verification
+
+- init.sh: passed (lint, typecheck, and test included)
+- lint: passed
+- typecheck: passed
+- test: passed (5 files, 19 tests)
+- build: passed (`pnpm build`, all routes dynamic as expected)
+- ui/playwright: not applicable (reserved for UI reviewer)
+
+### Review
+
+- Scope: passed
+- Architecture: passed
+- Code: passed
+- Out-of-scope changes: no
+
+Additional evidence (re-review after the CHANGES round):
+
+- The two previously requested assertions are now covered in
+  `tests/i18n/messages.test.ts`:
+  - "defines the canonical English site labels" (`en.Catalog.heading` is
+    `Components`, `en.Home.heading` is `Components ready for your
+    applications.`);
+  - "defines representative Spanish translations" (`es.Header.components` is
+    `Componentes`, `es.Catalog.heading` is `Componentes`, `es.Demos.heading` is
+    `Ejemplos`).
+  - `pnpm test` reports 5 files / 19 tests (up from 17).
+- Smoke-tested the running app. No locale cookie renders English with
+  `<html lang="en">` on `/`, `/components`, and `/components/button`.
+  `NEXT_LOCALE=es` renders Spanish with `<html lang="es">` on all three routes.
+  Invalid cookie (`fr`) falls back to English.
+- Catalog page in English renders the plural summary and file/package counts;
+  component detail renders demo previews.
+- Build passes; all routes are dynamic server-rendered as anticipated by the
+  rendering note.
+- No leftover hardcoded site-owned copy in `src/app` or the shared demo UI
+  (`demo-card.tsx`, `component-demo.tsx`); remaining hardcoded strings in
+  `src/demos/button/*` are demo source content, correctly excluded by the spec.
+- Registry identifiers, package names, file paths, code samples, and the
+  generated integration prompt remain untranslated.
+- `next-intl` is configured once; no parallel handwritten translation context.
+  Server Components remain Server Components; `DemoCard` uses the client
+  provider/hooks through the root layout provider.
+- The Turbopack NFT warning about `get-integration-bundle.ts` is pre-existing
+  and originates in an untouched file.
+
+### Cleanup note for the human
+
+- `.pnpm-store/` (2.7 GB pnpm store cache) is untracked and not covered by
+  `.gitignore`. It is an environment artifact, not part of this spec. Remove it
+  or add it to `.gitignore` before committing.
+
+### Result
+
+- UI_REVIEW
+
+### Requested changes
+
+- None.
 
 ## Visual review
 
-Pending.
+### Reviewed surfaces
 
-UI reviewer must compare representative English and Spanish surfaces on desktop and mobile.
+- `/` — home hero, CTA, entry/dependency stat cards (EN default + ES cookie).
+- `/components` — catalog header, summary, component card grid (EN + ES).
+- `/components/button` — detail header, back link, demo cards, Preview/Code toggle, Copy prompt, section lists (EN + ES).
+- `/components/{map,select,card}` — empty-demo state section (EN).
+- Desktop 1440×900 and mobile 375×812 viewports.
+
+### Method
+
+No Playwright is configured in the project. Visual QA was performed in
+headless Chrome via the CDP protocol: rendered DOM inspection, horizontal
+overflow measurement, and client interaction tests (Code view toggle,
+Preview return, Copy prompt). Image snapshots could not be inspected by this
+reviewer model, so checks are DOM/layout-based rather than pixel-based.
+
+### Checks
+
+- Desktop: passed (no horizontal overflow; layout structure intact on EN/ES).
+- Mobile: passed (375px, no horizontal overflow on home and button pages,
+  EN/ES).
+- Visual navigation: passed (shared header + nav consistent across pages;
+  back-to-catalog link present; aria-labels translated, e.g. "Main
+  navigation" / "Navegación principal").
+- Visible states: passed (demo previews, code view with "Example usage /
+  Required component files / Dependencies", empty-demo state, copy success
+  labels defined and copy-failure state translated).
+- English default: passed (no cookie renders `<html lang="en">` and English
+  UI on `/`, `/components`, `/components/button`).
+- Spanish persisted: passed (`NEXT_LOCALE=es` renders `<html lang="es">` and
+  Spanish UI on the same three routes).
+- Invalid cookie: passed (`NEXT_LOCALE=fr` falls back to English).
+- Technical identifiers: passed (component names, `registry:ui`, file paths,
+  and code blocks remain untranslated; demo source content stays English as
+  specified).
+- Console errors: only a pre-existing missing `/favicon.ico` (404), unrelated
+  to this spec; no JS exceptions.
+- Copy prompt happy path: could not be exercised end-to-end because headless
+  Chrome denies `navigator.clipboard.writeText` even with the permission
+  granted (environment limitation). The translated failure state rendered
+  correctly ("Prompt copy failed" / "Error al copiar el prompt"); the copy
+  mechanism itself was unchanged by this spec.
+
+### Result
+
+- REVIEW
+
+### Requested changes
+
+- None.
+
+### Notes
+
+- Catalog pluralization verified live: EN "68 available entries", "1 file / 2
+  packages"; ES "68 entradas disponibles", "1 archivo / 2 paquetes".
+- No regressions found in shared shell, header, navigation, demo cards, or
+  visible states across locales.

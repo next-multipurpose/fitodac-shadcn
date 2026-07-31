@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useTranslations } from "next-intl"
 
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { Button } from "@/registry/primitives/button"
@@ -15,12 +16,13 @@ type CopyButtonProps = {
 }
 
 function CopyButton({ label, value }: CopyButtonProps) {
+  const t = useTranslations("Demos")
   const { copyError, copyToClipboard, isCopied } = useCopyToClipboard()
 
   return (
     <div className="flex items-center gap-2">
       <span aria-live="polite" className="text-xs text-muted-foreground">
-        {isCopied ? "Copied" : copyError ? "Copy failed" : null}
+        {isCopied ? t("copied") : copyError ? t("copyFailed") : null}
       </span>
       <Button
         aria-label={label}
@@ -29,7 +31,7 @@ function CopyButton({ label, value }: CopyButtonProps) {
         type="button"
         variant="outline"
       >
-        {isCopied ? "Copied" : "Copy"}
+        {isCopied ? t("copied") : t("copy")}
       </Button>
     </div>
   )
@@ -51,6 +53,7 @@ type DemoCardProps = {
 }
 
 export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
+  const t = useTranslations("Demos")
   const { closeCode, openCode, openCodeDemoId } = useDemoView()
   const isCodeOpen = openCodeDemoId === demoId
   const cardRef = React.useRef<HTMLElement>(null)
@@ -76,7 +79,7 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
   return (
     <section
       aria-labelledby={demoId}
-      className="scroll-mt-20 min-w-0 overflow-hidden rounded-xl border border-border bg-card"
+      className="min-w-0 scroll-mt-20 overflow-hidden rounded-xl border border-border bg-card"
       ref={cardRef}
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-6 sm:py-4">
@@ -84,7 +87,11 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
           {title}
         </h2>
         <div className="flex flex-wrap items-center justify-end gap-2">
-          <div aria-label={`${title} view`} className="flex gap-1" role="group">
+          <div
+            aria-label={t("viewLabel", { title })}
+            className="flex gap-1"
+            role="group"
+          >
             <Button
               aria-pressed={!isCodeOpen}
               onClick={() => closeCode(demoId)}
@@ -92,7 +99,7 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
               type="button"
               variant={!isCodeOpen ? "secondary" : "ghost"}
             >
-              Preview
+              {t("preview")}
             </Button>
             <Button
               aria-pressed={isCodeOpen}
@@ -101,23 +108,23 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
               type="button"
               variant={isCodeOpen ? "secondary" : "ghost"}
             >
-              Code
+              {t("code")}
             </Button>
           </div>
           <Button
-            aria-label={`Copy ${title} integration prompt`}
+            aria-label={t("copyIntegrationPrompt", { title })}
             onClick={() => void copyPrompt(prompt)}
             size="sm"
             type="button"
             variant="outline"
           >
-            {isPromptCopied ? "Prompt copied" : "Copy prompt"}
+            {isPromptCopied ? t("promptCopied") : t("copyPrompt")}
           </Button>
           <span aria-live="polite" className="sr-only">
             {isPromptCopied
-              ? "Prompt copied"
+              ? t("promptCopied")
               : promptCopyError
-                ? "Prompt copy failed"
+                ? t("promptCopyFailed")
                 : null}
           </span>
         </div>
@@ -132,10 +139,10 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
           <section aria-labelledby={`${demoId}-usage`}>
             <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
               <h3 className="font-medium" id={`${demoId}-usage`}>
-                Example usage
+                {t("exampleUsage")}
               </h3>
               <CopyButton
-                label={`Copy ${title} example usage`}
+                label={t("copyExampleUsage", { title })}
                 value={bundle.usageCode}
               />
             </div>
@@ -144,7 +151,7 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
 
           <section aria-labelledby={`${demoId}-files`}>
             <h3 className="font-medium" id={`${demoId}-files`}>
-              Required component files
+              {t("requiredFiles")}
             </h3>
             <div className="mt-3 flex flex-col gap-6">
               {bundle.files.map((file) => (
@@ -155,11 +162,13 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
                         {file.suggestedTargetPath}
                       </code>
                       <p className="text-xs break-all text-muted-foreground">
-                        Source: {file.sourcePath}
+                        {t("source")}: {file.sourcePath}
                       </p>
                     </div>
                     <CopyButton
-                      label={`Copy ${file.suggestedTargetPath}`}
+                      label={t("copyFile", {
+                        path: file.suggestedTargetPath,
+                      })}
                       value={file.code}
                     />
                   </div>
@@ -174,7 +183,7 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
             className="flex flex-col gap-3"
           >
             <h3 className="font-medium" id={`${demoId}-dependencies`}>
-              Dependencies
+              {t("dependencies")}
             </h3>
             {bundle.dependencies.length > 0 ? (
               <ul className="flex flex-wrap gap-2">
@@ -188,9 +197,11 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-muted-foreground">None.</p>
+              <p className="text-sm text-muted-foreground">{t("none")}</p>
             )}
-            <h4 className="pt-2 text-sm font-medium">Registry dependencies</h4>
+            <h4 className="pt-2 text-sm font-medium">
+              {t("registryDependencies")}
+            </h4>
             {bundle.registryDependencies.length > 0 ? (
               <ul className="flex flex-wrap gap-2">
                 {bundle.registryDependencies.map((dependency) => (
@@ -203,7 +214,7 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-muted-foreground">None.</p>
+              <p className="text-sm text-muted-foreground">{t("none")}</p>
             )}
           </section>
         </div>

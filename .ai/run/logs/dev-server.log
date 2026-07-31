@@ -1,0 +1,81 @@
+
+> @fitodac/shadcn@0.1.0 dev /Volumes/external-ssd/work/fitodac-shadcn
+> next dev
+
+▲ Next.js 16.2.12 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://127.0.2.2:3000
+- Environments: .env
+✓ Ready in 260ms
+
+ GET /components/alert-dialog 200 in 649ms (next.js: 427ms, generate-params: 236ms, application-code: 222ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/component..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body
+                            className="min-h-screen antialiased"
+-                           __processed_13919937-2e32-4ca8-b031-fe2bdef931fa__="true"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
+                          >
+                  ...
+ 
+ GET / 200 in 62ms (next.js: 29ms, application-code: 32ms)
+ GET / 200 in 38ms (next.js: 7ms, application-code: 31ms)
+ GET /components 200 in 113ms (next.js: 22ms, application-code: 91ms)
+ GET /components/button 200 in 719ms (next.js: 3ms, generate-params: 1056µs, application-code: 715ms)
+ GET / 200 in 39ms (next.js: 4ms, application-code: 35ms)
+ GET /components 200 in 107ms (next.js: 4ms, application-code: 103ms)
+ GET /components/button 200 in 599ms (next.js: 5ms, generate-params: 1683µs, application-code: 594ms)
+ GET / 200 in 40ms (next.js: 8ms, application-code: 32ms)
+ GET / 200 in 39ms (next.js: 6ms, application-code: 33ms)
+ GET / 200 in 57ms (next.js: 14ms, application-code: 43ms)
+ GET / 200 in 25ms (next.js: 1789µs, application-code: 24ms)
+ GET /components 200 in 118ms (next.js: 3ms, application-code: 114ms)
+ GET /components 200 in 69ms (next.js: 1179µs, application-code: 68ms)
+ GET /components/button 200 in 226ms (next.js: 4ms, generate-params: 1415µs, application-code: 222ms)
+ GET /components/button 200 in 279ms (next.js: 4ms, generate-params: 1513µs, application-code: 276ms)
+ GET / 200 in 19ms (next.js: 3ms, application-code: 16ms)
+ GET / 200 in 41ms (next.js: 5ms, application-code: 35ms)
+ GET /components/button 200 in 289ms (next.js: 6ms, generate-params: 1621µs, application-code: 282ms)
+ GET /components/button 200 in 171ms (next.js: 2ms, generate-params: 1275µs, application-code: 169ms)
+ GET /components/button 200 in 415ms (next.js: 13ms, generate-params: 2ms, application-code: 402ms)
+ GET /components/button 200 in 305ms (next.js: 11ms, generate-params: 5ms, application-code: 294ms)
+ GET /components/button 200 in 263ms (next.js: 9ms, generate-params: 3ms, application-code: 254ms)
+ GET / 200 in 47ms (next.js: 13ms, application-code: 34ms)
+ GET /components/button 200 in 300ms (next.js: 12ms, generate-params: 4ms, application-code: 288ms)
+ GET /components/button 200 in 234ms (next.js: 4ms, generate-params: 1610µs, application-code: 229ms)
+ GET /components/button 200 in 209ms (next.js: 3ms, generate-params: 1223µs, application-code: 207ms)
+ GET /components/button 200 in 342ms (next.js: 9ms, generate-params: 2ms, application-code: 333ms)
+ GET /components/map 200 in 37ms (next.js: 10ms, generate-params: 1653µs, application-code: 27ms)
+ GET /components/map 200 in 26ms (next.js: 939µs, generate-params: 11µs, application-code: 25ms)
+ GET /components/map 200 in 85ms (next.js: 17ms, generate-params: 3ms, application-code: 68ms)
+ GET /components/select 200 in 23ms (next.js: 1875µs, generate-params: 910µs, application-code: 21ms)
+ GET /components/card 200 in 38ms (next.js: 3ms, generate-params: 1212µs, application-code: 35ms)
+[?25h

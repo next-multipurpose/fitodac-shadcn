@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server"
+
 import type { DemoEntry } from "@/demos/registry"
 import { DemoCard } from "@/demos/demo-card"
 import { DemoViewProvider } from "@/demos/demo-view-provider"
@@ -26,14 +28,13 @@ type ComponentDemosProps = {
   demos: DemoEntry[]
 }
 
-export function ComponentDemos({ demos }: ComponentDemosProps) {
+export async function ComponentDemos({ demos }: ComponentDemosProps) {
   if (demos.length === 0) {
+    const t = await getTranslations("Demos")
     return (
       <section className="rounded-xl border border-dashed border-border bg-muted/30 p-6">
-        <h2 className="text-lg font-medium">Ejemplos</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Todavía no hay ejemplos disponibles para este componente.
-        </p>
+        <h2 className="text-lg font-medium">{t("heading")}</h2>
+        <p className="mt-2 text-sm text-muted-foreground">{t("empty")}</p>
       </section>
     )
   }

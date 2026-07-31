@@ -1,7 +1,9 @@
 import { render, screen, waitFor, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
+import { NextIntlClientProvider } from "next-intl"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
+import messages from "../../messages/en.json"
 import { DemoCard } from "@/demos/demo-card"
 import { DemoViewProvider } from "@/demos/demo-view-provider"
 import type { DemoIntegrationBundle } from "@/demos/integration/types"
@@ -35,14 +37,16 @@ function createBundle(name: string): DemoIntegrationBundle {
 
 function renderDemoCards() {
   render(
-    <DemoViewProvider>
-      <DemoCard bundle={createBundle("DemoA")} demoId="demo-a" title="Demo A">
-        <p>Rendered preview A</p>
-      </DemoCard>
-      <DemoCard bundle={createBundle("DemoB")} demoId="demo-b" title="Demo B">
-        <p>Rendered preview B</p>
-      </DemoCard>
-    </DemoViewProvider>
+    <NextIntlClientProvider locale="en" messages={messages}>
+      <DemoViewProvider>
+        <DemoCard bundle={createBundle("DemoA")} demoId="demo-a" title="Demo A">
+          <p>Rendered preview A</p>
+        </DemoCard>
+        <DemoCard bundle={createBundle("DemoB")} demoId="demo-b" title="Demo B">
+          <p>Rendered preview B</p>
+        </DemoCard>
+      </DemoViewProvider>
+    </NextIntlClientProvider>
   )
 
   const cardA = screen

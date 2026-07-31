@@ -1,0 +1,55 @@
+{
+  "Metadata": {
+    "description": "Local component catalog for @fitodac/shadcn.",
+    "catalogTitle": "Components",
+    "componentFallbackTitle": "Component"
+  },
+  "Header": {
+    "mainNavigation": "Main navigation",
+    "components": "Components"
+  },
+  "Home": {
+    "heading": "Components ready for your applications.",
+    "description": "Explore the catalog, review each entry's dependencies, and find its source files.",
+    "componentsCta": "View components",
+    "entries": "Entries",
+    "dependencies": "Dependencies"
+  },
+  "Catalog": {
+    "eyebrow": "Catalog",
+    "heading": "Components",
+    "summary": "{count, plural, one {# available entry with its dependencies and files declared in the registry.} other {# available entries with their dependencies and files declared in the registry.}}",
+    "files": "{count, plural, one {# file} other {# files}}",
+    "packages": "{count, plural, one {# package} other {# packages}}"
+  },
+  "ComponentDetail": {
+    "backToCatalog": "Back to catalog",
+    "files": "Files",
+    "dependencies": "Dependencies",
+    "registryDependencies": "Registry dependencies",
+    "noPackages": "This component declares no additional packages.",
+    "noRegistryDependencies": "This component does not depend on other entries."
+  },
+  "Demos": {
+    "heading": "Examples",
+    "empty": "There are no examples available for this component yet.",
+    "viewLabel": "{title} view",
+    "preview": "Preview",
+    "code": "Code",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyFailed": "Copy failed",
+    "copyPrompt": "Copy prompt",
+    "promptCopied": "Prompt copied",
+    "promptCopyFailed": "Prompt copy failed",
+    "copyIntegrationPrompt": "Copy {title} integration prompt",
+    "exampleUsage": "Example usage",
+    "copyExampleUsage": "Copy {title} example usage",
+    "requiredFiles": "Required component files",
+    "source": "Source",
+    "copyFile": "Copy {path}",
+    "dependencies": "Dependencies",
+    "registryDependencies": "Registry dependencies",
+    "none": "None."
+  }
+}

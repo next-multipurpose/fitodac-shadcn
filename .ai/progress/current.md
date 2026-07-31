@@ -174,3 +174,35 @@
 ## Runner — 2026-07-30T22:48:01Z
 
 - Spec: `.ai/specs/007-exclusive-demo-code-panel.md`\n- Result: unexpected state after ui-reviewer\n- New state: `CHANGES`
+
+## Runner — 2026-07-30T22:49:23Z
+
+- Active spec: `.ai/specs/009-i18n-foundation-english-default.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-30T22:56:19Z
+
+- Active spec: `.ai/specs/009-i18n-foundation-english-default.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T01:39:31Z
+
+- Active spec: `.ai/specs/009-i18n-foundation-english-default.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T01:44:00Z
+
+- Active spec: `.ai/specs/009-i18n-foundation-english-default.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T01:50:07Z
+
+- Active spec: `.ai/specs/009-i18n-foundation-english-default.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-31T02:12:08Z
+
+- Active spec: `.ai/specs/009-i18n-foundation-english-default.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T02:14:34Z
+
+- Active spec: `.ai/specs/009-i18n-foundation-english-default.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-07-31T02:21:00Z
+
+- Active spec: `.ai/specs/009-i18n-foundation-english-default.md`\n- Action: ui-reviewer
