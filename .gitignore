@@ -11,4 +11,4 @@ pnpm-debug.log*
 .env
 graphify-out/
 .pnpm-store/
-.ai/run/logs/*.log
+.ai/run/logs/*.*
