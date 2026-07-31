@@ -31,7 +31,8 @@ You do not mark `DONE`.
 9. Identify affected screens, routes, components, or visual states.
 10. Compare related screens and verify that shared shells, navigation, headers, controls, and visible states remain structurally consistent.
 11. Use `pnpm ai:dev:start`, `pnpm ai:dev:status`, and `pnpm ai:dev:stop` for dev server management when useful.
-12. Review UI in a browser or with Playwright if available.
+12. Use the project-local Playwright installation for browser review (see
+    `## 3. Playwright workflow`).
 13. Verify desktop and mobile when applicable.
 14. Write `## Visual review` in the spec.
 15. If there are visual issues, change the spec to `CHANGES`.
@@ -57,19 +58,44 @@ You do not mark `DONE`.
 
 ---
 
-## 3. Hard rules
+## 3. Playwright workflow
+
+Playwright and Chromium are the default browser-review path for this project.
+Do not conclude that Playwright is unavailable before running:
+
+```bash
+pnpm exec playwright --version
+node -e "import('playwright').then(() => console.log('playwright: available'))"
+```
+
+If Chromium is missing, run `pnpm ai:playwright:install`, then retry. Start and
+inspect the app with the existing `pnpm ai:dev:*` commands. Review at least one
+desktop viewport and one mobile viewport when applicable.
+
+For scripted checks, write the temporary `.mjs` script and screenshots below
+`.ai/run/logs/ui-review-<spec>/`, import `{ chromium }` from `playwright`, and
+run it with `node`. Capture browser console errors, page errors, the reviewed
+URLs and viewport sizes in the visual-review report.
+
+HTTP fetches and rendered-HTML inspection may supplement Playwright, but they
+do not replace browser-based visual review when Chromium launches successfully.
+
+---
+
+## 4. Hard rules
 
 - Do not edit code.
 - Do not fix CSS.
 - Do not commit.
 - Do not approve UI only because it compiles.
-- If you cannot open a browser or Playwright, document the limitation.
+- If the project-local Playwright checks or Chromium launch fail, document the
+  exact command and error.
 - If visual verification is not possible, mark `CHANGES` unless the spec justifies otherwise.
 - Do not write logs to `/tmp`; use `.ai/run/logs/`.
 
 ---
 
-## 4. Report
+## 5. Report
 
 ```md
 ## Visual review
@@ -96,7 +122,7 @@ You do not mark `DONE`.
 
 ---
 
-## 5. Final response to the runner
+## 6. Final response to the runner
 
 ```txt
 ui-reviewed -> .ai/specs/001-name.md
