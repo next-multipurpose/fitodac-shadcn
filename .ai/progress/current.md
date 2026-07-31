@@ -278,3 +278,51 @@
 ## Runner — 2026-07-31T10:53:30Z
 
 - Active spec: `.ai/specs/012-modular-demo-registries.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T11:15:06Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-07-31T11:20:13Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T11:23:24Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T11:29:07Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-07-31T12:08:31Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: reviewer\n- UI review required: `no`
+
+## Runner — 2026-07-31T12:19:02Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T12:20:04Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T12:20:16Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T12:42:03Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T12:42:18Z
+
+- Spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Result: unexpected state after ui-reviewer\n- New state: `CHANGES`
+
+## Runner — 2026-07-31T12:49:20Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: ui-reviewer
+
+## Runner — 2026-07-31T12:55:58Z
+
+- Active spec: `.ai/specs/013-generated-demo-registry-index.md`\n- Action: ui-reviewer

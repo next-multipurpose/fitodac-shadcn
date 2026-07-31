@@ -70,12 +70,12 @@ export default function ButtonGroupMergeOptionsDemo() {
                   <span className="text-muted-foreground text-xs">
                     {option.description}
                   </span>
-                </ButtonGroup>
+                </div>
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
         </DropdownMenuContent>
       </DropdownMenu>
-    </div>
+    </ButtonGroup>
   )
 }

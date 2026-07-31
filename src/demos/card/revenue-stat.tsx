@@ -35,7 +35,7 @@ export default function CardRevenueStatDemo() {
 				<div className="flex items-center justify-between gap-3">
 					<h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
 					<DropdownMenu>
-						<DropdownMenuTrigger>
+						<DropdownMenuTrigger asChild>
 							<Button
 								variant="ghost"
 								size="icon"

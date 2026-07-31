@@ -132,7 +132,7 @@ function MonthGrid({
                 <div key={year.getFullYear()} ref={isCurrentYear ? currentYearRef : undefined}>
                   <CollapsibleYear open={isCurrentYear} title={year.getFullYear().toString()}>
                     <div className="grid grid-cols-3 gap-2">
-                      {months.map((month) => {
+                      {months.map((month: Date) => {
                         const isDisabled = isBefore(month, startDate) || isAfter(month, endDate)
                         const isCurrentMonth =
                           month.getMonth() === currentMonth && year.getFullYear() === currentYear

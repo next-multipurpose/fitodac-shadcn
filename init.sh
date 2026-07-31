@@ -249,6 +249,7 @@ warn "Runtime agent validation is not part of ./init.sh. Run pnpm ai:doctor befo
 
 log "Running project checks"
 
+run_script_if_exists "demos:registry:check"
 run_script_if_exists "lint"
 run_script_if_exists "typecheck"
 run_script_if_exists "test"

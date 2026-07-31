@@ -1,3 +1,5 @@
+"use client"
+
 import { addDays } from "date-fns"
 
 import { Calendar } from "@/registry/primitives/calendar"

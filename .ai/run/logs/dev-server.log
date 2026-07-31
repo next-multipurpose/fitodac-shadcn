@@ -6,14 +6,217 @@
 - Local:         http://localhost:3000
 - Network:       http://127.0.2.2:3000
 - Environments: .env
-✓ Ready in 284ms
+✓ Ready in 255ms
 
- GET /components/button 200 in 2.0s (next.js: 807ms, generate-params: 571ms, application-code: 1238ms)
- GET /components/accordion 200 in 886ms (next.js: 11ms, generate-params: 3ms, application-code: 874ms)
- GET /components/alert 200 in 433ms (next.js: 5ms, generate-params: 1845µs, application-code: 428ms)
- GET /components/alert-dialog 200 in 2.8s (next.js: 5ms, generate-params: 2ms, application-code: 2.8s)
- GET /components/autocomplete 200 in 413ms (next.js: 13ms, generate-params: 3ms, application-code: 400ms)
- GET /components/avatar 200 in 642ms (next.js: 68ms, generate-params: 2ms, application-code: 574ms)
+ GET /components/calendar 200 in 4.2s (next.js: 2.1s, generate-params: 1628ms, application-code: 2.1s)
+ GET /components/breadcrumb 200 in 245ms (next.js: 2ms, generate-params: 1029µs, application-code: 243ms)
+ GET /components/breadcrumb 200 in 269ms (next.js: 4ms, generate-params: 1351µs, application-code: 266ms)
+⚠ Blocked cross-origin request to Next.js dev resource /_next/webpack-hmr from "127.0.0.1".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['127.0.0.1'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET /components/button-group 200 in 1007ms (next.js: 9ms, generate-params: 6ms, application-code: 998ms)
+ GET /components/calendar 200 in 827ms (next.js: 11ms, generate-params: 3ms, application-code: 816ms)
+ GET /components/card 200 in 1029ms (next.js: 6ms, generate-params: 3ms, application-code: 1024ms)
+ GET /components/breadcrumb 200 in 407ms (next.js: 15ms, generate-params: 3ms, application-code: 393ms)
+ GET /components/breadcrumb 200 in 420ms (next.js: 9ms, generate-params: 4ms, application-code: 411ms)
+ GET /components/breadcrumb 200 in 402ms (next.js: 21ms, generate-params: 4ms, application-code: 382ms)
+ GET /components/breadcrumb 200 in 412ms (next.js: 16ms, generate-params: 6ms, application-code: 396ms)
+ GET /components/breadcrumb 200 in 375ms (next.js: 18ms, generate-params: 4ms, application-code: 357ms)
+ GET /components/button-group 200 in 777ms (next.js: 13ms, generate-params: 4ms, application-code: 763ms)
+ GET /components/calendar 200 in 702ms (next.js: 13ms, generate-params: 7ms, application-code: 689ms)
+ GET /components/card 200 in 824ms (next.js: 13ms, generate-params: 4ms, application-code: 811ms)
+ GET /components/breadcrumb 200 in 453ms (next.js: 35ms, generate-params: 19ms, application-code: 417ms)
+ GET /components/breadcrumb 200 in 864ms (next.js: 25ms, generate-params: 7ms, application-code: 840ms)
+ GET /components/breadcrumb 200 in 466ms (next.js: 16ms, generate-params: 7ms, application-code: 450ms)
+ GET /components/breadcrumb 200 in 431ms (next.js: 18ms, generate-params: 6ms, application-code: 413ms)
+ GET /components/breadcrumb 200 in 303ms (next.js: 13ms, generate-params: 4ms, application-code: 290ms)
+ GET /components/breadcrumb 200 in 266ms (next.js: 16ms, generate-params: 4ms, application-code: 250ms)
+ GET /components/breadcrumb 200 in 402ms (next.js: 13ms, generate-params: 5ms, application-code: 388ms)
+ GET /components/breadcrumb 200 in 586ms (next.js: 15ms, generate-params: 7ms, application-code: 572ms)
+ GET /components/breadcrumb 200 in 403ms (next.js: 11ms, generate-params: 3ms, application-code: 392ms)
+ GET /components/card 200 in 806ms (next.js: 5ms, generate-params: 2ms, application-code: 801ms)
+ GET /components/button-group 200 in 756ms (next.js: 8ms, generate-params: 3ms, application-code: 748ms)
+ GET /components/calendar 200 in 1043ms (next.js: 8ms, generate-params: 3ms, application-code: 1035ms)
+ GET /components/breadcrumb 200 in 506ms (next.js: 15ms, generate-params: 4ms, application-code: 490ms)
+ GET /components/breadcrumb 200 in 329ms (next.js: 17ms, generate-params: 6ms, application-code: 312ms)
+ GET /components/card 200 in 847ms (next.js: 12ms, generate-params: 3ms, application-code: 835ms)
+ GET /components/breadcrumb 200 in 262ms (next.js: 11ms, generate-params: 2ms, application-code: 250ms)
+ GET /components/card 200 in 742ms (next.js: 16ms, generate-params: 1574µs, application-code: 726ms)
+ GET /components/breadcrumb 200 in 403ms (next.js: 14ms, generate-params: 3ms, application-code: 389ms)
+ GET /components/card 200 in 672ms (next.js: 10ms, generate-params: 4ms, application-code: 662ms)
+ GET /components/breadcrumb 200 in 369ms (next.js: 16ms, generate-params: 5ms, application-code: 353ms)
+ GET /components/card 200 in 753ms (next.js: 13ms, generate-params: 5ms, application-code: 741ms)
+ GET /components/breadcrumb 200 in 397ms (next.js: 12ms, generate-params: 3ms, application-code: 385ms)
+ GET /components/breadcrumb 200 in 429ms (next.js: 12ms, generate-params: 3ms, application-code: 417ms)
+ GET /components/breadcrumb 200 in 426ms (next.js: 14ms, generate-params: 4ms, application-code: 412ms)
+ GET /components/breadcrumb 200 in 403ms (next.js: 11ms, generate-params: 3ms, application-code: 392ms)
+ GET /components/card 200 in 646ms (next.js: 14ms, generate-params: 5ms, application-code: 631ms)
+ GET /components/button-group 200 in 652ms (next.js: 7ms, generate-params: 2ms, application-code: 646ms)
+ GET /components/calendar 200 in 778ms (next.js: 8ms, generate-params: 1928µs, application-code: 769ms)
+ GET /components/button-group 200 in 822ms (next.js: 12ms, generate-params: 5ms, application-code: 810ms)
+ GET /components/button-group 200 in 1230ms (next.js: 130ms, generate-params: 4ms, application-code: 1100ms)
+ GET /components/button-group 200 in 768ms (next.js: 41ms, generate-params: 3ms, application-code: 726ms)
+ GET /components/button-group 200 in 1227ms (next.js: 20ms, generate-params: 5ms, application-code: 1207ms)
+⚠ Server is approaching the used memory threshold, restarting...
+▲ Next.js 16.2.12 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://127.0.2.2:3000
+- Environments: .env
+✓ Ready in 212ms
+
+⚠ Blocked cross-origin request to Next.js dev resource /_next/webpack-hmr from "127.0.0.1".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['127.0.0.1'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET /components/button-group 200 in 2.3s (next.js: 785ms, generate-params: 415ms, application-code: 1514ms)
+ GET /components/button-group 200 in 1122ms (next.js: 8ms, generate-params: 4ms, application-code: 1114ms)
+ GET /components/button-group 200 in 1198ms (next.js: 8ms, generate-params: 2ms, application-code: 1190ms)
+ GET /components/button-group 200 in 970ms (next.js: 11ms, generate-params: 3ms, application-code: 959ms)
+ GET /components/button-group 200 in 802ms (next.js: 6ms, generate-params: 2ms, application-code: 796ms)
+ GET /components/button-group 200 in 957ms (next.js: 8ms, generate-params: 3ms, application-code: 949ms)
+ GET /components/accordion 200 in 848ms (next.js: 9ms, generate-params: 3ms, application-code: 839ms)
+ GET /components/alert 200 in 693ms (next.js: 5ms, generate-params: 1307µs, application-code: 688ms)
+ GET /components/alert-dialog 200 in 1984ms (next.js: 10ms, generate-params: 4ms, application-code: 1974ms)
+ GET /components/autocomplete 200 in 256ms (next.js: 5ms, generate-params: 1404µs, application-code: 251ms)
+ GET /components/avatar 200 in 774ms (next.js: 8ms, generate-params: 1779µs, application-code: 766ms)
+ GET /components/card 200 in 2.3s (next.js: 28ms, generate-params: 5ms, application-code: 2.2s)
+⚠ Server is approaching the used memory threshold, restarting...
+▲ Next.js 16.2.12 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://127.0.2.2:3000
+- Environments: .env
+✓ Ready in 229ms
+
+ GET /components/calendar 200 in 2.2s (next.js: 618ms, generate-params: 416ms, application-code: 1541ms)
+ GET /components/button-group 200 in 1174ms (next.js: 6ms, generate-params: 3ms, application-code: 1168ms)
+ GET /components/breadcrumb 200 in 751ms (next.js: 6ms, generate-params: 4ms, application-code: 745ms)
+ GET /components/card 200 in 1243ms (next.js: 19ms, generate-params: 9ms, application-code: 1224ms)
+ GET /components/use-mobile 200 in 126ms (next.js: 4ms, generate-params: 3ms, application-code: 122ms)
+ GET /components 200 in 217ms (next.js: 14ms, application-code: 203ms)
+ GET /components/card 200 in 674ms (next.js: 28ms, generate-params: 7ms, application-code: 646ms)
+ GET /components/card 200 in 512ms (next.js: 17ms, generate-params: 6ms, application-code: 495ms)
+ GET /components/card 200 in 727ms (next.js: 2ms, generate-params: 30µs, application-code: 725ms)
+ GET /components/calendar 200 in 753ms (next.js: 3ms, generate-params: 1535µs, application-code: 750ms)
+ GET /components/calendar 200 in 712ms (next.js: 3ms, generate-params: 1423µs, application-code: 709ms)
+ GET /components/button-group 200 in 874ms (next.js: 10ms, generate-params: 4ms, application-code: 864ms)
+ GET /components/button-group 200 in 714ms (next.js: 5ms, generate-params: 3ms, application-code: 709ms)
+ GET /components/breadcrumb 200 in 252ms (next.js: 5ms, generate-params: 4ms, application-code: 247ms)
+ GET /components/breadcrumb 200 in 157ms (next.js: 3ms, generate-params: 16µs, application-code: 154ms)
+ GET /components/use-mobile 200 in 58ms (next.js: 5ms, generate-params: 2ms, application-code: 53ms)
+ GET /components/use-mobile 200 in 81ms (next.js: 3ms, generate-params: 18µs, application-code: 78ms)
+ GET /components/card 200 in 527ms (next.js: 10ms, generate-params: 4ms, application-code: 517ms)
+ GET /components/calendar 200 in 721ms (next.js: 6ms, generate-params: 3ms, application-code: 715ms)
+ GET /components/button-group 200 in 834ms (next.js: 8ms, generate-params: 4ms, application-code: 826ms)
+ GET /components/breadcrumb 200 in 191ms (next.js: 4ms, generate-params: 2ms, application-code: 187ms)
+ GET /components/use-mobile 200 in 61ms (next.js: 1831µs, generate-params: 22µs, application-code: 59ms)
+ GET /components/badge 200 in 341ms (next.js: 25ms, generate-params: 5ms, application-code: 315ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/component..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="min-h-screen antialiased"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
+-                           __processed_0433c107-5db8-4ab5-813b-af08d49c7814__="true"
+                          >
+                  ...
+ 
+ GET /components 200 in 164ms (next.js: 6ms, application-code: 158ms)
+ GET /components/accordion 200 in 274ms (next.js: 5ms, generate-params: 1603µs, application-code: 270ms)
+ GET /components/alert 200 in 186ms (next.js: 5ms, generate-params: 2ms, application-code: 181ms)
+ GET /components/alert-dialog 200 in 441ms (next.js: 5ms, generate-params: 2ms, application-code: 436ms)
+ GET /components/autocomplete 200 in 127ms (next.js: 6ms, generate-params: 2ms, application-code: 121ms)
+ GET /components/avatar 200 in 445ms (next.js: 164ms, generate-params: 21µs, application-code: 281ms)
+ GET /components/autocomplete 200 in 449ms (next.js: 144ms, generate-params: 2ms, application-code: 306ms)
+ GET /components 200 in 1370ms (next.js: 183ms, application-code: 1187ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/components" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="min-h-screen antialiased"
+-                           __processed_dc2c0878-8773-4033-a16f-322353823d08__="true"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
+                          >
+                  ...
+ 
+ GET /components/autocomplete 200 in 151ms (next.js: 8ms, generate-params: 3ms, application-code: 143ms)
+ GET /components/avatar 200 in 302ms (next.js: 7ms, generate-params: 3ms, application-code: 296ms)
 [browser] In HTML, <button> cannot be a descendant of <button>.
 This will cause a hydration error.
 
@@ -29,10 +232,10 @@ This will cause a hydration error.
                     <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
                       <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
                         <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
+                          <Primitive.button type="button" id="radix-_r_o_" aria-haspopup="menu" aria-expanded={false} ...>
 >                           <button
 >                             type="button"
->                             id="radix-_R_alpbn5ritqlb_"
+>                             id="radix-_r_o_"
 >                             aria-haspopup="menu"
 >                             aria-expanded={false}
 >                             aria-controls={undefined}
@@ -57,8 +260,10 @@ This will cause a hydration error.
  
 [browser] <button> cannot contain a nested <button>.
 See this log for the ancestor stack trace. 
-[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
-[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+ GET /components/badge 200 in 77ms (next.js: 15ms, generate-params: 6ms, application-code: 62ms)
+ GET /components/badge 200 in 117ms (next.js: 9ms, generate-params: 3ms, application-code: 108ms)
+ GET /components/badge 200 in 176ms (next.js: 5ms, generate-params: 1731µs, application-code: 171ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -69,408 +274,35 @@ See this log for the ancestor stack trace.
 It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
 https://react.dev/link/hydration-mismatch
-    at <unknown> (https://react.dev/link/hydration-mismatch)
-    at button (<anonymous>)
-    at Button (src/registry/primitives/button.tsx:54:5)
-    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
-    at ComponentDemo (src/demos/component-demo.tsx:22:7)
-    at <anonymous> (src/demos/component-demo.tsx:46:11)
-    at Array.map (<anonymous>:1:18)
-    at ComponentDemos (src/demos/component-demo.tsx:45:16)
-    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
-  52 |
-  53 |   return (
-> 54 |     <Comp
-     |     ^
-  55 |       data-slot="button"
-  56 |       data-variant={variant}
-  57 |       data-size={size}
- GET /components/badge 200 in 271ms (next.js: 6ms, generate-params: 2ms, application-code: 266ms)
- GET /components/button 200 in 538ms (next.js: 5ms, generate-params: 1961µs, application-code: 534ms)
- GET /components/accordion 200 in 462ms (next.js: 9ms, generate-params: 2ms, application-code: 454ms)
- GET /components/alert 200 in 374ms (next.js: 7ms, generate-params: 3ms, application-code: 367ms)
- GET /components/alert-dialog 200 in 605ms (next.js: 3ms, generate-params: 1910µs, application-code: 602ms)
- GET /components/autocomplete 200 in 262ms (next.js: 4ms, generate-params: 1474µs, application-code: 258ms)
- GET /components/avatar 200 in 504ms (next.js: 5ms, generate-params: 3ms, application-code: 499ms)
-[browser] In HTML, <button> cannot be a descendant of <button>.
-This will cause a hydration error.
 
   ...
-    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
-      <Popper __scopePopper={{Menu:[...], ...}}>
-        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
-          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
-            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
-              <DropdownMenuTrigger>
-                <DropdownMenuTrigger data-slot="dropdown-m...">
-                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
-                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
-                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
->                           <button
->                             type="button"
->                             id="radix-_R_alpbn5ritqlb_"
->                             aria-haspopup="menu"
->                             aria-expanded={false}
->                             aria-controls={undefined}
->                             data-state="closed"
->                             data-disabled={undefined}
->                             disabled={false}
->                             data-slot="dropdown-menu-trigger"
->                             onPointerDown={function handleEvent}
->                             onKeyDown={function handleEvent}
->                             data-radix-popper-side={undefined}
->                             data-radix-popper-align={undefined}
->                             ref={function}
->                           >
-                              <Button>
->                               <button
->                                 data-slot="button"
->                                 data-variant="outline"
->                                 data-size="sm"
->                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
->                               >
-              ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/component..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="min-h-screen antialiased"
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
+-                           __processed_d80a0e17-3a23-4a89-872a-d2099f9b48da__="true"
+                          >
+                  ...
  
-[browser] <button> cannot contain a nested <button>.
-See this log for the ancestor stack trace. 
-[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
-[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-    at <unknown> (https://react.dev/link/hydration-mismatch)
-    at button (<anonymous>)
-    at Button (src/registry/primitives/button.tsx:54:5)
-    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
-    at ComponentDemo (src/demos/component-demo.tsx:22:7)
-    at <anonymous> (src/demos/component-demo.tsx:46:11)
-    at Array.map (<anonymous>:1:18)
-    at ComponentDemos (src/demos/component-demo.tsx:45:16)
-    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
-  52 |
-  53 |   return (
-> 54 |     <Comp
-     |     ^
-  55 |       data-slot="button"
-  56 |       data-variant={variant}
-  57 |       data-size={size}
- GET /components/badge 200 in 98ms (next.js: 2ms, generate-params: 1355µs, application-code: 96ms)
- GET /components/button 200 in 665ms (next.js: 3ms, generate-params: 1534µs, application-code: 662ms)
- GET /components/button 200 in 533ms (next.js: 3ms, generate-params: 1596µs, application-code: 530ms)
- GET /components/avatar 200 in 385ms (next.js: 4ms, generate-params: 3ms, application-code: 380ms)
-[browser] In HTML, <button> cannot be a descendant of <button>.
-This will cause a hydration error.
-
-  ...
-    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
-      <Popper __scopePopper={{Menu:[...], ...}}>
-        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
-          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
-            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
-              <DropdownMenuTrigger>
-                <DropdownMenuTrigger data-slot="dropdown-m...">
-                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
-                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
-                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
->                           <button
->                             type="button"
->                             id="radix-_R_alpbn5ritqlb_"
->                             aria-haspopup="menu"
->                             aria-expanded={false}
->                             aria-controls={undefined}
->                             data-state="closed"
->                             data-disabled={undefined}
->                             disabled={false}
->                             data-slot="dropdown-menu-trigger"
->                             onPointerDown={function handleEvent}
->                             onKeyDown={function handleEvent}
->                             data-radix-popper-side={undefined}
->                             data-radix-popper-align={undefined}
->                             ref={function}
->                           >
-                              <Button>
->                               <button
->                                 data-slot="button"
->                                 data-variant="outline"
->                                 data-size="sm"
->                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
->                               >
-              ...
- 
-[browser] <button> cannot contain a nested <button>.
-See this log for the ancestor stack trace. 
-[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
-[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-    at <unknown> (https://react.dev/link/hydration-mismatch)
-    at button (<anonymous>)
-    at Button (src/registry/primitives/button.tsx:54:5)
-    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
-    at ComponentDemo (src/demos/component-demo.tsx:22:7)
-    at <anonymous> (src/demos/component-demo.tsx:46:11)
-    at Array.map (<anonymous>:1:18)
-    at ComponentDemos (src/demos/component-demo.tsx:45:16)
-    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
-  52 |
-  53 |   return (
-> 54 |     <Comp
-     |     ^
-  55 |       data-slot="button"
-  56 |       data-variant={variant}
-  57 |       data-size={size}
- GET /components/alert-dialog 200 in 523ms (next.js: 4ms, generate-params: 2ms, application-code: 519ms)
- GET /components/autocomplete 200 in 312ms (next.js: 4ms, generate-params: 2ms, application-code: 308ms)
- GET /components/button 200 in 573ms (next.js: 7ms, generate-params: 4ms, application-code: 566ms)
- GET /components/accordion 200 in 521ms (next.js: 6ms, generate-params: 2ms, application-code: 515ms)
- GET /components/alert 200 in 292ms (next.js: 7ms, generate-params: 3ms, application-code: 285ms)
- GET /components/alert-dialog 200 in 612ms (next.js: 3ms, generate-params: 2ms, application-code: 608ms)
- GET /components/autocomplete 200 in 257ms (next.js: 4ms, generate-params: 1573µs, application-code: 253ms)
- GET /components/avatar 200 in 477ms (next.js: 6ms, generate-params: 3ms, application-code: 471ms)
-[browser] In HTML, <button> cannot be a descendant of <button>.
-This will cause a hydration error.
-
-  ...
-    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
-      <Popper __scopePopper={{Menu:[...], ...}}>
-        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
-          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
-            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
-              <DropdownMenuTrigger>
-                <DropdownMenuTrigger data-slot="dropdown-m...">
-                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
-                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
-                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
->                           <button
->                             type="button"
->                             id="radix-_R_alpbn5ritqlb_"
->                             aria-haspopup="menu"
->                             aria-expanded={false}
->                             aria-controls={undefined}
->                             data-state="closed"
->                             data-disabled={undefined}
->                             disabled={false}
->                             data-slot="dropdown-menu-trigger"
->                             onPointerDown={function handleEvent}
->                             onKeyDown={function handleEvent}
->                             data-radix-popper-side={undefined}
->                             data-radix-popper-align={undefined}
->                             ref={function}
->                           >
-                              <Button>
->                               <button
->                                 data-slot="button"
->                                 data-variant="outline"
->                                 data-size="sm"
->                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
->                               >
-              ...
- 
-[browser] <button> cannot contain a nested <button>.
-See this log for the ancestor stack trace. 
-[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
-[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-    at <unknown> (https://react.dev/link/hydration-mismatch)
-    at button (<anonymous>)
-    at Button (src/registry/primitives/button.tsx:54:5)
-    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
-    at ComponentDemo (src/demos/component-demo.tsx:22:7)
-    at <anonymous> (src/demos/component-demo.tsx:46:11)
-    at Array.map (<anonymous>:1:18)
-    at ComponentDemos (src/demos/component-demo.tsx:45:16)
-    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
-  52 |
-  53 |   return (
-> 54 |     <Comp
-     |     ^
-  55 |       data-slot="button"
-  56 |       data-variant={variant}
-  57 |       data-size={size}
- GET /components/badge 200 in 121ms (next.js: 2ms, generate-params: 1113µs, application-code: 119ms)
- GET /components/button 200 in 682ms (next.js: 1900µs, generate-params: 1056µs, application-code: 680ms)
- GET /components/button 200 in 576ms (next.js: 9ms, generate-params: 2ms, application-code: 567ms)
- GET /components/avatar 200 in 441ms (next.js: 4ms, generate-params: 1990µs, application-code: 437ms)
-[browser] In HTML, <button> cannot be a descendant of <button>.
-This will cause a hydration error.
-
-  ...
-    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
-      <Popper __scopePopper={{Menu:[...], ...}}>
-        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
-          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
-            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
-              <DropdownMenuTrigger>
-                <DropdownMenuTrigger data-slot="dropdown-m...">
-                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
-                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
-                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
->                           <button
->                             type="button"
->                             id="radix-_R_alpbn5ritqlb_"
->                             aria-haspopup="menu"
->                             aria-expanded={false}
->                             aria-controls={undefined}
->                             data-state="closed"
->                             data-disabled={undefined}
->                             disabled={false}
->                             data-slot="dropdown-menu-trigger"
->                             onPointerDown={function handleEvent}
->                             onKeyDown={function handleEvent}
->                             data-radix-popper-side={undefined}
->                             data-radix-popper-align={undefined}
->                             ref={function}
->                           >
-                              <Button>
->                               <button
->                                 data-slot="button"
->                                 data-variant="outline"
->                                 data-size="sm"
->                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
->                               >
-              ...
- 
-[browser] <button> cannot contain a nested <button>.
-See this log for the ancestor stack trace. 
-[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
-[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-    at <unknown> (https://react.dev/link/hydration-mismatch)
-    at button (<anonymous>)
-    at Button (src/registry/primitives/button.tsx:54:5)
-    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
-    at ComponentDemo (src/demos/component-demo.tsx:22:7)
-    at <anonymous> (src/demos/component-demo.tsx:46:11)
-    at Array.map (<anonymous>:1:18)
-    at ComponentDemos (src/demos/component-demo.tsx:45:16)
-    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
-  52 |
-  53 |   return (
-> 54 |     <Comp
-     |     ^
-  55 |       data-slot="button"
-  56 |       data-variant={variant}
-  57 |       data-size={size}
- GET /components/alert-dialog 200 in 561ms (next.js: 4ms, generate-params: 2ms, application-code: 557ms)
- GET /components/autocomplete 200 in 362ms (next.js: 4ms, generate-params: 1902µs, application-code: 358ms)
- GET /components/accordion 200 in 582ms (next.js: 14ms, generate-params: 8ms, application-code: 567ms)
- GET /components/alert 200 in 631ms (next.js: 4ms, generate-params: 2ms, application-code: 627ms)
- GET /components/alert-dialog 200 in 643ms (next.js: 10ms, generate-params: 1245µs, application-code: 634ms)
- GET /components/autocomplete 200 in 199ms (next.js: 5ms, generate-params: 2ms, application-code: 194ms)
- GET /components/avatar 200 in 385ms (next.js: 3ms, generate-params: 1551µs, application-code: 381ms)
-[browser] In HTML, <button> cannot be a descendant of <button>.
-This will cause a hydration error.
-
-  ...
-    <Menu __scopeMenu={{Menu:[...], ...}} open={false} onOpenChange={function useControllableState.useCallback[setValue]} ...>
-      <Popper __scopePopper={{Menu:[...], ...}}>
-        <PopperProvider scope={{Menu:[...], ...}} anchor={null} onAnchorChange={function bound dispatchSetState} ...>
-          <MenuProvider scope={{Menu:[...], ...}} open={false} onOpenChange={function useCallbackRef.useMemo} ...>
-            <MenuProvider scope={{Menu:[...], ...}} onClose={function Menu.useCallback} ...>
-              <DropdownMenuTrigger>
-                <DropdownMenuTrigger data-slot="dropdown-m...">
-                  <MenuAnchor asChild={true} __scopeMenu={{Menu:[...], ...}}>
-                    <PopperAnchor __scopePopper={{Menu:[...], ...}} asChild={true} ref={null}>
-                      <Primitive.div data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                        <Primitive.div.Slot data-radix-popper-side={undefined} data-radix-popper-align={undefined} ...>
-                          <Primitive.button type="button" id="radix-_R_a..." aria-haspopup="menu" aria-expanded={false} ...>
->                           <button
->                             type="button"
->                             id="radix-_R_alpbn5ritqlb_"
->                             aria-haspopup="menu"
->                             aria-expanded={false}
->                             aria-controls={undefined}
->                             data-state="closed"
->                             data-disabled={undefined}
->                             disabled={false}
->                             data-slot="dropdown-menu-trigger"
->                             onPointerDown={function handleEvent}
->                             onKeyDown={function handleEvent}
->                             data-radix-popper-side={undefined}
->                             data-radix-popper-align={undefined}
->                             ref={function}
->                           >
-                              <Button>
->                               <button
->                                 data-slot="button"
->                                 data-variant="outline"
->                                 data-size="sm"
->                                 className={"inline-flex shrink-0 items-center justify-center text-sm font-medium wh..."}
->                               >
-              ...
- 
-[browser] <button> cannot contain a nested <button>.
-See this log for the ancestor stack trace. 
-[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
-[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-    at <unknown> (https://react.dev/link/hydration-mismatch)
-    at button (<anonymous>)
-    at Button (src/registry/primitives/button.tsx:54:5)
-    at AvatarComponent (src/demos/avatar/account-menu.tsx:24:9)
-    at ComponentDemo (src/demos/component-demo.tsx:22:7)
-    at <anonymous> (src/demos/component-demo.tsx:46:11)
-    at Array.map (<anonymous>:1:18)
-    at ComponentDemos (src/demos/component-demo.tsx:45:16)
-    at ComponentDetailPage (src/app/components/[slug]/page.tsx:61:9)
-  52 |
-  53 |   return (
-> 54 |     <Comp
-     |     ^
-  55 |       data-slot="button"
-  56 |       data-variant={variant}
-  57 |       data-size={size}
- GET /components/badge 200 in 223ms (next.js: 4ms, generate-params: 2ms, application-code: 218ms)
- GET /components/button 200 in 501ms (next.js: 3ms, generate-params: 1406µs, application-code: 498ms)
- GET /components/autocomplete 200 in 213ms (next.js: 10ms, generate-params: 4ms, application-code: 203ms)
 [?25h
+ ELIFECYCLE  Command failed with exit code 143.
