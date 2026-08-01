@@ -530,6 +530,16 @@
       "registryDependencies": ["input-group", "utils"]
     },
     {
+      "name": "input-numeric",
+      "type": "registry:ui",
+      "files": [{ "path": "src/registry/components/input-numeric.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "lucide-react@^0.577.0",
+        "react-aria-components@^1.16.0"
+      ],
+      "registryDependencies": ["field", "utils"]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/input.tsx", "type": "registry:ui" }],

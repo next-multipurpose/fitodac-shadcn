@@ -1,6 +1,6 @@
 # 018 — Components catalog view modes and category filter
 
-Status: REVIEW
+Status: DONE
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker

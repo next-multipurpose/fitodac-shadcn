@@ -382,3 +382,15 @@
 ## Runner — 2026-07-31T23:20:02Z
 
 - Active spec: `.ai/specs/018-components-catalog-view-category-filter.md`\n- Action: ui-reviewer
+
+## Runner — 2026-08-01T00:53:52Z
+
+- Active spec: `.ai/specs/019-components-catalog-name-search.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-08-01T01:00:07Z
+
+- Active spec: `.ai/specs/019-components-catalog-name-search.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-08-01T01:21:49Z
+
+- Active spec: `.ai/specs/019-components-catalog-name-search.md`\n- Action: ui-reviewer

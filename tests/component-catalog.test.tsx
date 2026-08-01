@@ -4,146 +4,263 @@ import { describe, expect, it } from "vitest"
 
 import registry from "../registry.json"
 import {
-  componentCategories,
-  prepareCatalogEntries,
+	componentCategories,
+	filterCatalogEntries,
+	prepareCatalogEntries,
 } from "@/lib/component-catalog"
 import {
-  ComponentsCatalog,
-  type ComponentsCatalogLabels,
+	ComponentsCatalog,
+	type ComponentsCatalogLabels,
 } from "@/components/components-catalog"
 
 const labels: ComponentsCatalogLabels = {
-  allCategories: "All categories",
-  categoryFilter: "Filter by category",
-  gridView: "Grid view",
-  listView: "List view",
-  categories: {
-    primitives: "Primitives",
-    forms: "Forms",
-    navigation: "Navigation",
-    overlays: "Overlays and menus",
-    dataDisplay: "Data display",
-    feedback: "Feedback",
-    layout: "Layout",
-    advanced: "Advanced components",
-    utilities: "Hooks and utilities",
-  },
+	allCategories: "All categories",
+	categoryFilter: "Filter by category",
+	clearSearch: "Clear search",
+	gridView: "Grid view",
+	listView: "List view",
+	noComponentsFound: "No components found",
+	resetFilters: "Reset filters",
+	searchComponents: "Search components",
+	categories: {
+		primitives: "Primitives",
+		forms: "Forms",
+		navigation: "Navigation",
+		overlays: "Overlays and menus",
+		dataDisplay: "Data display",
+		feedback: "Feedback",
+		layout: "Layout",
+		advanced: "Advanced components",
+		utilities: "Hooks and utilities",
+	},
 }
 
 const entries = prepareCatalogEntries(registry.items).map((entry) => ({
-  ...entry,
-  filesLabel: `${entry.filesCount} files`,
-  packagesLabel: `${entry.packagesCount} packages`,
+	...entry,
+	filesLabel: `${entry.filesCount} files`,
+	packagesLabel: `${entry.packagesCount} packages`,
 }))
 
 describe("component catalog categories", () => {
-  it("uses unique category keys and assigns every registry item exactly once", () => {
-    const keys = componentCategories.map(({ key }) => key)
-    const names = componentCategories.flatMap(({ items }) => items)
+	it("uses unique category keys and assigns every registry item exactly once", () => {
+		const keys = componentCategories.map(({ key }) => key)
+		const names = componentCategories.flatMap(({ items }) => items)
 
-    expect(new Set(keys).size).toBe(keys.length)
-    expect(new Set(names).size).toBe(names.length)
-    expect([...names].sort()).toEqual(
-      registry.items.map(({ name }) => name).sort()
-    )
-    expect(entries).toHaveLength(registry.items.length)
-  })
+		expect(new Set(keys).size).toBe(keys.length)
+		expect(new Set(names).size).toBe(names.length)
+		expect([...names].sort()).toEqual(
+			registry.items.map(({ name }) => name).sort()
+		)
+		expect(entries).toHaveLength(registry.items.length)
+	})
 
-  it("rejects configured names that do not resolve to registry items", () => {
-    expect(() =>
-      prepareCatalogEntries(
-        registry.items.filter(({ name }) => name !== "button")
-      )
-    ).toThrow(/button/)
-  })
+	it("rejects configured names that do not resolve to registry items", () => {
+		expect(() =>
+			prepareCatalogEntries(
+				registry.items.filter(({ name }) => name !== "button")
+			)
+		).toThrow(/button/)
+	})
+})
+
+describe("filterCatalogEntries", () => {
+	const controlledEntries = [
+		{
+			name: "button",
+			type: "registry:ui",
+			category: "primitives" as const,
+			href: "/components/button",
+			filesCount: 1,
+			packagesCount: 0,
+			demoTitles: ["Button primary"],
+		},
+		{
+			name: "dialog",
+			type: "button",
+			category: "overlays" as const,
+			href: "/components/dialog",
+			filesCount: 1,
+			packagesCount: 0,
+			dependencies: ["button"],
+			registryDependencies: ["button"],
+		},
+		{
+			name: "button-group",
+			type: "registry:ui",
+			category: "primitives" as const,
+			href: "/components/button-group",
+			filesCount: 2,
+			packagesCount: 0,
+			demoTitles: ["Primary", "Secondary"],
+		},
+	]
+
+	it("matches only trimmed, case-insensitive component-name substrings", () => {
+		expect(
+			filterCatalogEntries(controlledEntries, "all", "  BUTTON ").map(
+				({ name }) => name
+			)
+		).toEqual(["button", "button-group"])
+		expect(filterCatalogEntries(controlledEntries, "all", "primary")).toEqual(
+			[]
+		)
+		expect(
+			filterCatalogEntries(controlledEntries, "all", "registry:ui")
+		).toEqual([])
+	})
+
+	it("intersects category and name filters without duplicating entries", () => {
+		expect(
+			filterCatalogEntries(controlledEntries, "primitives", "button").map(
+				({ name }) => name
+			)
+		).toEqual(["button", "button-group"])
+		expect(
+			filterCatalogEntries(controlledEntries, "overlays", "button")
+		).toEqual([])
+		expect(filterCatalogEntries(controlledEntries, "forms", "   ")).toEqual([])
+		expect(filterCatalogEntries(controlledEntries, "all", "   ")).toEqual(
+			controlledEntries
+		)
+	})
 })
 
 describe("ComponentsCatalog", () => {
-  it("defaults to all categories in grid view", () => {
-    render(<ComponentsCatalog entries={entries} labels={labels} />)
+	it("defaults to all categories in grid view", () => {
+		render(<ComponentsCatalog entries={entries} labels={labels} />)
 
-    expect(
-      screen.getByRole("combobox", { name: "Filter by category" })
-    ).toHaveValue("all")
-    expect(screen.getByRole("button", { name: "Grid view" })).toHaveAttribute(
-      "aria-pressed",
-      "true"
-    )
-    expect(screen.getByRole("button", { name: "List view" })).toHaveAttribute(
-      "aria-pressed",
-      "false"
-    )
-    expect(screen.getAllByRole("region")).toHaveLength(
-      componentCategories.length
-    )
-  })
+		expect(
+			screen.getByRole("combobox", { name: "Filter by category" })
+		).toHaveValue("all")
+		expect(screen.getByRole("button", { name: "Grid view" })).toHaveAttribute(
+			"aria-pressed",
+			"true"
+		)
+		expect(screen.getByRole("button", { name: "List view" })).toHaveAttribute(
+			"aria-pressed",
+			"false"
+		)
+		expect(screen.getAllByRole("region")).toHaveLength(
+			componentCategories.length
+		)
+	})
 
-  it("filters one category at a time and restores all categories", async () => {
-    const user = userEvent.setup()
-    render(<ComponentsCatalog entries={entries} labels={labels} />)
-    const filter = screen.getByRole("combobox", { name: "Filter by category" })
+	it("filters one category at a time and restores all categories", async () => {
+		const user = userEvent.setup()
+		render(<ComponentsCatalog entries={entries} labels={labels} />)
+		const filter = screen.getByRole("combobox", { name: "Filter by category" })
 
-    await user.selectOptions(filter, "forms")
-    expect(screen.getAllByRole("region")).toHaveLength(1)
-    expect(screen.getByRole("region", { name: /Forms/ })).toBeInTheDocument()
+		await user.selectOptions(filter, "forms")
+		expect(screen.getAllByRole("region")).toHaveLength(1)
+		expect(screen.getByRole("region", { name: /Forms/ })).toBeInTheDocument()
 
-    await user.selectOptions(filter, "overlays")
-    expect(screen.getAllByRole("region")).toHaveLength(1)
-    expect(
-      screen.getByRole("region", { name: /Overlays and menus/ })
-    ).toBeInTheDocument()
+		await user.selectOptions(filter, "overlays")
+		expect(screen.getAllByRole("region")).toHaveLength(1)
+		expect(
+			screen.getByRole("region", { name: /Overlays and menus/ })
+		).toBeInTheDocument()
 
-    await user.selectOptions(filter, "all")
-    expect(screen.getAllByRole("region")).toHaveLength(
-      componentCategories.length
-    )
-  })
+		await user.selectOptions(filter, "all")
+		expect(screen.getAllByRole("region")).toHaveLength(
+			componentCategories.length
+		)
+	})
 
-  it("switches views without changing the category or rendered entries", async () => {
-    const user = userEvent.setup()
-    render(<ComponentsCatalog entries={entries} labels={labels} />)
-    const filter = screen.getByRole("combobox", { name: "Filter by category" })
+	it("switches views without changing the category or rendered entries", async () => {
+		const user = userEvent.setup()
+		render(<ComponentsCatalog entries={entries} labels={labels} />)
+		const filter = screen.getByRole("combobox", { name: "Filter by category" })
 
-    await user.selectOptions(filter, "forms")
-    const formsRegion = screen.getByRole("region", { name: /Forms/ })
-    const gridLinks = within(formsRegion)
-      .getAllByRole("link")
-      .map((link) => link.textContent)
+		await user.selectOptions(filter, "forms")
+		const formsRegion = screen.getByRole("region", { name: /Forms/ })
+		const gridLinks = within(formsRegion)
+			.getAllByRole("link")
+			.map((link) => link.textContent)
 
-    await user.click(screen.getByRole("button", { name: "List view" }))
+		await user.click(screen.getByRole("button", { name: "List view" }))
 
-    expect(filter).toHaveValue("forms")
-    expect(screen.getByRole("button", { name: "List view" })).toHaveAttribute(
-      "aria-pressed",
-      "true"
-    )
-    expect(
-      within(formsRegion)
-        .getAllByRole("link")
-        .map((link) => link.textContent)
-    ).toEqual(gridLinks)
-    expect(within(formsRegion).getAllByText("1 files").length).toBeGreaterThan(
-      0
-    )
+		expect(filter).toHaveValue("forms")
+		expect(screen.getByRole("button", { name: "List view" })).toHaveAttribute(
+			"aria-pressed",
+			"true"
+		)
+		expect(
+			within(formsRegion)
+				.getAllByRole("link")
+				.map((link) => link.textContent)
+		).toEqual(gridLinks)
+		expect(within(formsRegion).getAllByText("1 files").length).toBeGreaterThan(
+			0
+		)
 
-    await user.click(screen.getByRole("button", { name: "Grid view" }))
-    expect(filter).toHaveValue("forms")
-    expect(screen.getByRole("button", { name: "Grid view" })).toHaveAttribute(
-      "aria-pressed",
-      "true"
-    )
-  })
+		await user.click(screen.getByRole("button", { name: "Grid view" }))
+		expect(filter).toHaveValue("forms")
+		expect(screen.getByRole("button", { name: "Grid view" })).toHaveAttribute(
+			"aria-pressed",
+			"true"
+		)
+	})
 
-  it("exposes a native selector and supports keyboard view controls", async () => {
-    const user = userEvent.setup()
-    render(<ComponentsCatalog entries={entries} labels={labels} />)
-    const filter = screen.getByRole("combobox", { name: "Filter by category" })
+	it("exposes a native selector and supports keyboard view controls", async () => {
+		const user = userEvent.setup()
+		render(<ComponentsCatalog entries={entries} labels={labels} />)
+		const filter = screen.getByRole("combobox", { name: "Filter by category" })
 
-    expect(filter.tagName).toBe("SELECT")
+		expect(filter.tagName).toBe("SELECT")
 
-    const listView = screen.getByRole("button", { name: "List view" })
-    listView.focus()
-    await user.keyboard("{Enter}")
-    expect(listView).toHaveAttribute("aria-pressed", "true")
-  })
+		const listView = screen.getByRole("button", { name: "List view" })
+		listView.focus()
+		await user.keyboard("{Enter}")
+		expect(listView).toHaveAttribute("aria-pressed", "true")
+	})
+
+	it("filters by name while preserving category and view state", async () => {
+		const user = userEvent.setup()
+		render(<ComponentsCatalog entries={entries} labels={labels} />)
+		const search = screen.getByRole("searchbox", { name: "Search components" })
+		const filter = screen.getByRole("combobox", { name: "Filter by category" })
+
+		await user.type(search, "BUTTON")
+		expect(screen.getAllByRole("link")).toHaveLength(4)
+		expect(
+			screen.queryByRole("link", { name: /^dialog/i })
+		).not.toBeInTheDocument()
+
+		await user.selectOptions(filter, "primitives")
+		await user.click(screen.getByRole("button", { name: "List view" }))
+
+		expect(search).toHaveValue("BUTTON")
+		expect(filter).toHaveValue("primitives")
+		expect(screen.getAllByRole("link")).toHaveLength(4)
+		expect(screen.getByRole("button", { name: "List view" })).toHaveAttribute(
+			"aria-pressed",
+			"true"
+		)
+	})
+
+	it("shows one empty state and supports clearing or resetting filters", async () => {
+		const user = userEvent.setup()
+		render(<ComponentsCatalog entries={entries} labels={labels} />)
+		const search = screen.getByRole("searchbox", { name: "Search components" })
+		const filter = screen.getByRole("combobox", { name: "Filter by category" })
+
+		await user.selectOptions(filter, "forms")
+		await user.type(search, "dialog")
+
+		expect(screen.getByText("No components found")).toBeInTheDocument()
+		expect(screen.queryByRole("region")).not.toBeInTheDocument()
+
+		await user.click(screen.getByRole("button", { name: "Clear search" }))
+		expect(search).toHaveValue("")
+		expect(filter).toHaveValue("forms")
+		expect(screen.getByRole("region", { name: /Forms/ })).toBeInTheDocument()
+
+		await user.type(search, "no-such-component")
+		await user.click(screen.getByRole("button", { name: "Reset filters" }))
+		expect(search).toHaveValue("")
+		expect(filter).toHaveValue("all")
+		expect(screen.getAllByRole("region")).toHaveLength(
+			componentCategories.length
+		)
+	})
 })

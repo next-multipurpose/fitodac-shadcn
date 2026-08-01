@@ -1,78 +1,82 @@
 {
-  "Metadata": {
-    "description": "Catálogo local de componentes de @fitodac/shadcn.",
-    "catalogTitle": "Componentes",
-    "componentFallbackTitle": "Componente"
-  },
-  "Header": {
-    "mainNavigation": "Navegación principal",
-    "components": "Componentes",
-    "language": "Idioma",
-    "selectLanguage": "Seleccionar idioma",
-    "theme": "Tema",
-    "cobalt": "Cobalt",
-    "default": "Default",
-    "selectTheme": "Seleccionar tema",
-    "switchToDarkTheme": "Cambiar al tema oscuro",
-    "switchToLightTheme": "Cambiar al tema claro"
-  },
-  "Home": {
-    "heading": "Componentes listos para tus aplicaciones.",
-    "description": "Explorá el catálogo, revisá las dependencias de cada entrada y encontrá sus archivos fuente.",
-    "componentsCta": "Ver componentes",
-    "entries": "Entradas",
-    "dependencies": "Dependencias"
-  },
-  "Catalog": {
-    "eyebrow": "Catálogo",
-    "heading": "Componentes",
-    "allCategories": "Todas las categorías",
-    "categoryFilter": "Filtrar por categoría",
-    "gridView": "Vista de cuadrícula",
-    "listView": "Vista de lista",
-    "summary": "{count, plural, one {# entrada disponible con sus dependencias y archivos declarados en el registry.} other {# entradas disponibles con sus dependencias y archivos declarados en el registry.}}",
-    "categories": {
-      "primitives": "Primitivos",
-      "forms": "Formularios",
-      "navigation": "Navegación",
-      "overlays": "Capas y menús",
-      "dataDisplay": "Visualización de datos",
-      "feedback": "Estados y feedback",
-      "layout": "Disposición",
-      "advanced": "Componentes avanzados",
-      "utilities": "Hooks y utilidades"
-    },
-    "files": "{count, plural, one {# archivo} other {# archivos}}",
-    "packages": "{count, plural, one {# paquete} other {# paquetes}}"
-  },
-  "ComponentDetail": {
-    "backToCatalog": "Volver al catálogo",
-    "files": "Archivos",
-    "dependencies": "Dependencias",
-    "registryDependencies": "Dependencias del registry",
-    "noPackages": "Este componente no declara paquetes adicionales.",
-    "noRegistryDependencies": "Este componente no depende de otras entradas."
-  },
-  "Demos": {
-    "heading": "Ejemplos",
-    "empty": "Todavía no hay ejemplos disponibles para este componente.",
-    "viewLabel": "Vista de {title}",
-    "preview": "Vista previa",
-    "code": "Código",
-    "copy": "Copiar",
-    "copied": "Copiado",
-    "copyFailed": "Error al copiar",
-    "copyPrompt": "Copiar prompt",
-    "promptCopied": "Prompt copiado",
-    "promptCopyFailed": "Error al copiar el prompt",
-    "copyIntegrationPrompt": "Copiar prompt de integración de {title}",
-    "exampleUsage": "Ejemplo de uso",
-    "copyExampleUsage": "Copiar ejemplo de uso de {title}",
-    "requiredFiles": "Archivos requeridos del componente",
-    "source": "Fuente",
-    "copyFile": "Copiar {path}",
-    "dependencies": "Dependencias",
-    "registryDependencies": "Dependencias del registry",
-    "none": "Ninguna."
-  }
+	"Metadata": {
+		"description": "Catálogo local de componentes de @fitodac/shadcn.",
+		"catalogTitle": "Componentes",
+		"componentFallbackTitle": "Componente"
+	},
+	"Header": {
+		"mainNavigation": "Navegación principal",
+		"components": "Componentes",
+		"language": "Idioma",
+		"selectLanguage": "Seleccionar idioma",
+		"theme": "Tema",
+		"cobalt": "Cobalt",
+		"default": "Default",
+		"selectTheme": "Seleccionar tema",
+		"switchToDarkTheme": "Cambiar al tema oscuro",
+		"switchToLightTheme": "Cambiar al tema claro"
+	},
+	"Home": {
+		"heading": "Componentes listos para tus aplicaciones.",
+		"description": "Explorá el catálogo, revisá las dependencias de cada entrada y encontrá sus archivos fuente.",
+		"componentsCta": "Ver componentes",
+		"entries": "Entradas",
+		"dependencies": "Dependencias"
+	},
+	"Catalog": {
+		"eyebrow": "Catálogo",
+		"heading": "Componentes",
+		"allCategories": "Todas las categorías",
+		"categoryFilter": "Filtrar por categoría",
+		"clearSearch": "Borrar búsqueda",
+		"gridView": "Vista de cuadrícula",
+		"listView": "Vista de lista",
+		"noComponentsFound": "No se encontraron componentes",
+		"resetFilters": "Restablecer filtros",
+		"searchComponents": "Buscar componentes",
+		"summary": "{count, plural, one {# entrada disponible con sus dependencias y archivos declarados en el registry.} other {# entradas disponibles con sus dependencias y archivos declarados en el registry.}}",
+		"categories": {
+			"primitives": "Primitivos",
+			"forms": "Formularios",
+			"navigation": "Navegación",
+			"overlays": "Capas y menús",
+			"dataDisplay": "Visualización de datos",
+			"feedback": "Estados y feedback",
+			"layout": "Disposición",
+			"advanced": "Componentes avanzados",
+			"utilities": "Hooks y utilidades"
+		},
+		"files": "{count, plural, one {# archivo} other {# archivos}}",
+		"packages": "{count, plural, one {# paquete} other {# paquetes}}"
+	},
+	"ComponentDetail": {
+		"backToCatalog": "Volver al catálogo",
+		"files": "Archivos",
+		"dependencies": "Dependencias",
+		"registryDependencies": "Dependencias del registry",
+		"noPackages": "Este componente no declara paquetes adicionales.",
+		"noRegistryDependencies": "Este componente no depende de otras entradas."
+	},
+	"Demos": {
+		"heading": "Ejemplos",
+		"empty": "Todavía no hay ejemplos disponibles para este componente.",
+		"viewLabel": "Vista de {title}",
+		"preview": "Vista previa",
+		"code": "Código",
+		"copy": "Copiar",
+		"copied": "Copiado",
+		"copyFailed": "Error al copiar",
+		"copyPrompt": "Copiar prompt",
+		"promptCopied": "Prompt copiado",
+		"promptCopyFailed": "Error al copiar el prompt",
+		"copyIntegrationPrompt": "Copiar prompt de integración de {title}",
+		"exampleUsage": "Ejemplo de uso",
+		"copyExampleUsage": "Copiar ejemplo de uso de {title}",
+		"requiredFiles": "Archivos requeridos del componente",
+		"source": "Fuente",
+		"copyFile": "Copiar {path}",
+		"dependencies": "Dependencias",
+		"registryDependencies": "Dependencias del registry",
+		"none": "Ninguna."
+	}
 }
