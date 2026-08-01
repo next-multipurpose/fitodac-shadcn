@@ -33,6 +33,7 @@ import { inputDemos } from "./input/registry"
 import { inputGroupDemos } from "./input-group/registry"
 import { inputNumericDemos } from "./input-numeric/registry"
 import { inputOtpDemos } from "./input-otp/registry"
+import { inputPhoneDemos } from "./input-phone/registry"
 
 export const demoRegistry: Record<string, DemoEntry[]> = {
   accordion: accordionDemos,
@@ -66,4 +67,5 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "input-group": inputGroupDemos,
   "input-numeric": inputNumericDemos,
   "input-otp": inputOtpDemos,
+  "input-phone": inputPhoneDemos,
 }
