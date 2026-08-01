@@ -1,6 +1,6 @@
 # 018 — Components catalog view modes and category filter
 
-Status: DRAFT
+Status: REVIEW
 Role: implementer
 UI Review: required
 Tooling policy: stop-with-blocker
@@ -509,14 +509,94 @@ Verify:
 
 ## Implementation report
 
-Pending.
+### Changes
+
+- Centralized the ordered catalog category metadata and strict registry-to-category validation in `src/lib/component-catalog.ts`.
+- Added `combobox` to Forms, correcting the existing mapping gap where the registry entry was counted in the page summary but not rendered in any category.
+- Kept registry loading, translations, and serializable entry preparation on the server page; added a focused client catalog shell for page-local category and Grid/List state.
+- Added a responsive native category selector, accessible Grid/List buttons, translated English/Spanish labels, and equivalent grid cards/list rows.
+
+### Tests / verification
+
+- Focused catalog and i18n tests: passed (9 tests).
+- Focused ESLint for changed TypeScript/TSX files: passed.
+- `pnpm lint`: passed.
+- `pnpm demos:registry:check`: passed through `./init.sh`.
+- `pnpm typecheck`: blocked by pre-existing unrelated errors in dropdown/input demos and event-calendar imports/schema; no reported error targets the files changed by this spec.
+- `pnpm test`: 121 passed, 1 pre-existing unrelated failure in `tests/demos/registry.test.ts` because its four-entry Badge expectation is stale against the current 21-entry Badge demo registry.
+- `./init.sh`: reached project checks and failed at the same unrelated repository-wide typecheck errors.
+- `pnpm build`: reached the optimized production build step but did not produce a conclusive completion result in the available execution window.
+- Browser/UI: pending UI reviewer. The in-app browser timed out loading the local dev page; project-local Chromium then failed to launch because the macOS sandbox denied its Mach port registration. No desktop/mobile screenshot evidence was produced.
+
+### Modified files
+
+- `src/app/components/page.tsx`
+- `src/components/components-catalog.tsx`
+- `src/lib/component-catalog.ts`
+- `tests/component-catalog.test.tsx`
+- `messages/en.json`
+- `messages/es.json`
+- `.ai/specs/018-components-catalog-view-category-filter.md`
+
+### Notes
+
+- Category and view state are not persisted and do not use URL state.
+- No dependency, `registry.json`, demo registry, detail page, or global style was changed.
+- Full automatic verification remains affected by unrelated existing repository failures listed above; visual verification remains required before approval.
 
 ## Technical review
 
-Pending.
+### Verification
+
+- init.sh: failed — stopped at the pre-existing unrelated repository-wide typecheck errors in `src/demos/dropdown-menu/*`, `src/demos/input/*`, `src/demos/input-group/*`, and `src/registry/components/event-calendar/*`; no error targets files changed by this spec
+- lint: passed
+- typecheck: failed — only pre-existing unrelated errors listed above; `src/app/components/page.tsx`, `src/components/components-catalog.tsx`, `src/lib/component-catalog.ts`, and `tests/component-catalog.test.tsx` report zero errors
+- test: 121 passed, 1 pre-existing unrelated failure in `tests/demos/registry.test.ts` (stale Badge demo registry expectation, untouched by this spec)
+- build: failed at the Next.js type-check phase on the same pre-existing demo type errors
+- focused `tests/component-catalog.test.tsx`: passed (6/6)
+- `pnpm demos:registry:check`: passed (through `./init.sh` before typecheck)
+
+### Review
+
+- Scope: passed — Grid/List switch, single-select category filter, centralized catalog module, server/client boundary, translated labels, and focused tests all implemented; the narrow `combobox` → Forms correction is a genuine mapping gap (registry item was counted in the page summary but not rendered) and is documented.
+- Architecture: passed — page stays a Server Component (loads `registry.json`, translations, prepares serializable entries); client shell owns only page-local category/view state. Reuses `NativeSelect` and `Button` primitives; no new dependency; `registry.json` and demo registries untouched; category mapping has one canonical source in `src/lib/component-catalog.ts`.
+- Code: passed — `prepareCatalogEntries` throws on duplicate keys, multiple/unknown assignments, unresolved or uncategorized entries (no silent ignores); Grid and List iterate the same filtered entries with identical `href`; state stays page-local; i18n keys added in EN and ES with English canonical.
+- Out-of-scope changes: no — diff limited to the catalog files, messages, and the spec.
+
+### Result
+
+- UI_REVIEW
+
+### Requested changes
+
+- None for technical/functional correctness. Visual QA remains pending (Grid vs List on desktop/mobile, toolbar responsiveness, overflow, EN/ES and Cobalt/Default/Light-Dark regression).
 
 ## Visual review
 
-Pending.
+### Reviewed surfaces
 
-UI reviewer must compare Grid and List on desktop/mobile and verify category filtering.
+- `/components` catalog page (Grid/List, category filter, toolbar)
+- Detail navigation to `/components/<name>`
+- Shared header (locale switcher, theme selector, light/dark toggler) on `/components`
+- EN and ES locales; Cobalt and Default UI themes; Light and Dark color modes
+
+### Checks
+
+Playwright 1.62.1 + Chromium on `http://localhost:3000` (existing dev server). Screenshots and audit scripts under `.ai/run/logs/ui-review-018/`.
+
+- Desktop (1440x900): passed — default Grid+All on fresh load; Forms filter reduces to one section; List switch keeps the filter and same entries; All restores all 9 sections; Grid and List render the same 74 links to the same `href`s.
+- Mobile (390x844): passed — Grid is single column; filter works; List rows become a single column with metadata stacking under the name (`meta display: flex` under `h3`); toolbar wraps with `flex-wrap` and remains fully usable; no horizontal overflow at any state.
+- Visual navigation: passed — every card/row is a full-area link to `/components/<name>`; navigating to a detail page works from both views.
+- Visible states: passed — view buttons expose active state via `variant` (secondary vs ghost) and `aria-pressed`; category selector reflects the active value; per-section counts reflect the filtered entries.
+- Consistency: passed — toolbar is a `rounded-xl border bg-card` surface matching the site card language; `NativeSelect` renders at `h-9 rounded-md` and the toggle buttons at `size-9`, consistent with the form-control and Button baselines; cards/rows reuse the same surface treatment as the home page cards.
+- i18n: passed — EN canonical; ES shows "Todas las categorías", "Filtrar por categoría", "Vista de cuadrícula", "Vista de lista", and category "Formularios"; ES filtering and List flow work with no errors.
+- Theme/color mode: passed — Cobalt (default) and Default switch correctly on the page (body background changes accordingly); Light/Dark toggle applies `dark` class with no layout change or overflow.
+- Browser errors: passed — 0 console errors and 0 page errors across all reviewed flows.
+
+### Result
+
+- REVIEW
+
+### Requested changes
+
+- None. Visual QA passed in browser; no visual issues found.

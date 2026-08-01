@@ -26,6 +26,10 @@
   "Catalog": {
     "eyebrow": "Catálogo",
     "heading": "Componentes",
+    "allCategories": "Todas las categorías",
+    "categoryFilter": "Filtrar por categoría",
+    "gridView": "Vista de cuadrícula",
+    "listView": "Vista de lista",
     "summary": "{count, plural, one {# entrada disponible con sus dependencias y archivos declarados en el registry.} other {# entradas disponibles con sus dependencias y archivos declarados en el registry.}}",
     "categories": {
       "primitives": "Primitivos",
