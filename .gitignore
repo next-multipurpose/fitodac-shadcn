@@ -20,7 +20,7 @@ pnpm-debug.log*
 !.env.sample
 !.env.template
 !.ai/run/**/.gitkeep
-.ai/run
+.ai/run/**/*.*
 .ai/run/graphify
 .ai/runtime/**
 .playwright-mcp
