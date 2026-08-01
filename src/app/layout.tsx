@@ -50,14 +50,21 @@ export default async function RootLayout({
                 Fitodac UI
               </Link>
               <div className="flex items-center gap-3">
-                <nav aria-label={t("mainNavigation")}>
-                  <Link
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    href="/components"
-                  >
-                    {t("components")}
-                  </Link>
-                </nav>
+              
+              <nav aria-label={t("mainNavigation")} className="lg:space-x-5">
+                <Link
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  href="/components"
+                >
+                  {t("components")}
+                </Link>
+                <Link
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  href="/layouts"
+                >
+                  {t("layouts")}
+                </Link>
+              </nav>
                 <LanguageSwitcher locale={locale} />
                 <ThemeSelector />
                 <AnimatedThemeToggler />

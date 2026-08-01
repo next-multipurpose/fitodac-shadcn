@@ -2,11 +2,13 @@
 	"Metadata": {
 		"description": "Local component catalog for @fitodac/shadcn.",
 		"catalogTitle": "Components",
-		"componentFallbackTitle": "Component"
+		"componentFallbackTitle": "Component",
+		"layoutsTitle": "Layouts"
 	},
 	"Header": {
 		"mainNavigation": "Main navigation",
 		"components": "Components",
+		"layouts": "Layouts",
 		"language": "Language",
 		"selectLanguage": "Select language",
 		"theme": "Theme",
@@ -56,6 +58,12 @@
 		"registryDependencies": "Registry dependencies",
 		"noPackages": "This component declares no additional packages.",
 		"noRegistryDependencies": "This component does not depend on other entries."
+	},
+	"Layouts": {
+		"eyebrow": "Layouts",
+		"heading": "Dashboard Layouts",
+		"summary": "{count, plural, one {# layout available to use as a starting point.} other {# layouts available to use as starting points.}}",
+		"viewLayout": "View layout"
 	},
 	"Demos": {
 		"heading": "Examples",

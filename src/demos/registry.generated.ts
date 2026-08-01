@@ -36,6 +36,8 @@ import { inputOtpDemos } from "./input-otp/registry"
 import { inputPhoneDemos } from "./input-phone/registry"
 import { inputTimeDemos } from "./input-time/registry"
 import { itemDemos } from "./item/registry"
+import { labelDemos } from "./label/registry"
+import { mapDemos } from "./map/registry"
 
 export const demoRegistry: Record<string, DemoEntry[]> = {
   accordion: accordionDemos,
@@ -72,4 +74,6 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "input-phone": inputPhoneDemos,
   "input-time": inputTimeDemos,
   item: itemDemos,
+  label: labelDemos,
+  map: mapDemos,
 }

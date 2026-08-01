@@ -2,11 +2,13 @@
 	"Metadata": {
 		"description": "Catálogo local de componentes de @fitodac/shadcn.",
 		"catalogTitle": "Componentes",
-		"componentFallbackTitle": "Componente"
+		"componentFallbackTitle": "Componente",
+		"layoutsTitle": "Diseños"
 	},
 	"Header": {
 		"mainNavigation": "Navegación principal",
 		"components": "Componentes",
+		"layouts": "Diseños",
 		"language": "Idioma",
 		"selectLanguage": "Seleccionar idioma",
 		"theme": "Tema",
@@ -56,6 +58,12 @@
 		"registryDependencies": "Dependencias del registry",
 		"noPackages": "Este componente no declara paquetes adicionales.",
 		"noRegistryDependencies": "Este componente no depende de otras entradas."
+	},
+	"Layouts": {
+		"eyebrow": "Diseños",
+		"heading": "Diseños de Dashboard",
+		"summary": "{count, plural, one {# diseño disponible para usar como punto de partida.} other {# diseños disponibles para usar como puntos de partida.}}",
+		"viewLayout": "Ver diseño"
 	},
 	"Demos": {
 		"heading": "Ejemplos",

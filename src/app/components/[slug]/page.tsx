@@ -53,7 +53,6 @@ export default async function ComponentDetailPage({ params }: PageProps) {
       </Link>
 
       <div className="mt-8 flex flex-col gap-3">
-        <p className="text-sm text-muted-foreground">{item.type}</p>
         <h1 className="text-4xl font-semibold tracking-tight">{item.name}</h1>
       </div>
 
