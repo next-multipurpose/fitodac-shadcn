@@ -26,7 +26,11 @@ export type CatalogEntry = {
 
 export type CatalogCategoryFilter = "all" | ComponentCategoryKey
 
-export const hiddenCatalogEntries = ["craft-button"] as const
+export const hiddenCatalogEntries = ["craft-button", "kbd", "ripple-button", "toggle-group", "date-selector", "field", "sidebar", "dialog", "chart", "sonner", "use-character-limit",
+			"use-file-upload",
+			"use-mobile",
+			"use-pagination",
+			"utils"] as const
 
 type RegistryItem = {
 	name: string
@@ -37,21 +41,18 @@ type RegistryItem = {
 }
 
 export const componentCategories: readonly ComponentCategory[] = [
-	{
-		key: "primitives",
-		items: [
-			"avatar",
-			"badge",
-			"button",
-			"button-group",
-			"item",
-			"kbd",
-			"ripple-button",
-			"separator",
-			"toggle",
-			"toggle-group",
-		],
-	},
+{
+			key: "primitives",
+			items: [
+				"avatar",
+				"badge",
+				"button",
+				"button-group",
+				"item",
+				"separator",
+				"toggle"
+			],
+		},
 	{
 		key: "forms",
 		items: [
@@ -60,8 +61,6 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"checkbox",
 			"combobox",
 			"date-picker",
-			"date-selector",
-			"field",
 			"file-upload",
 			"form",
 			"input",
@@ -88,7 +87,6 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"menubar",
 			"navigation-menu",
 			"pagination",
-			"sidebar",
 			"tabs",
 		],
 	},
@@ -98,7 +96,6 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"alert-dialog",
 			"command",
 			"context-menu",
-			"dialog",
 			"drawer",
 			"dropdown-menu",
 			"hover-card",
@@ -111,7 +108,6 @@ export const componentCategories: readonly ComponentCategory[] = [
 		key: "dataDisplay",
 		items: [
 			"card",
-			"chart",
 			"data-table",
 			"event-calendar",
 			"map",
@@ -127,7 +123,6 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"empty",
 			"progress",
 			"skeleton",
-			"sonner",
 			"spinner",
 			"toast",
 		],
@@ -143,17 +138,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"sortable",
 		],
 	},
-	{ key: "advanced", items: ["tiptap-editor"] },
-	{
-		key: "utilities",
-		items: [
-			"use-character-limit",
-			"use-file-upload",
-			"use-mobile",
-			"use-pagination",
-			"utils",
-		],
-	},
+	{ key: "advanced", items: ["tiptap-editor"] }
 ]
 
 export function filterCatalogEntries<T extends CatalogEntry>(

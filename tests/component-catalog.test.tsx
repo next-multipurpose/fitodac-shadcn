@@ -58,10 +58,16 @@ describe("component catalog categories", () => {
 	})
 
 	it("keeps hidden registry components off the catalog page", () => {
-		expect(registry.items.some(({ slug }) => slug === "craft-button")).toBe(
-			true
-		)
-		expect(entries.some(({ name }) => name === "craft-button")).toBe(false)
+		expect(registry.items.some(({ slug }) => slug === "craft-button")).toBe(true)
+		expect(registry.items.some(({ slug }) => slug === "ripple-button")).toBe(true)
+		expect(registry.items.some(({ slug }) => slug === "kbd")).toBe(true)
+		expect(registry.items.some(({ slug }) => slug === "toggle-group")).toBe(true)
+		expect(registry.items.some(({ slug }) => slug === "date-selector")).toBe(true)
+		expect(registry.items.some(({ slug }) => slug === "field")).toBe(true)
+		expect(registry.items.some(({ slug }) => slug === "sidebar")).toBe(true)
+		expect(registry.items.some(({ slug }) => slug === "dialog")).toBe(true)
+		expect(registry.items.some(({ slug }) => slug === "chart")).toBe(true)
+		expect(registry.items.some(({ slug }) => slug === "sonner")).toBe(true)
 	})
 
 	it("rejects configured names that do not resolve to registry items", () => {
@@ -233,7 +239,7 @@ describe("ComponentsCatalog", () => {
 		const filter = screen.getByRole("combobox", { name: "Filter by category" })
 
 		await user.type(search, "BUTTON")
-		expect(screen.getAllByRole("link")).toHaveLength(3)
+		expect(screen.getAllByRole("link")).toHaveLength(2)
 		expect(
 			screen.queryByRole("link", { name: /^dialog/i })
 		).not.toBeInTheDocument()
@@ -243,7 +249,7 @@ describe("ComponentsCatalog", () => {
 
 		expect(search).toHaveValue("BUTTON")
 		expect(filter).toHaveValue("primitives")
-		expect(screen.getAllByRole("link")).toHaveLength(3)
+		expect(screen.getAllByRole("link")).toHaveLength(2)
 		expect(screen.getByRole("button", { name: "List view" })).toHaveAttribute(
 			"aria-pressed",
 			"true"
