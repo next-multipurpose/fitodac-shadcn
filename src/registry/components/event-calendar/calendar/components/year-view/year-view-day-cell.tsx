@@ -3,7 +3,7 @@ import { isToday } from "date-fns"
 import { useCalendar } from "../../contexts/calendar-context"
 import { navigateTo } from "../../lib/navigation"
 
-import { cn } from "../../../../../../lib/utils"
+import { cn } from "@/lib/utils"
 
 import type { IEvent } from "../../interfaces"
 import type { TNavBar } from "../../types"

@@ -31,15 +31,15 @@ export default function DropdownMenuThemeSelectorDemo() {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="min-w-32">
           <DropdownMenuItem onClick={() => setTheme("light")}>
-            <SunIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <SunIcon aria-hidden="true" className="opacity-60 size-4" />
             <span>Light</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setTheme("dark")}>
-            <MoonIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <MoonIcon aria-hidden="true" className="opacity-60 size-4" />
             <span>Dark</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setTheme("system")}>
-            <MonitorIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <MonitorIcon aria-hidden="true" className="opacity-60 size-4" />
             <span>System</span>
           </DropdownMenuItem>
         </DropdownMenuContent>

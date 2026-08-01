@@ -38,6 +38,15 @@ import { inputTimeDemos } from "./input-time/registry"
 import { itemDemos } from "./item/registry"
 import { labelDemos } from "./label/registry"
 import { mapDemos } from "./map/registry"
+import { menubarDemos } from "./menubar/registry"
+import { nativeSelectDemos } from "./native-select/registry"
+import { navigationMenuDemos } from "./navigation-menu/registry"
+import { paginationDemos } from "./pagination/registry"
+import { popoverDemos } from "./popover/registry"
+import { progressDemos } from "./progress/registry"
+import { radioGroupDemos } from "./radio-group/registry"
+import { ratingDemos } from "./rating/registry"
+import { scrollAreaDemos } from "./scroll-area/registry"
 
 export const demoRegistry: Record<string, DemoEntry[]> = {
   accordion: accordionDemos,
@@ -76,4 +85,13 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   item: itemDemos,
   label: labelDemos,
   map: mapDemos,
+  menubar: menubarDemos,
+  "native-select": nativeSelectDemos,
+  "navigation-menu": navigationMenuDemos,
+  pagination: paginationDemos,
+  popover: popoverDemos,
+  progress: progressDemos,
+  "radio-group": radioGroupDemos,
+  rating: ratingDemos,
+  "scroll-area": scrollAreaDemos,
 }

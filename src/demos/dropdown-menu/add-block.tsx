@@ -36,7 +36,7 @@ export default function DropdownMenuAddBlockDemo() {
             aria-hidden="true"
             className="flex size-8 items-center justify-center rounded-md border bg-background"
           >
-            <TypeIcon className="opacity-60" className="size-4" />
+            <TypeIcon className="opacity-60 size-4" />
           </div>
           <div>
             <div className="font-medium text-sm">Text</div>
@@ -50,7 +50,7 @@ export default function DropdownMenuAddBlockDemo() {
             aria-hidden="true"
             className="flex size-8 items-center justify-center rounded-md border bg-background"
           >
-            <TextQuoteIcon className="opacity-60" className="size-4" />
+            <TextQuoteIcon className="opacity-60 size-4" />
           </div>
           <div>
             <div className="font-medium text-sm">Quote</div>
@@ -62,7 +62,7 @@ export default function DropdownMenuAddBlockDemo() {
             aria-hidden="true"
             className="flex size-8 items-center justify-center rounded-md border bg-background"
           >
-            <MinusIcon className="opacity-60" className="size-4" />
+            <MinusIcon className="opacity-60 size-4" />
           </div>
           <div>
             <div className="font-medium text-sm">Divider</div>
@@ -76,7 +76,7 @@ export default function DropdownMenuAddBlockDemo() {
             aria-hidden="true"
             className="flex size-8 items-center justify-center rounded-md border bg-background"
           >
-            <Heading1Icon className="opacity-60" className="size-4" />
+            <Heading1Icon className="opacity-60 size-4" />
           </div>
           <div>
             <div className="font-medium text-sm">Heading 1</div>
@@ -90,7 +90,7 @@ export default function DropdownMenuAddBlockDemo() {
             aria-hidden="true"
             className="flex size-8 items-center justify-center rounded-md border bg-background"
           >
-            <Heading2Icon className="opacity-60" className="size-4" />
+            <Heading2Icon className="opacity-60 size-4" />
           </div>
           <div>
             <div className="font-medium text-sm">Heading 2</div>

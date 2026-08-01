@@ -81,7 +81,7 @@ function MarkersLayer() {
       if (!event.features?.length) return
 
       const feature = event.features[0]
-      const coords = (feature.geometry as { coordinates: [number, number] }).coordinates
+      const coords = (feature.geometry as unknown as { coordinates: [number, number] }).coordinates
 
       setSelectedPoint({
         id: feature.properties?.id,

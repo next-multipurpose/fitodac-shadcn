@@ -14,24 +14,24 @@ export default function DropdownMenuIconsDemo() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
           Menu with icons
-          <ChevronDownIcon aria-hidden="true" className="-me-1 opacity-60" className="size-4" />
+          <ChevronDownIcon aria-hidden="true" className="-me-1 opacity-60 size-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem>
-          <CopyPlusIcon aria-hidden="true" className="opacity-60" className="size-4" />
+          <CopyPlusIcon aria-hidden="true" className="opacity-60 size-4" />
           Copy
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <BoltIcon aria-hidden="true" className="opacity-60" className="size-4" />
+          <BoltIcon aria-hidden="true" className="opacity-60 size-4" />
           Edit
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Layers2Icon aria-hidden="true" className="opacity-60" className="size-4" />
+          <Layers2Icon aria-hidden="true" className="opacity-60 size-4" />
           Group
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <FilesIcon aria-hidden="true" className="opacity-60" className="size-4" />
+          <FilesIcon aria-hidden="true" className="opacity-60 size-4" />
           Clone
         </DropdownMenuItem>
       </DropdownMenuContent>

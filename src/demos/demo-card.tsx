@@ -5,6 +5,11 @@ import { useTranslations } from "next-intl"
 
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { Button } from "@/registry/primitives/button"
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/registry/primitives/resizable"
 
 import { useDemoView } from "./demo-view-provider"
 import { generateIntegrationPrompt } from "./integration/generate-integration-prompt"
@@ -131,11 +136,20 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
       </div>
 
       {!isCodeOpen ? (
-        <div className="flex min-h-48 items-center justify-center p-6 sm:p-10">
-          {children}
-        </div>
+        <ResizablePanelGroup
+          className="min-h-0 w-full flex-1 pr-0"
+          orientation="horizontal"
+        >
+          <ResizablePanel className="min-w-0" defaultSize="100" minSize="30">
+            <div className="flex min-h-100 items-center justify-center p-6 sm:p-10">
+              {children}
+            </div>
+          </ResizablePanel>
+          <ResizableHandle withHandle className="w-4 bg-transparent hover:bg-foreground/3 transition-colors [&>div]:w-1.5 [&>div]:h-10" />
+          <ResizablePanel className="min-w-0" defaultSize="0" minSize="0" />
+        </ResizablePanelGroup>
       ) : (
-        <div className="flex min-w-0 flex-col gap-8 p-4 sm:p-6">
+        <div className="flex min-h-0 w-full min-w-0 flex-1 flex-col gap-8 overflow-auto p-4 sm:p-6">
           <section aria-labelledby={`${demoId}-usage`}>
             <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
               <h3 className="font-medium" id={`${demoId}-usage`}>

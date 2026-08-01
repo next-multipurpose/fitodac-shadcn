@@ -193,11 +193,7 @@ export function ComponentsCatalog({ entries, labels }: ComponentsCatalogProps) {
 										>
 											<div>
 												<h3 className="font-medium">{entry.name}</h3>
-												{view === "grid" ? (
-													<p className="mt-1 text-sm text-muted-foreground">
-														{entry.type}
-													</p>
-												) : null}
+												
 											</div>
 											{view === "list" ? (
 												<span className="text-sm text-muted-foreground">

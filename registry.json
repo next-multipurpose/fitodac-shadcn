@@ -656,13 +656,6 @@
       "registryDependencies": ["utils"]
     },
     {
-      "name": "select-native",
-      "type": "registry:ui",
-      "files": [{ "path": "src/registry/primitives/select-native.tsx", "type": "registry:ui" }],
-      "dependencies": ["lucide-react@^0.577.0"],
-      "registryDependencies": ["utils"]
-    },
-    {
       "name": "select",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/select.tsx", "type": "registry:ui" }],

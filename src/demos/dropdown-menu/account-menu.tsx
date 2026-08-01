@@ -34,8 +34,7 @@ export default function DropdownMenuAccountDemo() {
           </Avatar>
           <ChevronDownIcon
             aria-hidden="true"
-            className="opacity-60"
-            className="size-4"
+            className="opacity-60 size-4"
           />
         </Button>
       </DropdownMenuTrigger>
@@ -51,32 +50,32 @@ export default function DropdownMenuAccountDemo() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <BoltIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <BoltIcon aria-hidden="true" className="opacity-60 size-4" />
             <span>Option 1</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Layers2Icon aria-hidden="true" className="opacity-60" className="size-4" />
+            <Layers2Icon aria-hidden="true" className="opacity-60 size-4" />
             <span>Option 2</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <BookOpenIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <BookOpenIcon aria-hidden="true" className="opacity-60 size-4" />
             <span>Option 3</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <PinIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <PinIcon aria-hidden="true" className="opacity-60 size-4" />
             <span>Option 4</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <UserPenIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <UserPenIcon aria-hidden="true" className="opacity-60 size-4" />
             <span>Option 5</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOutIcon aria-hidden="true" className="opacity-60" className="size-4" />
+          <LogOutIcon aria-hidden="true" className="opacity-60 size-4" />
           <span>Logout</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

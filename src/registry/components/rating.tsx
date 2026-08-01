@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from "./lib/utils"
+import { cn } from "@/lib/utils"
 // import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 import { StarIcon } from "lucide-react"
 

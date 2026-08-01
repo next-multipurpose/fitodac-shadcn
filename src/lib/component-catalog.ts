@@ -72,7 +72,6 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"radio-group",
 			"rating",
 			"select",
-			"select-native",
 			"slider",
 			"stepper",
 			"switch",

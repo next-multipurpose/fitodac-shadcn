@@ -34,7 +34,7 @@ export default function DropdownMenuHelpDemo() {
           className="cursor-pointer py-1 focus:bg-transparent focus:underline"
         >
           <a href="#">
-            <BookIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <BookIcon aria-hidden="true" className="opacity-60 size-4" />
             Documentation
           </a>
         </DropdownMenuItem>
@@ -43,7 +43,7 @@ export default function DropdownMenuHelpDemo() {
           className="cursor-pointer py-1 focus:bg-transparent focus:underline"
         >
           <a href="#">
-            <LifeBuoyIcon aria-hidden="true" className="opacity-60" className="size-4" />
+            <LifeBuoyIcon aria-hidden="true" className="opacity-60 size-4" />
             Support
           </a>
         </DropdownMenuItem>
@@ -54,8 +54,7 @@ export default function DropdownMenuHelpDemo() {
           <a href="#">
             <MessageCircleMoreIcon
               aria-hidden="true"
-              className="opacity-60"
-              className="size-4"
+              className="opacity-60 size-4"
             />
             Contact us
           </a>

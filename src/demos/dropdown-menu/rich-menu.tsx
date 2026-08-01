@@ -23,8 +23,7 @@ export default function DropdownMenuRichDemo() {
           Rich menu
           <ChevronDownIcon
             aria-hidden="true"
-            className="-me-1 opacity-60"
-            className="size-4"
+            className="-me-1 opacity-60 size-4"
           />
         </Button>
       </DropdownMenuTrigger>

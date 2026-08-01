@@ -22,8 +22,7 @@ export default function DropdownMenuRadioItemsDemo() {
           Radio items
           <ChevronDownIcon
             aria-hidden="true"
-            className="-me-1 opacity-60"
-            className="size-4"
+            className="-me-1 opacity-60 size-4"
           />
         </Button>
       </DropdownMenuTrigger>

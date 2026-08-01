@@ -2,8 +2,8 @@ import { format } from "date-fns"
 
 import { useDisclosure } from "../hooks/use-disclosure"
 
-import { Button } from "../../../../primitives/button"
-import { Calendar } from "../../../../primitives/calendar"
+import { Button } from "@/registry/primitives/button"
+import { Calendar } from "@/registry/primitives/calendar"
 
 import {
   Popover,
@@ -11,7 +11,7 @@ import {
   PopoverTrigger,
 } from "../../../../primitives/popover"
 
-import { cn } from "../../../../../lib/utils"
+import { cn } from "@/lib/utils"
 
 import type { ButtonHTMLAttributes } from "react"
 
