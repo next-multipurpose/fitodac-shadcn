@@ -26,13 +26,13 @@ import { drawerDemos } from "./drawer/registry"
 import { dropdownMenuDemos } from "./dropdown-menu/registry"
 import { emptyDemos } from "./empty/registry"
 import { eventCalendarDemos } from "./event-calendar/registry"
+import { fileUploadDemos } from "./file-upload/registry"
 import { formDemos } from "./form/registry"
 import { hoverCardDemos } from "./hover-card/registry"
 import { inputDemos } from "./input/registry"
 import { inputGroupDemos } from "./input-group/registry"
 import { inputNumericDemos } from "./input-numeric/registry"
 import { inputOtpDemos } from "./input-otp/registry"
-import { useFileUploadDemos } from "./use-file-upload/registry"
 
 export const demoRegistry: Record<string, DemoEntry[]> = {
   accordion: accordionDemos,
@@ -59,11 +59,11 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "dropdown-menu": dropdownMenuDemos,
   empty: emptyDemos,
   "event-calendar": eventCalendarDemos,
+  "file-upload": fileUploadDemos,
   form: formDemos,
   "hover-card": hoverCardDemos,
   input: inputDemos,
   "input-group": inputGroupDemos,
   "input-numeric": inputNumericDemos,
   "input-otp": inputOtpDemos,
-  "use-file-upload": useFileUploadDemos,
 }

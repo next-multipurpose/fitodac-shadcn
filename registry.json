@@ -474,6 +474,17 @@
       "registryDependencies": ["label", "separator", "utils"]
     },
     {
+      "name": "file-upload",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/registry/components/file-upload.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": ["use-file-upload", "utils"]
+    },
+    {
       "name": "form",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/form.tsx", "type": "registry:ui" }],
