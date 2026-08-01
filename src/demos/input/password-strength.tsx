@@ -108,14 +108,12 @@ export default function InputPasswordStrengthDemo() {
 						{req.met ? (
 							<CheckIcon
 								aria-hidden="true"
-								className="text-emerald-500"
-								className="size-4"
+								className="text-emerald-500 size-4"
 							/>
 						) : (
 							<XIcon
 								aria-hidden="true"
-								className="text-muted-foreground/80"
-								className="size-4"
+								className="text-muted-foreground/80 size-4"
 							/>
 						)}
 						<span

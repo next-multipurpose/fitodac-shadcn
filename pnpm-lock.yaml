@@ -207,6 +207,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.7)
+      '@types/react-payment-inputs':
+        specifier: ^1.1.4
+        version: 1.1.4
       '@vitejs/plugin-react':
         specifier: ^5.1.4
         version: 5.2.0(vite@7.3.6(@types/node@25.9.5)(jiti@2.7.0)(lightningcss@1.32.0))
@@ -3121,6 +3124,9 @@ packages:
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
     peerDependencies:
       '@types/react': ^19.2.0
+
+  '@types/react-payment-inputs@1.1.4':
+    resolution: {integrity: sha512-r4QEcEljRveyV2qy3qxx7Sf6QFvI4rc3+7NZjqMb5MCT9Qrt6ZFvZL6XMjm8VsM4TlvFAFWUXgz8irrFPg0Nww==}
 
   '@types/react@19.2.7':
     resolution: {integrity: sha512-MWtvHrGZLFttgeEj28VXHxpmwYbor/ATPYbBfSFZEIRK0ecCFLl2Qo55z52Hss+UV9CRN7trSeq1zbgx7YDWWg==}
@@ -9608,6 +9614,10 @@ snapshots:
       undici-types: 7.24.6
 
   '@types/react-dom@19.2.3(@types/react@19.2.7)':
+    dependencies:
+      '@types/react': 19.2.7
+
+  '@types/react-payment-inputs@1.1.4':
     dependencies:
       '@types/react': 19.2.7
 

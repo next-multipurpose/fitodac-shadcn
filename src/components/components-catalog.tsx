@@ -192,7 +192,7 @@ export function ComponentsCatalog({ entries, labels }: ComponentsCatalogProps) {
 											href={entry.href}
 										>
 											<div>
-												<h3 className="font-medium">{entry.name}</h3>
+												<h3 className="font-medium">{entry.displayName}</h3>
 												
 											</div>
 											{view === "list" ? (

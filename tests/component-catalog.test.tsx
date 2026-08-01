@@ -67,6 +67,7 @@ describe("filterCatalogEntries", () => {
 	const controlledEntries = [
 		{
 			name: "button",
+			displayName: "Button",
 			type: "registry:ui",
 			category: "primitives" as const,
 			href: "/components/button",
@@ -76,6 +77,7 @@ describe("filterCatalogEntries", () => {
 		},
 		{
 			name: "dialog",
+			displayName: "Dialog",
 			type: "button",
 			category: "overlays" as const,
 			href: "/components/dialog",
@@ -86,6 +88,7 @@ describe("filterCatalogEntries", () => {
 		},
 		{
 			name: "button-group",
+			displayName: "Button Group",
 			type: "registry:ui",
 			category: "primitives" as const,
 			href: "/components/button-group",
@@ -173,9 +176,9 @@ describe("ComponentsCatalog", () => {
 
 		await user.selectOptions(filter, "forms")
 		const formsRegion = screen.getByRole("region", { name: /Forms/ })
-		const gridLinks = within(formsRegion)
+		const gridNames = within(formsRegion)
 			.getAllByRole("link")
-			.map((link) => link.textContent)
+			.map((link) => link.querySelector("h3")?.textContent)
 
 		await user.click(screen.getByRole("button", { name: "List view" }))
 
@@ -184,11 +187,10 @@ describe("ComponentsCatalog", () => {
 			"aria-pressed",
 			"true"
 		)
-		expect(
-			within(formsRegion)
-				.getAllByRole("link")
-				.map((link) => link.textContent)
-		).toEqual(gridLinks)
+		const listNames = within(formsRegion)
+			.getAllByRole("link")
+			.map((link) => link.querySelector("h3")?.textContent)
+		expect(listNames).toEqual(gridNames)
 		expect(within(formsRegion).getAllByText("1 files").length).toBeGreaterThan(
 			0
 		)

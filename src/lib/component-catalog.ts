@@ -16,6 +16,7 @@ export type ComponentCategory = {
 
 export type CatalogEntry = {
 	name: string
+	displayName: string
 	type: string
 	filesCount: number
 	packagesCount: number
@@ -134,7 +135,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 	{ key: "advanced", items: ["tiptap-editor"] },
 	{
 		key: "utilities",
-		items: ["use-character-limit", "use-file-upload", "use-mobile", "utils"],
+		items: ["use-character-limit", "use-file-upload", "use-mobile", "use-pagination", "utils"],
 	},
 ]
 
@@ -148,8 +149,16 @@ export function filterCatalogEntries<T extends CatalogEntry>(
 	return entries.filter(
 		(entry) =>
 			(category === "all" || entry.category === category) &&
-			entry.name.toLowerCase().includes(normalizedQuery)
+			(entry.name.toLowerCase().includes(normalizedQuery) ||
+				entry.displayName.toLowerCase().includes(normalizedQuery))
 	)
+}
+
+function slugToDisplayName(slug: string): string {
+	return slug
+		.split("-")
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(" ")
 }
 
 export function prepareCatalogEntries(
@@ -194,6 +203,7 @@ export function prepareCatalogEntries(
 	return items
 		.map((item) => ({
 			name: item.name,
+			displayName: slugToDisplayName(item.name),
 			type: item.type,
 			filesCount: item.files?.length ?? 0,
 			packagesCount: item.dependencies?.length ?? 0,

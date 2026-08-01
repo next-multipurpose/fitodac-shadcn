@@ -6,17 +6,20 @@
   "items": [
     {
       "name": "utils",
+      "slug": "utils",
       "type": "registry:lib",
       "files": [{ "path": "src/lib/utils.ts", "type": "registry:lib" }],
       "dependencies": ["clsx@^2.1.1", "tailwind-merge@^3.5.0"]
     },
     {
       "name": "use-mobile",
+      "slug": "use-mobile",
       "type": "registry:hook",
       "files": [{ "path": "src/hooks/use-mobile.ts", "type": "registry:hook" }]
     },
     {
       "name": "use-character-limit",
+      "slug": "use-character-limit",
       "type": "registry:hook",
       "files": [
         {
@@ -27,6 +30,7 @@
     },
     {
       "name": "use-file-upload",
+      "slug": "use-file-upload",
       "type": "registry:hook",
       "files": [
         {
@@ -36,7 +40,19 @@
       ]
     },
     {
+      "name": "use-pagination",
+      "slug": "use-pagination",
+      "type": "registry:hook",
+      "files": [
+        {
+          "path": "src/hooks/use-pagination.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "accordion",
+      "slug": "accordion",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/accordion.tsx", "type": "registry:ui" }],
       "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
@@ -44,6 +60,7 @@
     },
     {
       "name": "alert-dialog",
+      "slug": "alert-dialog",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/alert-dialog.tsx", "type": "registry:ui" }],
       "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
@@ -51,6 +68,7 @@
     },
     {
       "name": "alert",
+      "slug": "alert",
       "type": "registry:ui",
       "files": [
         {
@@ -63,6 +81,7 @@
     },
     {
       "name": "autocomplete",
+      "slug": "autocomplete",
       "type": "registry:ui",
       "files": [
         {
@@ -79,6 +98,7 @@
     },
     {
       "name": "avatar",
+      "slug": "avatar",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/avatar.tsx", "type": "registry:ui" }],
       "dependencies": ["radix-ui@^1.4.3"],
@@ -86,6 +106,7 @@
     },
     {
       "name": "badge",
+      "slug": "badge",
       "type": "registry:ui",
       "files": [
         {
@@ -101,6 +122,7 @@
     },
     {
       "name": "breadcrumb",
+      "slug": "breadcrumb",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/breadcrumb.tsx", "type": "registry:ui" }],
       "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
@@ -108,6 +130,7 @@
     },
     {
       "name": "button-group",
+      "slug": "button-group",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/button-group.tsx", "type": "registry:ui" }],
       "dependencies": ["class-variance-authority@^0.7.1", "radix-ui@^1.4.3"],
@@ -115,6 +138,7 @@
     },
     {
       "name": "button",
+      "slug": "button",
       "type": "registry:ui",
       "files": [
         {
@@ -127,6 +151,7 @@
     },
     {
       "name": "calendar",
+      "slug": "calendar",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/calendar.tsx", "type": "registry:ui" }],
       "dependencies": ["lucide-react@^0.577.0", "react-day-picker@^9.14.0"],
@@ -134,12 +159,14 @@
     },
     {
       "name": "card",
+      "slug": "card",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/card.tsx", "type": "registry:ui" }],
       "registryDependencies": ["utils"]
     },
     {
       "name": "carousel",
+      "slug": "carousel",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/carousel.tsx", "type": "registry:ui" }],
       "dependencies": ["embla-carousel-react@^8.6.0", "lucide-react@^0.577.0"],
@@ -147,6 +174,7 @@
     },
     {
       "name": "chart",
+      "slug": "chart",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/chart.tsx", "type": "registry:ui" }],
       "dependencies": ["recharts@^3.8.0"],
@@ -154,6 +182,7 @@
     },
     {
       "name": "checkbox",
+      "slug": "checkbox",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/checkbox.tsx", "type": "registry:ui" }],
       "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
@@ -161,12 +190,14 @@
     },
     {
       "name": "collapsible",
+      "slug": "collapsible",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/collapsible.tsx", "type": "registry:ui" }],
       "dependencies": ["radix-ui@^1.4.3"]
     },
     {
       "name": "combobox",
+      "slug": "combobox",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/command.tsx", "type": "registry:ui" }],
       "dependencies": ["cmdk@^1.1.1", "lucide-react@^0.577.0"],
@@ -174,6 +205,7 @@
     },
     {
       "name": "command",
+      "slug": "command",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/command.tsx", "type": "registry:ui" }],
       "dependencies": ["cmdk@^1.1.1", "lucide-react@^0.577.0"],
@@ -181,6 +213,7 @@
     },
     {
       "name": "context-menu",
+      "slug": "context-menu",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/primitives/context-menu.tsx", "type": "registry:ui" }],
       "dependencies": ["lucide-react@^0.577.0", "radix-ui@^1.4.3"],
@@ -188,6 +221,7 @@
     },
     {
       "name": "craft-button",
+      "slug": "craft-button",
       "type": "registry:ui",
       "files": [{ "path": "src/registry/components/craft-button.tsx", "type": "registry:ui" }],
       "dependencies": ["class-variance-authority@^0.7.1"],

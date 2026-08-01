@@ -69,6 +69,27 @@ function renderDemoCards() {
 }
 
 describe("DemoCard coordination", () => {
+  it("uses a configurable preview minimum height", () => {
+    render(
+      <NextIntlClientProvider locale="en" messages={messages}>
+        <DemoViewProvider>
+          <DemoCard
+            bundle={createBundle("DemoA")}
+            demoId="demo-a"
+            previewMinHeight={640}
+            title="Demo A"
+          >
+            <div>Preview A</div>
+          </DemoCard>
+        </DemoViewProvider>
+      </NextIntlClientProvider>
+    )
+
+    expect(screen.getByText("Preview A").parentElement).toHaveStyle({
+      minHeight: "640px",
+    })
+  })
+
   it("scrolls the opened Code card to the top after its view renders", async () => {
     const user = userEvent.setup()
     const { cardA, cardAElement, cardB } = renderDemoCards()
