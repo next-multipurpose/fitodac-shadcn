@@ -17,6 +17,7 @@ export async function ComponentDemo({ demo }: ComponentDemoProps) {
     <DemoCard
       bundle={bundle}
       demoId={`demo-${demo.componentSlug}-${demo.name}`}
+      previewMinHeight={demo.previewMinHeight}
       title={demo.title}
     >
       <Demo />

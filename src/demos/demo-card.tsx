@@ -54,10 +54,17 @@ type DemoCardProps = {
   bundle: DemoIntegrationBundle
   children: React.ReactNode
   demoId: string
+  previewMinHeight?: React.CSSProperties["minHeight"]
   title: string
 }
 
-export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
+export function DemoCard({
+  bundle,
+  children,
+  demoId,
+  previewMinHeight = 400,
+  title,
+}: DemoCardProps) {
   const t = useTranslations("Demos")
   const { closeCode, openCode, openCodeDemoId } = useDemoView()
   const isCodeOpen = openCodeDemoId === demoId
@@ -88,7 +95,7 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
       ref={cardRef}
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-6 sm:py-4">
-        <h2 className="text-lg font-medium" id={demoId}>
+        <h2 className="text-sm font-semibold" id={demoId}>
           {title}
         </h2>
         <div className="flex flex-wrap items-center justify-end gap-2">
@@ -141,7 +148,10 @@ export function DemoCard({ bundle, children, demoId, title }: DemoCardProps) {
           orientation="horizontal"
         >
           <ResizablePanel className="min-w-0" defaultSize="100" minSize="30">
-            <div className="flex min-h-100 items-center justify-center p-6 sm:p-10">
+            <div
+              className="flex items-center justify-center p-6 sm:p-10"
+              style={{ minHeight: previewMinHeight }}
+            >
               {children}
             </div>
           </ResizablePanel>
