@@ -63,6 +63,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"form",
 			"input",
 			"input-group",
+			"input-numeric",
 			"input-otp",
 			"input-phone",
 			"input-time",
