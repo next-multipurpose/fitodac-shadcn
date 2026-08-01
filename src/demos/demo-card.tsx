@@ -91,7 +91,7 @@ export function DemoCard({
   return (
     <section
       aria-labelledby={demoId}
-      className="min-w-0 scroll-mt-20 overflow-hidden rounded-xl border border-border bg-card"
+      className="min-w-0 scroll-mt-20 rounded-xl border border-border bg-card"
       ref={cardRef}
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-6 sm:py-4">
@@ -144,7 +144,7 @@ export function DemoCard({
 
       {!isCodeOpen ? (
         <ResizablePanelGroup
-          className="min-h-0 w-full flex-1 pr-0"
+          className="min-h-0 w-full flex-1 overflow-visible!"
           orientation="horizontal"
         >
           <ResizablePanel className="min-w-0" defaultSize="100" minSize="30">
@@ -155,7 +155,7 @@ export function DemoCard({
               {children}
             </div>
           </ResizablePanel>
-          <ResizableHandle withHandle className="w-4 bg-transparent hover:bg-foreground/3 transition-colors [&>div]:w-1.5 [&>div]:h-10" />
+          <ResizableHandle withHandle className="w-4 bg-transparent transition-colors translate-x-4 [&>div]:w-1.5 [&>div]:h-10" />
           <ResizablePanel className="min-w-0" defaultSize="0" minSize="0" />
         </ResizablePanelGroup>
       ) : (

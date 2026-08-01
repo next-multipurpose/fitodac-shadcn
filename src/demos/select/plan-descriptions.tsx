@@ -1,0 +1,54 @@
+"use client"
+
+import { useId } from "react"
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/registry/primitives/select"
+
+export default function SelectPlanDescriptionsDemo() {
+  const id = useId()
+
+  return (
+    <div className="w-full max-w-xs">
+      <Select defaultValue="2">
+        <SelectTrigger className="w-full **:data-desc:hidden" id={id}>
+          <SelectValue placeholder="Choose a plan" />
+        </SelectTrigger>
+        <SelectContent className="[&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2">
+          <SelectItem value="1">
+            Standard Plan
+            <span
+              className="mt-1 block text-xs text-muted-foreground"
+              data-desc
+            >
+              Ideal for individuals
+            </span>
+          </SelectItem>
+          <SelectItem value="2">
+            Pro Plan
+            <span
+              className="mt-1 block text-xs text-muted-foreground"
+              data-desc
+            >
+              For professional users
+            </span>
+          </SelectItem>
+          <SelectItem value="3">
+            Enterprise Plan
+            <span
+              className="mt-1 block text-xs text-muted-foreground"
+              data-desc
+            >
+              Built for large teams
+            </span>
+          </SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  )
+}

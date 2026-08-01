@@ -47,6 +47,24 @@ import { progressDemos } from "./progress/registry"
 import { radioGroupDemos } from "./radio-group/registry"
 import { ratingDemos } from "./rating/registry"
 import { scrollAreaDemos } from "./scroll-area/registry"
+import { selectDemos } from "./select/registry"
+import { separatorDemos } from "./separator/registry"
+import { sheetDemos } from "./sheet/registry"
+import { skeletonDemos } from "./skeleton/registry"
+import { sliderDemos } from "./slider/registry"
+import { sortableDemos } from "./sortable/registry"
+import { spinnerDemos } from "./spinner/registry"
+import { statsDemos } from "./stats/registry"
+import { stepperDemos } from "./stepper/registry"
+import { switchDemos } from "./switch/registry"
+import { tableDemos } from "./table/registry"
+import { tabsDemos } from "./tabs/registry"
+import { textareaDemos } from "./textarea/registry"
+import { timelineDemos } from "./timeline/registry"
+import { tiptapEditorDemos } from "./tiptap-editor/registry"
+import { toastDemos } from "./toast/registry"
+import { toggleDemos } from "./toggle/registry"
+import { tooltipDemos } from "./tooltip/registry"
 
 export const demoRegistry: Record<string, DemoEntry[]> = {
   accordion: accordionDemos,
@@ -94,4 +112,22 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "radio-group": radioGroupDemos,
   rating: ratingDemos,
   "scroll-area": scrollAreaDemos,
+  select: selectDemos,
+  separator: separatorDemos,
+  sheet: sheetDemos,
+  skeleton: skeletonDemos,
+  slider: sliderDemos,
+  sortable: sortableDemos,
+  spinner: spinnerDemos,
+  stats: statsDemos,
+  stepper: stepperDemos,
+  switch: switchDemos,
+  table: tableDemos,
+  tabs: tabsDemos,
+  textarea: textareaDemos,
+  timeline: timelineDemos,
+  "tiptap-editor": tiptapEditorDemos,
+  toast: toastDemos,
+  toggle: toggleDemos,
+  tooltip: tooltipDemos,
 }

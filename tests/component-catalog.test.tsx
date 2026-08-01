@@ -6,6 +6,7 @@ import registry from "../registry.json"
 import {
 	componentCategories,
 	filterCatalogEntries,
+	hiddenCatalogEntries,
 	prepareCatalogEntries,
 } from "@/lib/component-catalog"
 import {
@@ -42,22 +43,31 @@ const entries = prepareCatalogEntries(registry.items).map((entry) => ({
 }))
 
 describe("component catalog categories", () => {
-	it("uses unique category keys and assigns every registry item exactly once", () => {
+	it("uses unique category keys and assigns every visible registry item exactly once", () => {
 		const keys = componentCategories.map(({ key }) => key)
 		const names = componentCategories.flatMap(({ items }) => items)
+		const hiddenNames = new Set<string>(hiddenCatalogEntries)
+		const visibleRegistrySlugs = registry.items
+			.map(({ slug }) => slug)
+			.filter((slug) => !hiddenNames.has(slug))
 
 		expect(new Set(keys).size).toBe(keys.length)
 		expect(new Set(names).size).toBe(names.length)
-		expect([...names].sort()).toEqual(
-			registry.items.map(({ name }) => name).sort()
+		expect([...names].sort()).toEqual(visibleRegistrySlugs.sort())
+		expect(entries).toHaveLength(visibleRegistrySlugs.length)
+	})
+
+	it("keeps hidden registry components off the catalog page", () => {
+		expect(registry.items.some(({ slug }) => slug === "craft-button")).toBe(
+			true
 		)
-		expect(entries).toHaveLength(registry.items.length)
+		expect(entries.some(({ name }) => name === "craft-button")).toBe(false)
 	})
 
 	it("rejects configured names that do not resolve to registry items", () => {
 		expect(() =>
 			prepareCatalogEntries(
-				registry.items.filter(({ name }) => name !== "button")
+				registry.items.filter(({ slug }) => slug !== "button")
 			)
 		).toThrow(/button/)
 	})
@@ -223,7 +233,7 @@ describe("ComponentsCatalog", () => {
 		const filter = screen.getByRole("combobox", { name: "Filter by category" })
 
 		await user.type(search, "BUTTON")
-		expect(screen.getAllByRole("link")).toHaveLength(4)
+		expect(screen.getAllByRole("link")).toHaveLength(3)
 		expect(
 			screen.queryByRole("link", { name: /^dialog/i })
 		).not.toBeInTheDocument()
@@ -233,7 +243,7 @@ describe("ComponentsCatalog", () => {
 
 		expect(search).toHaveValue("BUTTON")
 		expect(filter).toHaveValue("primitives")
-		expect(screen.getAllByRole("link")).toHaveLength(4)
+		expect(screen.getAllByRole("link")).toHaveLength(3)
 		expect(screen.getByRole("button", { name: "List view" })).toHaveAttribute(
 			"aria-pressed",
 			"true"

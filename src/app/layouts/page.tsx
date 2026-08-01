@@ -1,17 +1,20 @@
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import Link from "next/link"
-
 import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/registry/primitives/card"
+	LayoutDashboardIcon,
+	LayoutGridIcon,
+	LayoutListIcon,
+	LayoutPanelLeftIcon,
+	SettingsIcon,
+} from "lucide-react"
+
 import { Button } from "@/registry/primitives/button"
-import { LayoutDashboardIcon, LayoutGridIcon, LayoutListIcon, LayoutPanelLeftIcon, SettingsIcon } from "lucide-react"
+import {
+	ResizableHandle,
+	ResizablePanel,
+	ResizablePanelGroup,
+} from "@/registry/primitives/resizable"
 
 export async function generateMetadata(): Promise<Metadata> {
 	const t = await getTranslations("Metadata")
@@ -20,37 +23,51 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const layouts = [
 	{
+		id: "app-shell-layout-01",
+		name: "App Shell Layout",
+		description:
+			"A responsive application shell with a collapsible sidebar, header, breadcrumbs, and content area.",
+		icon: LayoutPanelLeftIcon,
+		href: "/layouts/app-shell-layout-01",
+		preview: "/layouts/app-shell-layout-01",
+	},
+	{
 		id: "dashboard-default",
 		name: "Default Dashboard",
-		description: "A classic dashboard layout with sidebar navigation, header, and main content area.",
+		description:
+			"A classic dashboard layout with sidebar navigation, header, and main content area.",
 		icon: LayoutDashboardIcon,
 		href: "/layouts/dashboard-default",
 	},
 	{
 		id: "dashboard-analytics",
 		name: "Analytics Dashboard",
-		description: "Data-focused layout with charts, metrics cards, and detailed reports section.",
+		description:
+			"Data-focused layout with charts, metrics cards, and detailed reports section.",
 		icon: LayoutGridIcon,
 		href: "/layouts/dashboard-analytics",
 	},
 	{
 		id: "dashboard-project",
 		name: "Project Management",
-		description: "Kanban boards, task lists, and project overview with sidebar navigation.",
+		description:
+			"Kanban boards, task lists, and project overview with sidebar navigation.",
 		icon: LayoutListIcon,
 		href: "/layouts/dashboard-project",
 	},
 	{
 		id: "dashboard-settings",
 		name: "Settings Panel",
-		description: "Configuration layout with categorized settings, tabs, and preview pane.",
+		description:
+			"Configuration layout with categorized settings, tabs, and preview pane.",
 		icon: SettingsIcon,
 		href: "/layouts/dashboard-settings",
 	},
 	{
 		id: "dashboard-sidebar",
 		name: "Collapsible Sidebar",
-		description: "Responsive layout with collapsible sidebar, mobile drawer, and top navigation.",
+		description:
+			"Responsive layout with collapsible sidebar, mobile drawer, and top navigation.",
 		icon: LayoutPanelLeftIcon,
 		href: "/layouts/dashboard-sidebar",
 	},
@@ -77,25 +94,57 @@ export default async function LayoutsPage() {
 				{layouts.map((layout) => {
 					const Icon = layout.icon
 					return (
-						<Card key={layout.id} className="w-full">
-							<CardHeader className="flex flex-row items-start justify-between gap-4 p-6">
-								<div className="flex flex-1 flex-col gap-3">
+						<section
+							aria-labelledby={layout.id}
+							key={layout.id}
+							className="min-w-0 rounded-xl border border-border bg-card"
+						>
+							<div className="flex flex-wrap items-start justify-between gap-3 border-b border-border px-4 py-3 sm:px-6 sm:py-4">
+								<div className="flex min-w-0 flex-1 flex-col gap-2">
 									<div className="flex items-center gap-3">
-										<Icon className="size-6 text-primary" aria-hidden="true" />
-										<CardTitle className="text-xl">{layout.name}</CardTitle>
+										<Icon
+											className="size-5 text-muted-foreground"
+											aria-hidden="true"
+										/>
+										<h2 className="text-sm font-semibold" id={layout.id}>
+											{layout.name}
+										</h2>
 									</div>
-									<CardDescription className="text-base">{layout.description}</CardDescription>
+									<p className="text-sm text-muted-foreground">
+										{layout.description}
+									</p>
 								</div>
-							</CardHeader>
-							<CardContent />
-							<CardFooter className="flex-row p-6">
-								<Button asChild variant="outline">
-									<Link href={layout.href}>
-										{t("viewLayout")}
-									</Link>
+								<Button asChild size="sm" variant="outline">
+									<Link href={layout.href}>{t("viewLayout")}</Link>
 								</Button>
-							</CardFooter>
-						</Card>
+							</div>
+							{layout.preview ? (
+								<ResizablePanelGroup
+									className="min-h-0 w-full flex-1 overflow-visible!"
+									orientation="horizontal"
+								>
+									<ResizablePanel
+										className="min-w-0"
+										defaultSize="100"
+										minSize="40"
+									>
+										<div className="flex h-[32rem] items-center justify-center p-6 sm:p-10">
+											<iframe
+												src={layout.preview}
+												title={`${layout.name} preview`}
+												className="size-full rounded-lg border border-border bg-background"
+											/>
+										</div>
+									</ResizablePanel>
+									<ResizableHandle withHandle className="w-4 bg-transparent transition-colors translate-x-4 [&>div]:w-1.5 [&>div]:h-10" />
+									<ResizablePanel
+										className="min-w-0"
+										defaultSize="0"
+										minSize="0"
+									/>
+								</ResizablePanelGroup>
+							) : null}
+						</section>
 					)
 				})}
 			</div>

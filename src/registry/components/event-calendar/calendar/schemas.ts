@@ -5,19 +5,19 @@ export const eventSchema = z
     user: z.string(),
     title: z.string().min(1, "Title is required"),
     description: z.string().min(1, "Description is required"),
-    startDate: z.date({ required_error: "Start date is required" }),
+    startDate: z.date(),
     startTime: z.object(
       { hour: z.number(), minute: z.number() },
-      { required_error: "Start time is required" }
+      { message: "Start time is required" }
     ),
-    endDate: z.date({ required_error: "End date is required" }),
+    endDate: z.date(),
     endTime: z.object(
       { hour: z.number(), minute: z.number() },
-      { required_error: "End time is required" }
+      { message: "End time is required" }
     ),
     color: z.enum(
       ["blue", "green", "red", "yellow", "purple", "orange", "gray"],
-      { required_error: "Color is required" }
+      { message: "Color is required" }
     ),
   })
   .refine(

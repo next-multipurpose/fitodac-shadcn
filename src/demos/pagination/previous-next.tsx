@@ -4,8 +4,8 @@ import { Button } from "@/registry/primitives/button"
 import { Pagination, PaginationContent, PaginationItem } from "@/registry/primitives/pagination"
 
 export default function PaginationPreviousNextDemo() {
-  const currentPage = 1
-  const totalPages = 10
+  const currentPage: number = 1
+  const totalPages: number = 10
   return (
     <Pagination>
       <PaginationContent className="w-full justify-between gap-3">

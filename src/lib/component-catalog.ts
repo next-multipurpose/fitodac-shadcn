@@ -26,8 +26,11 @@ export type CatalogEntry = {
 
 export type CatalogCategoryFilter = "all" | ComponentCategoryKey
 
+export const hiddenCatalogEntries = ["craft-button"] as const
+
 type RegistryItem = {
 	name: string
+	slug: string
 	type: string
 	files?: readonly unknown[]
 	dependencies?: readonly string[]
@@ -41,7 +44,6 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"badge",
 			"button",
 			"button-group",
-			"craft-button",
 			"item",
 			"kbd",
 			"ripple-button",
@@ -113,13 +115,22 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"data-table",
 			"event-calendar",
 			"map",
+			"stats",
 			"table",
 			"timeline",
 		],
 	},
 	{
 		key: "feedback",
-		items: ["alert", "empty", "progress", "skeleton", "sonner", "spinner"],
+		items: [
+			"alert",
+			"empty",
+			"progress",
+			"skeleton",
+			"sonner",
+			"spinner",
+			"toast",
+		],
 	},
 	{
 		key: "layout",
@@ -135,7 +146,13 @@ export const componentCategories: readonly ComponentCategory[] = [
 	{ key: "advanced", items: ["tiptap-editor"] },
 	{
 		key: "utilities",
-		items: ["use-character-limit", "use-file-upload", "use-mobile", "use-pagination", "utils"],
+		items: [
+			"use-character-limit",
+			"use-file-upload",
+			"use-mobile",
+			"use-pagination",
+			"utils",
+		],
 	},
 ]
 
@@ -154,16 +171,11 @@ export function filterCatalogEntries<T extends CatalogEntry>(
 	)
 }
 
-function slugToDisplayName(slug: string): string {
-	return slug
-		.split("-")
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(" ")
-}
-
 export function prepareCatalogEntries(
 	items: readonly RegistryItem[]
 ): CatalogEntry[] {
+	const hiddenNames = new Set<string>(hiddenCatalogEntries)
+	const visibleItems = items.filter(({ slug }) => !hiddenNames.has(slug))
 	const categoryByName = new Map<string, ComponentCategoryKey>()
 	const categoryKeys = new Set<ComponentCategoryKey>()
 
@@ -181,9 +193,9 @@ export function prepareCatalogEntries(
 		}
 	}
 
-	const itemsByName = new Map(items.map((item) => [item.name, item]))
+	const itemsBySlug = new Map(items.map((item) => [item.slug, item]))
 	const unknownNames = [...categoryByName.keys()].filter(
-		(name) => !itemsByName.has(name)
+		(name) => !itemsBySlug.has(name)
 	)
 	if (unknownNames.length > 0) {
 		throw new Error(
@@ -191,24 +203,24 @@ export function prepareCatalogEntries(
 		)
 	}
 
-	const uncategorizedNames = items
-		.filter(({ name }) => !categoryByName.has(name))
-		.map(({ name }) => name)
+	const uncategorizedNames = visibleItems
+		.filter(({ slug }) => !categoryByName.has(slug))
+		.map(({ slug }) => slug)
 	if (uncategorizedNames.length > 0) {
 		throw new Error(
 			`Uncategorized catalog component entries: ${uncategorizedNames.join(", ")}`
 		)
 	}
 
-	return items
+	return visibleItems
 		.map((item) => ({
-			name: item.name,
-			displayName: slugToDisplayName(item.name),
+			name: item.slug,
+			displayName: item.name,
 			type: item.type,
 			filesCount: item.files?.length ?? 0,
 			packagesCount: item.dependencies?.length ?? 0,
-			category: categoryByName.get(item.name)!,
-			href: `/components/${item.name}`,
+			category: categoryByName.get(item.slug)!,
+			href: `/components/${item.slug}`,
 		}))
 		.sort((left, right) => left.name.localeCompare(right.name))
 }

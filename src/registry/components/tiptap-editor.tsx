@@ -114,8 +114,8 @@ import "reactjs-tiptap-editor/style.css"
 
 import { EditorContent, useEditor } from "@tiptap/react"
 import { CharacterCount } from "@tiptap/extensions"
-import { Count } from "./components/Editor/extension/Count"
-import { EMOJI_LIST } from "./components/Editor/emojis"
+import { Count } from "./tiptap/extension/Count"
+import { EMOJI_LIST } from "./tiptap/emojis"
 
 // create a lowlight instance with all languages loaded
 const lowlight = createLowlight()
