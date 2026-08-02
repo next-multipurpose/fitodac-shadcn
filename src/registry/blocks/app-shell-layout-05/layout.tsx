@@ -711,7 +711,7 @@ function AppSidebar() {
 					<div className="flex min-h-10 items-center gap-2 px-0.5">
 						<BrandMark />
 						<span className="text-sm font-medium text-zinc-100 group-data-[collapsible=icon]:hidden">
-							ReUI
+							Acme Inc.
 						</span>
 					</div>
 					<div className="group-data-[collapsible=icon]:hidden">

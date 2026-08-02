@@ -573,7 +573,7 @@ function ProfileMenu() {
 						<span className="flex min-w-0 flex-col">
 							<span className="font-semibold">Nick Bold</span>
 							<span className="truncate text-xs text-muted-foreground">
-								nick@reui.io
+								nick@acmeinc.com
 							</span>
 						</span>
 					</span>
