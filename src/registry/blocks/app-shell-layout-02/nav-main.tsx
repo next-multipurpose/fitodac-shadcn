@@ -3,7 +3,7 @@
 import { useState } from "react"
 import {
 	BarChart3Icon,
-	ChevronDownIcon,
+	ChevronRightIcon,
 	CreditCardIcon,
 	LayoutGridIcon,
 	LifeBuoyIcon,
@@ -27,7 +27,7 @@ const navigation = [
 	{
 		title: "Overview",
 		icon: LayoutGridIcon,
-		active: true,
+		active: false,
 	},
 	{
 		title: "Customers",
@@ -88,15 +88,17 @@ export function NavMain() {
 								<Icon />
 								<span>{item.title}</span>
 								{item.items ? (
-									<ChevronDownIcon
+									<ChevronRightIcon
 										className={cn(
-											"ml-auto transition-transform group-data-[collapsible=icon]:hidden",
-											!isOpen && "-rotate-90"
+											"ml-auto size-4 shrink-0 opacity-60 transition-transform duration-200 group-data-[collapsible=icon]:hidden",
+											isOpen && "rotate-90"
 										)}
 									/>
 								) : null}
 								{item.status ? (
-									<span className="ml-auto size-2 rounded-full bg-emerald-500 ring-4 ring-emerald-500/10 group-data-[collapsible=icon]:hidden" />
+									<div className="ml-auto flex items-center group-data-[collapsible=icon]:hidden">
+										<div className="relative mr-1 size-1.5 rounded-full bg-emerald-500 before:absolute before:inset-0 before:animate-ping before:rounded-full before:bg-emerald-400 before:opacity-80 before:duration-1500 after:absolute after:inset-0 after:animate-ping after:rounded-full after:bg-emerald-400 after:opacity-40 after:delay-500 after:duration-1500" />
+									</div>
 								) : null}
 							</SidebarMenuButton>
 
@@ -110,7 +112,7 @@ export function NavMain() {
 												}
 												className={cn(
 													subItem === "Accounts" &&
-														"border bg-background shadow-xs"
+														"bg-sidebar-accent font-medium"
 												)}
 												href="#"
 												isActive={subItem === "Accounts"}

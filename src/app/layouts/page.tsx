@@ -41,6 +41,15 @@ const layouts = [
 		preview: "/layouts/app-shell-layout-02",
 	},
 	{
+		id: "app-shell-layout-03",
+		name: "Workspace App Shell",
+		description:
+			"A ReUI-inspired workspace shell with project navigation, search, notifications, and account controls.",
+		icon: LayoutPanelLeftIcon,
+		href: "/layouts/app-shell-layout-03",
+		preview: "/layouts/app-shell-layout-03",
+	},
+	{
 		id: "dashboard-analytics",
 		name: "Analytics Dashboard",
 		description:
@@ -119,7 +128,6 @@ export default async function LayoutsPage() {
 									<Link href={layout.href} target="_blank">{t("viewLayout")}</Link>
 								</Button>
 							</div>
-							
 							{layout.preview ? (
 								<ResizablePanelGroup
 									className="min-h-0 w-full flex-1 overflow-visible!"

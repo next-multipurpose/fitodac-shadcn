@@ -15,7 +15,6 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-	DialogTrigger,
 } from "@/registry/primitives/dialog"
 import { Input } from "@/registry/primitives/input"
 import {
@@ -63,19 +62,18 @@ export function SearchDialog() {
 		<Dialog open={open} onOpenChange={setOpen}>
 			<SidebarMenu>
 				<SidebarMenuItem>
-					<DialogTrigger asChild>
-						<SidebarMenuButton
-							variant="outline"
-							className="bg-background shadow-xs"
-							tooltip="Search"
-						>
-							<SearchIcon />
-							<span>Search...</span>
-							<Kbd className="ml-auto group-data-[collapsible=icon]:hidden">
-								⌘K
-							</Kbd>
-						</SidebarMenuButton>
-					</DialogTrigger>
+					<SidebarMenuButton
+						variant="outline"
+						className="h-8 w-full justify-start pl-7 font-normal transition-[width] duration-200 ease-linear in-data-[state=collapsed]:w-8! in-data-[state=collapsed]:pl-4! in-data-[state=collapsed]:text-transparent bg-background shadow-xs"
+						tooltip="Search"
+						onClick={() => setOpen(true)}
+					>
+						<SearchIcon className="pointer-events-none absolute top-1/2 left-2 size-3.5 -translate-y-1/2 opacity-50" />
+						<span>Search...</span>
+						<Kbd className="absolute top-1/2 right-2 -translate-y-1/2 in-data-[state=collapsed]:hidden">
+							⌘K
+						</Kbd>
+					</SidebarMenuButton>
 				</SidebarMenuItem>
 			</SidebarMenu>
 

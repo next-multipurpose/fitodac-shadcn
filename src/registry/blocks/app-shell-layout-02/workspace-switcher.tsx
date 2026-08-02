@@ -1,14 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import {
-	CheckIcon,
-	ChevronsUpDownIcon,
-	PlusIcon,
-	TriangleIcon,
-} from "lucide-react"
+import { CheckIcon, ChevronsUpDownIcon, PlusIcon } from "lucide-react"
 
-import { Avatar, AvatarFallback } from "@/registry/primitives/avatar"
+import { Avatar } from "@/registry/primitives/avatar"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -25,11 +20,15 @@ import {
 	useSidebar,
 } from "@/registry/primitives/sidebar"
 
-const workspaces = ["Vercel", "Acme Inc", "Evil Corp"]
+const workspaces = [
+	{ name: "Vercel", image: "https://i.pravatar.cc/48?img=1" },
+	{ name: "Acme Inc", image: "https://i.pravatar.cc/48?img=2" },
+	{ name: "Evil Corp", image: "https://i.pravatar.cc/48?img=3" },
+]
 
 export function WorkspaceSwitcher() {
 	const { isMobile } = useSidebar()
-	const [workspace, setWorkspace] = useState("Vercel")
+	const [workspace, setWorkspace] = useState(workspaces[0].name)
 
 	return (
 		<SidebarMenu>
@@ -37,17 +36,24 @@ export function WorkspaceSwitcher() {
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<SidebarMenuButton
-							size="lg"
-							className="h-10 data-[state=open]:bg-sidebar-accent"
+							size="default"
+							className="in-data-[state=collapsed]:justify-center"
 							tooltip={workspace}
 						>
-							<Avatar className="size-6 bg-black text-white">
-								<AvatarFallback className="bg-black text-white">
-									<TriangleIcon className="size-3 fill-current" />
-								</AvatarFallback>
+							<Avatar className="size-6">
+								<img
+									alt={workspace}
+									src={
+										workspaces.find((w) => w.name === workspace)?.image ||
+										workspaces[0].image
+									}
+									className="aspect-square size-full object-cover"
+								/>
 							</Avatar>
-							<span className="font-medium">{workspace}</span>
-							<ChevronsUpDownIcon className="ml-auto" />
+							<span className="truncate text-sm font-medium in-data-[state=collapsed]:hidden">
+								{workspace}
+							</span>
+							<ChevronsUpDownIcon className="ml-auto size-3.5 opacity-60 in-data-[state=collapsed]:hidden" />
 						</SidebarMenuButton>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
@@ -62,16 +68,18 @@ export function WorkspaceSwitcher() {
 						<DropdownMenuGroup>
 							{workspaces.map((item) => (
 								<DropdownMenuItem
-									key={item}
-									onSelect={() => setWorkspace(item)}
+									key={item.name}
+									onSelect={() => setWorkspace(item.name)}
 								>
-									<Avatar className="size-5 bg-black text-white">
-										<AvatarFallback className="bg-black text-[10px] text-white">
-											{item.slice(0, 1)}
-										</AvatarFallback>
+									<Avatar className="size-5">
+										<img
+											alt={item.name}
+											src={item.image}
+											className="aspect-square size-full object-cover"
+										/>
 									</Avatar>
-									{item}
-									{workspace === item ? (
+									{item.name}
+									{workspace === item.name ? (
 										<CheckIcon className="ml-auto" />
 									) : null}
 								</DropdownMenuItem>

@@ -1,15 +1,15 @@
 "use client"
 
-import Image from "next/image"
 import {
-	BookOpenIcon,
 	PanelLeftIcon,
 	SettingsIcon,
 	UserPlusIcon,
+	BookOpenIcon,
 } from "lucide-react"
 
 import { Button } from "@/registry/primitives/button"
 import { Separator } from "@/registry/primitives/separator"
+import { cn } from "@/lib/utils"
 import {
 	Sidebar,
 	SidebarContent,
@@ -32,6 +32,26 @@ const secondaryNavigation = [
 	{ title: "Documentation", icon: BookOpenIcon },
 ]
 
+function BrandMark({
+	letter = "U",
+	className,
+}: {
+	letter?: string
+	className?: string
+}) {
+	return (
+		<span
+			className={cn(
+				"flex size-6 shrink-0 items-center justify-center rounded-[7px] bg-neutral-900 text-[13px] font-semibold text-white",
+				className
+			)}
+			aria-hidden="true"
+		>
+			{letter}
+		</span>
+	)
+}
+
 export function AppSidebar() {
 	const { toggleSidebar } = useSidebar()
 
@@ -39,26 +59,28 @@ export function AppSidebar() {
 		<Sidebar collapsible="icon" variant="floating">
 			<SidebarHeader className="gap-1 pb-1">
 				<div className="flex h-8 items-center gap-2 px-1">
-					<div className="flex size-6 shrink-0 items-center justify-center rounded-md bg-black p-1">
-						<Image
-							alt="ReUI"
-							height={18}
-							priority
-							src="/brand/reui-mark.svg"
-							width={18}
-						/>
-					</div>
-					<span className="text-sm font-semibold group-data-[collapsible=icon]:hidden">
-						ReUI
+					<BrandMark />
+					<span className="text-sm font-semibold in-data-[state=collapsed]:hidden">
+						Acme Inc.
 					</span>
 					<Button
 						aria-label="Collapse sidebar"
-						className="ml-auto group-data-[collapsible=icon]:hidden"
+						className="ml-auto"
 						onClick={toggleSidebar}
 						size="icon-xs"
 						variant="ghost"
 					>
-						<PanelLeftIcon />
+						<PanelLeftIcon className="[&_svg]:transition-transform [&_svg]:duration-200 in-data-[state=collapsed]:[&_svg]:rotate-180" />
+					</Button>
+				</div>
+				<div className="flex justify-center in-data-[state=expanded]:hidden">
+					<Button
+						aria-label="Expand sidebar"
+						onClick={toggleSidebar}
+						size="icon-xs"
+						variant="ghost"
+					>
+						<PanelLeftIcon className="[&_svg]:rotate-180" />
 					</Button>
 				</div>
 				<SearchDialog />
@@ -69,12 +91,12 @@ export function AppSidebar() {
 			</SidebarContent>
 
 			<SidebarFooter className="gap-1 pt-1">
-				<SidebarMenu>
+					<SidebarMenu>
 					{secondaryNavigation.map((item) => (
 						<SidebarMenuItem key={item.title}>
-							<SidebarMenuButton asChild tooltip={item.title}>
+							<SidebarMenuButton asChild tooltip={item.title} className="h-8">
 								<a href="#">
-									<item.icon />
+									<item.icon className="size-3.5" />
 									<span>{item.title}</span>
 								</a>
 							</SidebarMenuButton>
