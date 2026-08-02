@@ -37,7 +37,8 @@ const layouts = [
 		description:
 			"A classic dashboard layout with sidebar navigation, header, and main content area.",
 		icon: LayoutDashboardIcon,
-		href: "/layouts/dashboard-default",
+		href: "/layouts/app-shell-layout-02",
+		preview: "/layouts/app-shell-layout-02",
 	},
 	{
 		id: "dashboard-analytics",
@@ -115,9 +116,10 @@ export default async function LayoutsPage() {
 									</p>
 								</div>
 								<Button asChild size="sm" variant="outline">
-									<Link href={layout.href}>{t("viewLayout")}</Link>
+									<Link href={layout.href} target="_blank">{t("viewLayout")}</Link>
 								</Button>
 							</div>
+							
 							{layout.preview ? (
 								<ResizablePanelGroup
 									className="min-h-0 w-full flex-1 overflow-visible!"
@@ -128,7 +130,7 @@ export default async function LayoutsPage() {
 										defaultSize="100"
 										minSize="40"
 									>
-										<div className="flex h-[32rem] items-center justify-center p-6 sm:p-10">
+										<div className="flex h-150 items-center justify-center p-1">
 											<iframe
 												src={layout.preview}
 												title={`${layout.name} preview`}
@@ -136,9 +138,9 @@ export default async function LayoutsPage() {
 											/>
 										</div>
 									</ResizablePanel>
-									<ResizableHandle withHandle className="w-4 bg-transparent transition-colors translate-x-4 [&>div]:w-1.5 [&>div]:h-10" />
+									<ResizableHandle withHandle className="w-0 bg-transparent translate-x-2 pl-1 [&>div]:w-1.5 [&>div]:h-10 [&:hover:focus>div]:h-14 [&:hover:active>div]:h-14 [&>div]:transition-all [&:hover>div]:bg-foreground/80" />
 									<ResizablePanel
-										className="min-w-0"
+										className="w-0"
 										defaultSize="0"
 										minSize="0"
 									/>
