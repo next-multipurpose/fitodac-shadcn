@@ -25,14 +25,17 @@ Before acting:
 
 1. Read `AGENTS.md`.
 2. Read `.ai/rules.md`.
-3. Read `.ai/progress/current.md`.
-4. Inspect `.ai/specs/`.
-5. Read the base docs if you will create or review specs:
+3. Read `.ai/project.json`.
+4. Read `.ai/progress/current.md`.
+5. Inspect `.ai/specs/`.
+6. Read the base docs if you will create or review specs:
    - `docs/architecture.md`
    - `docs/conventions.md`
    - `docs/verification.md`
-6. Use Graphify first when broad architecture, dependency, call, location, or impact discovery is needed.
-7. Read the identified source files and inspect existing components, layouts, hooks, helpers, services, actions, and backend methods before defining new ones.
+7. Use Graphify first when broad architecture, dependency, call, location, or impact discovery is needed.
+8. Read the identified source files and inspect existing components, layouts, hooks, helpers, services, actions, and backend methods before defining new ones.
+9. For visible UI work, resolve an allowed `UI Profile`, read its profile file,
+   and load its required skills before defining scope or acceptance criteria.
 
 ---
 
@@ -45,6 +48,7 @@ You can:
 - Mark exactly one spec as `READY`.
 - Mark later specs as `DRAFT`.
 - Explicitly set `UI Review: required` or `UI Review: skip`.
+- Explicitly set `UI Profile` to an allowed profile or `none`.
 - Define `Tooling policy` for specs that may need system tools.
 - Review and improve unclear specs.
 - Ask the human to decide architecture before a spec is written.
@@ -88,9 +92,10 @@ When the human asks to start or continue work, do this:
 3. Keep exactly one spec in READY.
 4. Keep the remaining pending specs in DRAFT.
 5. Set UI Review: required / skip explicitly.
-6. Tell the human to run pnpm ai:doctor if runtime was not validated.
-7. Tell the human to run pnpm ai:runner outside Codex.
-8. Stop.
+6. Set UI Profile explicitly and freeze the resolved value in the spec.
+7. Tell the human to run pnpm ai:doctor if runtime was not validated.
+8. Tell the human to run pnpm ai:runner outside Codex.
+9. Stop.
 ```
 
 Do not execute:
@@ -140,6 +145,7 @@ It must include:
 Status
 Role
 UI Review
+UI Profile
 Tooling policy
 Goal
 Scope
@@ -154,6 +160,16 @@ Visual review if applicable
 ```
 
 If a spec exceeds 80 lines, split it.
+
+For visible UI, select a profile allowed by `.ai/project.json`, read
+`.ai/profiles/<ui-profile>.md`, and load every required skill before writing the
+spec. Use the project's default profile when it fits the affected surface. Use
+a different allowed profile when the surface clearly requires it. If the choice
+is materially ambiguous, ask the human instead of silently applying the default.
+
+For work without visible UI, write `UI Profile: none`. If a profile or required
+skill is unavailable, stop and report the blocker instead of writing a spec that
+cannot be executed reliably.
 
 The `## Architecture` section must state `Decision required: no` when the task follows the approved architecture. When a decision is required, it must state `Decision required: yes`, `Approved by: human`, the approved decision, and explicit constraints for the implementer.
 

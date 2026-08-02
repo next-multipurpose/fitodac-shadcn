@@ -62,6 +62,8 @@ If OpenCode, Trae, permissions, cache, auth, or CLI runtime fails, Codex must no
 | Path                         | Use                                      |
 | ---------------------------- | ---------------------------------------- |
 | `.ai/rules.md`               | Stable project rules                     |
+| `.ai/project.json`           | Project kind and allowed UI profiles     |
+| `.ai/profiles/`              | UI direction and required skills         |
 | `.ai/specs/`                 | Executable specs and task state          |
 | `.ai/progress/current.md`    | Operational session log                  |
 | `.ai/agents/`                | Role instructions                        |
@@ -74,6 +76,7 @@ If OpenCode, Trae, permissions, cache, auth, or CLI runtime fails, Codex must no
 | `.ai/run/health.json`        | Last runtime validation result           |
 | `.ai/run/logs/`              | Long logs outside agent context          |
 | `.ai/run/prompts/`           | Prompts for manual agents                |
+| `.agents/skills/`            | Project-local agent skills               |
 | `docs/architecture.md`       | Architecture quality criteria            |
 | `docs/conventions.md`        | Code conventions                         |
 | `docs/verification.md`       | Required verification                    |
@@ -194,6 +197,18 @@ visual states: loading, empty, error, success
 Use `UI Review: skip` only when the task does not touch visible UI.
 Use `UI Review: auto` only when there is a strong reason to let the runner infer it.
 
+Every spec must also freeze the resolved profile:
+
+```txt
+UI Profile: <allowed-profile> = visible UI work
+UI Profile: none              = work without visible UI
+```
+
+Allowed profiles come from `.ai/project.json`. Before planning, implementing,
+or visually reviewing UI, read `.ai/profiles/<ui-profile>.md` and load every
+skill listed as required by that profile. Existing `REVIEW` and `DONE` specs are
+legacy records and do not need to be rewritten.
+
 ---
 
 ## 9. Hard rules
@@ -214,6 +229,8 @@ Use `UI Review: auto` only when there is a strong reason to let the runner infer
 - Do not mark `REVIEW` if automatic QA is missing.
 - Do not hide errors just to make everything green.
 - If the spec touches UI, it must go through `UI_REVIEW`.
+- Visible UI specs must declare an allowed `UI Profile`; non-UI specs must use `UI Profile: none`.
+- Apply the declared UI profile only to the spec scope. It does not override accessibility, architecture, theme tokens, or human-approved requirements.
 - If the spec touches Supabase, document DB/Auth/migrations and local verification.
 - Do not require agents to read `.env*` files. Put readable local defaults in docs such as `docs/local-env.example.md`.
 - Use Graphify first for broad architecture, dependency, call, location, and impact questions.
@@ -231,6 +248,7 @@ Use `UI Review: auto` only when there is a strong reason to let the runner infer
 Status: READY
 Role: implementer
 UI Review: required / skip
+UI Profile: admin-app / creative-website / none
 Tooling policy: stop-with-blocker
 
 ## Goal

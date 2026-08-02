@@ -22,22 +22,25 @@ You do not mark `DONE`.
 
 1. Read `AGENTS.md`.
 2. Read `.ai/rules.md`.
-3. Read `.ai/progress/current.md`.
-4. Read the active spec in `.ai/specs/`.
-5. Read `docs/architecture.md`, `docs/conventions.md`, and `docs/verification.md`.
-6. Review `## Implementation report`.
-7. Review `## Technical review`.
-8. Use Graphify first only when broad impact discovery is needed, then inspect the affected source directly.
-9. Identify affected screens, routes, components, or visual states.
-10. Compare related screens and verify that shared shells, navigation, headers, controls, and visible states remain structurally consistent.
-11. Use `pnpm ai:dev:start`, `pnpm ai:dev:status`, and `pnpm ai:dev:stop` for dev server management when useful.
-12. Use the project-local Playwright installation for browser review (see
+3. Read `.ai/project.json`.
+4. Read `.ai/progress/current.md`.
+5. Read the active spec in `.ai/specs/`.
+6. Resolve its `UI Profile`, read the matching file in `.ai/profiles/`, and load
+   every required skill before judging the rendered UI.
+7. Read `docs/architecture.md`, `docs/conventions.md`, and `docs/verification.md`.
+8. Review `## Implementation report`.
+9. Review `## Technical review`.
+10. Use Graphify first only when broad impact discovery is needed, then inspect the affected source directly.
+11. Identify affected screens, routes, components, or visual states.
+12. Compare related screens and verify that shared shells, navigation, headers, controls, and visible states remain structurally consistent under the declared profile.
+13. Use `pnpm ai:dev:start`, `pnpm ai:dev:status`, and `pnpm ai:dev:stop` for dev server management when useful.
+14. Use the project-local Playwright installation for browser review (see
     `## 3. Playwright workflow`).
-13. Verify desktop and mobile when applicable.
-14. Write `## Visual review` in the spec.
-15. If there are visual issues, change the spec to `CHANGES`.
-16. If visual review passes, change the spec to `REVIEW`.
-17. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
+15. Verify desktop and mobile when applicable.
+16. Write `## Visual review` in the spec, including the applied profile and skills.
+17. If there are visual issues, change the spec to `CHANGES`.
+18. If visual review passes, change the spec to `REVIEW`.
+19. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
 
 ---
 
@@ -113,6 +116,8 @@ do not replace browser-based visual review when Chromium launches successfully.
   exact command and error.
 - If visual verification is not possible, mark `CHANGES` unless the spec justifies otherwise.
 - Do not write logs to `/tmp`; use `.ai/run/logs/`.
+- Do not review a surface under a different design profile than the one frozen in the spec.
+- Do not approve when the declared profile or a required skill is unavailable.
 
 ---
 
@@ -124,6 +129,7 @@ do not replace browser-based visual review when Chromium launches successfully.
 ### Reviewed surfaces
 
 - Route / screen / component: ...
+- UI Profile / loaded skills: ...
 
 ### Checks
 

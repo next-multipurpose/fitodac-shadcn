@@ -109,6 +109,15 @@ check_dir() {
   fi
 }
 
+check_ui_profiles() {
+  if node .ai/bin/validate-ui-profiles.mjs; then
+    ok "UI profile configuration is valid"
+  else
+    fail_msg "UI profile configuration is invalid"
+    ERRORS=$((ERRORS + 1))
+  fi
+}
+
 check_command() {
   local cmd="$1"
   if command_exists "$cmd"; then
@@ -317,20 +326,29 @@ log "Checking required files"
 check_file "AGENTS.md"
 check_file "package.json"
 check_file ".ai/rules.md"
+check_file ".ai/project.json"
 check_file ".ai/agents/runtime.json"
 check_file ".ai/bin/runner.sh"
 check_file ".ai/bin/run-agent.sh"
 check_file ".ai/bin/dev-server.sh"
 check_file ".ai/bin/graphify.sh"
 check_file ".ai/bin/graphify-mcp-check.mjs"
+check_file ".ai/bin/validate-ui-profiles.mjs"
 check_file ".ai/graphify.json"
 check_dir ".ai/specs"
+check_dir ".ai/profiles"
+check_dir ".agents/skills"
 check_dir ".ai/run"
 check_dir "$LOG_DIR"
 
 log "Checking required local tools"
 check_command "node"
 check_command "pnpm"
+
+if command_exists node; then
+  log "Checking UI profiles and required skills"
+  check_ui_profiles
+fi
 
 log "Checking spec queue"
 READY_COUNT="$(get_spec_status_lines | grep -cE "^Status:[[:space:]]*READY$" || true)"

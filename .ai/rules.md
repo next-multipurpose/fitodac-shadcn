@@ -165,6 +165,25 @@ Rules:
 
 The UI must be usable, not just compile.
 
+### UI profile
+
+Every spec must declare an explicit `UI Profile`. Resolve visible UI work from
+the profiles allowed by `.ai/project.json`; use `UI Profile: none` only when the
+task does not affect visible UI.
+
+Before planning, implementing, or visually reviewing UI:
+
+1. Read `.ai/project.json`.
+2. Read `.ai/profiles/<ui-profile>.md`.
+3. Load every skill listed as required by that profile.
+4. Load optional skills only when the task or spec needs them.
+5. Apply the active theme and semantic tokens.
+
+The profile controls design judgment within the approved scope. It does not
+override accessibility, approved architecture, the active theme, component
+contracts, dependency policy, or explicit requirements. Stop and report the
+blocker when a declared profile or required skill is unavailable.
+
 ---
 
 ## 8. UI Review

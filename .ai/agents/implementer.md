@@ -21,26 +21,30 @@ You do not mark `REVIEW` or `DONE`.
 
 1. Read `AGENTS.md`.
 2. Read `.ai/rules.md`.
-3. Read `.ai/progress/current.md`.
-4. Read the active spec in `.ai/specs/`.
-5. Read base docs:
+3. Read `.ai/project.json`.
+4. Read `.ai/progress/current.md`.
+5. Read the active spec in `.ai/specs/`.
+6. Resolve its `UI Profile`. For visible UI, read the matching file in
+   `.ai/profiles/` and load every required skill before implementation. For
+   non-UI work, require `UI Profile: none`.
+7. Read base docs:
    - `docs/architecture.md`
    - `docs/conventions.md`
    - `docs/verification.md`
-6. Read `## Architecture` in the active spec and inspect existing reusable code in the affected area.
-7. Read conditional docs if they apply:
+8. Read `## Architecture` in the active spec and inspect existing reusable code in the affected area.
+9. Read conditional docs if they apply:
    - `docs/database.md`
    - `docs/deploy.md`
-8. Check `git status --short`, `git diff`, and untracked files to detect previous work or recovery state.
-9. Use Graphify first for broad architecture, dependency, call, location, or impact discovery; then read the identified source files. As the Codex CLI implementer, use the harness commands `pnpm ai:graphify:query`, `pnpm ai:graphify:path`, and `pnpm ai:graphify:explain`; native MCP availability is not required.
-10. Work only within the scope.
-11. Write or adjust tests first when there is verifiable logic.
-12. Implement the minimal correct solution.
-13. Run the available base verification.
-14. Complete `## Implementation report`.
-15. If you are done, change the spec to `TECH_REVIEW`.
-16. If product/code work is blocked, change the spec to `CHANGES` and document the reason.
-17. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
+10. Check `git status --short`, `git diff`, and untracked files to detect previous work or recovery state.
+11. Use Graphify first for broad architecture, dependency, call, location, or impact discovery; then read the identified source files. As the Codex CLI implementer, use the harness commands `pnpm ai:graphify:query`, `pnpm ai:graphify:path`, and `pnpm ai:graphify:explain`; native MCP availability is not required.
+12. Work only within the scope.
+13. Write or adjust tests first when there is verifiable logic.
+14. Implement the minimal correct solution.
+15. Run the available base verification.
+16. Complete `## Implementation report`, including the UI profile and skills used when applicable.
+17. If you are done, change the spec to `TECH_REVIEW`.
+18. If product/code work is blocked, change the spec to `CHANGES` and document the reason.
+19. Do not use `BLOCKED_RUNTIME`; that status is reserved for the runner when a CLI/runtime command fails.
 
 ---
 
@@ -61,6 +65,7 @@ You do not mark `REVIEW` or `DONE`.
 - Do not install system tools unless the spec explicitly allows it.
 - Do not read `.env*` files; use readable docs such as `docs/local-env.example.md` instead.
 - Do not use Graphify as authoritative evidence. Verify exact behavior in source files.
+- Do not implement visible UI when the declared profile or a required skill is unavailable; stop and document the blocker.
 
 ---
 
@@ -85,6 +90,7 @@ Write a short report inside the spec:
 
 ### Notes
 
+- UI Profile / loaded skills: ... / not applicable
 - ...
 ```
 
