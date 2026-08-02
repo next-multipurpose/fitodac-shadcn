@@ -17,13 +17,10 @@ import {
 	House,
 	Layers3,
 	LogOut,
-	Moon,
-	Monitor,
 	Palette,
 	Settings,
 	ShieldCheck,
 	Star,
-	Sun,
 	Trash2,
 	User,
 	Users,
@@ -70,6 +67,7 @@ import {
 	DropdownMenuShortcut,
 	DropdownMenuTrigger,
 } from "@/registry/primitives/dropdown-menu"
+import { AnimatedThemeToggler } from "@/components/animated-theme-toggler"
 import { cn } from "@/lib/utils"
 
 const platformItems = [
@@ -391,16 +389,8 @@ function UserMenu() {
 						<div className="flex h-7 items-center gap-2 px-2 text-sm">
 							<Palette className="size-4" />
 							<span>Theme</span>
-							<span className="ml-auto flex items-center gap-0.5">
-								<span className="flex size-6 items-center justify-center rounded-md">
-									<Sun className="size-4" />
-								</span>
-								<span className="flex size-6 items-center justify-center rounded-md">
-									<Moon className="size-4" />
-								</span>
-								<span className="flex size-6 items-center justify-center rounded-md bg-accent">
-									<Monitor className="size-4" />
-								</span>
+							<span className="ml-auto">
+								<AnimatedThemeToggler />
 							</span>
 						</div>
 						<DropdownMenuSeparator />

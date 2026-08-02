@@ -55,7 +55,9 @@ const layouts = [
 		description:
 			"Data-focused layout with charts, metrics cards, and detailed reports section.",
 		icon: LayoutGridIcon,
-		href: "/layouts/dashboard-analytics",
+		href: "/layouts/app-shell-layout-04",
+		preview: "/layouts/app-shell-layout-04",
+
 	},
 	{
 		id: "dashboard-project",
@@ -63,24 +65,9 @@ const layouts = [
 		description:
 			"Kanban boards, task lists, and project overview with sidebar navigation.",
 		icon: LayoutListIcon,
-		href: "/layouts/dashboard-project",
-	},
-	{
-		id: "dashboard-settings",
-		name: "Settings Panel",
-		description:
-			"Configuration layout with categorized settings, tabs, and preview pane.",
-		icon: SettingsIcon,
-		href: "/layouts/dashboard-settings",
-	},
-	{
-		id: "dashboard-sidebar",
-		name: "Collapsible Sidebar",
-		description:
-			"Responsive layout with collapsible sidebar, mobile drawer, and top navigation.",
-		icon: LayoutPanelLeftIcon,
-		href: "/layouts/dashboard-sidebar",
-	},
+		href: "/layouts/app-shell-layout-05",
+		preview: "/layouts/app-shell-layout-05",
+	}
 ]
 
 export default async function LayoutsPage() {

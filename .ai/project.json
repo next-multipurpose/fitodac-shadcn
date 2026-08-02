@@ -1,5 +1,5 @@
 {
   "projectKind": "component-library",
   "defaultUiProfile": "admin-app",
-  "allowedUiProfiles": ["admin-app", "creative-website"]
+  "allowedUiProfiles": ["admin-app"]
 }

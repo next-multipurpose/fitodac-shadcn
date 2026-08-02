@@ -49,7 +49,10 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: UI_THEME_BOOTSTRAP_SCRIPT }}
         />
       </head>
-      <body className="min-h-screen antialiased">
+      <body
+        className="min-h-screen antialiased"
+        suppressHydrationWarning
+      >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <header className="sticky top-0 z-10 border-b border-border/70 bg-background/90 backdrop-blur">
             <div className="mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-3">
