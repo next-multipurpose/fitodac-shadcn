@@ -3,6 +3,7 @@
 Status: DRAFT
 Role: implementer
 UI Review: required
+UI Profile: admin-app
 Tooling policy: stop-with-blocker
 
 ## Goal

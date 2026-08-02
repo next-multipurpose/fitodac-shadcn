@@ -5,6 +5,7 @@ node_modules/
 .next/
 **/.next/
 out/
+output/
 dist/
 coverage/
 .turbo/
@@ -25,3 +26,5 @@ pnpm-debug.log*
 .ai/runtime/**
 .playwright-mcp
 graphify-out/
+static-preview/
+.playwright-cli/

@@ -1,5 +1,5 @@
 {
-  "status": "failed",
-  "message": "Doctor found 1 problem(s).",
-  "checked_at": "2026-08-02T10:19:01Z"
+  "status": "ok",
+  "message": "Runtime checks passed.",
+  "checked_at": "2026-08-02T16:38:43Z"
 }

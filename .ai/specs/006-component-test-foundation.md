@@ -3,6 +3,7 @@
 Status: DRAFT
 Role: implementer
 UI Review: skip
+UI Profile: none
 Tooling policy: stop-with-blocker
 
 ## Goal

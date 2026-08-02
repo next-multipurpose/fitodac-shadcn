@@ -5,11 +5,15 @@ import {
 	BarChart3,
 	Bell,
 	Check,
+	CheckCheck,
 	ChevronsUpDown,
 	CircleAlert,
+	CircleCheck,
 	ClipboardList,
+	Code2,
 	CreditCard,
 	FileText,
+	FlaskConical,
 	Home,
 	Inbox,
 	LayoutGrid,
@@ -20,17 +24,20 @@ import {
 	Package,
 	Palette,
 	Plus,
+	Rocket,
 	Search,
 	Settings,
 	ShieldCheck,
 	ShoppingCart,
 	Star,
+	Store,
 	Sun,
 	Tag,
 	Truck,
 	User,
 	Users,
 	Warehouse,
+	X,
 } from "lucide-react"
 
 import {
@@ -71,8 +78,10 @@ import { ScrollArea } from "@/registry/primitives/scroll-area"
 import { Separator } from "@/registry/primitives/separator"
 import {
 	Sheet,
+	SheetClose,
 	SheetContent,
 	SheetDescription,
+	SheetFooter,
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
@@ -122,30 +131,50 @@ type NavigationItem = {
 
 type NavigationSection = {
 	groups: Array<{ label: string; items: NavigationItem[] }>
-	usage?: {
-		title: string
-		description: string
-		value: number
+	usage?: { title: string; description: string; value: number }
+	metrics?: {
+		status: string
+		statusTone: "default" | "destructive"
+		rows: Array<{
+			label: string
+			value: string
+			tone?: "default" | "destructive"
+		}>
 	}
+	promo?: { title: string; description: string; action: string }
+	status?: { title: string; value: string; description: string }
+	notices?: Array<{ title: string; description: string }>
 }
 
 const sidebarNavigation: Record<string, NavigationSection> = {
 	Home: {
 		groups: [
 			{
-				label: "Workspace",
+				label: "Overview",
 				items: [
-					{ label: "Overview", icon: Home },
-					{ label: "Activity", icon: ClipboardList },
-					{ label: "Saved Views", icon: Star },
+					{ label: "Dashboard", icon: Home },
+					{ label: "Activity Feed", icon: ClipboardList },
+					{ label: "Quick Stats", icon: Star },
 				],
 			},
 			{
-				label: "Shortcuts",
+				label: "Reporting",
 				items: [
 					{ label: "Reports", icon: FileText },
-					{ label: "Team", icon: Users },
+					{ label: "Exports", icon: ClipboardList },
 				],
+			},
+		],
+		notices: [
+			{
+				title: "Icon library v2 released",
+				description:
+					"Five icon libraries unified under a single API with automatic mapping.",
+			},
+			{
+				title: "Multi-theme support is here",
+				description:
+					"Switch between Vega, Nova, Maia, Lyra, and Mira themes across all components.",
 			},
 		],
 	},
@@ -178,98 +207,137 @@ const sidebarNavigation: Record<string, NavigationSection> = {
 	Orders: {
 		groups: [
 			{
-				label: "Orders",
+				label: "Order Management",
 				items: [
-					{ label: "All Orders", icon: ClipboardList, badge: "128" },
+					{ label: "All Orders", icon: ClipboardList },
+					{ label: "Pending", icon: CircleAlert, badge: "3" },
 					{ label: "Drafts", icon: FileText },
-					{ label: "Returns", icon: ShoppingCart, badge: "6" },
 				],
 			},
 			{
 				label: "Fulfillment",
 				items: [
-					{ label: "Shipments", icon: Truck },
-					{ label: "Pickup Orders", icon: Package },
+					{ label: "Fulfilled", icon: Package },
+					{ label: "Shipping", icon: Truck },
+					{ label: "Returns", icon: ShoppingCart },
+					{ label: "Refunds", icon: CreditCard },
 				],
 			},
 		],
+		metrics: {
+			status: "Normal",
+			statusTone: "default",
+			rows: [
+				{ label: "Orders / min", value: "8.4" },
+				{ label: "Fulfillment", value: "77.1%" },
+			],
+		},
 	},
 	Customers: {
 		groups: [
 			{
-				label: "Customers",
+				label: "Directory",
 				items: [
-					{ label: "Directory", icon: Users },
+					{ label: "All Customers", icon: Users },
 					{ label: "Segments", icon: LayoutGrid },
-					{ label: "Reviews", icon: Star, badge: "20" },
+					{ label: "Companies", icon: Package },
 				],
 			},
 			{
-				label: "Programs",
+				label: "Engagement",
 				items: [
-					{ label: "Loyalty", icon: Star },
-					{ label: "Permissions", icon: ShieldCheck },
+					{ label: "Loyalty Program", icon: Star },
+					{ label: "Campaigns", icon: MessageSquare },
 				],
 			},
 		],
+		metrics: {
+			status: "Alert",
+			statusTone: "destructive",
+			rows: [
+				{ label: "Active Users", value: "980.9" },
+				{ label: "Churn Rate", value: "3.1%", tone: "destructive" },
+			],
+		},
 	},
 	Messages: {
 		groups: [
 			{
-				label: "Inbox",
+				label: "Mailbox",
 				items: [
-					{ label: "All Messages", icon: Inbox, badge: "8" },
-					{ label: "Customer Support", icon: MessageSquare },
-					{ label: "Team Messages", icon: Users },
+					{ label: "Inbox", icon: Inbox, badge: "5" },
+					{ label: "Sent", icon: FileText },
+					{ label: "Drafts", icon: ClipboardList },
+					{ label: "Archived", icon: Package },
 				],
 			},
 			{
 				label: "Manage",
 				items: [
 					{ label: "Templates", icon: FileText },
-					{ label: "Automations", icon: Settings },
+					{ label: "Auto-Replies", icon: Settings },
 				],
 			},
 		],
+		metrics: {
+			status: "Alert",
+			statusTone: "destructive",
+			rows: [
+				{ label: "Messages / hr", value: "225.9" },
+				{ label: "Avg Response", value: "3.1h", tone: "destructive" },
+			],
+		},
 	},
 	Analytics: {
 		groups: [
 			{
-				label: "Analytics",
+				label: "Dashboards",
 				items: [
 					{ label: "Overview", icon: BarChart3 },
 					{ label: "Sales", icon: ShoppingCart },
 					{ label: "Inventory", icon: Package },
-					{ label: "Customers", icon: Users },
+					{ label: "Traffic", icon: Users },
 				],
 			},
 			{
-				label: "Reports",
+				label: "Insights",
 				items: [
-					{ label: "Saved Reports", icon: FileText },
-					{ label: "Exports", icon: ClipboardList },
+					{ label: "Conversion", icon: FileText },
+					{ label: "Retention", icon: Users },
+					{ label: "Forecasts", icon: ClipboardList },
 				],
 			},
 		],
+		promo: {
+			title: "Upgrade to Pro",
+			description: "Unlock real-time dashboards and AI-powered insights.",
+			action: "View Plans",
+		},
 	},
 	Settings: {
 		groups: [
 			{
-				label: "Workspace Settings",
+				label: "Workspace",
 				items: [
 					{ label: "General", icon: Settings },
-					{ label: "Members", icon: Users },
-					{ label: "Roles & Permissions", icon: ShieldCheck },
+					{ label: "Billing", icon: CreditCard },
+					{ label: "Team Members", icon: Users },
 				],
 			},
 			{
-				label: "Account",
+				label: "Configuration",
 				items: [
-					{ label: "Billing", icon: CreditCard },
-					{ label: "Preferences", icon: Palette },
+					{ label: "Integrations", icon: Package },
+					{ label: "API Keys", icon: ShieldCheck },
+					{ label: "Webhooks", icon: MessageSquare },
 				],
 			},
 		],
+		status: {
+			title: "Security Status",
+			value: "Healthy",
+			description: "All checks passed. 2FA enabled, API keys rotated.",
+		},
 	},
 }
 
@@ -283,6 +351,22 @@ const defaultActiveItems = Object.fromEntries(
 const workspaces = ["Acme Inc", "Northstar Labs", "Keenthemes"]
 const inventoryAreas = ["Inventory", "Orders", "Customers"]
 const environments = ["Production", "Staging", "Development"]
+
+const organizationOptions = [
+	{ label: "Acme Inc", description: "Pro", mark: "primary" },
+	{ label: "Starter Kit", description: "Free", mark: "warning" },
+	{ label: "Enterprise", description: "Enterprise", mark: "chart" },
+]
+const applicationOptions = [
+	{ label: "Inventory", icon: Package },
+	{ label: "Storefront", icon: Store },
+	{ label: "Analytics", icon: BarChart3 },
+]
+const environmentOptions = [
+	{ label: "Production", icon: Rocket },
+	{ label: "Staging", icon: FlaskConical },
+	{ label: "Development", icon: Code2 },
+]
 
 function BrandMark() {
 	return (
@@ -425,7 +509,7 @@ function ColorModeSelector() {
 
 	return (
 		<div className="flex h-9 items-center gap-2 px-2 text-sm">
-			<Palette />
+			<Palette size="16" />
 			<span>Theme</span>
 			<div className="ml-auto flex items-center rounded-full border bg-muted/40 p-0.5">
 				{[
@@ -467,7 +551,7 @@ function ProfileMenu() {
 					aria-label="Open profile for Nick Bold"
 					className="mx-auto"
 				>
-					<Avatar className="size-6 rounded-md">
+					<Avatar className="size-7">
 						<AvatarImage
 							src="https://i.pravatar.cc/64?img=12"
 							alt="Nick Bold"
@@ -489,7 +573,7 @@ function ProfileMenu() {
 						<span className="flex min-w-0 flex-col">
 							<span className="font-semibold">Nick Bold</span>
 							<span className="truncate text-xs text-muted-foreground">
-								nick@acmeinc.com
+								nick@reui.io
 							</span>
 						</span>
 					</span>
@@ -502,11 +586,11 @@ function ProfileMenu() {
 					</DropdownMenuItem>
 					<DropdownMenuItem>
 						<Settings />
-						Settings
+						Preferences
 					</DropdownMenuItem>
 					<DropdownMenuItem>
-						<CreditCard />
-						Billing
+						<Package />
+						Manage Accounts
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 				<DropdownMenuSeparator />
@@ -567,9 +651,12 @@ function ContextNavigation({
 											aria-current={active === item.label ? "page" : undefined}
 										>
 											<Icon data-icon="inline-start" />
-											<span className="truncate">{item.label}</span>
+											<span className="whitespace-nowrap">{item.label}</span>
 											{item.badge ? (
-												<Badge variant="outline" className="ml-auto">
+												<Badge
+													variant="outline"
+													className="ml-auto h-4 min-w-4 rounded px-1 text-[10px] leading-none"
+												>
 													{item.badge}
 												</Badge>
 											) : null}
@@ -581,42 +668,183 @@ function ContextNavigation({
 					))}
 				</div>
 			</ScrollArea>
-			{navigation.usage ? (
-				<div className="shrink-0 border-t p-3">
-					<div className="flex flex-col gap-2">
-						<p className="text-xs font-medium text-warning">
-							{navigation.usage.title}
-						</p>
-						<p className="text-[11px] leading-snug text-muted-foreground">
-							{navigation.usage.description}
-						</p>
-						<Progress value={navigation.usage.value} className="h-1.5" />
-						<div className="flex justify-between text-xs">
-							<span>
-								<strong>{navigation.usage.value}%</strong>{" "}
-								<span className="text-muted-foreground">Used</span>
-							</span>
-							<span>
-								<strong>{100 - navigation.usage.value}%</strong>{" "}
-								<span className="text-muted-foreground">Free</span>
-							</span>
-						</div>
-					</div>
-				</div>
-			) : null}
+			<SidebarSupplement navigation={navigation} />
 		</nav>
 	)
+}
+
+function MetricsPanel({
+	metrics,
+}: {
+	metrics: NonNullable<NavigationSection["metrics"]>
+}) {
+	return (
+		<div className="shrink-0 border-t p-3">
+			<div className="flex flex-col gap-2">
+				<div className="flex items-center justify-between">
+					<p className="text-xs font-medium">Live Metrics</p>
+					<Badge variant={metrics.statusTone}>{metrics.status}</Badge>
+				</div>
+				{metrics.rows.map((row, index) => (
+					<div key={row.label} className="flex items-center gap-2 text-[11px]">
+						<span className="min-w-0 flex-1 truncate text-muted-foreground">
+							{row.label}
+						</span>
+						<svg
+							viewBox="0 0 44 14"
+							aria-hidden="true"
+							className={cn(
+								"h-3.5 w-11",
+								row.tone === "destructive" ? "text-destructive" : "text-primary"
+							)}
+						>
+							<path
+								d="M1 9 C4 2 6 12 9 7 S14 4 16 9 S21 11 24 5 S29 3 31 8 S36 12 38 6 S41 4 43 7"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								style={{ opacity: 0.85 - index * 0.1 }}
+							/>
+						</svg>
+						<span
+							className={cn(
+								"font-medium tabular-nums",
+								row.tone === "destructive" && "text-destructive"
+							)}
+						>
+							{row.value}
+						</span>
+					</div>
+				))}
+			</div>
+		</div>
+	)
+}
+
+function SidebarSupplement({ navigation }: { navigation: NavigationSection }) {
+	if (navigation.usage) {
+		return (
+			<div className="w-full min-w-0 shrink-0 overflow-hidden border-t p-3">
+				<div className="flex min-w-0 flex-col gap-2">
+					<p className="text-xs font-medium text-warning">
+						{navigation.usage.title}
+					</p>
+					<p className="text-[11px] leading-snug text-muted-foreground">
+						{navigation.usage.description}
+					</p>
+					<div className="relative h-1.5 overflow-hidden rounded-sm bg-muted/55">
+						<span
+							className="pointer-events-none absolute inset-0 [background-image:repeating-linear-gradient(-45deg,currentColor_0,currentColor_1px,transparent_0,transparent_4px)] text-muted-foreground opacity-20"
+							aria-hidden="true"
+						/>
+						<Progress
+							value={navigation.usage.value}
+							className="absolute inset-0 h-full rounded-none bg-transparent [&_[data-slot=progress-indicator]]:rounded-none [&_[data-slot=progress-indicator]]:bg-warning"
+						/>
+					</div>
+					<div className="flex min-w-0 items-center justify-between gap-2 text-[11px] leading-none">
+						<span className="flex items-center gap-1 whitespace-nowrap">
+							<strong>{navigation.usage.value}%</strong>{" "}
+							<span className="text-muted-foreground">Used</span>
+						</span>
+						<span className="flex items-center gap-1 pr-1 whitespace-nowrap">
+							<strong>{100 - navigation.usage.value}%</strong>{" "}
+							<span className="text-muted-foreground">Free</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		)
+	}
+
+	if (navigation.metrics) return <MetricsPanel metrics={navigation.metrics} />
+
+	if (navigation.promo) {
+		return (
+			<div className="shrink-0 border-t p-3">
+				<div className="flex flex-col gap-2 rounded-lg border bg-muted/30 p-3">
+					<p className="text-xs font-medium">{navigation.promo.title}</p>
+					<p className="text-[11px] leading-snug text-muted-foreground">
+						{navigation.promo.description}
+					</p>
+					<Button size="sm" variant="outline" className="w-full">
+						{navigation.promo.action}
+					</Button>
+				</div>
+			</div>
+		)
+	}
+
+	if (navigation.status) {
+		return (
+			<div className="shrink-0 border-t p-3">
+				<div className="flex flex-col gap-1 rounded-lg border bg-muted/30 p-3">
+					<div className="flex items-center justify-between gap-2">
+						<p className="text-xs font-medium">{navigation.status.title}</p>
+						<Badge variant="secondary">{navigation.status.value}</Badge>
+					</div>
+					<p className="text-[11px] leading-snug text-muted-foreground">
+						{navigation.status.description}
+					</p>
+				</div>
+			</div>
+		)
+	}
+
+	if (navigation.notices) {
+		return (
+			<div className="shrink-0 border-t p-3">
+				<div className="flex flex-col gap-2">
+					{navigation.notices.map((notice) => (
+						<div
+							key={notice.title}
+							className="rounded-lg border bg-muted/30 p-2.5"
+						>
+							<p className="text-[11px] font-medium">{notice.title}</p>
+							<p className="mt-1 text-[10px] leading-snug text-muted-foreground">
+								{notice.description}
+							</p>
+							<div className="mt-2 flex items-center justify-between gap-2">
+								<Button
+									size="sm"
+									variant="link"
+									className="h-auto p-0 text-[11px]"
+								>
+									Read more
+								</Button>
+								<Button size="sm" variant="ghost">
+									Dismiss
+								</Button>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		)
+	}
+
+	return null
 }
 
 function CrumbMenu({
 	value,
 	options,
 	onChange,
+	heading,
+	createLabel,
 	showMark = false,
 }: {
 	value: string
-	options: string[]
+	options: Array<{
+		label: string
+		description?: string
+		icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+		mark?: string
+	}>
 	onChange: (value: string) => void
+	heading?: string
+	createLabel?: string
 	showMark?: boolean
 }) {
 	return (
@@ -633,21 +861,53 @@ function CrumbMenu({
 					<ChevronsUpDown data-icon="inline-end" />
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align="start">
+			<DropdownMenuContent align="start" className={showMark ? "w-56" : "w-48"}>
+				{heading ? <DropdownMenuLabel>{heading}</DropdownMenuLabel> : null}
 				<DropdownMenuGroup>
-					{options.map((option) => (
-						<DropdownMenuItem key={option} onSelect={() => onChange(option)}>
-							{showMark ? (
-								<span
-									className="size-2 rounded-full bg-primary"
-									aria-hidden="true"
-								/>
-							) : null}
-							{option}
-							{option === value ? <Check className="ml-auto" /> : null}
-						</DropdownMenuItem>
-					))}
+					{options.map((option) => {
+						const Icon = option.icon
+
+						return (
+							<DropdownMenuItem
+								key={option.label}
+								onSelect={() => onChange(option.label)}
+								className={cn(option.label === value && "bg-accent")}
+							>
+								{showMark ? (
+									<span
+										className={cn(
+											"size-5 shrink-0 rounded-full bg-primary",
+											option.mark === "warning" && "bg-warning",
+											option.mark === "chart" && "bg-chart-2"
+										)}
+										aria-hidden="true"
+									/>
+								) : null}
+								{Icon ? <Icon /> : null}
+								<span className="flex min-w-0 flex-1 flex-col justify-center gap-0.5 text-left">
+									<span className="truncate leading-none">{option.label}</span>
+									{option.description ? (
+										<span className="truncate text-xs leading-none text-muted-foreground">
+											{option.description}
+										</span>
+									) : null}
+								</span>
+								{option.label === value ? (
+									<Check className="ml-auto text-primary" />
+								) : null}
+							</DropdownMenuItem>
+						)
+					})}
 				</DropdownMenuGroup>
+				{createLabel ? (
+					<>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem>
+							<Plus />
+							{createLabel}
+						</DropdownMenuItem>
+					</>
+				) : null}
 			</DropdownMenuContent>
 		</DropdownMenu>
 	)
@@ -671,14 +931,16 @@ function SearchDialog({
 			<CommandList>
 				<CommandEmpty>No results found.</CommandEmpty>
 				<CommandGroup heading="Navigation">
-					{[
-						...railNavigation.map((item) => item.label),
-						...Object.values(sidebarNavigation).flatMap((section) =>
-							section.groups.flatMap((group) =>
-								group.items.map((item) => item.label)
-							)
-						),
-					].map((item) => (
+					{Array.from(
+						new Set([
+							...railNavigation.map((item) => item.label),
+							...Object.values(sidebarNavigation).flatMap((section) =>
+								section.groups.flatMap((group) =>
+									group.items.map((item) => item.label)
+								)
+							),
+						])
+					).map((item) => (
 						<CommandItem key={item} onSelect={() => onOpenChange(false)}>
 							<Search />
 							<span>{item}</span>
@@ -700,19 +962,27 @@ function CreateMenu() {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="w-48">
-				<DropdownMenuLabel>Create new</DropdownMenuLabel>
 				<DropdownMenuGroup>
 					<DropdownMenuItem>
 						<Package />
-						Product
+						New Product
 					</DropdownMenuItem>
 					<DropdownMenuItem>
-						<Tag />
-						Category
+						<ShoppingCart />
+						New Order
 					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<Users />
+						New Customer
+					</DropdownMenuItem>
+					<DropdownMenuSeparator />
 					<DropdownMenuItem>
 						<Truck />
-						Supplier
+						Import Data
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<FileText />
+						Generate Report
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 			</DropdownMenuContent>
@@ -720,7 +990,138 @@ function CreateMenu() {
 	)
 }
 
+const initialNotifications = [
+	{
+		id: 1,
+		title: "Sarah Chen placed a new order #1284",
+		description: "Order #1284 · 3 items, $127.50",
+		time: "2 min ago",
+		icon: ShoppingCart,
+		unread: true,
+	},
+	{
+		id: 2,
+		title: "Low stock alert",
+		description: "Wireless Headphones Pro has dropped below 10 units.",
+		time: "15 min ago",
+		icon: CircleAlert,
+		badge: "Urgent",
+		actions: ["Reorder", "Dismiss"],
+		unread: true,
+	},
+	{
+		id: 3,
+		title: "Marcus Rivera left a review on Smart Watch Elite",
+		description: "Great build quality and battery life exceeded expectations.",
+		time: "1 hour ago",
+		icon: Star,
+		unread: true,
+	},
+	{
+		id: 4,
+		title: "Pending approval",
+		description:
+			"Bulk discount campaign for Q2 requires your approval before going live.",
+		time: "2 hours ago",
+		icon: ClipboardList,
+		badge: "High",
+		actions: ["Approve", "Review"],
+		unread: true,
+	},
+	{
+		id: 5,
+		title: "Emily Watson · Shipment delivered #1279",
+		description: "Order #1279 was delivered to Emily Watson successfully.",
+		time: "3 hours ago",
+		icon: CircleCheck,
+		unread: true,
+	},
+	{
+		id: 6,
+		title: "3 new staff joined your store",
+		description:
+			"Sarah, James and Priya have been added to the Inventory team.",
+		time: "4 hours ago",
+		icon: Users,
+		unread: true,
+	},
+	{
+		id: 7,
+		title: "Sales milestone reached!",
+		description: "500 orders fulfilled this month. Keep up the great work!",
+		time: "5 hours ago",
+		icon: Star,
+		badge: "500 orders",
+		unread: false,
+	},
+	{
+		id: 8,
+		title: "Supplier meeting reminder",
+		description: "Quarterly product catalog review with Acme Supplies.",
+		time: "6 hours ago",
+		icon: Warehouse,
+		actions: ["Join", "Decline"],
+		unread: false,
+	},
+	{
+		id: 9,
+		title: "@sarah_r shared a report with you",
+		description: "inventory-march.pdf (3.2 MB)",
+		time: "Yesterday",
+		icon: FileText,
+		unread: false,
+	},
+	{
+		id: 10,
+		title: "Payment processed",
+		description: "Monthly subscription renewal, $49.00 charged.",
+		time: "Yesterday",
+		icon: CreditCard,
+		badge: "$49.00",
+		unread: false,
+	},
+	{
+		id: 11,
+		title: "New login detected",
+		description: "A login from Chrome on macOS was detected in San Francisco.",
+		time: "Yesterday",
+		icon: ShieldCheck,
+		actions: ["Review", "Dismiss"],
+		unread: false,
+	},
+	{
+		id: 12,
+		title: "Deployment successful",
+		description: "Storefront v2.4.1 deployed to production.",
+		time: "2 days ago",
+		icon: Rocket,
+		badge: "Production",
+		unread: false,
+	},
+]
+
 function Notifications() {
+	const [notifications, setNotifications] = React.useState(initialNotifications)
+	const unreadCount = notifications.filter(
+		(notification) => notification.unread
+	).length
+
+	function markAllAsRead() {
+		setNotifications((items) =>
+			items.map((item) => ({ ...item, unread: false }))
+		)
+	}
+
+	function markAsRead(id: number) {
+		setNotifications((items) =>
+			items.map((item) => (item.id === id ? { ...item, unread: false } : item))
+		)
+	}
+
+	function dismiss(id: number) {
+		setNotifications((items) => items.filter((item) => item.id !== id))
+	}
+
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
@@ -731,39 +1132,132 @@ function Notifications() {
 					className="relative"
 				>
 					<Bell />
-					<span
-						className="absolute top-0.5 right-1 size-1.5 rounded-full bg-primary"
-						aria-hidden="true"
-					/>
+					{unreadCount > 0 ? (
+						<span
+							className="absolute top-0.5 right-1 size-1.5 rounded-full bg-primary"
+							aria-hidden="true"
+						/>
+					) : null}
 				</Button>
 			</SheetTrigger>
-			<SheetContent>
-				<SheetHeader>
-					<SheetTitle>Notifications</SheetTitle>
-					<SheetDescription>
-						Recent inventory activity and alerts.
+			<SheetContent className="w-full gap-0 p-0 sm:w-96 [&>button:last-child]:hidden">
+				<SheetHeader className="border-b px-4 py-3">
+					<div className="flex items-center justify-between gap-3">
+						<div className="flex items-center gap-2">
+							<SheetTitle className="text-sm">Notifications</SheetTitle>
+							<Badge className="min-w-4 rounded-full px-1 py-0 text-[10px] leading-4">
+								{unreadCount}
+							</Badge>
+						</div>
+						<div className="flex items-center gap-0.5">
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Button
+										variant="ghost"
+										size="icon-sm"
+										aria-label="Mark all as read"
+										onClick={markAllAsRead}
+										disabled={unreadCount === 0}
+									>
+										<CheckCheck />
+									</Button>
+								</TooltipTrigger>
+								<TooltipContent>Mark all as read</TooltipContent>
+							</Tooltip>
+							<SheetClose asChild>
+								<Button
+									variant="ghost"
+									size="icon-sm"
+									aria-label="Close notifications"
+								>
+									<X />
+								</Button>
+							</SheetClose>
+						</div>
+					</div>
+					<SheetDescription className="sr-only">
+						View and manage your notifications
 					</SheetDescription>
 				</SheetHeader>
-				<div className="flex flex-col gap-3 px-4">
-					{[
-						["Low stock alert", "Wireless Keyboard has 4 units remaining."],
-						["Catalog updated", "18 products were synced successfully."],
-						["New review", "A customer left a five-star product review."],
-					].map(([title, description]) => (
-						<div key={title} className="flex gap-3 rounded-lg border p-3">
-							<span
-								className="mt-1 size-2 shrink-0 rounded-full bg-primary"
-								aria-hidden="true"
-							/>
-							<span className="flex flex-col gap-1">
-								<span className="text-sm font-medium">{title}</span>
-								<span className="text-xs text-muted-foreground">
-									{description}
-								</span>
-							</span>
+				<div className="min-h-0 grow">
+					<ScrollArea className="h-full">
+						<div className="flex flex-col">
+							{notifications.map((notification) => {
+								const Icon = notification.icon
+
+								return (
+									<div key={notification.id} className="relative border-b">
+										{notification.unread ? (
+											<span
+												className="absolute inset-y-2 left-0 w-0.5 bg-primary"
+												aria-hidden="true"
+											/>
+										) : null}
+										<button
+											type="button"
+											className="flex w-full items-start gap-2 px-4 py-2 text-left transition-colors hover:bg-accent/50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-inset"
+											onClick={() => markAsRead(notification.id)}
+										>
+											<span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
+												<Icon className="size-3.5" />
+											</span>
+											<span className="flex min-w-0 flex-1 flex-col gap-1">
+												<span className="flex items-start justify-between gap-2">
+													<span className="text-xs leading-snug font-medium text-foreground">
+														{notification.title}
+													</span>
+													{notification.badge ? (
+														<Badge variant="secondary" className="shrink-0">
+															{notification.badge}
+														</Badge>
+													) : null}
+												</span>
+												<span className="line-clamp-2 text-xs text-muted-foreground">
+													{notification.description}
+												</span>
+												<span className="text-[11px] text-muted-foreground/70 tabular-nums">
+													{notification.time}
+												</span>
+											</span>
+										</button>
+										{notification.actions ? (
+											<div className="flex gap-1 px-12 pb-2">
+												{notification.actions.map((action) => (
+													<Button
+														key={action}
+														size="sm"
+														variant={
+															action === "Dismiss" || action === "Decline"
+																? "ghost"
+																: "outline"
+														}
+														onClick={() =>
+															action === "Dismiss"
+																? dismiss(notification.id)
+																: markAsRead(notification.id)
+														}
+													>
+														{action}
+													</Button>
+												))}
+											</div>
+										) : null}
+									</div>
+								)
+							})}
 						</div>
-					))}
+					</ScrollArea>
 				</div>
+				<SheetFooter className="border-t px-3 py-2">
+					<Button
+						variant="ghost"
+						size="sm"
+						className="w-full font-normal"
+						onClick={markAllAsRead}
+					>
+						View all notifications
+					</Button>
+				</SheetFooter>
 			</SheetContent>
 		</Sheet>
 	)
@@ -889,8 +1383,10 @@ export default function AppShellLayout() {
 							<BreadcrumbItem className="min-w-0">
 								<CrumbMenu
 									value={workspace}
-									options={workspaces}
+									options={organizationOptions}
 									onChange={setWorkspace}
+									heading="Organizations"
+									createLabel="Create Organization"
 									showMark
 								/>
 							</BreadcrumbItem>
@@ -898,16 +1394,19 @@ export default function AppShellLayout() {
 							<BreadcrumbItem className="hidden min-w-0 sm:flex">
 								<CrumbMenu
 									value={area}
-									options={inventoryAreas}
+									options={applicationOptions}
 									onChange={setArea}
+									heading="Applications"
+									createLabel="Create Application"
 								/>
 							</BreadcrumbItem>
 							<BreadcrumbSeparator className="hidden sm:block" />
 							<BreadcrumbItem className="hidden min-w-0 md:flex">
 								<CrumbMenu
 									value={environment}
-									options={environments}
+									options={environmentOptions}
 									onChange={setEnvironment}
+									heading="Environments"
 								/>
 							</BreadcrumbItem>
 						</BreadcrumbList>
