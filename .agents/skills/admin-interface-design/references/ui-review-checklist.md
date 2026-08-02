@@ -1,173 +1,73 @@
 # UI Review Checklist
 
-Use this reference when visually reviewing rendered administrative UI or reusable components intended for administrative interfaces.
+Use this reference when reviewing rendered administrative UI. Compilation,
+tests, or source inspection alone are insufficient evidence.
 
-Compilation, type checking, tests, and source inspection are necessary technical evidence but are not visual verification.
+## Review setup
 
-## Required evidence
+- Read the active spec, its `UI Profile`, and the implementation report.
+- Load the profile's required skills.
+- Identify all affected routes, screens, components, states, and shared consumers.
+- Start the application using the project workflow.
+- Use the configured browser tooling and capture runtime errors.
 
-Record:
+## Required viewports and modes
 
-- reviewed route or component;
-- relevant state and test data;
-- viewport dimensions;
-- color mode;
-- interaction states inspected;
-- before and after evidence for corrections when available;
-- any limitation that prevented complete review.
+- Review at least one representative desktop viewport.
+- Review at least one mobile viewport when the surface is responsive.
+- Review light and dark color modes when both are supported.
+- Add intermediate widths when navigation, tables, grids, or forms change structure.
 
-Use screenshots or equivalent rendered evidence. Keep comparisons under the same viewport, theme, data, and state whenever possible.
+## Hierarchy and layout
 
-## Review sequence
+- The primary task and action are immediately understandable.
+- Titles, descriptions, navigation, filters, and content follow a clear order.
+- Alignment, spacing, and density match comparable project surfaces.
+- Responsive changes preserve meaning and task order.
+- Content does not overflow, clip, or create page-level horizontal scroll unexpectedly.
 
-### 1. Scope and intent
+## Components and states
 
-- Confirm the requested workflow and acceptance criteria.
-- Identify the primary user task.
-- Identify comparable pages, components, or demos.
-- Distinguish intentional variants from accidental divergences.
-- Reject unrelated redesign or scope expansion.
+- Equivalent controls follow compatible size, radius, typography, and state contracts.
+- Hover, focus-visible, active, selected, open, disabled, and invalid states work when relevant.
+- Loading, empty, error, success, and permission states are present when required.
+- Overlays have correct stacking, focus behavior, escape behavior, and available space.
+- Icons have consistent style, optical size, placement, and accessible names.
 
-### 2. Information architecture
+## Data and forms
 
-- The page purpose and current location are immediately clear.
-- Navigation terminology matches page terminology.
-- The primary action is prominent without competing actions.
-- Sections follow user meaning rather than storage structure.
-- Repeated actions appear in predictable locations.
-- Density suits regular administrative work.
-- Cards, tabs, borders, and containers communicate real structure.
+- Tables and lists remain scannable and prioritize identifying information.
+- Sorting, filtering, pagination, selection, and row actions are unambiguous.
+- Labels, help, validation, and errors remain associated with their fields.
+- Primary, secondary, and destructive actions are differentiated and consistently placed.
+- Pending submissions prevent accidental duplication and provide feedback.
 
-Read `information-architecture.md` when the change affects navigation, hierarchy, or page layout.
+## Theme and accessibility
 
-### 3. Data display
+- Components use semantic tokens and remain legible in each supported mode.
+- Focus is visible and keyboard order follows the visual workflow.
+- Meaning does not depend on color alone.
+- Text and controls are not made unreadably small to fit more content.
+- Reduced-motion behavior is respected when motion is present.
 
-- Table, list, cards, list-detail, or stats match the comparison task.
-- Primary identifiers, statuses, and important values are easy to scan.
-- Columns, numbers, labels, metadata, and actions align consistently.
-- Search, filtering, sorting, selection, and pagination are understandable.
-- Loading, empty, no-results, error, stale, and permission states are distinct.
-- Realistic long, missing, and extreme values do not break the layout.
+## Regression comparison
 
-Read `data-display.md` when the change displays or manipulates collections or metrics.
+- Compare the changed surface with its closest equivalents.
+- Inspect shared consumers when a primitive or global composition changed.
+- Distinguish intentional variants from accidental divergence.
+- Reject undocumented inconsistencies; do not request an unrelated redesign.
 
-### 4. Forms and actions
+## Evidence to record
 
-- Field order follows the task and user mental model.
-- Labels remain visible and help text is attached to the correct control.
-- Required, optional, invalid, and disabled states are clear.
-- One primary action exists per form region.
-- Pending submission prevents duplicates without obscuring context.
-- Success and failure feedback appear at the appropriate level.
-- Destructive actions are separated, explicit, and proportionally confirmed.
-- User input survives validation and recoverable server errors.
+- Reviewed routes, screens, and component demos.
+- Viewport dimensions and color modes.
+- States and interactions exercised.
+- Browser console or page errors.
+- Before-and-after screenshots when useful.
+- Concrete divergences, their locations, and the expected established pattern.
 
-Read `forms-and-actions.md` when the change affects input or mutation flows.
+## Approval rule
 
-### 5. Component consistency
-
-Compare equivalent elements for:
-
-- height, width behavior, padding, and gaps;
-- alignment and icon sizing;
-- typography and content hierarchy;
-- radius, borders, backgrounds, and shadows;
-- hover, focus-visible, active, selected, disabled, loading, and invalid states;
-- demo container presentation;
-- responsive behavior.
-
-Require an explanation of any visible outlier and whether it is intentional. Read `component-consistency.md` for component or demo unification.
-
-### 6. Theme and restraint
-
-- Semantic theme tokens are used.
-- No Cobalt-specific values are hardcoded into reusable components.
-- Light and dark modes retain hierarchy and contrast.
-- Color communicates action, status, warning, or error rather than decoration alone.
-- Radius, shadows, gradients, and decoration remain subordinate to function.
-- Equivalent roles receive equivalent styling.
-- Arbitrary Tailwind values are justified or removed.
-
-### 7. Responsive behavior
-
-Review at least one representative desktop width and one representative mobile width when applicable.
-
-- Priority survives reflow.
-- Primary identity, status, and actions remain accessible.
-- Columns collapse in a meaningful order.
-- Tables preserve their comparison task or use a deliberate alternative.
-- Menus, dialogs, sheets, popovers, and tooltips remain within the viewport.
-- Sticky or fixed elements do not obscure content.
-- Long content does not cause page-wide horizontal overflow.
-- Touch targets and spacing remain usable.
-
-### 8. Accessibility and interaction
-
-- Keyboard navigation follows a logical order.
-- Focus-visible is clear and not clipped.
-- Icon-only actions have accessible names.
-- Labels and errors are programmatically associated.
-- Color is not the only state cue.
-- Disabled and read-only states are distinguishable.
-- Dialog focus, escape behavior, and focus restoration work.
-- Hover-only information has a keyboard-accessible equivalent.
-- Motion communicates change and respects reduced-motion preferences when relevant.
-
-### 9. Regression check
-
-- Existing intentional variants remain correct.
-- Shared primitive changes were checked against representative consumers.
-- Behavior, component APIs, and responsive states remain intact.
-- No unrelated theme, dependency, or global typography change was introduced.
-- Console errors and obvious layout shifts were checked during the rendered review.
-
-## Minimum viewport matrix
-
-Use project-defined viewports when available. Otherwise select representative widths rather than treating these values as product requirements:
-
-| Context | Representative viewport |
-| --- | --- |
-| Mobile | 390 x 844 |
-| Desktop | 1440 x 900 |
-
-Add intermediate or wide viewports when the layout has breakpoints or dense tables that require them.
-
-## Review result
-
-Choose one result:
-
-- **Approve:** acceptance criteria are met and rendered evidence covers relevant states.
-- **Approve with notes:** only non-blocking observations remain and they are documented.
-- **Request changes:** a visible, behavioral, responsive, accessibility, or scope issue remains.
-- **Blocked:** required rendering, route, data, authentication, browser access, or skill guidance was unavailable.
-
-Do not approve solely because the code compiles or resembles the expected classes.
-
-For each requested change, report:
-
-1. where it occurs;
-2. the state and viewport;
-3. what is visibly or behaviorally wrong;
-4. which established pattern or rule it violates;
-5. the smallest expected correction, without prescribing arbitrary CSS unless required.
-
-## Completion template
-
-```md
-UI review: approve | approve with notes | request changes | blocked
-
-Reviewed:
-- Route/component:
-- Viewports:
-- Color modes:
-- States:
-
-Evidence:
-- [screenshot or rendered artifact]
-
-Findings:
-- None.
-
-Limitations:
-- None.
-```
+Approve only when rendered evidence covers the spec's acceptance criteria and
+no unexplained regression remains. If browser review is unavailable, document
+the exact blocker and do not approve solely from compilation or source code.

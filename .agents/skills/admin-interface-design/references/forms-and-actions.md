@@ -1,152 +1,79 @@
 # Forms and Actions
 
-Use this reference for creation and editing flows, field organization, validation, action hierarchy, destructive operations, and save feedback.
+Use this reference for creation, editing, validation, submission, destructive
+actions, and CRUD feedback.
 
 ## Form structure
 
-Organize fields in the order users think about the task, not the order of database columns.
-
-1. Start with identity and required information.
-2. Follow with task-specific details.
-3. Place optional or advanced settings later.
-4. Put consequences, permissions, and destructive controls in clearly separated regions.
-
-Use sections when they represent meaningful concepts. Prefer spacing and headings before nested cards. Avoid accordions for required fields or information users must compare simultaneously.
-
-## Field layout
-
-- Use a single column by default for complex or narrative forms.
-- Use multiple columns only for short, strongly related fields that remain understandable at narrow widths.
+- Order fields according to the user's task, not the storage schema.
+- Put common required fields before optional or advanced settings.
+- Group fields only when the group has a clear meaning.
+- Use section headings for long forms and avoid decorative containers around every group.
 - Keep labels visible; placeholders are examples or hints, not label replacements.
-- Place help text close to the field it explains.
-- Mark optional fields explicitly when most fields are required, or required fields when most are optional; do not mark both systems at once.
-- Use the correct control for the data type and number of options.
-- Keep control heights, labels, gaps, and error placement consistent.
-- Preserve sensible tab order and keyboard operation.
+- Place help text and errors next to the field they explain.
 
 ## Control selection
 
-- Use text inputs for short free text.
-- Use textareas for meaningful multiline content.
-- Use checkboxes for independent choices.
-- Use radios for a small visible set of mutually exclusive choices.
-- Use a select or combobox for longer option sets; prefer a combobox when search is useful.
-- Use switches for settings that take effect immediately and represent on/off state.
-- Do not use a switch as a substitute for a confirmation-dependent action.
-- Use date and time controls appropriate to locale and scheduling precision.
+- Use the simplest control that represents the value correctly.
+- Use checkboxes for independent choices and radios for one visible choice among few options.
+- Use a select or combobox when options are numerous, searchable, or remotely loaded.
+- Use switches for immediate boolean settings, not for submitting an entire form.
+- Use date and time controls that match locale, precision, and scheduling needs.
+- Preserve keyboard behavior and accessible names from the underlying primitive.
+
+## Create and edit flows
+
+- Reuse field order, labels, validation, and action placement between create and edit.
+- Make immutable values clearly read-only rather than silently disabled without explanation.
+- Show the record identity and unsaved-change context during editing.
+- Use a full page when the workflow is complex, linkable, or spans sections.
+- Use a dialog or drawer only for bounded tasks that can be completed without losing context.
 
 ## Validation
 
-- Validate as early as useful, but do not show errors before the user has interacted unless submitting.
-- Place field errors next to their field.
-- Use a form-level summary when errors are distributed or submission failed for a non-field reason.
-- Explain how to resolve the problem.
-- Preserve entered values after validation or server failure.
-- Move focus to the first invalid field or error summary after failed submission when appropriate.
-- Use `aria-invalid`, programmatic descriptions, and accessible error associations.
-- Do not rely on color alone.
-
-Client validation improves feedback but does not replace server validation.
-
-## Creation and editing
-
-Creation and editing may share components, but their intent differs.
-
-### Create
-
-- Start with safe defaults.
-- Make required information and outcome clear.
-- After success, navigate or reset according to the workflow; do not surprise the user.
-- Prevent accidental duplicate submissions.
-
-### Edit
-
-- Load existing values without layout shift when possible.
-- Distinguish saved values from unsaved changes.
-- Do not overwrite fields the user cannot edit.
-- Warn before losing meaningful unsaved changes when navigation is accidental.
-- Keep audit or metadata information separate from editable fields.
+- Validate at the earliest useful moment without interrupting normal input.
+- Explain how to correct the value, not only that it is invalid.
+- Keep server errors when they contain information unavailable to client validation.
+- Move focus to the first invalid field after a failed submit when appropriate.
+- Preserve entered values after validation or network errors.
+- Do not use color as the only error indicator.
 
 ## Action hierarchy
 
-Within a form or dialog:
-
-- Use one primary submit action.
-- Keep cancel or back visually secondary.
-- Match the button label to the outcome: `Create store`, `Save changes`, or `Send invitation` is clearer than `Submit`.
-- Keep primary action placement consistent across equivalent forms.
-- Disable submission only when the reason is understandable; validation on submit is often clearer than silently disabled controls.
-- Show progress on the triggering action and prevent duplicate execution.
-- Do not change button width when replacing its label with a loading indicator.
-
-For long forms, use a stable action area only when it materially reduces scrolling or prevents lost context.
+- Give each surface one clear primary action.
+- Style secondary actions more quietly and keep them near the primary action when related.
+- Use links for navigation and buttons for actions.
+- Label actions with specific verbs such as `Save changes`, `Create store`, or `Archive`.
+- Keep destructive actions separated from routine actions.
+- Disable submission only when necessary and communicate in-progress state.
 
 ## Destructive actions
 
-- Separate destructive actions from routine save controls.
-- Use semantic destructive styling without making the entire page alarming.
-- Require confirmation when the action is irreversible, expensive, or affects other users.
-- Name the affected object and consequence in the confirmation.
-- Require typed confirmation only for unusually high-impact operations.
-- Prefer reversible deactivation or archive flows when the domain supports them.
-- Never make the destructive action the default focused confirmation button.
+- Require confirmation when the result is difficult to reverse or affects shared data.
+- Name the target and consequence in the confirmation.
+- Prefer archive, deactivate, or trash when the domain supports recovery.
+- Do not use a generic confirmation for materially different consequences.
+- Restore focus appropriately after cancellation or completion.
 
-## Feedback and asynchronous behavior
+## Submission feedback
 
-### Pending
+- Show progress near the action that started it.
+- Prevent duplicate submission while a request is pending.
+- On success, keep the user in the most useful next context.
+- Use inline confirmation when the result is local and a toast when confirmation must survive navigation.
+- Explain partial success or recovery steps when an operation is not atomic.
 
-- Show progress at the action's source.
-- Keep unaffected parts of the form readable.
-- Prevent conflicting edits or duplicate submission when necessary.
+## Permission and disabled states
 
-### Success
+- Hide actions the user should never discover only when product policy requires it.
+- Otherwise show unavailable actions with a concise reason when that helps understanding.
+- Distinguish read-only data from temporarily disabled controls.
+- Never rely on frontend state as authorization.
 
-- Confirm completion close to the workflow.
-- Update visible data immediately or clearly indicate refresh.
-- Use a toast for transient confirmation; use inline status when the result must remain visible.
-- Do not show both an intrusive dialog and a toast for the same ordinary success.
+## Avoid
 
-### Failure
-
-- Keep user input intact.
-- Explain whether the operation failed completely or partially.
-- Provide a retry path when safe.
-- Avoid generic `Something went wrong` when a more useful message is available.
-
-## Dialogs, sheets, and pages
-
-Choose based on task complexity and context:
-
-- **Dialog:** short, focused decisions or forms with limited fields.
-- **Sheet:** contextual editing that benefits from retaining the underlying page.
-- **Dedicated page:** complex forms, multiple sections, deep linking, or tasks requiring substantial space.
-- **Inline editing:** fast changes to simple fields where row context matters.
-
-Do not place a complex, scroll-heavy workflow inside a small dialog. Preserve a clear close or back path and restore focus after overlays close.
-
-## Permissions and sensitive fields
-
-- Hide actions that are never available to the user.
-- Disable actions only when seeing the capability and its unavailable reason is useful.
-- Do not expose secret values after initial entry unless the product explicitly supports it.
-- Explain permission restrictions in user language.
-- Keep privileged and destructive settings visually distinct from ordinary profile fields.
-
-## Responsive forms
-
-- Collapse multi-column groups into a logical single-column order.
-- Keep labels, help, and errors attached to their controls.
-- Ensure action bars do not obscure the last fields.
-- Use input modes and autocomplete attributes appropriate to the data.
-- Test overlays with the on-screen keyboard and small viewport height.
-
-## Review questions
-
-- Does field order follow the user's mental model?
-- Are labels, help text, required status, and errors unambiguous?
-- Is there one clear primary action?
-- Are creation and editing outcomes predictable?
-- Are destructive actions separated and proportional to their risk?
-- Is user input preserved through validation and server failures?
-- Are pending and success states shown at the right level?
-- Does the form remain usable with keyboard, mobile viewport, and realistic content?
+- Resetting the form after a failed submit.
+- Multiple primary-colored buttons in one action group.
+- Destructive actions next to the primary save action without separation.
+- Long forms inside small dialogs.
+- Generic labels such as `Submit` when a precise action name is available.

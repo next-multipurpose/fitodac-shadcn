@@ -1,175 +1,94 @@
 # Data Display
 
-Use this reference for tables, lists, cards, statistics, filters, search, pagination, and data-related states.
+Use this reference for tables, lists, cards, stats, filters, search, pagination,
+and visible data states.
 
-## Choose the right representation
+## Choose the display
 
-Choose based on the comparison task:
+- Use a table when users compare records across consistent fields.
+- Use a list when hierarchy, description, or supporting content matters more than columns.
+- Use cards when records are independent objects with meaningful visual grouping.
+- Use stats for a small set of decision-relevant summaries, not as decoration.
+- Use list-detail when comparison and inspection happen repeatedly in one workflow.
 
-- **Table:** records share comparable fields and users scan, sort, select, or act across rows.
-- **List:** hierarchy, identity, or supporting text matters more than column comparison.
-- **Cards:** records are few, independently actionable, and need visual grouping or richer preview.
-- **List-detail:** users repeatedly inspect or edit records while preserving list context.
-- **Stats:** a small set of metrics supports monitoring or a decision.
-
-Do not use cards as the default wrapper for every collection. Do not use a table when most cells would be empty, multiline, or structurally unrelated.
+Do not switch to cards merely because a viewport is narrow. Preserve the fields
+needed for the task and choose a compact list or controlled horizontal table
+when appropriate.
 
 ## Tables
 
-### Column design
+- Put the identifying field first and actions last.
+- Order columns by decision importance, not database order.
+- Align text to the start and comparable numbers to the end.
+- Use tabular numerals when digit alignment improves comparison.
+- Keep headers concise and use tooltips or help text for uncommon terms.
+- Keep row height consistent unless expanded content is an explicit interaction.
+- Make selection, sorting, and clickable rows visually unambiguous.
+- Avoid placing multiple competing buttons in every row; use a menu when suitable.
 
-- Put the primary identifier first.
-- Order remaining columns by task importance and comparison frequency.
-- Keep related values adjacent.
-- Align text left, numbers right, and short status values consistently.
-- Use tabular numerals for columns whose digits need comparison.
-- Keep headers concise and use tooltips or supporting copy only when necessary.
-- Hide low-value columns before truncating essential values.
-- Avoid showing internal IDs unless the workflow requires them.
+## Lists and cards
 
-### Rows and actions
+- Give every item one clear identifying element.
+- Keep metadata order and action placement consistent.
+- Use cards only when the boundary helps users understand or manipulate the item.
+- Avoid repeating labels when position and formatting already communicate meaning.
+- Do not mix unrelated card anatomies in the same collection.
 
-- Keep row height consistent within the same table.
-- Make selection behavior distinct from navigation behavior.
-- Place frequent row actions predictably.
-- Use an overflow menu for infrequent actions.
-- Do not hide the only important action behind a menu.
-- Keep destructive actions separated and require confirmation when consequences are material.
-- Preserve focus and selection after inline updates when practical.
+## Search and filters
 
-### Sorting and selection
+- Search should target the fields users reasonably expect.
+- Keep frequent filters visible and move advanced filters behind a clear control.
+- Show active filters and provide a direct way to clear them.
+- Preserve query state in the URL when sharing, returning, or browser navigation matters.
+- Debounce remote search and communicate loading without clearing useful results.
+- Distinguish no data from no results after filtering.
 
-- Only present sorting where it works and matters.
-- Make the active sort direction visible.
-- Preserve selection when pagination or filtering behavior safely allows it.
-- Clearly state whether bulk selection applies to the current page or all filtered results.
-- Keep bulk actions close to the selection summary.
+## Sorting and pagination
 
-## Lists
+- Indicate the active sort field and direction.
+- Provide stable defaults tied to the task.
+- Keep page size and pagination controls proportional to the data volume.
+- Preserve selection only when its behavior across pages is explicit.
+- Avoid infinite scrolling for operational data that requires position, totals, or return navigation.
 
-- Give each item a clear primary label.
-- Keep secondary metadata quieter but readable.
-- Use consistent placement for status, timestamp, and actions.
-- Limit item content to what supports scanning or the next decision.
-- Use separators or spacing consistently; avoid combining heavy borders, shadows, and background changes.
-- Make the clickable area and nested actions unambiguous.
-
-## Cards
-
-Use cards only when the boundary has meaning.
-
-- Keep card anatomy consistent across equivalent records.
-- Use one clear title and a limited amount of supporting metadata.
-- Avoid nested cards.
-- Do not use large imagery, oversized radius, or elevation unless the content requires it.
-- Keep action placement stable.
-- Prefer a list or table if users need rapid comparison across many records.
-
-## Statistics and summaries
-
-- Show metrics that support a real decision or indicate meaningful change.
-- Use clear labels, units, and time ranges.
-- Format numbers consistently.
-- Distinguish absolute values from percentages and deltas.
-- Do not use color alone to communicate positive or negative change.
-- Avoid decorative charts or trend arrows without interpretable data.
-- Keep the number of headline metrics small enough to scan.
-
-## Search, filters, and sorting
-
-- Use search for user-recognizable identifiers and text fields.
-- Use filters for bounded attributes such as status, category, owner, or date range.
-- Use sorting for meaningful comparison order.
-- Do not combine these controls into one ambiguous interaction.
-- Place common controls near the data they affect.
-- Display active filters and provide a clear reset action.
-- Preserve filter state during record inspection when it supports the workflow.
-- Debounce remote search and communicate loading without disrupting input.
-- Use labels that describe what can be searched, not generic placeholder-only instructions.
-
-## Pagination and result counts
-
-- Use pagination for large or remotely loaded collections.
-- Show the current result range and total when known and useful.
-- Keep page-size controls only when users benefit from changing density.
-- Reset to a valid page after filters change.
-- Preserve query state in the URL when users need shareable or recoverable views.
-- Do not use infinite scroll for workflows requiring precise location, comparison, bulk selection, or return navigation.
-
-## Data states
-
-Every data surface must account for relevant states.
+## Visible states
 
 ### Loading
 
-- Preserve layout stability.
-- Use skeletons when the eventual structure is predictable.
-- Use a spinner for short, localized operations with no useful skeleton shape.
-- Do not present stale data as current without an updating indicator.
+- Preserve the expected layout and avoid disruptive shifts.
+- Use skeletons for stable shapes and progress indicators for indeterminate actions.
+- Do not display empty-state messaging while data is still loading.
 
 ### Empty
 
-Differentiate:
-
-- no records exist;
-- no results match current search or filters;
-- the user lacks access;
-- data could not be loaded.
-
-Explain the state briefly and offer the next valid action. Do not show a creation action when the user lacks permission.
+- Explain what is absent and why it matters.
+- Offer one relevant next action when the user can resolve the state.
+- Keep first-use empty states distinct from filtered zero-results states.
 
 ### Error
 
 - State what failed in user terms.
-- Preserve recoverable inputs and context.
-- Offer retry when retry can succeed.
-- Keep technical details out of the primary message.
+- Preserve data that remains valid.
+- Offer retry or recovery when possible.
+- Do not replace the whole page for a local row or panel failure.
 
-### Partial and stale data
+### Stale and updating
 
-- Mark unavailable sections without discarding successfully loaded content.
-- Communicate background refreshes subtly.
-- Prevent actions that depend on missing or stale prerequisites when unsafe.
+- Keep existing data visible during background refresh when safe.
+- Indicate saving or updating close to the affected surface.
+- Prevent duplicate destructive or transactional submissions.
 
 ## Status and color
 
-- Use semantic theme tokens.
-- Pair color with text, icon, shape, or position.
-- Reserve strong colors for information that needs attention.
-- Keep neutral statuses visually quiet.
-- Use identical labels and treatments for identical states across screens.
+- Pair color with text, iconography, or shape.
+- Use semantic tokens or existing badge variants.
+- Reserve strong color for states that require attention.
+- Keep neutral metadata visually quieter than primary information.
 
-## Responsive data display
+## Avoid
 
-Adapt according to task priority:
-
-1. Keep the primary identifier, status, and essential action.
-2. Hide or defer secondary columns.
-3. Allow deliberate horizontal scrolling for genuinely tabular comparison.
-4. Use a row detail disclosure when secondary fields remain necessary.
-5. Convert to a list only when the comparison task still works in that form.
-
-Do not automatically transform every table row into a card. Test the narrow layout with realistic content lengths.
-
-## Content realism
-
-Review with representative data:
-
-- long names and labels;
-- missing optional values;
-- large and negative numbers;
-- multiple statuses;
-- one record and many records;
-- no results;
-- localized dates and currency when applicable.
-
-## Review questions
-
-- Does the representation match the comparison task?
-- Can users find the primary identifier and status quickly?
-- Are columns, values, and actions consistently aligned?
-- Are search, filter, sort, and pagination roles distinct?
-- Are loading, empty, error, and permission states accurate?
-- Does the responsive version preserve essential comparison and actions?
-- Is color semantic and supported by another cue?
-- Are decorative containers or metrics adding noise without helping a decision?
+- Decorative charts without a decision they support.
+- Excessive badges that make every value look equally important.
+- Truncating the identifying field before secondary columns.
+- Icon-only actions without accessible names.
+- Hardcoded raw colors for status values.
