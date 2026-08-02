@@ -8,10 +8,16 @@ export const DEFAULT_UI_THEME: UITheme = "cobalt"
 export const UI_THEME_STORAGE_KEY = "ui-theme"
 
 type CSSVariables = Record<string, string>
+type CSSRules = Record<string, CSSVariables>
 type CobaltThemeDefinition = {
   theme: CSSVariables
   light: CSSVariables
   dark: CSSVariables
+}
+
+type CobaltRegistryItem = {
+  cssVars: CobaltThemeDefinition
+  css: CSSRules
 }
 
 function isCSSVariables(value: unknown): value is CSSVariables {
@@ -22,7 +28,15 @@ function isCSSVariables(value: unknown): value is CSSVariables {
   )
 }
 
-function getCobaltThemeDefinition(): CobaltThemeDefinition {
+function isCSSRules(value: unknown): value is CSSRules {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    Object.values(value).every(isCSSVariables)
+  )
+}
+
+function getCobaltRegistryItem(): CobaltRegistryItem {
   const item = cobaltRegistry.items.find(
     (candidate) =>
       candidate.name === "cobalt" && candidate.type === "registry:theme"
@@ -32,17 +46,34 @@ function getCobaltThemeDefinition(): CobaltThemeDefinition {
     !item ||
     !isCSSVariables(item.cssVars?.theme) ||
     !isCSSVariables(item.cssVars?.light) ||
-    !isCSSVariables(item.cssVars?.dark)
+    !isCSSVariables(item.cssVars?.dark) ||
+    !isCSSRules(item.css)
   ) {
     throw new Error(
-      "Cobalt registry:theme item must define cssVars.theme, cssVars.light, and cssVars.dark"
+      "Cobalt registry:theme item must define cssVars.theme, cssVars.light, cssVars.dark, and css"
     )
   }
 
-  return item.cssVars
+  return item
 }
 
-export const COBALT_THEME = getCobaltThemeDefinition()
+function serializeCSSRules(rules: CSSRules): string {
+  return Object.entries(rules)
+    .map(([selector, declarations]) => {
+      const body = Object.entries(declarations)
+        .map(([property, value]) => `  ${property}: ${value};`)
+        .join("\n")
+
+      return `:root[data-ui-theme="cobalt"] ${selector} {\n${body}\n}`
+    })
+    .join("\n")
+}
+
+const cobaltRegistryItem = getCobaltRegistryItem()
+
+export const COBALT_THEME = cobaltRegistryItem.cssVars
+export const COBALT_THEME_CSS = cobaltRegistryItem.css
+export const COBALT_THEME_CSS_TEXT = serializeCSSRules(COBALT_THEME_CSS)
 const cobaltPropertyNames = new Set(
   Object.keys({
     ...COBALT_THEME.theme,
@@ -100,6 +131,7 @@ function applyCobalt(colorMode: Theme) {
 
 export function applyUITheme(theme: UITheme, colorMode: Theme): void {
   currentUITheme = theme
+  document.documentElement.dataset.uiTheme = theme
 
   if (theme === "default") {
     removeCobaltOverrides()
@@ -148,6 +180,7 @@ export const UI_THEME_BOOTSTRAP_SCRIPT = `(() => {
     storedTheme = value === "cobalt" || value === "default" ? value : null;
   } catch {}
   const uiTheme = storedTheme ?? "${DEFAULT_UI_THEME}";
+  root.dataset.uiTheme = uiTheme;
   for (const propertyName of cobaltPropertyNames) {
     root.style.removeProperty(propertyName);
   }

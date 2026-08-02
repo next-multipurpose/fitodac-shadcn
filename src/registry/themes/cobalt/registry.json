@@ -181,6 +181,20 @@
           "sidebar-border": "#263344",
           "sidebar-ring": "#8da3ff"
         }
+      },
+      "css": {
+        ":where([data-slot=\"input\"], [data-slot=\"textarea\"], [data-slot=\"native-select\"], [data-slot=\"select-trigger\"], [role=\"combobox\"]):not([aria-invalid=\"true\"]):focus-visible": {
+          "border-color": "var(--ring)",
+          "box-shadow": "var(--shadow-xs) !important"
+        },
+        "[data-slot=\"input-group\"]:not(:has([aria-invalid=\"true\"])):has([data-slot=\"input-group-control\"]:focus-visible)": {
+          "border-color": "var(--ring)",
+          "box-shadow": "var(--shadow-xs) !important"
+        },
+        "[data-slot=\"input-otp-slot\"][data-active=\"true\"]:not([aria-invalid=\"true\"])": {
+          "border-color": "var(--ring)",
+          "box-shadow": "var(--shadow-xs) !important"
+        }
       }
     }
   ]

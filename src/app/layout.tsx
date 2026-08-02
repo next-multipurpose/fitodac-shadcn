@@ -9,7 +9,10 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 import { ThemeSelector } from "@/components/theme-selector"
 import { resolveLocale } from "@/i18n/config"
 import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme"
-import { UI_THEME_BOOTSTRAP_SCRIPT } from "@/lib/ui-theme"
+import {
+  COBALT_THEME_CSS_TEXT,
+  UI_THEME_BOOTSTRAP_SCRIPT,
+} from "@/lib/ui-theme"
 
 import "./globals.css"
 
@@ -37,6 +40,10 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        <style
+          data-ui-theme-styles="cobalt"
+          dangerouslySetInnerHTML={{ __html: COBALT_THEME_CSS_TEXT }}
+        />
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
         <script
           dangerouslySetInnerHTML={{ __html: UI_THEME_BOOTSTRAP_SCRIPT }}

@@ -4,6 +4,8 @@ import cobaltRegistry from "@/registry/themes/cobalt/registry.json"
 import {
   applyUITheme,
   COBALT_THEME,
+  COBALT_THEME_CSS,
+  COBALT_THEME_CSS_TEXT,
   DEFAULT_UI_THEME,
   getInitialUITheme,
   getStoredUITheme,
@@ -48,9 +50,21 @@ function runUIThemeBootstrap() {
 }
 
 describe("UI theme runtime", () => {
+  it("sources the Cobalt focus contract from its installable registry item", () => {
+    expect(COBALT_THEME_CSS).toEqual(cobaltTheme.css)
+    expect(COBALT_THEME_CSS_TEXT).toContain(
+      ':root[data-ui-theme="cobalt"]'
+    )
+    expect(COBALT_THEME_CSS_TEXT).toContain("border-color: var(--ring);")
+    expect(COBALT_THEME_CSS_TEXT).toContain(
+      "box-shadow: var(--shadow-xs) !important;"
+    )
+  })
+
   beforeEach(() => {
     vi.stubGlobal("localStorage", createStorage())
     document.documentElement.removeAttribute("style")
+    document.documentElement.removeAttribute("data-ui-theme")
     document.documentElement.className = ""
   })
 
@@ -117,6 +131,10 @@ describe("UI theme runtime", () => {
       expect(document.documentElement.style.getPropertyValue("--border")).toBe(
         cobaltTheme.cssVars[colorMode].border
       )
+      expect(document.documentElement).toHaveAttribute(
+        "data-ui-theme",
+        "cobalt"
+      )
     }
   )
 
@@ -143,6 +161,10 @@ describe("UI theme runtime", () => {
       )
       expect(document.documentElement.style.getPropertyValue("--primary")).toBe(
         expectedTheme === "cobalt" ? cobaltTheme.cssVars[colorMode].primary : ""
+      )
+      expect(document.documentElement).toHaveAttribute(
+        "data-ui-theme",
+        expectedTheme
       )
     }
   )
@@ -172,6 +194,10 @@ describe("UI theme runtime", () => {
     expect(document.documentElement).toHaveClass("dark")
     expect(document.documentElement.style.colorScheme).toBe("dark")
     expect(localStorage.getItem("theme")).toBe("dark")
+    expect(document.documentElement).toHaveAttribute(
+      "data-ui-theme",
+      "default"
+    )
   })
 
   it("reapplies the current selection for a changed color mode", () => {

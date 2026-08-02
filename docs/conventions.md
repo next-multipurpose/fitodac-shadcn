@@ -141,6 +141,11 @@ Standard form controls such as Input, Select, and Button use this baseline:
 - Focus: use the closest primitive's exact treatment, typically
   `focus-visible:border-ring focus-visible:ring-[3px]
 focus-visible:ring-ring/50`.
+- Cobalt focus: text-entry controls must not show a focus ring. When Cobalt is
+  active, Input, Textarea, Select, native select, Combobox, InputGroup, and
+  InputOTP communicate focus only by changing the control border to `ring`.
+  Keep the standard focus ring for the Default theme and for non-input
+  interactive controls.
 - Invalid: use destructive semantic tokens, typically
   `aria-invalid:border-destructive aria-invalid:ring-destructive/20
 dark:aria-invalid:ring-destructive/40`.
