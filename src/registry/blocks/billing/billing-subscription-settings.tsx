@@ -12,25 +12,25 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/registry/new-york/ui/alert-dialog";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+} from "@/registry/primitives/alert-dialog";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
+} from "@/registry/primitives/card";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select";
-import { Separator } from "@/registry/new-york/ui/separator";
-import { Switch } from "@/registry/new-york/ui/switch";
+} from "@/registry/primitives/select";
+import { Separator } from "@/registry/primitives/separator";
+import { Switch } from "@/registry/primitives/switch";
 
 export interface SubscriptionSettings {
   id: string;

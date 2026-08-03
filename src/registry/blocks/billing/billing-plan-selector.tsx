@@ -3,16 +3,16 @@
 import { Check, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Switch } from "@/registry/new-york/ui/switch";
+} from "@/registry/primitives/card";
+import { Switch } from "@/registry/primitives/switch";
 
 export interface PlanFeature {
   name: string;

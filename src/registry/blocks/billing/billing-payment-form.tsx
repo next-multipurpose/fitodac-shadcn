@@ -3,27 +3,27 @@
 import { CreditCard, Loader2, Lock, Shield } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Checkbox } from "@/registry/new-york/ui/checkbox";
+} from "@/registry/primitives/card";
+import { Checkbox } from "@/registry/primitives/checkbox";
 import {
   Field,
   FieldContent,
   FieldError,
   FieldLabel,
-} from "@/registry/new-york/ui/field";
+} from "@/registry/primitives/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/registry/new-york/ui/input-group";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/input-group";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface PaymentFormData {
   cardNumber: string;

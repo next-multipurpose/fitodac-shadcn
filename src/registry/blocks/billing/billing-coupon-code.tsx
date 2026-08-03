@@ -3,27 +3,27 @@
 import { Check, Loader2, Tag, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
+} from "@/registry/primitives/card";
 import {
   Field,
   FieldContent,
   FieldError,
   FieldLabel,
-} from "@/registry/new-york/ui/field";
+} from "@/registry/primitives/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/registry/new-york/ui/input-group";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/input-group";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface AppliedCoupon {
   code: string;

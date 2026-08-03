@@ -3,16 +3,16 @@
 import { Download, Loader2, Printer } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
-import { Separator } from "@/registry/new-york/ui/separator";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
+import { Separator } from "@/registry/primitives/separator";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/registry/new-york/ui/sheet";
+} from "@/registry/primitives/sheet";
 
 export interface InvoiceLineItem {
   description: string;

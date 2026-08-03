@@ -11,17 +11,17 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Progress } from "@/registry/new-york/ui/progress";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/card";
+import { Progress } from "@/registry/primitives/progress";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface ScheduledPayment {
   id: string;

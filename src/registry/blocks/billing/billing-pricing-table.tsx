@@ -3,21 +3,21 @@
 import { Check, HelpCircle, Loader2, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Switch } from "@/registry/new-york/ui/switch";
+} from "@/registry/primitives/card";
+import { Switch } from "@/registry/primitives/switch";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/registry/new-york/ui/tooltip";
+} from "@/registry/primitives/tooltip";
 
 export interface PricingPlan {
   id: string;

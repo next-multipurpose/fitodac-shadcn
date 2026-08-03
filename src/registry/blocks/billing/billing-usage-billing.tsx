@@ -7,16 +7,16 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Progress } from "@/registry/new-york/ui/progress";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/card";
+import { Progress } from "@/registry/primitives/progress";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface UsageDataPoint {
   date: Date;
