@@ -125,7 +125,7 @@ function getDaysUntil(date: Date): number {
 }
 
 export default function BillingPaymentSchedule({
-  payments,
+  payments = [],
   onViewInvoice,
   onRetry,
   onCancel,

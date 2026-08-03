@@ -82,7 +82,7 @@ function formatExpiry(month?: number, year?: number): string {
 }
 
 export default function BillingPaymentMethod({
-  paymentMethods,
+  paymentMethods = [],
   onAdd,
   onEdit,
   onDelete,

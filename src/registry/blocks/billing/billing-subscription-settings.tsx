@@ -80,7 +80,7 @@ function formatPrice(amount: number, currency = "USD"): string {
 }
 
 export default function BillingSubscriptionSettings({
-  subscription,
+  subscription = { id: "", planName: "", status: "active", billingPeriod: "monthly", currentBillingDate: new Date(), autoRenew: false, newAmount: 0, creditAmount: 0, nextBillingDate: new Date() } as any,
   onPause,
   onResume,
   onChangeBillingPeriod,

@@ -128,7 +128,7 @@ function getReasonConfig(reason: PaymentFailureDetails["reason"]) {
 }
 
 export default function BillingPaymentFailed({
-  failure,
+  failure = { amount: 0, failedAt: new Date(), reason: "card_declined" } as any,
   onRetry,
   onUpdatePaymentMethod,
   onContactSupport,

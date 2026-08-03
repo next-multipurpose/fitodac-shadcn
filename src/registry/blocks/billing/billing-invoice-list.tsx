@@ -113,7 +113,7 @@ function getStatusConfig(status: Invoice["status"]) {
 }
 
 export default function BillingInvoiceList({
-  invoices,
+  invoices = [],
   onDownload,
   onViewDetails,
   className,

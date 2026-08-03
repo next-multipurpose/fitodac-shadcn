@@ -66,7 +66,7 @@ function formatPrice(
 }
 
 export default function BillingPlanSelector({
-  plans,
+  plans = [],
   selectedPlanId,
   billingPeriod = "monthly",
   onBillingPeriodChange,

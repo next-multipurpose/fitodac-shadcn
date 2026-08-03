@@ -83,7 +83,7 @@ function calculateTrend(
 }
 
 export default function BillingUsageBilling({
-  currentPeriod,
+  currentPeriod = { start: new Date(), end: new Date(), usage: 0 } as any,
   previousPeriod,
   dataPoints = [],
   categories = [],

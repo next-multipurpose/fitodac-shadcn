@@ -124,7 +124,7 @@ function getStatusConfig(status: BillingTransaction["status"]) {
 }
 
 export default function BillingBillingHistory({
-  transactions,
+  transactions = [],
   onViewDetails,
   onExport,
   className,

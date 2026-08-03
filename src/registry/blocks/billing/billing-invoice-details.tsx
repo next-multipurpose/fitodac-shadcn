@@ -128,9 +128,9 @@ function getStatusConfig(status: InvoiceDetails["status"]) {
 }
 
 export default function BillingInvoiceDetails({
-  invoice,
-  open,
-  onOpenChange,
+  invoice = null,
+  open = false,
+  onOpenChange = () => {},
   onDownload,
   onPrint,
   className,

@@ -55,8 +55,8 @@ function formatPrice(amount: number, currency = "USD"): string {
 }
 
 export default function BillingUpgradePrompt({
-  currentPlan,
-  recommendedPlan,
+  currentPlan = { id: "", name: "" } as any,
+  recommendedPlan = { id: "", name: "", price: 0 } as any,
   features = [],
   reason = "recommended",
   customMessage,

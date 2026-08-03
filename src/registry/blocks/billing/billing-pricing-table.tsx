@@ -87,7 +87,7 @@ function formatFeatureValue(
 }
 
 export default function BillingPricingTable({
-  plans,
+  plans = [],
   billingPeriod = "monthly",
   onBillingPeriodChange,
   onPlanSelect,

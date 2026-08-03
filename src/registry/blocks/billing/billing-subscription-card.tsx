@@ -95,9 +95,9 @@ function getStatusConfig(status: string) {
 }
 
 export default function BillingSubscriptionCard({
-  plan,
+  plan = { id: "", name: "", price: 0, billingPeriod: "monthly" } as any,
   usage = [],
-  nextBillingDate,
+  nextBillingDate = new Date(),
   autoRenew = true,
   status = "active",
   onUpgrade,
