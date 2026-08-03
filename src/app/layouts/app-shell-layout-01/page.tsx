@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import AppShellLayout from "@/registry/blocks/app-shell-layout-01/layout"
+import AppShellLayout from "@/registry/blocks/layouts/app-shell-layout-01"
 
 export const metadata: Metadata = {
 	title: "App Shell Layout",
