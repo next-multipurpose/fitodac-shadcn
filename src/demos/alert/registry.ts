@@ -17,6 +17,11 @@ import AlertPasswordRequirementsPartialSuccessDemo from "./password-requirements
 import AlertUndoActionDemo from "./undo-action"
 import AlertFriendRequestActionsDemo from "./friend-request-actions"
 import AlertDismissActionDemo from "./dismiss-action"
+import ErrorWithTitleDemo from "./error-with-title"
+import ErrorWithTitleDescriptionDemo from "./error-with-title-description"
+import ErrorWithTitleActionDemo from "./error-with-title-action"
+import ErrorWithTitleDescriptionActionDemo from "./error-with-title-description-action"
+import ErrorWithEverythingDemo from "./error-with-everything"
 
 export const alertDemos: DemoEntry[] = [
   {
@@ -152,6 +157,49 @@ export const alertDemos: DemoEntry[] = [
     component: AlertDismissActionDemo,
     componentSlug: "alert",
     sourcePath: "src/demos/alert/dismiss-action.tsx",
+    registryDependencies: ["button"],
+    dependencies: ["lucide-react@^0.577.0"],
+  },
+  {
+    name: "error-with-title",
+    title: "Error with title",
+    component: ErrorWithTitleDemo,
+    componentSlug: "alert",
+    sourcePath: "src/demos/alert/error-with-title.tsx",
+    dependencies: ["lucide-react@^0.577.0"],
+  },
+  {
+    name: "error-with-title-description",
+    title: "Error with title and description",
+    component: ErrorWithTitleDescriptionDemo,
+    componentSlug: "alert",
+    sourcePath: "src/demos/alert/error-with-title-description.tsx",
+    dependencies: ["lucide-react@^0.577.0"],
+  },
+  {
+    name: "error-with-title-action",
+    title: "Error with title and action",
+    component: ErrorWithTitleActionDemo,
+    componentSlug: "alert",
+    sourcePath: "src/demos/alert/error-with-title-action.tsx",
+    registryDependencies: ["button"],
+    dependencies: ["lucide-react@^0.577.0"],
+  },
+  {
+    name: "error-with-title-description-action",
+    title: "Error with title, description, and action",
+    component: ErrorWithTitleDescriptionActionDemo,
+    componentSlug: "alert",
+    sourcePath: "src/demos/alert/error-with-title-description-action.tsx",
+    registryDependencies: ["button"],
+    dependencies: ["lucide-react@^0.577.0"],
+  },
+  {
+    name: "error-with-everything",
+    title: "Error with everything",
+    component: ErrorWithEverythingDemo,
+    componentSlug: "alert",
+    sourcePath: "src/demos/alert/error-with-everything.tsx",
     registryDependencies: ["button"],
     dependencies: ["lucide-react@^0.577.0"],
   },
