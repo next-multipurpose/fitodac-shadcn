@@ -7,29 +7,29 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/new-york/ui/avatar";
-import { Button } from "@/registry/new-york/ui/button";
+} from "@/registry/primitives/avatar";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
+} from "@/registry/primitives/card";
 import {
   Empty,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/registry/new-york/ui/empty";
+} from "@/registry/primitives/empty";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupTextarea,
-} from "@/registry/new-york/ui/input-group";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/input-group";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface ChatMessage {
   id: string;

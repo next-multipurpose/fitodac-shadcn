@@ -7,9 +7,9 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/new-york/ui/avatar";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+} from "@/registry/primitives/avatar";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   CommandMenuEmpty,
   CommandMenuInput,
@@ -17,12 +17,12 @@ import {
   CommandMenuList,
   CommandMenuProvider,
   CommandMenuSeparator,
-} from "@/registry/new-york/ui/command-menu";
+} from "@/registry/primitives/command-menu";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/registry/new-york/ui/popover";
+} from "@/registry/primitives/popover";
 
 export interface Team {
   id: string;

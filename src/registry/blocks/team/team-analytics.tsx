@@ -6,17 +6,17 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/new-york/ui/avatar";
-import { Badge } from "@/registry/new-york/ui/badge";
+} from "@/registry/primitives/avatar";
+import { Badge } from "@/registry/primitives/badge";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Progress } from "@/registry/new-york/ui/progress";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/card";
+import { Progress } from "@/registry/primitives/progress";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface AnalyticsDataPoint {
   date: Date;

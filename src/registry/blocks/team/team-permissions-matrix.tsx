@@ -3,16 +3,16 @@
 import { Check, Lock, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/registry/new-york/ui/badge";
+import { Badge } from "@/registry/primitives/badge";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Separator } from "@/registry/new-york/ui/separator";
-import { Toggle } from "@/registry/new-york/ui/toggle";
+} from "@/registry/primitives/card";
+import { Separator } from "@/registry/primitives/separator";
+import { Toggle } from "@/registry/primitives/toggle";
 
 export type PermissionAction =
   | "view"
