@@ -135,7 +135,7 @@ function getInitials(name: string): string {
 }
 
 export default function TeamDashboard({
-  teamName,
+  teamName = "",
   teamAvatar,
   plan = "free",
   members = [],

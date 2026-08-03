@@ -5,9 +5,46 @@ import { ShieldIcon } from "lucide-react"
 
 import type { BlockEntry } from "@/lib/blocks-catalog"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyComponent = React.ComponentType<any>
+
 type BlocksDetailProps = {
 	blocks: readonly BlockEntry[]
-	components: Record<string, React.ComponentType>
+	components: Record<string, AnyComponent>
+}
+
+interface BlockErrorBoundaryProps {
+	children: React.ReactNode
+	fallback: React.ReactNode
+}
+
+interface BlockErrorBoundaryState {
+	hasError: boolean
+}
+
+class BlockErrorBoundary extends React.Component<
+	BlockErrorBoundaryProps,
+	BlockErrorBoundaryState
+> {
+	constructor(props: BlockErrorBoundaryProps) {
+		super(props)
+		this.state = { hasError: false }
+	}
+
+	static getDerivedStateFromError() {
+		return { hasError: true }
+	}
+
+	componentDidCatch(error: Error) {
+		console.error("Block demo error:", error)
+	}
+
+	render() {
+		if (this.state.hasError) {
+			return this.props.fallback
+		}
+		return this.props.children
+	}
 }
 
 export function BlocksDetail({ blocks, components }: BlocksDetailProps) {
@@ -35,9 +72,15 @@ export function BlocksDetail({ blocks, components }: BlocksDetailProps) {
 							</p>
 						</div>
 						<div className="border-t border-border px-4 py-8 sm:px-10 sm:py-12">
-							<div className="flex justify-center">
+							<BlockErrorBoundary
+								fallback={
+									<div className="text-center text-sm text-muted-foreground">
+										Demo preview requires prop values
+									</div>
+								}
+							>
 								<Component />
-							</div>
+							</BlockErrorBoundary>
 						</div>
 					</div>
 				)

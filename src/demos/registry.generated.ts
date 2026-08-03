@@ -40,6 +40,7 @@ import { itemDemos } from "./item/registry"
 import { labelDemos } from "./label/registry"
 import { mapDemos } from "./map/registry"
 import { menubarDemos } from "./menubar/registry"
+import { miniCalendarDemos } from "./mini-calendar/registry"
 import { nativeSelectDemos } from "./native-select/registry"
 import { navigationMenuDemos } from "./navigation-menu/registry"
 import { paginationDemos } from "./pagination/registry"
@@ -106,6 +107,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   label: labelDemos,
   map: mapDemos,
   menubar: menubarDemos,
+  "mini-calendar": miniCalendarDemos,
   "native-select": nativeSelectDemos,
   "navigation-menu": navigationMenuDemos,
   pagination: paginationDemos,

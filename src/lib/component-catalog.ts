@@ -26,7 +26,7 @@ export type CatalogEntry = {
 
 export type CatalogCategoryFilter = "all" | ComponentCategoryKey
 
-export const hiddenCatalogEntries = ["craft-button", "kbd", "ripple-button", "toggle-group", "date-selector", "mini-calendar", "field", "sidebar", "dialog", "chart", "sonner", "use-character-limit",
+export const hiddenCatalogEntries = ["craft-button", "kbd", "ripple-button", "toggle-group", "date-selector", "field", "sidebar", "dialog", "chart", "sonner", "use-character-limit",
 			"use-file-upload",
 			"use-mobile",
 			"use-pagination",
@@ -70,6 +70,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"input-phone",
 			"input-time",
 			"label",
+			"mini-calendar",
 			"native-select",
 			"radio-group",
 			"rating",
