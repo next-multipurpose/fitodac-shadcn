@@ -4,27 +4,27 @@ import { Camera, Loader2, Save, X } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
+} from "@/registry/primitives/card";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@/registry/new-york/ui/field";
+} from "@/registry/primitives/field";
 import {
   InputGroup,
   InputGroupInput,
-} from "@/registry/new-york/ui/input-group";
-import { Separator } from "@/registry/new-york/ui/separator";
-import { Textarea } from "@/registry/new-york/ui/textarea";
+} from "@/registry/primitives/input-group";
+import { Separator } from "@/registry/primitives/separator";
+import { Textarea } from "@/registry/primitives/textarea";
 
 export interface SocialLink {
   platform: string;

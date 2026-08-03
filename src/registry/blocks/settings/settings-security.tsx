@@ -27,16 +27,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/registry/new-york/ui/alert-dialog";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+} from "@/registry/primitives/alert-dialog";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
+} from "@/registry/primitives/card";
 import {
   Dialog,
   DialogContent,
@@ -45,19 +45,19 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/new-york/ui/dialog";
+} from "@/registry/primitives/dialog";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@/registry/new-york/ui/field";
+} from "@/registry/primitives/field";
 import {
   InputGroup,
   InputGroupInput,
-} from "@/registry/new-york/ui/input-group";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/input-group";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface SecuritySession {
   id: string;

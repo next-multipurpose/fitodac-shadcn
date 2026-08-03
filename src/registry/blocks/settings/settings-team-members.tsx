@@ -14,16 +14,16 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/new-york/ui/avatar";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+} from "@/registry/primitives/avatar";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
+} from "@/registry/primitives/card";
 import {
   Dialog,
   DialogContent,
@@ -32,33 +32,33 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/new-york/ui/dialog";
+} from "@/registry/primitives/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/registry/new-york/ui/dropdown-menu";
+} from "@/registry/primitives/dropdown-menu";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@/registry/new-york/ui/field";
+} from "@/registry/primitives/field";
 import {
   InputGroup,
   InputGroupInput,
-} from "@/registry/new-york/ui/input-group";
+} from "@/registry/primitives/input-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select";
-import { Textarea } from "@/registry/new-york/ui/textarea";
+} from "@/registry/primitives/select";
+import { Textarea } from "@/registry/primitives/textarea";
 
 export interface TeamMember {
   id: string;

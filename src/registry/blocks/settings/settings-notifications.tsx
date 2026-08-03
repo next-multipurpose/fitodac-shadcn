@@ -10,33 +10,33 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
+} from "@/registry/primitives/card";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldLabel,
-} from "@/registry/new-york/ui/field";
+} from "@/registry/primitives/field";
 import {
   InputGroup,
   InputGroupInput,
-} from "@/registry/new-york/ui/input-group";
+} from "@/registry/primitives/input-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select";
-import { Separator } from "@/registry/new-york/ui/separator";
-import { Switch } from "@/registry/new-york/ui/switch";
+} from "@/registry/primitives/select";
+import { Separator } from "@/registry/primitives/separator";
+import { Switch } from "@/registry/primitives/switch";
 
 export interface NotificationChannel {
   email: boolean;

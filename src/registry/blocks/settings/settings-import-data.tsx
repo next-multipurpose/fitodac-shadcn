@@ -3,19 +3,19 @@
 import { AlertCircle, Check, FileUp, Loader2, Upload, X } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Field, FieldContent, FieldLabel } from "@/registry/new-york/ui/field";
-import { Progress } from "@/registry/new-york/ui/progress";
-import { RadioGroup, RadioGroupItem } from "@/registry/new-york/ui/radio-group";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/card";
+import { Field, FieldContent, FieldLabel } from "@/registry/primitives/field";
+import { Progress } from "@/registry/primitives/progress";
+import { RadioGroup, RadioGroupItem } from "@/registry/primitives/radio-group";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface ImportPreview {
   totalRecords: number;

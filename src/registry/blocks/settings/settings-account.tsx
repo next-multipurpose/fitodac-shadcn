@@ -20,19 +20,19 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/registry/new-york/ui/alert-dialog";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+} from "@/registry/primitives/alert-dialog";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { FieldDescription, FieldLabel } from "@/registry/new-york/ui/field";
-import { Progress } from "@/registry/new-york/ui/progress";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/card";
+import { FieldDescription, FieldLabel } from "@/registry/primitives/field";
+import { Progress } from "@/registry/primitives/progress";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface AccountInfo {
   type: "free" | "pro" | "enterprise";

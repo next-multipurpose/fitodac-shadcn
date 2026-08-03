@@ -22,31 +22,31 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/registry/new-york/ui/alert-dialog";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+} from "@/registry/primitives/alert-dialog";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { FieldDescription, FieldLabel } from "@/registry/new-york/ui/field";
+} from "@/registry/primitives/card";
+import { FieldDescription, FieldLabel } from "@/registry/primitives/field";
 import {
   InputGroup,
   InputGroupInput,
-} from "@/registry/new-york/ui/input-group";
-import { Progress } from "@/registry/new-york/ui/progress";
+} from "@/registry/primitives/input-group";
+import { Progress } from "@/registry/primitives/progress";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select";
-import { Separator } from "@/registry/new-york/ui/separator";
-import { Switch } from "@/registry/new-york/ui/switch";
+} from "@/registry/primitives/select";
+import { Separator } from "@/registry/primitives/separator";
+import { Switch } from "@/registry/primitives/switch";
 
 export interface Backup {
   id: string;

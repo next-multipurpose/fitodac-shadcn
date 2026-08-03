@@ -3,35 +3,35 @@
 import { Download, FileDown, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Checkbox } from "@/registry/new-york/ui/checkbox";
+} from "@/registry/primitives/card";
+import { Checkbox } from "@/registry/primitives/checkbox";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldLabel,
-} from "@/registry/new-york/ui/field";
+} from "@/registry/primitives/field";
 import {
   InputGroup,
   InputGroupInput,
-} from "@/registry/new-york/ui/input-group";
-import { Progress } from "@/registry/new-york/ui/progress";
+} from "@/registry/primitives/input-group";
+import { Progress } from "@/registry/primitives/progress";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select";
-import { Separator } from "@/registry/new-york/ui/separator";
+} from "@/registry/primitives/select";
+import { Separator } from "@/registry/primitives/separator";
 
 export interface ExportJob {
   id: string;
