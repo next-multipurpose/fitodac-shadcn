@@ -1,5 +1,5 @@
 # 021 — Charts catalog and detail pages
-Status: REVIEW
+Status: DONE
 Role: implementer
 UI Review: required
 UI Profile: admin-app
