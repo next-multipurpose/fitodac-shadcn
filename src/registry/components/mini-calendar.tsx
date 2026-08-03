@@ -9,6 +9,7 @@ import {
   type ButtonHTMLAttributes,
   type ComponentProps,
   createContext,
+  Fragment,
   type HTMLAttributes,
   type MouseEventHandler,
   type ReactNode,
@@ -193,7 +194,11 @@ export const MiniCalendarDays = ({
 
   return (
     <div className={cn("flex items-center gap-1", className)} {...props}>
-      {days.map((date) => children(date))}
+      {days.map((date) => (
+        <Fragment key={format(date, "yyyy-MM-dd")}>
+          {children(date)}
+        </Fragment>
+      ))}
     </div>
   )
 }

@@ -87,6 +87,7 @@ const expectedDemoNames = {
     "account-menu",
   ],
   badge: ["default", "variants", "sizes", "radius"],
+  "mini-calendar": ["default", "controlled", "seven-days", "custom-layout"],
   button: [
     "default",
     "variants",
@@ -160,5 +161,36 @@ describe("modular demo registry", () => {
       componentSlug: "dialog",
       sourcePath: "src/demos/alert-dialog/fullscreen-product.tsx",
     })
+  })
+
+  it("resolves mini-calendar demos with the mini-calendar slug and colocated sources", () => {
+    expect(getDemosForComponent("mini-calendar")).toMatchObject([
+      expect.objectContaining({
+        name: "default",
+        componentSlug: "mini-calendar",
+        sourcePath: "src/demos/mini-calendar/default.tsx",
+        registryDependencies: ["mini-calendar"],
+      }),
+      expect.objectContaining({
+        name: "controlled",
+        componentSlug: "mini-calendar",
+        sourcePath: "src/demos/mini-calendar/controlled.tsx",
+        dependencies: ["date-fns"],
+        registryDependencies: ["mini-calendar"],
+      }),
+      expect.objectContaining({
+        name: "seven-days",
+        componentSlug: "mini-calendar",
+        sourcePath: "src/demos/mini-calendar/seven-days.tsx",
+        registryDependencies: ["mini-calendar"],
+      }),
+      expect.objectContaining({
+        name: "custom-layout",
+        componentSlug: "mini-calendar",
+        sourcePath: "src/demos/mini-calendar/custom-layout.tsx",
+        dependencies: ["lucide-react@^0.577.0"],
+        registryDependencies: ["mini-calendar"],
+      }),
+    ])
   })
 })

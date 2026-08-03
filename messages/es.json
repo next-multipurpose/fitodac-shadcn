@@ -75,10 +75,18 @@
 		"viewBlocks": "Ver bloques",
 		"blockCount": "{count, plural, one {# bloque} other {# bloques}}",
 		"categories": {
-			"auth": "Auth"
+			"auth": "Auth",
+			"billing": "Facturación",
+			"settings": "Configuración",
+			"tasks": "Tareas",
+			"team": "Equipo"
 		},
 		"categoryDescriptions": {
-			"auth": "Bloques de autenticación y gestión de cuentas."
+			"auth": "Bloques de autenticación y gestión de cuentas.",
+			"billing": "Bloques de facturación, suscripción y flujos de pago.",
+			"settings": "Bloques de gestión de configuración de usuario y cuenta.",
+			"tasks": "Bloques de gestión de tareas y proyectos.",
+			"team": "Bloques de colaboración y espacio en equipo."
 		}
 	},
 	"Demos": {

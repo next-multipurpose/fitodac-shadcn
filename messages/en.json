@@ -75,10 +75,18 @@
 		"viewBlocks": "View blocks",
 		"blockCount": "{count, plural, one {# block} other {# blocks}}",
 		"categories": {
-			"auth": "Auth"
+			"auth": "Auth",
+			"billing": "Billing",
+			"settings": "Settings",
+			"tasks": "Tasks",
+			"team": "Team"
 		},
 		"categoryDescriptions": {
-			"auth": "Authentication and account management blocks."
+			"auth": "Authentication and account management blocks.",
+			"billing": "Billing, subscription, and payment flow blocks.",
+			"settings": "User and account settings management blocks.",
+			"tasks": "Task and project management blocks.",
+			"team": "Team collaboration and workspace blocks."
 		}
 	},
 	"Demos": {

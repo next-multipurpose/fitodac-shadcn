@@ -458,3 +458,31 @@
 ## Runner — 2026-08-03T02:49:30Z
 
 - Active spec: `.ai/specs/022-mini-calendar-distributed-component.md`\n- Action: ui-reviewer
+
+## Runner — 2026-08-03T03:24:46Z
+
+- Active spec: `.ai/specs/023-mini-calendar-demos-catalog.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-08-03T04:04:06Z
+
+- Active spec: `.ai/specs/023-mini-calendar-demos-catalog.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-08-03T04:19:27Z
+
+- Active spec: `.ai/specs/023-mini-calendar-demos-catalog.md`\n- Action: ui-reviewer
+
+## Runner — 2026-08-03T04:25:56Z
+
+- Active spec: `.ai/specs/023-mini-calendar-demos-catalog.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-08-03T04:26:01Z
+
+- Active spec: `.ai/specs/023-mini-calendar-demos-catalog.md`\n- Action: implementer\n- Previous state: `RECOVERY`
+
+## Runner — 2026-08-03T04:31:23Z
+
+- Active spec: `.ai/specs/023-mini-calendar-demos-catalog.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-08-03T04:36:42Z
+
+- Active spec: `.ai/specs/023-mini-calendar-demos-catalog.md`\n- Action: ui-reviewer

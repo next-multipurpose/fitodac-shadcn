@@ -70,13 +70,27 @@ describe("component catalog categories", () => {
 		expect(registry.items.some(({ slug }) => slug === "sonner")).toBe(true)
 	})
 
-	it("rejects configured names that do not resolve to registry items", () => {
-		expect(() =>
-			prepareCatalogEntries(
-				registry.items.filter(({ slug }) => slug !== "button")
-			)
-		).toThrow(/button/)
-	})
+  	it("rejects configured names that do not resolve to registry items", () => {
+  		expect(() =>
+  			prepareCatalogEntries(
+  				registry.items.filter(({ slug }) => slug !== "button")
+  			)
+  		).toThrow(/button/)
+  	})
+
+  	it("lists mini-calendar as a visible component under forms", () => {
+  		const formsCategory = componentCategories.find(
+  			(category) => category.key === "forms"
+  		)
+  		expect(formsCategory?.items).toContain("mini-calendar")
+
+  		const miniCalendarEntry = entries.find(
+  			(entry) => entry.name === "mini-calendar"
+  		)
+  		expect(miniCalendarEntry).toBeDefined()
+  		expect(miniCalendarEntry?.category).toBe("forms")
+  		expect(miniCalendarEntry?.href).toBe("/components/mini-calendar")
+  	})
 })
 
 describe("filterCatalogEntries", () => {
@@ -114,19 +128,24 @@ describe("filterCatalogEntries", () => {
 		},
 	]
 
-	it("matches only trimmed, case-insensitive component-name substrings", () => {
-		expect(
-			filterCatalogEntries(controlledEntries, "all", "  BUTTON ").map(
-				({ name }) => name
-			)
-		).toEqual(["button", "button-group"])
-		expect(filterCatalogEntries(controlledEntries, "all", "primary")).toEqual(
-			[]
-		)
-		expect(
-			filterCatalogEntries(controlledEntries, "all", "registry:ui")
-		).toEqual([])
-	})
+  	it("matches only trimmed, case-insensitive component-name substrings", () => {
+  		expect(
+  			filterCatalogEntries(controlledEntries, "all", "  BUTTON ").map(
+  				({ name }) => name
+  			)
+  		).toEqual(["button", "button-group"])
+  		expect(filterCatalogEntries(controlledEntries, "all", "primary")).toEqual(
+  			[]
+  		)
+  		expect(
+  			filterCatalogEntries(controlledEntries, "all", "registry:ui")
+  		).toEqual([])
+  	})
+
+  	it("matches the mini-calendar component slug without demo-level titles", () => {
+  		const matches = filterCatalogEntries(entries, "all", "mini-calendar")
+  		expect(matches.map(({ name }) => name)).toEqual(["mini-calendar"])
+  	})
 
 	it("intersects category and name filters without duplicating entries", () => {
 		expect(
