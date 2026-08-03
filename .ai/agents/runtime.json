@@ -25,9 +25,9 @@
       "command": ".ai/bin/run-agent.sh reviewer",
       "share_app_auth": true,
       "models": [
+        "opencode/deepseek-v4-flash-free",
         "opencode/laguna-s-2.1-free",
         "openrouter/poolside/laguna-s-2.1:free",
-        "opencode/deepseek-v4-flash-free",
         "opencode/nemotron-3-ultra-free",
         "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
         "opencode/north-mini-code-free",
@@ -41,9 +41,9 @@
       "command": ".ai/bin/run-agent.sh ui-reviewer",
       "share_app_auth": true,
       "models": [
+        "opencode/deepseek-v4-flash-free",
         "opencode/laguna-s-2.1-free",
         "openrouter/poolside/laguna-s-2.1:free",
-        "opencode/deepseek-v4-flash-free",
         "opencode/nemotron-3-ultra-free",
         "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
         "opencode/north-mini-code-free",

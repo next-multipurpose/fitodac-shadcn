@@ -103,6 +103,30 @@ model_list() {
   printf '%s' "$configured"
 }
 
+opencode_model_overrides_json() {
+  local models_raw="$1"
+
+  if ! command_exists node; then
+    printf '{}'
+    return 0
+  fi
+
+  node -e '
+const raw = process.argv[1] ?? "";
+const models = {};
+
+for (const configured of raw.split(",")) {
+  const model = configured.trim();
+  if (!model.startsWith("opencode/")) continue;
+
+  const modelID = model.slice("opencode/".length);
+  if (modelID) models[modelID] = {};
+}
+
+process.stdout.write(JSON.stringify(models));
+' "$models_raw"
+}
+
 model_limit_error() {
   local file="$1"
   local marker="${2:-}"
@@ -205,6 +229,8 @@ JSON
 }
 
 prepare_runtime() {
+  local opencode_models_json="{}"
+
   mkdir -p \
     "$RUNTIME_ROOT/data" \
     "$RUNTIME_ROOT/data/opencode" \
@@ -228,9 +254,18 @@ prepare_runtime() {
   fi
 
   if [[ "$TOOL" == "opencode" ]]; then
+    if [[ "$INTERACTIVE" == "1" ]]; then
+      opencode_models_json="$(opencode_model_overrides_json "$(model_list)")"
+    fi
+
     cat > "$RUNTIME_ROOT/opencode.json" <<JSON
 {
   "\$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "opencode": {
+      "models": $opencode_models_json
+    }
+  },
   "mcp": {
     "graphify": {
       "type": "remote",

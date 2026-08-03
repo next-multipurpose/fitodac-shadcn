@@ -163,6 +163,7 @@ pnpm ai:runner:interactive
 ```
 
 Uses `opencode run --interactive`. Use only for permission/debug issues. Normal flow is `pnpm ai:runner`.
+The isolated interactive runtime registers the configured `opencode/*` model IDs explicitly, so newly added Zen models remain selectable even when OpenCode's bundled interactive catalog is stale.
 
 If agent is alive but log stays unchanged too long:
 
