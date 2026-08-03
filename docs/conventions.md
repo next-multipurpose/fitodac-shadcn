@@ -226,10 +226,17 @@ This does not require edits to `src/demos/registry.ts`,
 `src/demos/registry.generated.ts`, or `registry.json`. The generated file remains
 unchanged when only entries inside an existing group change.
 
-For a new group, create `src/demos/<component>/registry.ts` and its colocated demo
+For a new group, create `src/demos/<group>/registry.ts` and its colocated demo
 sources, then run `pnpm demos:registry`. Never add a manual import or mapping to
 the global registry. `registry.json` is reserved for real distributed
 primitive/component/hook definition changes, not demo-site registration.
+
+A demo group folder is an organizational catalog key, not necessarily a
+one-to-one distributed primitive. Each demo entry declares its distributed
+primitive through `componentSlug`, which must match an existing `registry.json`
+item slug (for example, the `charts` group maps to the `chart` primitive). The
+generator owns the global index; an empty group (`export const x = []`) is a
+valid initial state and exposes an empty array through `getDemosForComponent`.
 
 Normal component demo work owns its component folder. Do not deliver demo
 registration as a patch against either global registry file or `registry.json`;

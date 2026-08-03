@@ -14,6 +14,7 @@ import { buttonGroupDemos } from "./button-group/registry"
 import { calendarDemos } from "./calendar/registry"
 import { cardDemos } from "./card/registry"
 import { carouselDemos } from "./carousel/registry"
+import { chartsDemos } from "./charts/registry"
 import { checkboxDemos } from "./checkbox/registry"
 import { collapsibleDemos } from "./collapsible/registry"
 import { comboboxDemos } from "./combobox/registry"
@@ -79,6 +80,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   calendar: calendarDemos,
   card: cardDemos,
   carousel: carouselDemos,
+  charts: chartsDemos,
   checkbox: checkboxDemos,
   collapsible: collapsibleDemos,
   combobox: comboboxDemos,

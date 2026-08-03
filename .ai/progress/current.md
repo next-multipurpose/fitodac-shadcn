@@ -394,3 +394,11 @@
 ## Runner — 2026-08-01T01:21:49Z
 
 - Active spec: `.ai/specs/019-components-catalog-name-search.md`\n- Action: ui-reviewer
+
+## Runner — 2026-08-02T23:52:42Z
+
+- Active spec: `.ai/specs/020-charts-demo-registry-group.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-08-03T00:04:51Z
+
+- Active spec: `.ai/specs/020-charts-demo-registry-group.md`\n- Action: reviewer\n- UI review required: `no`
