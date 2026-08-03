@@ -4,6 +4,7 @@ import * as React from "react"
 import { useTranslations } from "next-intl"
 
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/primitives/button"
 import {
   ResizableHandle,
@@ -54,7 +55,8 @@ type DemoCardProps = {
   bundle: DemoIntegrationBundle
   children: React.ReactNode
   demoId: string
-  previewMinHeight?: React.CSSProperties["minHeight"]
+  previewMinHeight?: number
+  previewClassName?: string
   title: string
 }
 
@@ -62,7 +64,8 @@ export function DemoCard({
   bundle,
   children,
   demoId,
-  previewMinHeight = 400,
+  previewMinHeight = 100,
+  previewClassName = "",
   title,
 }: DemoCardProps) {
   const t = useTranslations("Demos")
@@ -149,8 +152,8 @@ export function DemoCard({
         >
           <ResizablePanel className="min-w-0" defaultSize="100" minSize="30">
             <div
-              className="flex items-center justify-center p-6 sm:p-10"
-              style={{ minHeight: previewMinHeight }}
+               className={cn("flex items-center justify-center p-6 sm:p-10", previewClassName)}
+               style={{ minHeight: previewMinHeight ? `${previewMinHeight / 4}rem` : undefined }}
             >
               {children}
             </div>

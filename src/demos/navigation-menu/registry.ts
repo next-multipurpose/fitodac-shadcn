@@ -13,6 +13,8 @@ export const navigationMenuDemos: DemoEntry[] = [
     sourcePath: "src/demos/navigation-menu/platform.tsx",
     dependencies: ["lucide-react@^0.577.0"],
     registryDependencies: ["use-mobile"],
+    previewMinHeight: 140,
+    previewClassName: "[&>nav]:-translate-y-50 [&>nav]:-translate-x-40"
   },
   {
     name: "security-platform",
@@ -22,6 +24,8 @@ export const navigationMenuDemos: DemoEntry[] = [
     sourcePath: "src/demos/navigation-menu/security-platform.tsx",
     dependencies: ["lucide-react@^0.577.0"],
     registryDependencies: ["badge", "use-mobile"],
+    previewMinHeight: 140,
+    previewClassName: "[&>nav]:-translate-y-50 [&>nav]:-translate-x-40"
   },
   {
     name: "commerce",
@@ -30,5 +34,7 @@ export const navigationMenuDemos: DemoEntry[] = [
     componentSlug: "navigation-menu",
     sourcePath: "src/demos/navigation-menu/commerce.tsx",
     registryDependencies: ["use-mobile"],
+    previewMinHeight: 140,
+    previewClassName: "[&>nav]:-translate-y-50 [&>nav]:-translate-x-40"
   },
 ]
