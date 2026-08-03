@@ -8,46 +8,45 @@ import {
   Paperclip,
   Plus,
 } from "lucide-react";
-import { parseAsStringEnum, useQueryState } from "nuqs";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/new-york/ui/avatar";
-import { Badge } from "@/registry/new-york/ui/badge";
-import { Button } from "@/registry/new-york/ui/button";
+} from "@/registry/primitives/avatar";
+import { Badge } from "@/registry/primitives/badge";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Checkbox } from "@/registry/new-york/ui/checkbox";
+} from "@/registry/primitives/card";
+import { Checkbox } from "@/registry/primitives/checkbox";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/registry/new-york/ui/dialog";
+} from "@/registry/primitives/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/registry/new-york/ui/dropdown-menu";
-import { Input } from "@/registry/new-york/ui/input";
+} from "@/registry/primitives/dropdown-menu";
+import { Input } from "@/registry/primitives/input";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/registry/new-york/ui/tabs";
-import { Textarea } from "@/registry/new-york/ui/textarea";
+} from "@/registry/primitives/tabs";
+import { Textarea } from "@/registry/primitives/textarea";
 import type { Task, TaskAssignee, TaskPriority, TaskStatus } from "./task-list";
 
 export interface TaskComment {
@@ -150,10 +149,6 @@ const tabValues = [
   "activity",
 ] as const;
 
-const parseTab = parseAsStringEnum([...tabValues] as string[]).withDefault(
-  "details"
-);
-
 export default function TaskDetail({
   task,
   comments = [],
@@ -168,7 +163,7 @@ export default function TaskDetail({
   onSubtaskAdd,
   className,
 }: TaskDetailProps) {
-  const [activeTab, setActiveTab] = useQueryState("tab", parseTab);
+  const [activeTab, setActiveTab] = useState("details");
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(task?.title || "");
   const [editDescription, setEditDescription] = useState(

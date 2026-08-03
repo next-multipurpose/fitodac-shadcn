@@ -2,29 +2,29 @@
 
 import { Calendar, Loader2, Plus, X } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/registry/primitives/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Field, FieldContent, FieldLabel } from "@/registry/new-york/ui/field";
+} from "@/registry/primitives/card";
+import { Field, FieldContent, FieldLabel } from "@/registry/primitives/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/registry/new-york/ui/input-group";
+} from "@/registry/primitives/input-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select";
-import { Separator } from "@/registry/new-york/ui/separator";
-import { Textarea } from "@/registry/new-york/ui/textarea";
+} from "@/registry/primitives/select";
+import { Separator } from "@/registry/primitives/separator";
+import { Textarea } from "@/registry/primitives/textarea";
 import type { TaskPriority, TaskStatus } from "./task-list";
 
 export interface TaskCreateProps {

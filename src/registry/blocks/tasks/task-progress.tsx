@@ -9,8 +9,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card";
-import { Progress } from "@/registry/new-york/ui/progress";
+} from "@/registry/primitives/card";
+import { Progress } from "@/registry/primitives/progress";
 import type { Task } from "./task-list";
 
 export interface TaskProgressProps {
