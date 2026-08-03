@@ -168,6 +168,7 @@ GRAPHIFY_HOST="${AI_GRAPHIFY_HOST:-$(graphify_field host "127.0.0.1")}"
 GRAPHIFY_PORT="${AI_GRAPHIFY_PORT:-$(graphify_field port "8081")}"
 GRAPHIFY_MCP_PATH="${AI_GRAPHIFY_MCP_PATH:-$(graphify_field mcp_path "/mcp")}"
 GRAPHIFY_MCP_URL="${AI_GRAPHIFY_MCP_URL:-http://$GRAPHIFY_HOST:$GRAPHIFY_PORT$GRAPHIFY_MCP_PATH}"
+AGENT_STALLED=0
 
 if [[ "$MODE" != "cli" ]]; then
   echo "Role '$ROLE' is configured as mode '$MODE'. run-agent.sh only executes CLI roles." >&2
@@ -299,6 +300,7 @@ cleanup_runtime_root() {
 
 run_tracked() {
   local started_at child_pid heartbeat_pid rc
+  AGENT_STALLED=0
   started_at="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
   prepare_runtime
@@ -330,13 +332,20 @@ run_tracked() {
     cleanup_tracked
   }
 
+  forward_stall() {
+    AGENT_STALLED=1
+    kill "$child_pid" >/dev/null 2>&1 || true
+    cleanup_tracked
+  }
+
   trap forward_signal INT TERM
+  trap forward_stall USR1
   if wait "$child_pid"; then
     rc=0
   else
     rc="$?"
   fi
-  trap - INT TERM
+  trap - INT TERM USR1
   cleanup_tracked
   return "$rc"
 }
@@ -345,10 +354,11 @@ run_foreground() {
   local rc
   prepare_runtime
 
-  set +e
-  "$@"
-  rc="$?"
-  set -e
+  if "$@"; then
+    rc=0
+  else
+    rc="$?"
+  fi
   cleanup_runtime_root
   return "$rc"
 }
@@ -409,6 +419,21 @@ run_opencode_with_model_fallback() {
     if [[ -n "${AI_RUN_LOG:-}" ]] && model_limit_error "$AI_RUN_LOG" "$marker"; then
       fallback_triggered=1
       echo "Model unavailable: provider limit or availability error detected"
+      if (( index + 1 < model_count )); then
+        echo "Switching to fallback model: ${MODELS[$((index + 1))]}"
+        continue
+      fi
+      echo "All configured models exhausted"
+      return "$rc"
+    fi
+
+    if [[ "$AGENT_STALLED" == "1" || "$rc" == "143" ]]; then
+      fallback_triggered=1
+      if [[ "$AGENT_STALLED" == "1" ]]; then
+        echo "Model stalled: runner silence timeout detected"
+      else
+        echo "Model terminated by SIGTERM: treating as a retryable runtime interruption"
+      fi
       if (( index + 1 < model_count )); then
         echo "Switching to fallback model: ${MODELS[$((index + 1))]}"
         continue

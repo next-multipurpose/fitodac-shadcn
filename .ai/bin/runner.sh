@@ -562,9 +562,12 @@ run_agent() {
     if (( SILENCE_TIMEOUT_SECONDS > 0 && now - last_log_change >= SILENCE_TIMEOUT_SECONDS )); then
       warn "$role appears stalled. No log update for $(relative_age "$((now - last_log_change))")."
       echo "Runtime stalled: agent process is alive but no log update was detected for $SILENCE_TIMEOUT_SECONDS seconds." >> "$log_file"
-      kill "$agent_pid" >/dev/null 2>&1 || true
-      rc=124
-      break
+      kill -USR1 "$agent_pid" >/dev/null 2>&1 || true
+      # run-agent.sh traps USR1 and rotates OpenCode to the next configured
+      # model. Keep supervising the wrapper; tools without a fallback path exit
+      # and are reported through the normal wait path below.
+      last_log_mtime="$(file_mtime_epoch "$log_file")"
+      last_log_change="$now"
     fi
   done
 
