@@ -1,5 +1,5 @@
 # 022 — Mini Calendar distributed component
-Status: REVIEW
+Status: DONE
 Role: implementer
 UI Review: required
 UI Profile: admin-app
