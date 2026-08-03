@@ -402,3 +402,59 @@
 ## Runner — 2026-08-03T00:04:51Z
 
 - Active spec: `.ai/specs/020-charts-demo-registry-group.md`\n- Action: reviewer\n- UI review required: `no`
+
+## Runner — 2026-08-03T00:13:49Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-08-03T00:14:35Z
+
+- Spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Result: unexpected state after implementer\n- New state: `CHANGES`
+
+## Runner — 2026-08-03T00:14:38Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-08-03T00:14:50Z
+
+- Spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Result: unexpected state after implementer\n- New state: `CHANGES`
+
+## Runner — 2026-08-03T00:16:15Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-08-03T00:17:16Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-08-03T00:17:24Z
+
+- Spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Result: unexpected state after implementer\n- New state: `CHANGES`
+
+## Runner — 2026-08-03T00:30:46Z
+
+- Active spec: `.ai/specs/022-mini-calendar-distributed-component.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-08-03T02:14:22Z
+
+- Spec: `.ai/specs/022-mini-calendar-distributed-component.md`\n- Result: unexpected state after implementer\n- New state: `CHANGES`
+
+## Runner — 2026-08-03T02:14:28Z
+
+- Active spec: `.ai/specs/022-mini-calendar-distributed-component.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-08-03T02:17:13Z
+
+- Spec: `.ai/specs/022-mini-calendar-distributed-component.md`\n- Result: unexpected state after implementer\n- New state: `CHANGES`
+
+## Runner — 2026-08-03T02:18:21Z
+
+- Active spec: `.ai/specs/022-mini-calendar-distributed-component.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-08-03T02:44:19Z
+
+- Active spec: `.ai/specs/022-mini-calendar-distributed-component.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-08-03T02:49:30Z
+
+- Active spec: `.ai/specs/022-mini-calendar-distributed-component.md`\n- Action: ui-reviewer

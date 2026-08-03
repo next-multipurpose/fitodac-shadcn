@@ -3,11 +3,13 @@
 		"description": "Catálogo local de componentes de @fitodac/shadcn.",
 		"catalogTitle": "Componentes",
 		"componentFallbackTitle": "Componente",
-		"layoutsTitle": "Diseños"
+		"layoutsTitle": "Diseños",
+		"blocksTitle": "Bloques"
 	},
 	"Header": {
 		"mainNavigation": "Navegación principal",
 		"components": "Componentes",
+		"blocks": "Bloques",
 		"layouts": "Diseños",
 		"language": "Idioma",
 		"selectLanguage": "Seleccionar idioma",
@@ -64,6 +66,19 @@
 		"heading": "Diseños de Dashboard",
 		"summary": "{count, plural, one {# diseño disponible para usar como punto de partida.} other {# diseños disponibles para usar como puntos de partida.}}",
 		"viewLayout": "Ver diseño"
+	},
+	"Blocks": {
+		"eyebrow": "Bloques",
+		"heading": "Bloques",
+		"summary": "{count, plural, one {# categoría de bloque disponible.} other {# categorías de bloques disponibles.}}",
+		"backToCategories": "Volver a bloques",
+		"viewBlocks": "Ver bloques",
+		"categories": {
+			"auth": "Auth"
+		},
+		"categoryDescriptions": {
+			"auth": "Bloques de autenticación y gestión de cuentas."
+		}
 	},
 	"Demos": {
 		"heading": "Ejemplos",

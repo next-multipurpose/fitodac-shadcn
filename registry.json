@@ -947,6 +947,24 @@
       "files": [{ "path": "src/registry/primitives/tooltip.tsx", "type": "registry:ui" }],
       "dependencies": ["radix-ui@^1.4.3"],
       "registryDependencies": ["utils"]
+    },
+    {
+      "name": "Mini Calendar",
+      "slug": "mini-calendar",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/registry/components/mini-calendar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-use-controllable-state@^1.2.6",
+        "date-fns@^4.4.0",
+        "lucide-react@^0.577.0",
+        "radix-ui@^1.4.3"
+      ],
+      "registryDependencies": ["button", "utils"]
     }
   ]
 }
