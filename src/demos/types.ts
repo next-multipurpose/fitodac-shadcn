@@ -1,4 +1,4 @@
-import type { ComponentType, CSSProperties } from "react"
+import type { ComponentType } from "react"
 
 export type DemoEntry = {
   name: string
@@ -6,7 +6,8 @@ export type DemoEntry = {
   component: ComponentType
   componentSlug: string
   sourcePath: string
-  previewMinHeight?: CSSProperties["minHeight"]
+  previewMinHeight?: number
+  previewClassName?: string
   dependencies?: string[]
   registryDependencies?: string[]
 }

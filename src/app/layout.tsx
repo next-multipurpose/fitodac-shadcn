@@ -70,6 +70,12 @@ export default async function RootLayout({
                 </Link>
                 <Link
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  href="/blocks"
+                >
+                  {t("blocks")}
+                </Link>
+                <Link
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   href="/layouts"
                 >
                   {t("layouts")}

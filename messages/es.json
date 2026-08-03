@@ -73,6 +73,7 @@
 		"summary": "{count, plural, one {# categoría de bloque disponible.} other {# categorías de bloques disponibles.}}",
 		"backToCategories": "Volver a bloques",
 		"viewBlocks": "Ver bloques",
+		"blockCount": "{count, plural, one {# bloque} other {# bloques}}",
 		"categories": {
 			"auth": "Auth"
 		},
