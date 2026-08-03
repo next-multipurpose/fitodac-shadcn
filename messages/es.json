@@ -4,11 +4,14 @@
 		"catalogTitle": "Componentes",
 		"componentFallbackTitle": "Componente",
 		"layoutsTitle": "Diseños",
-		"blocksTitle": "Bloques"
+		"blocksTitle": "Bloques",
+		"chartsTitle": "Gráficos",
+		"chartFallbackTitle": "Gráfico"
 	},
 	"Header": {
 		"mainNavigation": "Navegación principal",
 		"components": "Componentes",
+		"charts": "Gráficos",
 		"blocks": "Bloques",
 		"layouts": "Diseños",
 		"language": "Idioma",
@@ -60,6 +63,14 @@
 		"registryDependencies": "Dependencias del registry",
 		"noPackages": "Este componente no declara paquetes adicionales.",
 		"noRegistryDependencies": "Este componente no depende de otras entradas."
+	},
+	"Charts": {
+		"eyebrow": "Catálogo",
+		"heading": "Gráficos",
+		"summary": "{count, plural, one {# ejemplo de gráfico con sus dependencias y archivos declarados en el registry.} other {# ejemplos de gráficos con sus dependencias y archivos declarados en el registry.}}",
+		"backToCatalog": "Volver a gráficos",
+		"noCharts": "Aún no hay gráficos disponibles",
+		"noChartsDescription": "Aún no se han registrado ejemplos de gráficos en el catálogo."
 	},
 	"Layouts": {
 		"eyebrow": "Diseños",

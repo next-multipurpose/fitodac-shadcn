@@ -1,5 +1,5 @@
 # 020 — Charts demo registry group
-Status: REVIEW
+Status: DONE
 Role: implementer
 UI Review: skip
 UI Profile: none

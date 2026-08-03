@@ -61,12 +61,18 @@ export default async function RootLayout({
               </Link>
               <div className="flex items-center gap-3">
               
-              <nav aria-label={t("mainNavigation")} className="lg:space-x-5">
+              <nav aria-label={t("mainNavigation")} className="md:space-x-5">
                 <Link
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   href="/components"
                 >
                   {t("components")}
+                </Link>
+                <Link
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  href="/charts"
+                >
+                  {t("charts")}
                 </Link>
                 <Link
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"

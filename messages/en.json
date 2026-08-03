@@ -4,11 +4,14 @@
 		"catalogTitle": "Components",
 		"componentFallbackTitle": "Component",
 		"layoutsTitle": "Layouts",
-		"blocksTitle": "Blocks"
+		"blocksTitle": "Blocks",
+		"chartsTitle": "Charts",
+		"chartFallbackTitle": "Chart"
 	},
 	"Header": {
 		"mainNavigation": "Main navigation",
 		"components": "Components",
+		"charts": "Charts",
 		"blocks": "Blocks",
 		"layouts": "Layouts",
 		"language": "Language",
@@ -60,6 +63,14 @@
 		"registryDependencies": "Registry dependencies",
 		"noPackages": "This component declares no additional packages.",
 		"noRegistryDependencies": "This component does not depend on other entries."
+	},
+	"Charts": {
+		"eyebrow": "Catalog",
+		"heading": "Charts",
+		"summary": "{count, plural, one {# chart example with its dependencies and files declared in the registry.} other {# chart examples with their dependencies and files declared in the registry.}}",
+		"backToCatalog": "Back to charts",
+		"noCharts": "No charts available yet",
+		"noChartsDescription": "There are no chart examples registered in the catalog yet."
 	},
 	"Layouts": {
 		"eyebrow": "Layouts",

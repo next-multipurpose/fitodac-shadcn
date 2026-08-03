@@ -486,3 +486,79 @@
 ## Runner — 2026-08-03T04:36:42Z
 
 - Active spec: `.ai/specs/023-mini-calendar-demos-catalog.md`\n- Action: ui-reviewer
+
+## Runner — 2026-08-03T10:12:35Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-08-03T10:50:10Z
+
+- Spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Result: implementer runtime failure\n- New state: `BLOCKED_RUNTIME`\n- Log: `.ai/run/logs/021-charts-catalog-and-detail-pages-implementer-20260803-071236.log`
+
+## Runner — 2026-08-03T11:01:46Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-08-03T11:27:33Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-08-03T11:32:16Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: ui-reviewer
+
+## Runner — 2026-08-03T12:02:22Z
+
+- Spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Result: ui-reviewer runtime failure\n- New state: `BLOCKED_RUNTIME`\n- Log: `.ai/run/logs/021-charts-catalog-and-detail-pages-ui-reviewer-20260803-083216.log`
+
+## Runner — 2026-08-03T12:02:25Z
+
+- Active spec: `.ai/specs/024-tabs-motion-animation.md`\n- Action: implementer\n- Previous state: `READY`
+
+## Runner — 2026-08-03T12:10:04Z
+
+- Spec: `.ai/specs/024-tabs-motion-animation.md`\n- Result: unexpected state after implementer\n- New state: `CHANGES`
+
+## Runner — 2026-08-03T12:31:00Z
+
+- Active spec: `.ai/specs/024-tabs-motion-animation.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-08-03T12:38:17Z
+
+- Spec: `.ai/specs/024-tabs-motion-animation.md`\n- Result: unexpected state after implementer\n- New state: `CHANGES`
+
+## Runner — 2026-08-03T14:11:09Z
+
+- Active spec: `.ai/specs/024-tabs-motion-animation.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-08-03T14:12:34Z
+
+- Spec: `.ai/specs/024-tabs-motion-animation.md`\n- Result: unexpected state after reviewer\n- New state: `CHANGES`
+
+## Runner — 2026-08-03T14:13:09Z
+
+- Active spec: `.ai/specs/024-tabs-motion-animation.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-08-03T14:26:33Z
+
+- Spec: `.ai/specs/024-tabs-motion-animation.md`\n- Result: unexpected state after implementer\n- New state: `CHANGES`
+
+## Runner — 2026-08-03T14:26:50Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-08-03T15:08:09Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: reviewer\n- UI review required: `yes`
+
+## Runner — 2026-08-03T21:37:48Z
+
+- Active spec: `.ai/specs/021-charts-catalog-and-detail-pages.md`\n- Action: ui-reviewer
+
+## Runner — 2026-08-03T21:43:39Z
+
+- Active spec: `.ai/specs/024-tabs-motion-animation.md`\n- Action: implementer\n- Previous state: `CHANGES`
+
+## Runner — 2026-08-03T21:43:55Z
+
+- Spec: `.ai/specs/024-tabs-motion-animation.md`\n- Result: unexpected state after implementer\n- New state: `CHANGES`
