@@ -35,14 +35,10 @@ export function BlocksCatalog({
 				return (
 					<li key={category.slug}>
 						<Link
-							className="flex h-full flex-col gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/30"
+							className="flex h-full flex-col gap-2 rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/30"
 							href={`/blocks/${category.slug}`}
 						>
 							<div className="flex items-center gap-3">
-								<Icon
-									className="size-5 text-muted-foreground"
-									aria-hidden="true"
-								/>
 								<h3 className="font-medium">{title}</h3>
 							</div>
 							<p className="text-sm text-muted-foreground">

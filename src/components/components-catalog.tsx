@@ -187,7 +187,7 @@ export function ComponentsCatalog({ entries, labels }: ComponentsCatalogProps) {
 											className={
 												view === "grid"
 													? "flex h-full flex-col gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/30"
-													: "grid gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-foreground/30 sm:grid-cols-[minmax(0,1fr)_minmax(8rem,auto)_auto_auto] sm:items-center"
+													: "grid gap-2 rounded-xl border border-border bg-card p-4 transition-colors hover:border-foreground/30 sm:grid-cols-[minmax(0,1fr)_minmax(8rem,auto)_auto_auto] sm:items-center"
 											}
 											href={entry.href}
 										>
