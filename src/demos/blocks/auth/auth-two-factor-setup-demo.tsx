@@ -7,7 +7,8 @@ export function AuthTwoFactorSetupDemo() {
 	const exampleProps = (() => {
 		return {
 			isEnabled: false,
-			qrCodeUrl: "/static/2fa-qr.png",
+			qrCodeData:
+				"otpauth://totp/Fitodac:alice@fitodac.com?secret=JFVHK324HKJS&issuer=Fitodac",
 			secretKey: "JFVHK324HKJS",
 			backupCodes: ["173839", "572048", "208453", "983242"],
 			onEnable: () => {
