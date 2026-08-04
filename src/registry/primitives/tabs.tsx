@@ -140,6 +140,7 @@ function TabsTrigger({
         "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:border-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent",
         "data-[state=active]:text-foreground dark:data-[state=active]:border-input dark:data-[state=active]:text-foreground",
         "after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:bottom-[-5px] group-data-[orientation=horizontal]/tabs:after:h-0.5 group-data-[orientation=vertical]/tabs:after:inset-y-0 group-data-[orientation=vertical]/tabs:after:-right-1 group-data-[orientation=vertical]/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-[state=active]:after:opacity-100",
+        "[--tabs-indicator-radius:var(--radius-md)]",
         className,
       )}
       {...props}
@@ -148,14 +149,14 @@ function TabsTrigger({
         (reducedMotion ? (
           <span
             aria-hidden="true"
-            className="absolute inset-0 z-[-1] rounded-md bg-background shadow-sm group-data-[variant=line]/tabs-list:hidden dark:bg-input/30"
+            className="absolute inset-0 z-[-1] rounded-[var(--tabs-indicator-radius)] bg-[var(--tabs-indicator-bg)] shadow-[var(--tabs-indicator-shadow)] group-data-[variant=line]/tabs-list:hidden dark:bg-[var(--tabs-indicator-bg-dark)] dark:shadow-[var(--tabs-indicator-shadow-dark)]"
           />
         ) : (
           <motion.span
             layoutId={layoutId}
             transition={indicatorTransition}
             aria-hidden="true"
-            className="absolute inset-0 z-[-1] rounded-md bg-background shadow-sm group-data-[variant=line]/tabs-list:hidden dark:bg-input/30"
+            className="absolute inset-0 z-[-1] rounded-[var(--tabs-indicator-radius)] bg-[var(--tabs-indicator-bg)] shadow-[var(--tabs-indicator-shadow)] group-data-[variant=line]/tabs-list:hidden dark:bg-[var(--tabs-indicator-bg-dark)] dark:shadow-[var(--tabs-indicator-shadow-dark)]"
           />
         ))}
       {children}

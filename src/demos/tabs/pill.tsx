@@ -5,19 +5,19 @@ export default function TabsPillDemo() {
     <Tabs defaultValue="overview">
       <TabsList className="gap-1 bg-transparent">
         <TabsTrigger
-          className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full data-[state=active]:shadow-none"
+          className="[--tabs-indicator-radius:100%] [--tabs-indicator-bg:var(--primary)] [--tabs-indicator-bg-dark:var(--primary)] data-[state=active]:text-primary-foreground rounded-full data-[state=active]:shadow-none"
           value="overview"
         >
           Overview
         </TabsTrigger>
         <TabsTrigger
-          className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full data-[state=active]:shadow-none"
+          className="[--tabs-indicator-radius:100%] [--tabs-indicator-bg:var(--primary)] [--tabs-indicator-bg-dark:var(--primary)] data-[state=active]:text-primary-foreground rounded-full data-[state=active]:shadow-none"
           value="analytics"
         >
           Analytics
         </TabsTrigger>
         <TabsTrigger
-          className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full data-[state=active]:shadow-none"
+          className="[--tabs-indicator-radius:100%] [--tabs-indicator-bg:var(--primary)] [--tabs-indicator-bg-dark:var(--primary)] data-[state=active]:text-primary-foreground rounded-full data-[state=active]:shadow-none"
           value="reports"
         >
           Reports
