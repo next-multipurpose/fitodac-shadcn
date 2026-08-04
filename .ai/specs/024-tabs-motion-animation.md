@@ -1,6 +1,6 @@
 # 024 — Animated tabs via motion/react
 
-Status: CHANGES
+Status: TECH_REVIEW
 Role: implementer
 UI Review: required
 UI Profile: admin-app
