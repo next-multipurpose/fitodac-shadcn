@@ -92,7 +92,7 @@ function CurrentEmailDisplay({ email }: CurrentEmailDisplayProps) {
   return (
     <section
       aria-label="Current email"
-      className="flex items-center gap-3 rounded-lg border border-muted bg-background px-4 py-3"
+      className="flex items-center gap-3 rounded-lg border border-muted bg-card px-4 py-3"
     >
       <span className="hidden size-12 items-center justify-center rounded-full bg-muted/70 sm:flex">
         <Mail aria-hidden="true" className="size-4 text-muted-foreground" />
