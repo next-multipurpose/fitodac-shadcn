@@ -1,7 +1,14 @@
 "use client";
 
-import { ArrowDown, ArrowUp, Download, FileText, Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import {
+  ArrowDown,
+  ArrowUp,
+  Download,
+  FileText,
+  Funnel,
+  Search,
+} from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/registry/primitives/badge";
 import { Button } from "@/registry/primitives/button";
@@ -17,6 +24,11 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/registry/primitives/input-group";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/registry/primitives/popover";
 import {
   Select,
   SelectContent,
@@ -142,6 +154,21 @@ export default function BillingBillingHistory({
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [cardWidth, setCardWidth] = useState(0);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const update = () => setCardWidth(el.offsetWidth);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const isSmall = cardWidth > 0 && cardWidth < 480;
+
   const filteredTransactions = useMemo(() => {
     let filtered = transactions;
 
@@ -208,6 +235,103 @@ export default function BillingBillingHistory({
 
   const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
 
+  const renderControls = (stacked: boolean) => (
+    <>
+      {showSearch && (
+        <div className={stacked ? "" : "flex-1"}>
+          <InputGroup>
+            <InputGroupAddon>
+              <Search className="size-4" />
+            </InputGroupAddon>
+            <InputGroupInput
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setCurrentPage(1);
+              }}
+              placeholder="Search transactions…"
+              type="search"
+              value={searchQuery}
+            />
+          </InputGroup>
+        </div>
+      )}
+      {showFilters && (
+        <div className={cn("flex gap-2", stacked ? "flex-col" : "flex-row")}>
+          <Select
+            onValueChange={(value) => {
+              setTypeFilter(value);
+              setCurrentPage(1);
+            }}
+            value={typeFilter}
+          >
+            <SelectTrigger
+              className={stacked ? "w-full" : "w-[140px]"}
+            >
+              <SelectValue placeholder="Type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All types</SelectItem>
+              <SelectItem value="charge">Charges</SelectItem>
+              <SelectItem value="refund">Refunds</SelectItem>
+              <SelectItem value="credit">Credits</SelectItem>
+              <SelectItem value="adjustment">Adjustments</SelectItem>
+              <SelectItem value="subscription">
+                Subscriptions
+              </SelectItem>
+            </SelectContent>
+          </Select>
+          <Select
+            onValueChange={(value) => {
+              setStatusFilter(value);
+              setCurrentPage(1);
+            }}
+            value={statusFilter}
+          >
+            <SelectTrigger
+              className={stacked ? "w-full" : "w-[140px]"}
+            >
+              <SelectValue placeholder="Status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All statuses</SelectItem>
+              <SelectItem value="completed">Completed</SelectItem>
+              <SelectItem value="pending">Pending</SelectItem>
+              <SelectItem value="failed">Failed</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select
+            onValueChange={(value) => {
+              const [by, order] = value.split("-") as [
+                "date" | "amount",
+                "asc" | "desc",
+              ];
+              setSortBy(by);
+              setSortOrder(order);
+              setCurrentPage(1);
+            }}
+            value={`${sortBy}-${sortOrder}`}
+          >
+            <SelectTrigger
+              className={stacked ? "w-full" : "w-[140px]"}
+            >
+              <SelectValue placeholder="Sort" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="date-desc">Newest first</SelectItem>
+              <SelectItem value="date-asc">Oldest first</SelectItem>
+              <SelectItem value="amount-desc">
+                Amount: High to Low
+              </SelectItem>
+              <SelectItem value="amount-asc">
+                Amount: Low to High
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      )}
+    </>
+  );
+
   if (transactions.length === 0) {
     return (
       <Card className={cn("w-full max-w-xl shadow-xs", className)}>
@@ -230,266 +354,201 @@ export default function BillingBillingHistory({
   }
 
   return (
-    <Card className={cn("w-full max-w-xl shadow-xs", className)}>
-      <CardHeader>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-1">
-            <CardTitle>Billing history</CardTitle>
-            <CardDescription>View all your transactions</CardDescription>
+    <div ref={cardRef} className="w-full max-w-xl">
+      <Card className={cn("w-full shadow-xs", className)}>
+        <CardHeader>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-1">
+              <CardTitle>Billing history</CardTitle>
+              <CardDescription>View all your transactions</CardDescription>
+            </div>
+            {onExport && (
+              <Button
+                className="w-full sm:w-auto"
+                onClick={onExport}
+                type="button"
+                variant="outline"
+              >
+                <Download className="size-4" />
+                Export CSV
+              </Button>
+            )}
           </div>
-          {onExport && (
-            <Button
-              className="w-full sm:w-auto"
-              onClick={onExport}
-              type="button"
-              variant="outline"
-            >
-              <Download className="size-4" />
-              Export CSV
-            </Button>
-          )}
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col gap-6">
-          {showSummary && (
-            <div className="grid grid-cols-2 gap-4 rounded-lg border bg-muted/50 p-4 sm:grid-cols-4">
-              <div className="flex flex-col gap-1">
-                <span className="text-muted-foreground text-xs">
-                  Total charges
-                </span>
-                <span className="font-semibold text-sm">
-                  {formatPrice(summary.charges, currency)}
-                </span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-muted-foreground text-xs">Refunds</span>
-                <span className="font-semibold text-sm">
-                  {formatPrice(summary.refunds, currency)}
-                </span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-muted-foreground text-xs">Credits</span>
-                <span className="font-semibold text-sm">
-                  {formatPrice(summary.credits, currency)}
-                </span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-muted-foreground text-xs">Net total</span>
-                <span className="font-semibold text-sm">
-                  {formatPrice(summary.net, currency)}
-                </span>
-              </div>
-            </div>
-          )}
-
-          {(showSearch || showFilters) && (
-            <div className="flex flex-col gap-4 sm:flex-row">
-              {showSearch && (
-                <div className="flex-1">
-                  <InputGroup>
-                    <InputGroupAddon>
-                      <Search className="size-4" />
-                    </InputGroupAddon>
-                    <InputGroupInput
-                      onChange={(e) => {
-                        setSearchQuery(e.target.value);
-                        setCurrentPage(1);
-                      }}
-                      placeholder="Search transactions…"
-                      type="search"
-                      value={searchQuery}
-                    />
-                  </InputGroup>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col gap-6">
+            {showSummary && (
+              <div className="grid grid-cols-2 gap-4 rounded-lg border bg-muted/50 p-4 sm:grid-cols-4">
+                <div className="flex flex-col gap-1">
+                  <span className="text-muted-foreground text-xs">
+                    Total charges
+                  </span>
+                  <span className="font-semibold text-sm">
+                    {formatPrice(summary.charges, currency)}
+                  </span>
                 </div>
-              )}
-              {showFilters && (
-                <div className="flex flex-col gap-2 sm:flex-row">
-                  <Select
-                    onValueChange={(value) => {
-                      setTypeFilter(value);
-                      setCurrentPage(1);
-                    }}
-                    value={typeFilter}
-                  >
-                    <SelectTrigger className="w-full sm:w-[140px]">
-                      <SelectValue placeholder="Type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All types</SelectItem>
-                      <SelectItem value="charge">Charges</SelectItem>
-                      <SelectItem value="refund">Refunds</SelectItem>
-                      <SelectItem value="credit">Credits</SelectItem>
-                      <SelectItem value="adjustment">Adjustments</SelectItem>
-                      <SelectItem value="subscription">
-                        Subscriptions
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select
-                    onValueChange={(value) => {
-                      setStatusFilter(value);
-                      setCurrentPage(1);
-                    }}
-                    value={statusFilter}
-                  >
-                    <SelectTrigger className="w-full sm:w-[140px]">
-                      <SelectValue placeholder="Status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All statuses</SelectItem>
-                      <SelectItem value="completed">Completed</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
-                      <SelectItem value="failed">Failed</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select
-                    onValueChange={(value) => {
-                      const [by, order] = value.split("-") as [
-                        "date" | "amount",
-                        "asc" | "desc",
-                      ];
-                      setSortBy(by);
-                      setSortOrder(order);
-                      setCurrentPage(1);
-                    }}
-                    value={`${sortBy}-${sortOrder}`}
-                  >
-                    <SelectTrigger className="w-full sm:w-[140px]">
-                      <SelectValue placeholder="Sort" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="date-desc">Newest first</SelectItem>
-                      <SelectItem value="date-asc">Oldest first</SelectItem>
-                      <SelectItem value="amount-desc">
-                        Amount: High to Low
-                      </SelectItem>
-                      <SelectItem value="amount-asc">
-                        Amount: Low to High
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="flex flex-col gap-1">
+                  <span className="text-muted-foreground text-xs">Refunds</span>
+                  <span className="font-semibold text-sm">
+                    {formatPrice(summary.refunds, currency)}
+                  </span>
                 </div>
-              )}
-            </div>
-          )}
-
-          {paginatedTransactions.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <p className="text-muted-foreground text-sm">
-                No transactions match your filters
-              </p>
-            </div>
-          ) : (
-            <>
-              <div className="flex flex-col gap-2">
-                {paginatedTransactions.map((transaction) => {
-                  const typeConfig = getTypeConfig(transaction.type);
-                  const statusConfig = getStatusConfig(transaction.status);
-                  const TypeIcon = typeConfig.icon;
-                  return (
-                    <div
-                      className="flex flex-col gap-3 rounded-lg border bg-card p-4 sm:flex-row sm:items-center sm:justify-between"
-                      key={transaction.id}
-                    >
-                      <div className="flex min-w-0 flex-1 items-center gap-3">
-                        <div
-                          className={cn(
-                            "flex size-8 shrink-0 items-center justify-center rounded-lg border",
-                            typeConfig.className
-                          )}
-                        >
-                          <TypeIcon className="size-4" />
-                        </div>
-                        <div className="flex min-w-0 flex-1 flex-col gap-2">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <span className="wrap-break-word font-medium text-sm">
-                              {transaction.description}
-                            </span>
-                            <Badge
-                              className={cn("text-xs", statusConfig.className)}
-                              variant={statusConfig.variant}
-                            >
-                              {statusConfig.label}
-                            </Badge>
-                          </div>
-                          <div className="flex flex-wrap items-center gap-2 text-muted-foreground text-xs">
-                            <span>{formatDate(transaction.date)}</span>
-                            {transaction.invoiceId && (
-                              <>
-                                <span aria-hidden="true">•</span>
-                                <span>{transaction.invoiceId}</span>
-                              </>
-                            )}
-                            {transaction.paymentMethod && (
-                              <>
-                                <span aria-hidden="true">•</span>
-                                <span>{transaction.paymentMethod}</span>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex shrink-0 items-center gap-3">
-                        <span
-                          className={cn(
-                            "font-medium text-sm",
-                            transaction.amount < 0 && "text-green-600",
-                            transaction.amount > 0 && "text-foreground"
-                          )}
-                        >
-                          {formatPrice(
-                            transaction.amount,
-                            transaction.currency || currency
-                          )}
-                        </span>
-                        {onViewDetails && (
-                          <Button
-                            onClick={() => onViewDetails(transaction.id)}
-                            type="button"
-                            variant="ghost"
-                          >
-                            View
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
+                <div className="flex flex-col gap-1">
+                  <span className="text-muted-foreground text-xs">Credits</span>
+                  <span className="font-semibold text-sm">
+                    {formatPrice(summary.credits, currency)}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-muted-foreground text-xs">Net total</span>
+                  <span className="font-semibold text-sm">
+                    {formatPrice(summary.net, currency)}
+                  </span>
+                </div>
               </div>
+            )}
 
-              {totalPages > 1 && (
-                <>
-                  <Separator />
-                  <div className="flex items-center justify-between">
-                    <p className="text-muted-foreground text-sm">
-                      Page {currentPage} of {totalPages}
-                    </p>
-                    <div className="flex gap-2">
-                      <Button
-                        disabled={currentPage === 1}
-                        onClick={() => setCurrentPage((p) => p - 1)}
-                        type="button"
-                        variant="outline"
-                      >
-                        Previous
+            {(showSearch || showFilters) && (
+              <div className="flex flex-col gap-4">
+                {isSmall ? (
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button type="button" variant="outline">
+                        <Funnel className="size-4" />
+                        Filter
                       </Button>
-                      <Button
-                        disabled={currentPage === totalPages}
-                        onClick={() => setCurrentPage((p) => p + 1)}
-                        type="button"
-                        variant="outline"
-                      >
-                        Next
-                      </Button>
-                    </div>
+                    </PopoverTrigger>
+                    <PopoverContent align="start" className="w-72">
+                      <div className="flex flex-col gap-3">
+                        {renderControls(true)}
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                ) : (
+                  <div className="flex flex-row items-center gap-2">
+                    {renderControls(false)}
                   </div>
-                </>
-              )}
-            </>
+                )}
+              </div>
+            )}
+
+            {paginatedTransactions.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <p className="text-muted-foreground text-sm">
+                  No transactions match your filters
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="flex flex-col gap-2">
+                  {paginatedTransactions.map((transaction) => {
+                    const typeConfig = getTypeConfig(transaction.type);
+                    const statusConfig = getStatusConfig(transaction.status);
+                    const TypeIcon = typeConfig.icon;
+                    return (
+                      <div
+                        className="flex flex-col gap-3 rounded-lg border bg-card p-4 sm:flex-row sm:items-center sm:justify-between"
+                        key={transaction.id}
+                      >
+                        <div className="flex min-w-0 flex-1 items-center gap-3">
+                          <div
+                            className={cn(
+                              "flex size-8 shrink-0 items-center justify-center rounded-lg border",
+                              typeConfig.className
+                            )}
+                          >
+                            <TypeIcon className="size-4" />
+                          </div>
+                          <div className="flex min-w-0 flex-1 flex-col gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="wrap-break-word font-medium text-sm">
+                                {transaction.description}
+                              </span>
+                              <Badge
+                                className={cn("text-xs", statusConfig.className)}
+                                variant={statusConfig.variant}
+                              >
+                                {statusConfig.label}
+                              </Badge>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-2 text-muted-foreground text-xs">
+                              <span>{formatDate(transaction.date)}</span>
+                              {transaction.invoiceId && (
+                                <>
+                                  <span aria-hidden="true">•</span>
+                                  <span>{transaction.invoiceId}</span>
+                                </>
+                              )}
+                              {transaction.paymentMethod && (
+                                <>
+                                  <span aria-hidden="true">•</span>
+                                  <span>{transaction.paymentMethod}</span>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex shrink-0 items-center gap-3">
+                          <span
+                            className={cn(
+                              "font-medium text-sm",
+                              transaction.amount < 0 && "text-green-600",
+                              transaction.amount > 0 && "text-foreground"
+                            )}
+                          >
+                            {formatPrice(
+                              transaction.amount,
+                              transaction.currency || currency
+                            )}
+                          </span>
+                          {onViewDetails && (
+                            <Button
+                              onClick={() => onViewDetails(transaction.id)}
+                              type="button"
+                              variant="ghost"
+                            >
+                              View
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {totalPages > 1 && (
+                  <>
+                    <Separator />
+                    <div className="flex items-center justify-between">
+                      <p className="text-muted-foreground text-sm">
+                        Page {currentPage} of {totalPages}
+                      </p>
+                      <div className="flex gap-2">
+                        <Button
+                          disabled={currentPage === 1}
+                          onClick={() => setCurrentPage((p) => p - 1)}
+                          type="button"
+                          variant="outline"
+                        >
+                          Previous
+                        </Button>
+                        <Button
+                          disabled={currentPage === totalPages}
+                          onClick={() => setCurrentPage((p) => p + 1)}
+                          type="button"
+                          variant="outline"
+                        >
+                          Next
+                        </Button>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </>
           )}
         </div>
       </CardContent>
     </Card>
+    </div>
   );
 }
