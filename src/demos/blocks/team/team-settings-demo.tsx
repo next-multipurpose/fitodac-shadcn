@@ -28,7 +28,7 @@ export function TeamSettingsDemo() {
 			},
 			onAvatarUpload: async (file: File) => {
 				/* upload avatar */
-				return "https://api.dicebear.com/9.x/glass/svg?seed=team-avatar"
+				return "https://i.pravatar.cc/150?img=15"
 			},
 			onAvatarRemove: async () => {
 				/* remove avatar */

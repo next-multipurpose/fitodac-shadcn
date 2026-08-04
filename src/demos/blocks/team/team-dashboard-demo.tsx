@@ -13,21 +13,21 @@ export function TeamDashboardDemo() {
 				{
 					id: "user-1",
 					name: "Sarah Johnson",
-					avatar: "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+					avatar: "https://i.pravatar.cc/150?img=11",
 					role: "owner" as const,
 					status: "active" as const,
 				},
 				{
 					id: "user-2",
 					name: "Mike Chen",
-					avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+					avatar: "https://i.pravatar.cc/150?img=12",
 					role: "admin" as const,
 					status: "active" as const,
 				},
 				{
 					id: "user-3",
 					name: "Emily Davis",
-					avatar: "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+					avatar: "https://i.pravatar.cc/150?img=14",
 					role: "member" as const,
 					status: "active" as const,
 				},
@@ -39,7 +39,7 @@ export function TeamDashboardDemo() {
 					user: {
 						name: "Alex Rodriguez",
 						avatar:
-							"https://api.dicebear.com/9.x/glass/svg?seed=alex-rodriguez",
+							"https://i.pravatar.cc/150?img=10",
 					},
 					description: "joined the team",
 					timestamp: new Date(now - 2 * 60 * 60 * 1000),
@@ -49,7 +49,7 @@ export function TeamDashboardDemo() {
 					type: "ai_session" as const,
 					user: {
 						name: "Mike Chen",
-						avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+						avatar: "https://i.pravatar.cc/150?img=12",
 					},
 					description: "created a new AI session",
 					timestamp: new Date(now - 3 * 60 * 60 * 1000),

@@ -16,7 +16,7 @@ export function TeamFilesDemo() {
 					uploadedBy: {
 						id: "user-1",
 						name: "Sarah Johnson",
-						avatar: "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+						avatar: "https://i.pravatar.cc/150?img=11",
 					},
 					uploadedAt: new Date(now - 2 * 24 * 60 * 60 * 1000),
 					tags: ["planning", "project"],
@@ -30,7 +30,7 @@ export function TeamFilesDemo() {
 					uploadedBy: {
 						id: "user-2",
 						name: "Mike Chen",
-						avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+						avatar: "https://i.pravatar.cc/150?img=12",
 					},
 					uploadedAt: new Date(now - 1 * 24 * 60 * 60 * 1000),
 					tags: ["design"],

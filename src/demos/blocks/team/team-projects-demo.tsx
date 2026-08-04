@@ -18,17 +18,17 @@ export function TeamProjectsDemo() {
 							id: "user-1",
 							name: "Sarah Johnson",
 							avatar:
-								"https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+								"https://i.pravatar.cc/150?img=11",
 						},
 						{
 							id: "user-2",
 							name: "Mike Chen",
-							avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+							avatar: "https://i.pravatar.cc/150?img=12",
 						},
 						{
 							id: "user-3",
 							name: "Emily Davis",
-							avatar: "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+							avatar: "https://i.pravatar.cc/150?img=14",
 						},
 					],
 					defaultModel: "gpt-4",
@@ -48,12 +48,12 @@ export function TeamProjectsDemo() {
 						{
 							id: "user-2",
 							name: "Mike Chen",
-							avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+							avatar: "https://i.pravatar.cc/150?img=12",
 						},
 						{
 							id: "user-3",
 							name: "Emily Davis",
-							avatar: "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+							avatar: "https://i.pravatar.cc/150?img=14",
 						},
 					],
 					defaultModel: "claude-3-opus",

@@ -17,7 +17,7 @@ export function TeamNotificationsDemo() {
 					user: {
 						id: "user-2",
 						name: "Mike Chen",
-						avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+						avatar: "https://i.pravatar.cc/150?img=12",
 					},
 					read: false,
 					timestamp: new Date(now - 10 * 60 * 1000),
@@ -41,7 +41,7 @@ export function TeamNotificationsDemo() {
 					user: {
 						id: "user-1",
 						name: "Sarah Johnson",
-						avatar: "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+						avatar: "https://i.pravatar.cc/150?img=11",
 					},
 					read: true,
 					timestamp: new Date(now - 2 * 60 * 60 * 1000),

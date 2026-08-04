@@ -18,7 +18,7 @@ export function TeamAnalyticsDemo() {
 				{
 					id: "user-1",
 					name: "Sarah Johnson",
-					avatar: "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+					avatar: "https://i.pravatar.cc/150?img=11",
 					tokens: 125_000,
 					sessions: 45,
 					files: 12,
@@ -26,7 +26,7 @@ export function TeamAnalyticsDemo() {
 				{
 					id: "user-2",
 					name: "Mike Chen",
-					avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+					avatar: "https://i.pravatar.cc/150?img=12",
 					tokens: 89_000,
 					sessions: 32,
 					files: 8,
@@ -34,7 +34,7 @@ export function TeamAnalyticsDemo() {
 				{
 					id: "user-3",
 					name: "Emily Davis",
-					avatar: "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+					avatar: "https://i.pravatar.cc/150?img=14",
 					tokens: 45_000,
 					sessions: 18,
 					files: 5,
