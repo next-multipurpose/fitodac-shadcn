@@ -6,18 +6,12 @@ type DemoViewContextValue = {
 	closeCode: (demoId: string) => void
 	openCode: (demoId: string) => void
 	openCodeDemoId: string | null
-	closePrompt: (demoId: string) => void
-	openPrompt: (demoId: string) => void
-	openPromptDemoId: string | null
 }
 
 const DemoViewContext = React.createContext<DemoViewContextValue | null>(null)
 
 export function DemoViewProvider({ children }: { children: React.ReactNode }) {
 	const [openCodeDemoId, setOpenCodeDemoId] = React.useState<string | null>(
-		null
-	)
-	const [openPromptDemoId, setOpenPromptDemoId] = React.useState<string | null>(
 		null
 	)
 
@@ -29,24 +23,10 @@ export function DemoViewProvider({ children }: { children: React.ReactNode }) {
 				),
 			openCode: (demoId) => {
 				setOpenCodeDemoId(demoId)
-				setOpenPromptDemoId((currentId) =>
-					currentId === demoId ? null : currentId
-				)
 			},
 			openCodeDemoId,
-			closePrompt: (demoId) =>
-				setOpenPromptDemoId((currentId) =>
-					currentId === demoId ? null : currentId
-				),
-			openPrompt: (demoId) => {
-				setOpenPromptDemoId(demoId)
-				setOpenCodeDemoId((currentId) =>
-					currentId === demoId ? null : currentId
-				)
-			},
-			openPromptDemoId,
 		}),
-		[openCodeDemoId, openPromptDemoId]
+		[openCodeDemoId]
 	)
 
 	return (

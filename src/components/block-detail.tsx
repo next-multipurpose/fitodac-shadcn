@@ -60,17 +60,9 @@ type BlockDetailProps = {
 
 export function BlockDetail({ block, demo, bundle }: BlockDetailProps) {
 	const t = useTranslations("Blocks")
-	const {
-		closeCode,
-		openCode,
-		openCodeDemoId,
-		closePrompt,
-		openPrompt,
-		openPromptDemoId,
-	} = useDemoView()
+	const { closeCode, openCode, openCodeDemoId } = useDemoView()
 	const blockId = `block-${block.slug}`
 	const isCodeOpen = openCodeDemoId === blockId
-	const isPromptOpen = openPromptDemoId === blockId
 	const cardRef = React.useRef<HTMLElement>(null)
 
 	const {
@@ -85,13 +77,13 @@ export function BlockDetail({ block, demo, bundle }: BlockDetailProps) {
 	)
 
 	React.useEffect(() => {
-		if (isCodeOpen || isPromptOpen) {
+		if (isCodeOpen) {
 			cardRef.current?.scrollIntoView({
 				behavior: "smooth",
 				block: "start",
 			})
 		}
-	}, [isCodeOpen, isPromptOpen])
+	}, [isCodeOpen])
 
 	return (
 		<section
@@ -115,14 +107,11 @@ export function BlockDetail({ block, demo, bundle }: BlockDetailProps) {
 						role="group"
 					>
 						<Button
-							aria-pressed={!isCodeOpen && !isPromptOpen}
-							onClick={() => {
-								closeCode(blockId)
-								closePrompt(blockId)
-							}}
+							aria-pressed={!isCodeOpen}
+							onClick={() => closeCode(blockId)}
 							size="sm"
 							type="button"
-							variant={!isCodeOpen && !isPromptOpen ? "secondary" : "ghost"}
+							variant={!isCodeOpen ? "secondary" : "ghost"}
 						>
 							{t("preview")}
 						</Button>
@@ -134,15 +123,6 @@ export function BlockDetail({ block, demo, bundle }: BlockDetailProps) {
 							variant={isCodeOpen ? "secondary" : "ghost"}
 						>
 							{t("code")}
-						</Button>
-						<Button
-							aria-pressed={isPromptOpen}
-							onClick={() => openPrompt(blockId)}
-							size="sm"
-							type="button"
-							variant={isPromptOpen ? "secondary" : "ghost"}
-						>
-							{t("prompt")}
 						</Button>
 					</div>
 					<Button
@@ -164,7 +144,7 @@ export function BlockDetail({ block, demo, bundle }: BlockDetailProps) {
 				</div>
 			</div>
 
-			{!isCodeOpen && !isPromptOpen ? (
+			{!isCodeOpen ? (
 				<ResizablePanelGroup
 					className="min-h-0 w-full flex-1 overflow-visible!"
 					orientation="horizontal"
@@ -182,7 +162,7 @@ export function BlockDetail({ block, demo, bundle }: BlockDetailProps) {
 					/>
 					<ResizablePanel className="min-w-0" defaultSize="0" minSize="0" />
 				</ResizablePanelGroup>
-			) : isCodeOpen ? (
+			) : (
 				<div className="flex min-h-0 w-full min-w-0 flex-1 flex-col gap-8 overflow-auto p-4 sm:p-6">
 					<section aria-labelledby={`${blockId}-usage`}>
 						<div className="mb-3 flex flex-wrap items-center justify-between gap-3">
@@ -263,17 +243,6 @@ export function BlockDetail({ block, demo, bundle }: BlockDetailProps) {
 							<p className="text-sm text-muted-foreground">{t("none")}</p>
 						)}
 					</section>
-				</div>
-			) : (
-				<div className="flex min-h-0 w-full min-w-0 flex-1 flex-col gap-8 overflow-auto p-4 sm:p-6">
-					<div className="flex flex-wrap items-center justify-between gap-3">
-						<h3 className="font-medium">{t("integrationPrompt")}</h3>
-						<CopyButton
-							label={t("copyBlockPrompt", { title: block.name })}
-							value={prompt}
-						/>
-					</div>
-					<CodeBlock code={prompt} />
 				</div>
 			)}
 		</section>

@@ -110,7 +110,9 @@ describe("Tabs", () => {
     const indicator = activeTrigger.querySelector('[aria-hidden="true"]')
 
     expect(indicator).toBeInTheDocument()
-    expect(indicator).toHaveClass("absolute", "inset-0", "-z-10", "rounded-md")
+    expect(indicator).toHaveClass("absolute", "inset-0", "z-[-1]", "rounded-md")
+    expect(activeTrigger).toHaveClass("isolate")
+    expect(activeTrigger).not.toHaveClass("data-[state=active]:bg-background")
   })
 
   it("does not render motion indicator when only one tab", () => {
@@ -127,7 +129,7 @@ describe("Tabs", () => {
     const indicator = trigger.querySelector('[aria-hidden="true"]')
 
     expect(indicator).toBeInTheDocument()
-    expect(indicator).toHaveClass("absolute", "inset-0", "-z-10", "rounded-md")
+    expect(indicator).toHaveClass("absolute", "inset-0", "z-[-1]", "rounded-md")
   })
 
   it("wraps content in a motion div for entrance animation", () => {

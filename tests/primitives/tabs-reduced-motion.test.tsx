@@ -12,7 +12,7 @@ vi.mock("motion/react", async (importActual) => {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/primitives/tabs"
 
 describe("Tabs (reduced motion)", () => {
-  it("does not render motion indicator when reduced motion is enabled", () => {
+  it("renders an instant non-motion indicator when reduced motion is enabled", () => {
     render(
       <Tabs defaultValue="a">
         <TabsList>
@@ -27,10 +27,12 @@ describe("Tabs (reduced motion)", () => {
     const activeTrigger = screen.getByRole("tab", { name: "Tab A" })
     const indicator = activeTrigger.querySelector('[aria-hidden="true"]')
 
-    expect(indicator).not.toBeInTheDocument()
+    expect(indicator).toBeInTheDocument()
+    expect(indicator?.tagName).toBe("SPAN")
+    expect(indicator).not.toHaveAttribute("data-motion-id")
   })
 
-  it("does not render motion content wrapper transition when reduced motion is enabled", () => {
+  it("renders content without motion attributes when reduced motion is enabled", () => {
     render(
       <Tabs defaultValue="a">
         <TabsList>
@@ -45,5 +47,6 @@ describe("Tabs (reduced motion)", () => {
 
     expect(motionWrapper).toBeInTheDocument()
     expect(motionWrapper).toHaveTextContent("Content A")
+    expect(motionWrapper).not.toHaveStyle({ opacity: "0" })
   })
 })

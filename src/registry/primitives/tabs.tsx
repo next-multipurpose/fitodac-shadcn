@@ -136,22 +136,28 @@ function TabsTrigger({
       data-slot="tabs-trigger"
       value={triggerValue}
       className={cn(
-        "relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all group-data-[orientation=horizontal]/tabs:w-full group-data-[orientation=vertical]/tabs:h-full group-data-[orientation=vertical]/tabs:justify-start hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 group-data-[variant=default]/tabs-list:data-[state=active]:shadow-sm group-data-[variant=line]/tabs-list:data-[state=active]:shadow-none dark:text-muted-foreground dark:hover:text-foreground dark:group-data-[variant=default]/tabs-list:data-[state=active]:border-input dark:group-data-[variant=default]/tabs-list:data-[state=active]:bg-input/30",
+        "relative isolate inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all group-data-[orientation=horizontal]/tabs:w-full group-data-[orientation=vertical]/tabs:h-full group-data-[orientation=vertical]/tabs:justify-start hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 dark:text-muted-foreground dark:hover:text-foreground dark:group-data-[variant=default]/tabs-list:data-[state=active]:border-input",
         "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:border-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent",
-        "data-[state=active]:bg-background data-[state=active]:text-foreground dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 dark:data-[state=active]:text-foreground",
+        "data-[state=active]:text-foreground dark:data-[state=active]:border-input dark:data-[state=active]:text-foreground",
         "after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:bottom-[-5px] group-data-[orientation=horizontal]/tabs:after:h-0.5 group-data-[orientation=vertical]/tabs:after:inset-y-0 group-data-[orientation=vertical]/tabs:after:-right-1 group-data-[orientation=vertical]/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-[state=active]:after:opacity-100",
         className,
       )}
       {...props}
     >
-      {isActive && !reducedMotion && (
-        <motion.span
-          layoutId={layoutId}
-          transition={indicatorTransition}
-          aria-hidden="true"
-          className="absolute inset-0 -z-10 rounded-md bg-background shadow-sm dark:bg-input/30"
-        />
-      )}
+      {isActive &&
+        (reducedMotion ? (
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 z-[-1] rounded-md bg-background shadow-sm group-data-[variant=line]/tabs-list:hidden dark:bg-input/30"
+          />
+        ) : (
+          <motion.span
+            layoutId={layoutId}
+            transition={indicatorTransition}
+            aria-hidden="true"
+            className="absolute inset-0 z-[-1] rounded-md bg-background shadow-sm group-data-[variant=line]/tabs-list:hidden dark:bg-input/30"
+          />
+        ))}
       {children}
     </TabsPrimitive.Trigger>
   )
@@ -166,6 +172,18 @@ function TabsContent({
   const { value: currentValue, reducedMotion } = useTabs()
   const isActive = contentValue === currentValue
 
+  const content = reducedMotion ? (
+    <div>{children}</div>
+  ) : (
+    <motion.div
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 6 }}
+      transition={contentTransition}
+    >
+      {children}
+    </motion.div>
+  )
+
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"
@@ -173,19 +191,7 @@ function TabsContent({
       className={cn("flex-1 outline-none", className)}
       {...props}
     >
-      <motion.div
-        initial={{ opacity: 0, y: reducedMotion ? 0 : 6 }}
-        animate={{
-          opacity: isActive ? 1 : 0,
-          y: isActive ? 0 : reducedMotion ? 0 : 6,
-        }}
-        transition={{
-          ...contentTransition,
-          duration: reducedMotion ? 0 : contentTransition.duration,
-        }}
-      >
-        {children}
-      </motion.div>
+      {content}
     </TabsPrimitive.Content>
   )
 }

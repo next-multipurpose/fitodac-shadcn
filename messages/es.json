@@ -110,7 +110,6 @@
 		"promptCopied": "Prompt copiado",
 		"promptCopyFailed": "Error al copiar el prompt",
 		"copyBlockPrompt": "Copiar prompt de integración de {title}",
-		"integrationPrompt": "Prompt de integración",
 		"exampleUsage": "Ejemplo de uso",
 		"copyExampleUsage": "Copiar ejemplo de uso de {title}",
 		"requiredFiles": "Archivos requeridos del componente",
