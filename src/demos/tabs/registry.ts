@@ -15,11 +15,22 @@ import TabsVerticalIconTooltipsDemo from "./vertical-icon-tooltips"
 import TabsVerticalLineDemo from "./vertical-line"
 import TabsVerticalIconsDemo from "./vertical-icons"
 import TabsVerticalPillDemo from "./vertical-pill"
+import TabsIndicatorColorDemo from "./indicator-color"
+import TabsBadgeCountsDemo from "./badge-counts"
+import TabsCardsDemo from "./cards"
+import TabsControlledDemo from "./controlled"
+import TabsFormsDemo from "./forms"
+import TabsFullWidthDemo from "./full-width"
+import TabsIconsDemo from "./icons"
+import TabsNestedDemo from "./nested"
+import TabsScrollableDemo from "./scrollable"
+import TabsTablesDemo from "./tables"
+import TabsVerticalDemo from "./vertical"
 
 export const tabsDemos: DemoEntry[] = [
   {
     name: "basic",
-    title: "Basic tabs",
+    title: "Basic Tabs",
     component: TabsBasicDemo,
     componentSlug: "tabs",
     sourcePath: "src/demos/tabs/basic.tsx",
@@ -134,6 +145,90 @@ export const tabsDemos: DemoEntry[] = [
     component: TabsVerticalPillDemo,
     componentSlug: "tabs",
     sourcePath: "src/demos/tabs/vertical-pill.tsx",
+    dependencies: ["lucide-react@^0.577.0"],
+  },
+  {
+    name: "indicator-color",
+    title: "Custom indicator color",
+    component: TabsIndicatorColorDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/indicator-color.tsx",
+  },
+  {
+    name: "badge-counts",
+    title: "Tabs with Badge Counts",
+    component: TabsBadgeCountsDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/badge-counts.tsx",
+    registryDependencies: ["badge"],
+  },
+  {
+    name: "controlled",
+    title: "Controlled Tabs",
+    component: TabsControlledDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/controlled.tsx",
+    registryDependencies: ["button"],
+  },
+  {
+    name: "nested",
+    title: "Nested Tabs",
+    component: TabsNestedDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/nested.tsx",
+  },
+  {
+    name: "forms",
+    title: "Tabs with Forms",
+    component: TabsFormsDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/forms.tsx",
+    registryDependencies: ["button", "input", "label", "textarea"],
+  },
+  {
+    name: "cards",
+    title: "Tabs with Cards",
+    component: TabsCardsDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/cards.tsx",
+    registryDependencies: ["badge", "button"],
+  },
+  {
+    name: "tables",
+    title: "Tabs with Tables",
+    component: TabsTablesDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/tables.tsx",
+    registryDependencies: ["badge", "scroll-area"],
+  },
+  {
+    name: "vertical",
+    title: "Vertical Tabs",
+    component: TabsVerticalDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/vertical.tsx",
+  },
+  {
+    name: "full-width",
+    title: "Full Width Tabs",
+    component: TabsFullWidthDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/full-width.tsx",
+  },
+  {
+    name: "scrollable",
+    title: "Scrollable Tabs",
+    component: TabsScrollableDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/scrollable.tsx",
+    registryDependencies: ["scroll-area"],
+  },
+  {
+    name: "icons",
+    title: "Tabs with Icons",
+    component: TabsIconsDemo,
+    componentSlug: "tabs",
+    sourcePath: "src/demos/tabs/icons.tsx",
     dependencies: ["lucide-react@^0.577.0"],
   },
 ]
