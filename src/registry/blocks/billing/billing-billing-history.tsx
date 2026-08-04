@@ -210,7 +210,7 @@ export default function BillingBillingHistory({
 
   if (transactions.length === 0) {
     return (
-      <Card className={cn("w-full shadow-xs", className)}>
+      <Card className={cn("w-full max-w-xl shadow-xs", className)}>
         <CardHeader>
           <CardTitle>Billing history</CardTitle>
           <CardDescription>Your transaction history</CardDescription>
@@ -230,7 +230,7 @@ export default function BillingBillingHistory({
   }
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full max-w-xl shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-1">

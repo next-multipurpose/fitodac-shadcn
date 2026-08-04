@@ -174,7 +174,7 @@ export default function BillingPaymentForm({
   const generalError = errors?.general;
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full max-w-lg shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-1">
           <CardTitle className="flex items-center gap-2">

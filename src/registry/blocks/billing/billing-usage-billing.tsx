@@ -109,7 +109,7 @@ export default function BillingUsageBilling({
     : null;
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full max-w-lg shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-1">

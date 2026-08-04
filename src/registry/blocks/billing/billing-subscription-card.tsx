@@ -111,7 +111,7 @@ export default function BillingSubscriptionCard({
   const currency = plan.currency || "USD";
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full max-w-lg shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 flex-1 flex-col gap-2">

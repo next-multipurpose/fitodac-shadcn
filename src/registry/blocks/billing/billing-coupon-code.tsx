@@ -123,7 +123,7 @@ export default function BillingCouponCode({
   const displayLoading = isLoading || externalLoading;
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-1">
           <CardTitle>Discount Code</CardTitle>

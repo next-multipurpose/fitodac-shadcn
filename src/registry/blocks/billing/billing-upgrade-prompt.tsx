@@ -194,7 +194,7 @@ export default function BillingUpgradePrompt({
   }
 
   return (
-    <Card className={cn("relative w-full shadow-xs", className)}>
+    <Card className={cn("relative w-full max-w-lg shadow-xs", className)}>
       {onDismiss && (
         <Button
           aria-label="Dismiss upgrade prompt"
