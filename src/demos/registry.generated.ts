@@ -46,6 +46,7 @@ import { navigationMenuDemos } from "./navigation-menu/registry"
 import { paginationDemos } from "./pagination/registry"
 import { popoverDemos } from "./popover/registry"
 import { progressDemos } from "./progress/registry"
+import { qrCodeDemos } from "./qr-code/registry"
 import { radioGroupDemos } from "./radio-group/registry"
 import { ratingDemos } from "./rating/registry"
 import { scrollAreaDemos } from "./scroll-area/registry"
@@ -113,6 +114,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   pagination: paginationDemos,
   popover: popoverDemos,
   progress: progressDemos,
+  "qr-code": qrCodeDemos,
   "radio-group": radioGroupDemos,
   rating: ratingDemos,
   "scroll-area": scrollAreaDemos,

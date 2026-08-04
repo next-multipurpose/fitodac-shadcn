@@ -26,11 +26,23 @@ export type CatalogEntry = {
 
 export type CatalogCategoryFilter = "all" | ComponentCategoryKey
 
-export const hiddenCatalogEntries = ["craft-button", "kbd", "ripple-button", "toggle-group", "date-selector", "field", "sidebar", "dialog", "chart", "sonner", "use-character-limit",
-			"use-file-upload",
-			"use-mobile",
-			"use-pagination",
-			"utils"] as const
+export const hiddenCatalogEntries = [
+	"craft-button",
+	"kbd",
+	"ripple-button",
+	"toggle-group",
+	"date-selector",
+	"field",
+	"sidebar",
+	"dialog",
+	"chart",
+	"sonner",
+	"use-character-limit",
+	"use-file-upload",
+	"use-mobile",
+	"use-pagination",
+	"utils",
+] as const
 
 type RegistryItem = {
 	name: string
@@ -41,18 +53,18 @@ type RegistryItem = {
 }
 
 export const componentCategories: readonly ComponentCategory[] = [
-{
-			key: "primitives",
-			items: [
-				"avatar",
-				"badge",
-				"button",
-				"button-group",
-				"item",
-				"separator",
-				"toggle"
-			],
-		},
+	{
+		key: "primitives",
+		items: [
+			"avatar",
+			"badge",
+			"button",
+			"button-group",
+			"item",
+			"separator",
+			"toggle",
+		],
+	},
 	{
 		key: "forms",
 		items: [
@@ -83,13 +95,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 	},
 	{
 		key: "navigation",
-		items: [
-			"breadcrumb",
-			"menubar",
-			"navigation-menu",
-			"pagination",
-			"tabs",
-		],
+		items: ["breadcrumb", "menubar", "navigation-menu", "pagination", "tabs"],
 	},
 	{
 		key: "overlays",
@@ -112,6 +118,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"data-table",
 			"event-calendar",
 			"map",
+			"qr-code",
 			"stats",
 			"table",
 			"timeline",
@@ -119,14 +126,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 	},
 	{
 		key: "feedback",
-		items: [
-			"alert",
-			"empty",
-			"progress",
-			"skeleton",
-			"spinner",
-			"toast",
-		],
+		items: ["alert", "empty", "progress", "skeleton", "spinner", "toast"],
 	},
 	{
 		key: "layout",
@@ -139,7 +139,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"sortable",
 		],
 	},
-	{ key: "advanced", items: ["tiptap-editor"] }
+	{ key: "advanced", items: ["tiptap-editor"] },
 ]
 
 export function filterCatalogEntries<T extends CatalogEntry>(
