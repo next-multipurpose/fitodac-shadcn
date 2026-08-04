@@ -29,6 +29,7 @@
     "node_modules",
     "mcp",
     "src/components/Editor",
-    "src/lib/**/*.test.ts"
+    "src/lib/**/*.test.ts",
+    "static-preview"
   ]
 }

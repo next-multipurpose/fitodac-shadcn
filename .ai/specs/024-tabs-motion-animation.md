@@ -1,6 +1,6 @@
 # 024 — Animated tabs via motion/react
 
-Status: TECH_REVIEW
+Status: CHANGES
 Role: implementer
 UI Review: required
 UI Profile: admin-app
@@ -106,17 +106,19 @@ internal `value`/`onValueChange` flow.
    - `tests/primitives/tabs.test.tsx` — 9 tests covering rendering, active indicator, layoutId, content animation, motion config, keyboard nav, controlled value.
    - `tests/primitives/tabs-reduced-motion.test.tsx` — 2 tests verifying `useReducedMotion` mock disables motion.
 
-### Verification results
+### Verification results (re-verified on this run)
 
 - **Typecheck**: `npx tsc --noEmit` — no errors in `src/registry/primitives/tabs.tsx` (pre-existing errors only in `static-preview/` which is a separate project).
-- **Tests**: All 11 tests pass (`npx vitest run`).
-- **Dev server**: Page at `http://localhost:3000/components/tabs` loads (HTTP 200), 47 trigger elements rendered across 14 demos.
-- **Browser verification** (Playwright, headless):
+- **Tests**: All 11 tabs tests pass (`npx vitest run tests/primitives/tabs`). Note: the full suite has 7 pre-existing failures in unrelated `DemoCard` coordination + alert/badge registry tests (confirmed failing on clean `HEAD` via `git stash`), not caused by or related to this change.
+- **Dev server**: `http://localhost:3100/components/tabs` loads (HTTP 200, 654KB HTML), 47 `role="tab"` triggers rendered across the demos. (Port 3100 is the fitodac-shadcn `next dev --port=3100` instance; port 3000 in this environment serves a separate `next-apps/core` project.)
+- **Server-rendered HTML contains the motion indicator**: the active `<motion.span>` renders with classes `absolute inset-0 -z-10 rounded-md bg-background shadow-sm dark:bg-input/30` behind the active trigger; `aria-hidden="true"` present.
+- **Browser verification** (Playwright, headless — from prior run, code unchanged):
   - Motion span renders inside active trigger with correct positioning.
   - Span disappears from old trigger and appears on new trigger after click.
   - `layoutId` shared-element animation fires during tab switches (span opacity=1, zIndex=-10 during transition).
   - No console errors or page errors during interaction.
-- **No new dependencies**: `motion` v12 already present in `package.json`.
+- **No new dependencies**: `motion` v12.38.0 already present in `package.json`.
+- **UI Profile / skills used**: `admin-app` — loaded `shadcn` and `admin-interface-design` skills before review.
 
 ## Technical review
 
@@ -154,3 +156,13 @@ internal `value`/`onValueChange` flow.
 
 - Date: 2026-08-03T21:43:55Z
 - The implementer finished but did not leave the spec in TECH_REVIEW or CHANGES. The runner marked it as CHANGES to avoid unsafe progress.
+
+## Runner correction
+
+- Date: 2026-08-04T03:25:51Z
+- The reviewer finished but did not leave the spec in REVIEW, UI_REVIEW, or CHANGES. The runner marked it as CHANGES to avoid unsafe progress.
+
+## Runner correction
+
+- Date: 2026-08-04T08:26:55Z
+- The reviewer finished but did not leave the spec in REVIEW, UI_REVIEW, or CHANGES. The runner marked it as CHANGES to avoid unsafe progress.

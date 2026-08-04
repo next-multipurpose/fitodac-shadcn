@@ -98,7 +98,27 @@
 			"settings": "User and account settings management blocks.",
 			"tasks": "Task and project management blocks.",
 			"team": "Team collaboration and workspace blocks."
-		}
+		},
+		"viewLabel": "{title} view",
+		"preview": "Preview",
+		"code": "Code",
+		"prompt": "Prompt",
+		"copy": "Copy",
+		"copied": "Copied",
+		"copyFailed": "Copy failed",
+		"copyPrompt": "Copy prompt",
+		"promptCopied": "Prompt copied",
+		"promptCopyFailed": "Prompt copy failed",
+		"copyBlockPrompt": "Copy {title} integration prompt",
+		"integrationPrompt": "Integration prompt",
+		"exampleUsage": "Example usage",
+		"copyExampleUsage": "Copy {title} example usage",
+		"requiredFiles": "Required component files",
+		"source": "Source",
+		"copyFile": "Copy {path}",
+		"dependencies": "Dependencies",
+		"registryDependencies": "Registry dependencies",
+		"none": "None."
 	},
 	"Demos": {
 		"heading": "Examples",
