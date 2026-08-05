@@ -1283,6 +1283,19 @@
 			],
 			"dependencies": ["motion@^12.38.0", "lucide-react@^0.577.0"],
 			"registryDependencies": ["utils", "use-hover-capable"]
+		},
+		{
+			"name": "Expandable Action Bar",
+			"slug": "expandable-action-bar",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/expandable-action-bar.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0"],
+			"registryDependencies": ["utils"]
 		}
 	]
 }
