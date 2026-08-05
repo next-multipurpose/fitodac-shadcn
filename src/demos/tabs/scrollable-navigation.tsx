@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/primitives/
 
 export default function TabsScrollableNavigationDemo() {
   return (
-    <Tabs defaultValue="tab-1" className="min-w-full gap-0">
+    <Tabs defaultValue="tab-1" className="w-120 basis-0 gap-0">
       <ScrollArea>
         <TabsList className="mb-2 h-auto gap-2 rounded-none bg-transparent px-0 py-1 text-foreground">
           <TabsTrigger
@@ -84,19 +84,39 @@ export default function TabsScrollableNavigationDemo() {
       </ScrollArea>
       <div className="rounded-lg bg-muted p-4">
         <TabsContent value="tab-1">
-          <p className="text-xs">Overview content</p>
+          <h3 className="mb-2 font-semibold text-lg">Overview</h3>
+          <p className="text-xs">
+            View a comprehensive summary of your account activity, recent updates, and
+            key metrics at a glance.
+          </p>
         </TabsContent>
         <TabsContent value="tab-2">
-          <p className="text-xs">Analytics content</p>
+          <h3 className="mb-2 font-semibold text-lg">Projects</h3>
+          <p className="text-xs">
+            Explore your active projects, track progress, and collaborate with your team
+            on ongoing initiatives.
+          </p>
         </TabsContent>
         <TabsContent value="tab-3">
-          <p className="text-xs">Reports content</p>
+          <h3 className="mb-2 font-semibold text-lg">Packages</h3>
+          <p className="text-xs">
+            Browse and manage your software packages, dependencies, and published
+            releases across all projects.
+          </p>
         </TabsContent>
         <TabsContent value="tab-5">
-          <p className="text-xs">Content for Tab 5</p>
+          <h3 className="mb-2 font-semibold text-lg">Insights</h3>
+          <p className="text-xs">
+            Discover actionable insights from your data with interactive dashboards and
+            performance analytics.
+          </p>
         </TabsContent>
         <TabsContent value="tab-6">
-          <p className="text-xs">Content for Tab 6</p>
+          <h3 className="mb-2 font-semibold text-lg">Settings</h3>
+          <p className="text-xs">
+            Configure your account preferences, privacy settings, and application
+            options to customize your experience.
+          </p>
         </TabsContent>
       </div>
     </Tabs>
