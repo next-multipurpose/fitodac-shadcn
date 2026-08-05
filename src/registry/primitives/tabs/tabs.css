@@ -1,13 +1,4 @@
 @layer components {
-  [data-slot="tabs-trigger"] {
-    --tabs-indicator-bg: var(--background);
-    --tabs-indicator-bg-dark: color-mix(in srgb, var(--input) 30%, transparent);
-    --tabs-indicator-radius: inherit;
-    --tabs-indicator-radius-dark: inherit;
-    --tabs-indicator-shadow: theme(shadow.sm);
-    --tabs-indicator-shadow-dark: theme(shadow.sm);
-  }
-
   [data-slot="tabs-trigger"][data-state="inactive"] {
     border-color: transparent !important;
   }
