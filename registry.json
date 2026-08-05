@@ -21,6 +21,14 @@
 			"files": [{ "path": "src/hooks/use-mobile.ts", "type": "registry:hook" }]
 		},
 		{
+			"name": "Use Hover Capable",
+			"slug": "use-hover-capable",
+			"type": "registry:hook",
+			"files": [
+				{ "path": "src/hooks/use-hover-capable.ts", "type": "registry:hook" }
+			]
+		},
+		{
 			"name": "Use Character Limit",
 			"slug": "use-character-limit",
 			"type": "registry:hook",
@@ -1244,6 +1252,58 @@
 			"files": [
 				{
 					"path": "src/registry/components/shared-layout-bg.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0"],
+			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Dock",
+			"slug": "dock",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/dock.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0"],
+			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Overflow Actions",
+			"slug": "overflow-actions",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/overflow-actions.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0", "lucide-react@^0.577.0"],
+			"registryDependencies": ["utils", "use-hover-capable"]
+		},
+		{
+			"name": "Expandable Action Bar",
+			"slug": "expandable-action-bar",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/expandable-action-bar.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0"],
+			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Number Ticker",
+			"slug": "number-ticker",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/number-ticker.tsx",
 					"type": "registry:ui"
 				}
 			],

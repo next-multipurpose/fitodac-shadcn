@@ -22,11 +22,13 @@ import { commandDemos } from "./command/registry"
 import { contextMenuDemos } from "./context-menu/registry"
 import { dataTableDemos } from "./data-table/registry"
 import { datePickerDemos } from "./date-picker/registry"
+import { dockDemos } from "./dock/registry"
 import { dragAndDropDemos } from "./drag-and-drop/registry"
 import { drawerDemos } from "./drawer/registry"
 import { dropdownMenuDemos } from "./dropdown-menu/registry"
 import { emptyDemos } from "./empty/registry"
 import { eventCalendarDemos } from "./event-calendar/registry"
+import { expandableActionBarDemos } from "./expandable-action-bar/registry"
 import { fileUploadDemos } from "./file-upload/registry"
 import { formDemos } from "./form/registry"
 import { hoverCardDemos } from "./hover-card/registry"
@@ -43,6 +45,8 @@ import { menubarDemos } from "./menubar/registry"
 import { miniCalendarDemos } from "./mini-calendar/registry"
 import { nativeSelectDemos } from "./native-select/registry"
 import { navigationMenuDemos } from "./navigation-menu/registry"
+import { numberTickerDemos } from "./number-ticker/registry"
+import { overflowActionsDemos } from "./overflow-actions/registry"
 import { paginationDemos } from "./pagination/registry"
 import { popoverDemos } from "./popover/registry"
 import { progressDemos } from "./progress/registry"
@@ -91,11 +95,13 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "context-menu": contextMenuDemos,
   "data-table": dataTableDemos,
   "date-picker": datePickerDemos,
+  dock: dockDemos,
   "drag-and-drop": dragAndDropDemos,
   drawer: drawerDemos,
   "dropdown-menu": dropdownMenuDemos,
   empty: emptyDemos,
   "event-calendar": eventCalendarDemos,
+  "expandable-action-bar": expandableActionBarDemos,
   "file-upload": fileUploadDemos,
   form: formDemos,
   "hover-card": hoverCardDemos,
@@ -112,6 +118,8 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "mini-calendar": miniCalendarDemos,
   "native-select": nativeSelectDemos,
   "navigation-menu": navigationMenuDemos,
+  "number-ticker": numberTickerDemos,
+  "overflow-actions": overflowActionsDemos,
   pagination: paginationDemos,
   popover: popoverDemos,
   progress: progressDemos,
