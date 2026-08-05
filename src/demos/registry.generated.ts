@@ -45,6 +45,7 @@ import { menubarDemos } from "./menubar/registry"
 import { miniCalendarDemos } from "./mini-calendar/registry"
 import { nativeSelectDemos } from "./native-select/registry"
 import { navigationMenuDemos } from "./navigation-menu/registry"
+import { numberTickerDemos } from "./number-ticker/registry"
 import { overflowActionsDemos } from "./overflow-actions/registry"
 import { paginationDemos } from "./pagination/registry"
 import { popoverDemos } from "./popover/registry"
@@ -117,6 +118,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "mini-calendar": miniCalendarDemos,
   "native-select": nativeSelectDemos,
   "navigation-menu": navigationMenuDemos,
+  "number-ticker": numberTickerDemos,
   "overflow-actions": overflowActionsDemos,
   pagination: paginationDemos,
   popover: popoverDemos,

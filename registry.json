@@ -1296,6 +1296,19 @@
 			],
 			"dependencies": ["motion@^12.38.0"],
 			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Number Ticker",
+			"slug": "number-ticker",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/number-ticker.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0"],
+			"registryDependencies": ["utils"]
 		}
 	]
 }

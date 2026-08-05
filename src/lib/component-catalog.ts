@@ -119,6 +119,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"data-table",
 			"event-calendar",
 			"map",
+			"number-ticker",
 			"qr-code",
 			"stats",
 			"table",
