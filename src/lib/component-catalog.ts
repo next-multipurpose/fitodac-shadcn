@@ -136,6 +136,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"collapsible",
 			"drag-and-drop",
 			"scroll-area",
+			"shared-layout-bg",
 			"sortable",
 		],
 	},

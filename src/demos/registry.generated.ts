@@ -52,6 +52,7 @@ import { ratingDemos } from "./rating/registry"
 import { scrollAreaDemos } from "./scroll-area/registry"
 import { selectDemos } from "./select/registry"
 import { separatorDemos } from "./separator/registry"
+import { sharedLayoutBgDemos } from "./shared-layout-bg/registry"
 import { sheetDemos } from "./sheet/registry"
 import { skeletonDemos } from "./skeleton/registry"
 import { sliderDemos } from "./slider/registry"
@@ -120,6 +121,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "scroll-area": scrollAreaDemos,
   select: selectDemos,
   separator: separatorDemos,
+  "shared-layout-bg": sharedLayoutBgDemos,
   sheet: sheetDemos,
   skeleton: skeletonDemos,
   slider: sliderDemos,

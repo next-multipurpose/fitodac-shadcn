@@ -8,7 +8,10 @@
 			"name": "Utils",
 			"slug": "utils",
 			"type": "registry:lib",
-			"files": [{ "path": "src/lib/utils.ts", "type": "registry:lib" }],
+			"files": [
+				{ "path": "src/lib/utils.ts", "type": "registry:lib" },
+				{ "path": "src/lib/ease.ts", "type": "registry:lib" }
+			],
 			"dependencies": ["clsx@^2.1.1", "tailwind-merge@^3.5.0"]
 		},
 		{
@@ -1233,6 +1236,19 @@
 				"radix-ui@^1.4.3"
 			],
 			"registryDependencies": ["button", "utils"]
+		},
+		{
+			"name": "Shared Layout Background",
+			"slug": "shared-layout-bg",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/shared-layout-bg.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0"],
+			"registryDependencies": ["utils"]
 		}
 	]
 }
