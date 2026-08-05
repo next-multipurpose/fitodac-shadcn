@@ -54,6 +54,7 @@ export function TeamFilesDemo() {
 	return (
 		<TeamFiles
 			{...(exampleProps as unknown as ComponentProps<typeof TeamFiles>)}
+			className="max-w-xl"
 		/>
 	)
 }

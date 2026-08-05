@@ -71,6 +71,7 @@ export function TeamMemberListDemo() {
 	return (
 		<TeamMemberList
 			{...(exampleProps as unknown as ComponentProps<typeof TeamMemberList>)}
+			className="max-w-2xl"
 		/>
 	)
 }

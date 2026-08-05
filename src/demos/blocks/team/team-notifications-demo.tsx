@@ -64,6 +64,7 @@ export function TeamNotificationsDemo() {
 	return (
 		<TeamNotifications
 			{...(exampleProps as unknown as ComponentProps<typeof TeamNotifications>)}
+			className="max-w-2xl"
 		/>
 	)
 }

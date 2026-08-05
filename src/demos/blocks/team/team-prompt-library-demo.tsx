@@ -91,6 +91,7 @@ export function TeamPromptLibraryDemo() {
 	return (
 		<TeamPromptLibrary
 			{...(exampleProps as unknown as ComponentProps<typeof TeamPromptLibrary>)}
+			className="max-w-screen-md"
 		/>
 	)
 }

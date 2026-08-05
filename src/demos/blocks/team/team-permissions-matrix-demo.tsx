@@ -13,6 +13,7 @@ export function TeamPermissionsMatrixDemo() {
 			{...(exampleProps as unknown as ComponentProps<
 				typeof TeamPermissionsMatrix
 			>)}
+			className="max-w-2xl"
 		/>
 	)
 }

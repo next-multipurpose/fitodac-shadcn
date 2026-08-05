@@ -99,6 +99,7 @@ export function TeamProjectsDemo() {
 	return (
 		<TeamProjects
 			{...(exampleProps as unknown as ComponentProps<typeof TeamProjects>)}
+			className="max-w-screen-md"
 		/>
 	)
 }

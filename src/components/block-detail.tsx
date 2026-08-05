@@ -7,6 +7,7 @@ import type { BlockEntry } from "@/lib/blocks-catalog"
 import type { DemoEntry } from "@/demos/types"
 import type { DemoIntegrationBundle } from "@/demos/integration/types"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/primitives/button"
 import {
 	ResizableHandle,
@@ -149,8 +150,16 @@ export function BlockDetail({ block, demo, bundle }: BlockDetailProps) {
 					className="min-h-0 w-full flex-1 overflow-visible!"
 					orientation="horizontal"
 				>
-					<ResizablePanel className="min-w-0" defaultSize="100" minSize="30">
-						<div className="flex items-center justify-center p-6 sm:p-10">
+				<ResizablePanel className="min-w-0" defaultSize="100" minSize="30">
+						<div
+							className={cn(
+								"flex items-center justify-center p-6 sm:p-10",
+								demo.previewClassName
+							)}
+							style={{
+								minHeight: `${(demo.previewMinHeight ?? 100) / 4}rem`,
+							}}
+						>
 							<React.Suspense fallback={<div>Loading…</div>}>
 								{React.createElement(demo.component)}
 							</React.Suspense>

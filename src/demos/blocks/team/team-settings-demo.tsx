@@ -39,6 +39,7 @@ export function TeamSettingsDemo() {
 	return (
 		<TeamSettings
 			{...(exampleProps as unknown as ComponentProps<typeof TeamSettings>)}
+			className="max-w-xl"
 		/>
 	)
 }

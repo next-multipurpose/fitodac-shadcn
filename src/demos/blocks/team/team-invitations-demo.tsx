@@ -61,6 +61,7 @@ export function TeamInvitationsDemo() {
 	return (
 		<TeamInvitations
 			{...(exampleProps as unknown as ComponentProps<typeof TeamInvitations>)}
+			className="max-w-xl"
 		/>
 	)
 }
