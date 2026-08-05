@@ -22,6 +22,7 @@ import { commandDemos } from "./command/registry"
 import { contextMenuDemos } from "./context-menu/registry"
 import { dataTableDemos } from "./data-table/registry"
 import { datePickerDemos } from "./date-picker/registry"
+import { dockDemos } from "./dock/registry"
 import { dragAndDropDemos } from "./drag-and-drop/registry"
 import { drawerDemos } from "./drawer/registry"
 import { dropdownMenuDemos } from "./dropdown-menu/registry"
@@ -43,6 +44,7 @@ import { menubarDemos } from "./menubar/registry"
 import { miniCalendarDemos } from "./mini-calendar/registry"
 import { nativeSelectDemos } from "./native-select/registry"
 import { navigationMenuDemos } from "./navigation-menu/registry"
+import { overflowActionsDemos } from "./overflow-actions/registry"
 import { paginationDemos } from "./pagination/registry"
 import { popoverDemos } from "./popover/registry"
 import { progressDemos } from "./progress/registry"
@@ -91,6 +93,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "context-menu": contextMenuDemos,
   "data-table": dataTableDemos,
   "date-picker": datePickerDemos,
+  dock: dockDemos,
   "drag-and-drop": dragAndDropDemos,
   drawer: drawerDemos,
   "dropdown-menu": dropdownMenuDemos,
@@ -112,6 +115,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   "mini-calendar": miniCalendarDemos,
   "native-select": nativeSelectDemos,
   "navigation-menu": navigationMenuDemos,
+  "overflow-actions": overflowActionsDemos,
   pagination: paginationDemos,
   popover: popoverDemos,
   progress: progressDemos,

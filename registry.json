@@ -21,6 +21,14 @@
 			"files": [{ "path": "src/hooks/use-mobile.ts", "type": "registry:hook" }]
 		},
 		{
+			"name": "Use Hover Capable",
+			"slug": "use-hover-capable",
+			"type": "registry:hook",
+			"files": [
+				{ "path": "src/hooks/use-hover-capable.ts", "type": "registry:hook" }
+			]
+		},
+		{
 			"name": "Use Character Limit",
 			"slug": "use-character-limit",
 			"type": "registry:hook",
@@ -1249,6 +1257,32 @@
 			],
 			"dependencies": ["motion@^12.38.0"],
 			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Dock",
+			"slug": "dock",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/dock.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0"],
+			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Overflow Actions",
+			"slug": "overflow-actions",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/overflow-actions.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0", "lucide-react@^0.577.0"],
+			"registryDependencies": ["utils", "use-hover-capable"]
 		}
 	]
 }
