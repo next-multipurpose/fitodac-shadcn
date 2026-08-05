@@ -25,7 +25,6 @@ import TabsIconsDemo from "./icons"
 import TabsNestedDemo from "./nested"
 import TabsScrollableDemo from "./scrollable"
 import TabsTablesDemo from "./tables"
-import TabsVerticalDemo from "./vertical"
 
 export const tabsDemos: DemoEntry[] = [
   {
@@ -200,13 +199,6 @@ export const tabsDemos: DemoEntry[] = [
     componentSlug: "tabs",
     sourcePath: "src/demos/tabs/tables.tsx",
     registryDependencies: ["badge", "scroll-area"],
-  },
-  {
-    name: "vertical",
-    title: "Vertical Tabs",
-    component: TabsVerticalDemo,
-    componentSlug: "tabs",
-    sourcePath: "src/demos/tabs/vertical.tsx",
   },
   {
     name: "full-width",
