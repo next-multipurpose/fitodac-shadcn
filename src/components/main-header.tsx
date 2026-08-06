@@ -17,7 +17,9 @@ export function MainHeader({
 }) {
   const pathname = usePathname()
 
+  if (!pathname) return null
   if (pathname.startsWith("/dashboard")) return null
+  if (pathname.startsWith("/mail")) return null
 
   return (
     <header className="sticky top-0 z-10 border-b border-border/70 bg-background/90 backdrop-blur">

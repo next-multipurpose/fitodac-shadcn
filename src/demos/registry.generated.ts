@@ -16,8 +16,9 @@ import { cardDemos } from "./card/registry"
 import { carouselDemos } from "./carousel/registry"
 import { chartsDemos } from "./charts/registry"
 import { checkboxDemos } from "./checkbox/registry"
-import { collapsibleDemos } from "./collapsible/registry"
+    import { collapsibleDemos } from "./collapsible/registry"
 import { comboboxDemos } from "./combobox/registry"
+import { expandableTabsDemos } from "./expandable-tabs/registry"
 import { commandDemos } from "./command/registry"
 import { contextMenuDemos } from "./context-menu/registry"
 import { dataTableDemos } from "./data-table/registry"
@@ -91,6 +92,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   checkbox: checkboxDemos,
   collapsible: collapsibleDemos,
   combobox: comboboxDemos,
+  "expandable-tabs": expandableTabsDemos,
   command: commandDemos,
   "context-menu": contextMenuDemos,
   "data-table": dataTableDemos,
