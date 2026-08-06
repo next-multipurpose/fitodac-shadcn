@@ -75,8 +75,8 @@ import tree_sitter_sql
 import mcp
 
 major = int(version("mcp").split(".", 1)[0])
-if major >= 2:
-    raise SystemExit("mcp>=2 is not supported")
+if major >= 3:
+    raise SystemExit("mcp>=3 is not supported")
 PY
 
   ok "Graphify $actual_version with SQL and mcp<2"

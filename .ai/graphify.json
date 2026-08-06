@@ -1,6 +1,6 @@
 {
-  "version": "0.9.29",
-  "mcp_version_range": "<2",
+  "version": "0.9.34",
+  "mcp_version_range": "<3",
   "graph_path": "graphify-out/graph.json",
   "host": "127.0.0.1",
   "port": 8081,

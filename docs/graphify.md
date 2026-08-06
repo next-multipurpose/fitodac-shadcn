@@ -6,11 +6,11 @@ documentation, and progress files remain authoritative.
 
 ## Validated installation
 
-The harness validates Graphify `0.9.29`, SQL parsing, and `mcp<2`. Installation
+The harness validates Graphify `0.9.34`, SQL parsing, and `mcp<2`. Installation
 is a one-time machine action and is never performed automatically:
 
 ```bash
-uv tool install --force "graphifyy[mcp,sql]==0.9.29" --with "mcp<2"
+uv tool install --force "graphifyy[mcp,sql]==0.9.34" --with "mcp<2"
 ```
 
 ## Harness commands
