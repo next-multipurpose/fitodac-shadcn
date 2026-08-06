@@ -139,6 +139,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"dock",
 			"drag-and-drop",
 			"expandable-action-bar",
+			"expandable-tabs",
 			"overflow-actions",
 			"scroll-area",
 			"shared-layout-bg",

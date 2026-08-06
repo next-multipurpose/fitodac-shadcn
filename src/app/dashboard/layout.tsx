@@ -528,7 +528,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
         </header>
 
         <main className="flex flex-1 flex-col items-center gap-4 px-4 pb-4">
-          <div className="w-full max-w-screen-xl srink-0">
+          <div className="w-full max-w-screen-xl shrink-0 h-full">
             {children}
           </div>
         </main>

@@ -1309,6 +1309,19 @@
 			],
 			"dependencies": ["motion@^12.38.0"],
 			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Expandable Tabs",
+			"slug": "expandable-tabs",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/expandable-tabs.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0"],
+			"registryDependencies": ["utils"]
 		}
 	]
 }
