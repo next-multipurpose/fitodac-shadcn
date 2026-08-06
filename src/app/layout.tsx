@@ -1,12 +1,9 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getMessages, getTranslations } from "next-intl/server"
 import type { ReactNode } from "react"
 
-import { AnimatedThemeToggler } from "@/components/animated-theme-toggler"
-import { LanguageSwitcher } from "@/components/language-switcher"
-import { ThemeSelector } from "@/components/theme-selector"
+import { MainHeader } from "@/components/main-header"
 import { resolveLocale } from "@/i18n/config"
 import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme"
 import {
@@ -37,6 +34,15 @@ export default async function RootLayout({
   const messages = await getMessages()
   const t = await getTranslations("Header")
 
+  const headerMessages = {
+    mainNavigation: t("mainNavigation"),
+    components: t("components"),
+    charts: t("charts"),
+    blocks: t("blocks"),
+    layouts: t("layouts"),
+    dashboard: t("dashboard"),
+  }
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
@@ -54,45 +60,7 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <header className="sticky top-0 z-10 border-b border-border/70 bg-background/90 backdrop-blur">
-            <div className="mx-auto flex min-h-16 max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-3">
-              <Link className="font-semibold tracking-tight" href="/">
-                Fitodac UI
-              </Link>
-              <div className="flex items-center gap-3">
-              
-              <nav aria-label={t("mainNavigation")} className="md:space-x-5">
-                <Link
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  href="/components"
-                >
-                  {t("components")}
-                </Link>
-                <Link
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  href="/charts"
-                >
-                  {t("charts")}
-                </Link>
-                <Link
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  href="/blocks"
-                >
-                  {t("blocks")}
-                </Link>
-                <Link
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  href="/layouts"
-                >
-                  {t("layouts")}
-                </Link>
-              </nav>
-                <LanguageSwitcher locale={locale} />
-                <ThemeSelector />
-                <AnimatedThemeToggler />
-              </div>
-            </div>
-          </header>
+          <MainHeader locale={locale} messages={headerMessages} />
           {children}
         </NextIntlClientProvider>
       </body>
