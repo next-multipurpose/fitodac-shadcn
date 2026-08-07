@@ -1348,6 +1348,50 @@
 			],
 			"dependencies": ["motion@^12.38.0", "lucide-react@^0.577.0"],
 			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Availability Scheduler",
+			"slug": "availability-scheduler",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/availability-scheduler/types.ts",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/registry/components/availability-scheduler/icon-button.tsx",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/registry/components/availability-scheduler/tooltip.tsx",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/registry/components/availability-scheduler/time-select.tsx",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/registry/components/availability-scheduler/day-row.tsx",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/registry/components/availability-scheduler/copy-menu.tsx",
+					"type": "registry:ui"
+				},
+				{
+					"path": "src/registry/components/availability-scheduler/index.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0", "lucide-react@^0.577.0"],
+			"registryDependencies": [
+				"utils",
+				"switch",
+				"checkbox",
+				"select",
+				"popover",
+				"tooltip"
+			]
 		}
 	]
 }
