@@ -1322,6 +1322,19 @@
 			],
 			"dependencies": ["motion@^12.38.0"],
 			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Swipeable List",
+			"slug": "swipeable-list",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/swipeable-list.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0"],
+			"registryDependencies": ["utils"]
 		}
 	]
 }

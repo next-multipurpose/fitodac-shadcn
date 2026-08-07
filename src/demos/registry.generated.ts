@@ -16,9 +16,8 @@ import { cardDemos } from "./card/registry"
 import { carouselDemos } from "./carousel/registry"
 import { chartsDemos } from "./charts/registry"
 import { checkboxDemos } from "./checkbox/registry"
-    import { collapsibleDemos } from "./collapsible/registry"
+import { collapsibleDemos } from "./collapsible/registry"
 import { comboboxDemos } from "./combobox/registry"
-import { expandableTabsDemos } from "./expandable-tabs/registry"
 import { commandDemos } from "./command/registry"
 import { contextMenuDemos } from "./context-menu/registry"
 import { dataTableDemos } from "./data-table/registry"
@@ -30,6 +29,7 @@ import { dropdownMenuDemos } from "./dropdown-menu/registry"
 import { emptyDemos } from "./empty/registry"
 import { eventCalendarDemos } from "./event-calendar/registry"
 import { expandableActionBarDemos } from "./expandable-action-bar/registry"
+import { expandableTabsDemos } from "./expandable-tabs/registry"
 import { fileUploadDemos } from "./file-upload/registry"
 import { formDemos } from "./form/registry"
 import { hoverCardDemos } from "./hover-card/registry"
@@ -65,6 +65,7 @@ import { sortableDemos } from "./sortable/registry"
 import { spinnerDemos } from "./spinner/registry"
 import { statsDemos } from "./stats/registry"
 import { stepperDemos } from "./stepper/registry"
+import { swipeableListDemos } from "./swipeable-list/registry"
 import { switchDemos } from "./switch/registry"
 import { tableDemos } from "./table/registry"
 import { tabsDemos } from "./tabs/registry"
@@ -92,7 +93,6 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   checkbox: checkboxDemos,
   collapsible: collapsibleDemos,
   combobox: comboboxDemos,
-  "expandable-tabs": expandableTabsDemos,
   command: commandDemos,
   "context-menu": contextMenuDemos,
   "data-table": dataTableDemos,
@@ -104,6 +104,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   empty: emptyDemos,
   "event-calendar": eventCalendarDemos,
   "expandable-action-bar": expandableActionBarDemos,
+  "expandable-tabs": expandableTabsDemos,
   "file-upload": fileUploadDemos,
   form: formDemos,
   "hover-card": hoverCardDemos,
@@ -139,6 +140,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   spinner: spinnerDemos,
   stats: statsDemos,
   stepper: stepperDemos,
+  "swipeable-list": swipeableListDemos,
   switch: switchDemos,
   table: tableDemos,
   tabs: tabsDemos,
