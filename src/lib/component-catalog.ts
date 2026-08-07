@@ -146,6 +146,7 @@ export const componentCategories: readonly ComponentCategory[] = [
 			"shared-layout-bg",
 			"sortable",
 			"swipeable-list",
+			"availability-scheduler",
 		],
 	},
 	{ key: "advanced", items: ["tiptap-editor"] },

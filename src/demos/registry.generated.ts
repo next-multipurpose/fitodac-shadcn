@@ -6,6 +6,7 @@ import { accordionDemos } from "./accordion/registry"
 import { alertDemos } from "./alert/registry"
 import { alertDialogDemos } from "./alert-dialog/registry"
 import { autocompleteDemos } from "./autocomplete/registry"
+import { availabilitySchedulerDemos } from "./availability-scheduler/registry"
 import { avatarDemos } from "./avatar/registry"
 import { badgeDemos } from "./badge/registry"
 import { bloomMenuDemos } from "./bloom-menu/registry"
@@ -82,6 +83,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   alert: alertDemos,
   "alert-dialog": alertDialogDemos,
   autocomplete: autocompleteDemos,
+  "availability-scheduler": availabilitySchedulerDemos,
   avatar: avatarDemos,
   badge: badgeDemos,
   "bloom-menu": bloomMenuDemos,
