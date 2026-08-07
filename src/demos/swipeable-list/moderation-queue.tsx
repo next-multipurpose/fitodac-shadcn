@@ -60,7 +60,7 @@ type PlatformKey = keyof typeof platformConfig
 function PlatformTag({ platform }: { platform: PlatformKey }) {
 	const c = platformConfig[platform]
 	return (
-		<span className="inline-flex items-center gap-1 rounded px-1 py-0.5 text-[10px] font-medium leading-none">
+		<span className="inline-flex items-center gap-1 rounded px-1 py-0.5 text-[10px] leading-none font-medium">
 			<span className={cn("h-1.5 w-1.5 rounded-full", c.color)} />
 			{c.label}
 		</span>
@@ -85,8 +85,8 @@ function GradientLead({
 	return (
 		<div
 			className={cn(
-				"grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border bg-gradient-to-br text-xs font-medium text-transparent bg-clip-text",
-				colors,
+				"grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border bg-gradient-to-br bg-clip-text text-xs font-medium text-transparent",
+				colors
 			)}
 		>
 			{initial}
@@ -152,7 +152,8 @@ const initialItems: SwipeableListItem[] = [
 	{
 		id: "post-4",
 		title: "CodeCraft Weekly",
-		description: "Episode 42: The hidden cost of layout animations in React. Watch now.",
+		description:
+			"Episode 42: The hidden cost of layout animations in React. Watch now.",
 		meta: (
 			<div className="flex items-center gap-1.5">
 				<PlatformTag platform="youtube" />
@@ -179,7 +180,11 @@ function CountBadge({
 	label,
 	count,
 	tone,
-}: { label: string; count: number; tone: "pending" | "approved" | "rejected" }) {
+}: {
+	label: string
+	count: number
+	tone: "pending" | "approved" | "rejected"
+}) {
 	const toneClass = {
 		pending: "border-border bg-muted text-muted-foreground",
 		approved:
@@ -191,11 +196,11 @@ function CountBadge({
 		<span
 			className={cn(
 				"inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-medium",
-				toneClass[tone],
+				toneClass[tone]
 			)}
 		>
 			{label}
-			<span className="rounded-full bg-background px-1.5 py-0.5 text-[10px] font-semibold leading-none">
+			<span className="rounded-full bg-background px-1.5 py-0.5 text-[10px] leading-none font-semibold">
 				{count}
 			</span>
 		</span>
@@ -264,11 +269,7 @@ export function SwipeableListModerationQueueDemo() {
 						</p>
 						<p className="text-xs text-muted-foreground">{lastAction}</p>
 					</div>
-					<CountBadge
-						label="Pending"
-						count={items.length}
-						tone="pending"
-					/>
+					<CountBadge label="Pending" count={items.length} tone="pending" />
 				</div>
 
 				<div className="flex items-center gap-1">
@@ -281,7 +282,7 @@ export function SwipeableListModerationQueueDemo() {
 								"inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-medium transition-all",
 								activeFilter === f.key
 									? "border-primary bg-primary/10 text-primary"
-									: "border-border bg-background text-muted-foreground hover:text-foreground",
+									: "border-border bg-background text-muted-foreground hover:text-foreground"
 							)}
 						>
 							{f.icon}
@@ -291,8 +292,16 @@ export function SwipeableListModerationQueueDemo() {
 				</div>
 
 				<div className="flex gap-3">
-					<CountBadge label="Approved" count={counts.approved} tone="approved" />
-					<CountBadge label="Rejected" count={counts.rejected} tone="rejected" />
+					<CountBadge
+						label="Approved"
+						count={counts.approved}
+						tone="approved"
+					/>
+					<CountBadge
+						label="Rejected"
+						count={counts.rejected}
+						tone="rejected"
+					/>
 				</div>
 
 				<SwipeableList items={items} onAction={handleAction} />

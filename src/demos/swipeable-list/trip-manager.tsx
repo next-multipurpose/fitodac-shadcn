@@ -104,14 +104,17 @@ const initialItems: SwipeableListItem[] = [
 function StatusChip({
 	children,
 	positive = true,
-}: { children: ReactNode; positive?: boolean }) {
+}: {
+	children: ReactNode
+	positive?: boolean
+}) {
 	return (
 		<span
 			className={cn(
 				"inline-flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[10px] font-medium",
 				positive
 					? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-					: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+					: "bg-amber-500/10 text-amber-600 dark:text-amber-400"
 			)}
 		>
 			{children}

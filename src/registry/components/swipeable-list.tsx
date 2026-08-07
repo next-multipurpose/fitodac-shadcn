@@ -7,13 +7,7 @@ import {
 	useReducedMotion,
 	type PanInfo,
 } from "motion/react"
-import {
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-	type ReactNode,
-} from "react"
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
 export type SwipeSide = "left" | "right"
@@ -24,11 +18,7 @@ export type SwipeableListValue = {
 }
 
 export type SwipeActionTone =
-	| "neutral"
-	| "primary"
-	| "success"
-	| "warning"
-	| "danger"
+	"neutral" | "primary" | "success" | "warning" | "danger"
 
 export type SwipeAction = {
 	id: string
@@ -128,7 +118,7 @@ function useControllableSwipeValue({
 
 			onValueChange?.(next)
 		},
-		[isControlled, onValueChange],
+		[isControlled, onValueChange]
 	)
 
 	return [currentValue, setValue] as const
@@ -141,7 +131,7 @@ function isActionableSide(value: number, sideWidth: number) {
 function clampReleaseVelocity(velocity: number) {
 	return Math.max(
 		-RELEASE_VELOCITY_LIMIT,
-		Math.min(RELEASE_VELOCITY_LIMIT, velocity),
+		Math.min(RELEASE_VELOCITY_LIMIT, velocity)
 	)
 }
 
@@ -171,14 +161,14 @@ function SwipeActionButton({
 				"group flex h-full shrink-0 items-center justify-center outline-none",
 				"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 				"disabled:pointer-events-none disabled:opacity-50",
-				className,
+				className
 			)}
 			style={{ width: actionWidth }}
 		>
 			<span
 				className={cn(
 					"grid h-9 w-9 place-items-center rounded-full transition-[background-color,color,transform] duration-150 group-hover:bg-background group-active:scale-95",
-					ACTION_TONE_CLASS[action.tone ?? "neutral"],
+					ACTION_TONE_CLASS[action.tone ?? "neutral"]
 				)}
 			>
 				{action.icon}
@@ -237,7 +227,7 @@ function SwipeableListRow({
 				onComplete: () => x.set(nextX),
 			})
 		},
-		[reduce, x],
+		[reduce, x]
 	)
 
 	useEffect(() => {
@@ -255,7 +245,7 @@ function SwipeableListRow({
 	const getTargetX = useCallback(
 		(side: SwipeSide | null) =>
 			side === "left" ? leftWidth : side === "right" ? -rightWidth : 0,
-		[leftWidth, rightWidth],
+		[leftWidth, rightWidth]
 	)
 
 	const snapTo = useCallback(
@@ -263,7 +253,7 @@ function SwipeableListRow({
 			setOpenValue(side ? { id: item.id, side } : null)
 			settleX(getTargetX(side), velocity)
 		},
-		[getTargetX, item.id, setOpenValue, settleX],
+		[getTargetX, item.id, setOpenValue, settleX]
 	)
 
 	const onDragStart = useCallback(() => {
@@ -280,11 +270,11 @@ function SwipeableListRow({
 			const latest = x.get()
 			const leftOpenThreshold = Math.max(
 				revealThreshold,
-				leftWidth * OPEN_DISTANCE_RATIO,
+				leftWidth * OPEN_DISTANCE_RATIO
 			)
 			const rightOpenThreshold = Math.max(
 				revealThreshold,
-				rightWidth * OPEN_DISTANCE_RATIO,
+				rightWidth * OPEN_DISTANCE_RATIO
 			)
 
 			if (openSide === "left") {
@@ -333,14 +323,7 @@ function SwipeableListRow({
 
 			snapTo(null, velocity)
 		},
-		[
-			leftWidth,
-			openSide,
-			revealThreshold,
-			rightWidth,
-			snapTo,
-			x,
-		],
+		[leftWidth, openSide, revealThreshold, rightWidth, snapTo, x]
 	)
 
 	const handleAction = useCallback(
@@ -352,7 +335,7 @@ function SwipeableListRow({
 				snapTo(null)
 			}
 		},
-		[closeOnAction, item, onAction, snapTo],
+		[closeOnAction, item, onAction, snapTo]
 	)
 
 	const defaultContent = (
@@ -367,7 +350,7 @@ function SwipeableListRow({
 					<div
 						className={cn(
 							"truncate text-sm font-medium text-foreground",
-							classNames?.title,
+							classNames?.title
 						)}
 					>
 						{item.title}
@@ -377,7 +360,7 @@ function SwipeableListRow({
 					<div
 						className={cn(
 							"mt-0.5 truncate text-xs text-muted-foreground",
-							classNames?.description,
+							classNames?.description
 						)}
 					>
 						{item.description}
@@ -388,7 +371,7 @@ function SwipeableListRow({
 				<div
 					className={cn(
 						"shrink-0 text-xs font-medium text-muted-foreground",
-						classNames?.meta,
+						classNames?.meta
 					)}
 				>
 					{item.meta}
@@ -402,7 +385,7 @@ function SwipeableListRow({
 			className={cn(
 				"relative isolate overflow-hidden rounded-2xl bg-muted",
 				item.disabled && "opacity-60",
-				classNames?.item,
+				classNames?.item
 			)}
 		>
 			<div
@@ -410,7 +393,7 @@ function SwipeableListRow({
 				inert={!openSide}
 				className={cn(
 					"absolute inset-0 z-0 flex overflow-hidden rounded-2xl",
-					classNames?.rail,
+					classNames?.rail
 				)}
 			>
 				<div className="flex h-full overflow-hidden rounded-l-2xl">
@@ -450,11 +433,11 @@ function SwipeableListRow({
 				onDragEnd={onDragEnd}
 				style={{ x }}
 				className={cn(
-					"relative z-10 min-h-[72px] cursor-grab touch-pan-y select-none rounded-2xl border border-border bg-card px-4 py-3 shadow-sm active:cursor-grabbing",
-					classNames?.surface,
+					"relative z-10 min-h-[72px] cursor-grab touch-pan-y rounded-2xl border border-border bg-card px-4 py-3 shadow-sm select-none active:cursor-grabbing",
+					classNames?.surface
 				)}
 			>
-				{renderItem ? renderItem(item) : item.content ?? defaultContent}
+				{renderItem ? renderItem(item) : (item.content ?? defaultContent)}
 			</motion.div>
 		</div>
 	)
