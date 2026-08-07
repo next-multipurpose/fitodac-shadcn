@@ -8,6 +8,7 @@ import { alertDialogDemos } from "./alert-dialog/registry"
 import { autocompleteDemos } from "./autocomplete/registry"
 import { avatarDemos } from "./avatar/registry"
 import { badgeDemos } from "./badge/registry"
+import { bloomMenuDemos } from "./bloom-menu/registry"
 import { breadcrumbDemos } from "./breadcrumb/registry"
 import { buttonDemos } from "./button/registry"
 import { buttonGroupDemos } from "./button-group/registry"
@@ -83,6 +84,7 @@ export const demoRegistry: Record<string, DemoEntry[]> = {
   autocomplete: autocompleteDemos,
   avatar: avatarDemos,
   badge: badgeDemos,
+  "bloom-menu": bloomMenuDemos,
   breadcrumb: breadcrumbDemos,
   button: buttonDemos,
   "button-group": buttonGroupDemos,

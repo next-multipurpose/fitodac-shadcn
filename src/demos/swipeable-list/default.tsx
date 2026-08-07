@@ -137,7 +137,7 @@ export function SwipeableListDefaultDemo() {
 
 						if (action.id === "trash") {
 							setItems((current) =>
-								current.filter((entry) => entry.id !== item.id),
+								current.filter((entry) => entry.id !== item.id)
 							)
 						}
 					}}

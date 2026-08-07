@@ -1335,6 +1335,19 @@
 			],
 			"dependencies": ["motion@^12.38.0"],
 			"registryDependencies": ["utils"]
+		},
+		{
+			"name": "Bloom Menu",
+			"slug": "bloom-menu",
+			"type": "registry:ui",
+			"files": [
+				{
+					"path": "src/registry/components/bloom-menu.tsx",
+					"type": "registry:ui"
+				}
+			],
+			"dependencies": ["motion@^12.38.0", "lucide-react@^0.577.0"],
+			"registryDependencies": ["utils"]
 		}
 	]
 }
