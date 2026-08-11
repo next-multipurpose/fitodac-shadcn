@@ -36,7 +36,7 @@ import {
 	HeartPulse,
 	MessageSquare,
 	Kanban,
-	ReceiptText, 
+	ReceiptText,
 	Lock,
 	Gauge
 
@@ -86,11 +86,11 @@ import { AnimatedThemeToggler } from "@/components/animated-theme-toggler"
 import { cn } from "@/lib/utils"
 
 interface PlatformItem {
-  label: string
-  icon: ComponentType<{ className?: string }>
-  href?: string
-  children?: string[]
-  badge?: string
+	label: string
+	icon: ComponentType<{ className?: string }>
+	href?: string
+	children?: string[]
+	badge?: string
 }
 
 const platformItems: PlatformItem[] = [
@@ -444,25 +444,6 @@ function AppSidebar() {
 				<PlatformNavigation />
 				<ResourceNavigation />
 			</SidebarContent>
-			<SidebarFooter className="gap-4 p-2 pb-3">
-				<SidebarMenu className="gap-0">
-					{[
-						{ label: "Settings", icon: Settings },
-						{ label: "Invite Team", icon: Users },
-						{ label: "Documentation", icon: BookOpen },
-					].map((item) => (
-						<SidebarMenuItem key={item.label}>
-							<SidebarMenuButton asChild size="sm" tooltip={item.label}>
-								<a href="#">
-									<item.icon />
-									<span>{item.label}</span>
-								</a>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-					))}
-				</SidebarMenu>
-				<UserMenu />
-			</SidebarFooter>
 		</Sidebar>
 	)
 }
@@ -504,35 +485,35 @@ function SidebarCollapseControl() {
 }
 
 export default function AppShell({ children }: { children: ReactNode }) {
-  return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarCollapseControl />
-      <SidebarInset className="h-svh min-w-0 overflow-y-auto">
-        <header className="flex h-12 shrink-0 items-center gap-2 px-4">
-          <SidebarTrigger
-            className="-ml-2 md:hidden"
-            aria-label="Toggle sidebar"
-          />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:flex">
-                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Overview</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </header>
+	return (
+		<SidebarProvider>
+			<AppSidebar />
+			<SidebarCollapseControl />
+			<SidebarInset className="h-svh min-w-0 overflow-y-auto">
+				<header className="flex h-12 shrink-0 items-center gap-2 px-4">
+					<SidebarTrigger
+						className="-ml-2 md:hidden"
+						aria-label="Toggle sidebar"
+					/>
+					<Breadcrumb>
+						<BreadcrumbList>
+							<BreadcrumbItem className="hidden md:flex">
+								<BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator className="hidden md:block" />
+							<BreadcrumbItem>
+								<BreadcrumbPage>Overview</BreadcrumbPage>
+							</BreadcrumbItem>
+						</BreadcrumbList>
+					</Breadcrumb>
+				</header>
 
-        <main className="flex flex-1 flex-col items-center gap-4 px-4 pb-4">
-          <div className="w-full max-w-screen-xl shrink-0 h-full">
-            {children}
-          </div>
-        </main>
-      </SidebarInset>
-    </SidebarProvider>
-  )
+				<main className="flex flex-1 flex-col items-center gap-4 px-4 pb-4">
+					<div className="w-full max-w-screen-xl shrink-0 h-full">
+						{children}
+					</div>
+				</main>
+			</SidebarInset>
+		</SidebarProvider>
+	)
 }

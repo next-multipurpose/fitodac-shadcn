@@ -1,5 +1,5 @@
 export type BlockCategoryKey =
-	"auth" | "billing" | "settings" | "tasks" | "team"
+	"auth" | "availability" | "billing" | "settings" | "tasks" | "team"
 
 export type BlockCategory = {
 	slug: BlockCategoryKey
@@ -14,6 +14,7 @@ export type BlockEntry = {
 
 export const blockCategories: readonly BlockCategory[] = [
 	{ slug: "auth", blockCount: 16 },
+	{ slug: "availability", blockCount: 1 },
 	{ slug: "billing", blockCount: 15 },
 	{ slug: "settings", blockCount: 18 },
 	{ slug: "tasks", blockCount: 7 },
@@ -209,6 +210,14 @@ export const blockEntries: Record<BlockCategoryKey, readonly BlockEntry[]> = {
 			name: "Usage Billing",
 			description:
 				"Current usage metrics with a progress bar and billing cycle overview.",
+		},
+	],
+	availability: [
+		{
+			slug: "availability-scheduler",
+			name: "Availability Scheduler",
+			description:
+				"A weekly availability editor with per-day toggles, multiple time ranges, and copy-to-days.",
 		},
 	],
 	settings: [

@@ -88,6 +88,7 @@
 		"blockCount": "{count, plural, one {# block} other {# blocks}}",
 		"categories": {
 			"auth": "Auth",
+			"availability": "Availability",
 			"billing": "Billing",
 			"settings": "Settings",
 			"tasks": "Tasks",
@@ -95,6 +96,7 @@
 		},
 		"categoryDescriptions": {
 			"auth": "Authentication and account management blocks.",
+			"availability": "Availability and scheduling blocks.",
 			"billing": "Billing, subscription, and payment flow blocks.",
 			"settings": "User and account settings management blocks.",
 			"tasks": "Task and project management blocks.",
