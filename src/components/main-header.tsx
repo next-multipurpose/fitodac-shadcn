@@ -21,6 +21,7 @@ export function MainHeader({
 	if (pathname.startsWith("/dashboard")) return null
 	if (pathname.startsWith("/mail")) return null
 	if (pathname.startsWith("/chat")) return null
+	if (pathname.startsWith("/layouts/login/")) return null
 
 	return (
 		<header className="sticky top-0 z-10 border-b border-border/70 bg-background/90 backdrop-blur">
